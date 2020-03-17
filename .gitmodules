@@ -1,0 +1,6 @@
+[submodule "roles/base"]
+	path = roles/base
+	url = https://github.com/n0emis/ansible-role-base
+[submodule "roles/jnv.unattended-upgrades"]
+	path = roles/jnv.unattended-upgrades
+	url = https://github.com/jnv/ansible-role-unattended-upgrades
