@@ -2,3 +2,7 @@
 - hosts: all
   roles:
     - base
+
+- hosts: keycloak
+  roles:
+    - keycloak

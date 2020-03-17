@@ -1,0 +1,7 @@
+---
+keycloak_version: 9.0.0
+keycloak_dir: /var/lib/keycloak
+keycloak_archive: keycloak-{{ keycloak_version }}.tar.gz
+keycloak_url: http://downloads.jboss.org/keycloak/{{ keycloak_version }}/{{keycloak_archive }}
+keycloak_jboss_home: "{{ keycloak_dir }}/keycloak-{{ keycloak_version }}"
+keycloak_log_dir: "{{ keycloak_jboss_home }}/standalone/log"

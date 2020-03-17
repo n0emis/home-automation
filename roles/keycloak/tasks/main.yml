@@ -1,0 +1,110 @@
+---
+- name: install keycloak prerequisites
+  tags:
+    - keycloak
+  yum:
+    name:
+    - java-1.8.0-openjdk.x86_64
+    - firewalld
+    state: present
+
+- name: create keycloak user
+  tags:
+  - keyclock
+  user: name=keycloak
+
+- name: keycloak target directory
+  tags:
+  - keyclock
+  file: dest={{ keycloak_dir }}
+        mode=755
+        owner=root
+        group=root
+        state=directory
+
+
+- name: get Keycloak distribution tarball
+  tags:
+    - keycloak
+  get_url: url={{ keycloak_url }}
+           dest={{ keycloak_dir }}
+
+- name: unpack keycloak
+  tags:
+    - keycloak
+  unarchive: src={{ keycloak_dir }}/{{keycloak_archive}}
+             dest={{ keycloak_dir }}
+             copy=no
+
+- name: keycloak log directory
+  tags:
+  - keyclock
+  file: dest={{ keycloak_log_dir }}
+        mode=755
+        owner=keycloak
+        group=keycloak
+        state=directory
+
+- name: keycloak data directory
+  tags:
+  - keyclock
+  file: dest={{ keycloak_jboss_home }}/standalone/data
+        mode=755
+        owner=keycloak
+        group=keycloak
+        state=directory
+
+
+- name: keycloak tmp directory
+  tags:
+  - keyclock
+  file: dest={{ keycloak_jboss_home }}/standalone/tmp
+        mode=755
+        owner=keycloak
+        group=keycloak
+        state=directory
+
+- name: make keycloak configuration directory readable
+  tags:
+  - keyclock
+  file: dest={{ keycloak_jboss_home }}/standalone/configuration
+        mode=755
+        owner=keycloak
+        group=keycloak
+        state=directory
+        recurse=yes
+
+- name: keycloak systemd setup
+  tags:
+    - keycloak
+  template:
+       owner=root group=root mode=0644
+      src=keycloak.service.j2
+      dest=/etc/systemd/system/keycloak.service
+  notify:
+    - reload systemd
+
+- name: enable firewalld
+  tags:
+    - ipaserver
+  service: enabled=yes
+           state=started
+           name=firewalld
+
+- name: Open Firewall for services
+  tags:
+    - keycloak
+  firewalld: port={{ item }}
+             permanent=true
+             state=enabled
+             immediate=yes
+  with_items:
+    - 8080/tcp
+    - 9990/tcp
+
+- name: keycloak systemd service enable and start
+  tags:
+    - keycloak
+  service: name=keycloak
+           enabled=yes
+           state=started

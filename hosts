@@ -1,0 +1,2 @@
+[keycloak]
+sso.int.goe.de.n0emis.eu ansible_user=root
