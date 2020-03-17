@@ -1,4 +1,6 @@
 ---
+- import_playbook: dns.yml
+
 - hosts: all
   roles:
     - base

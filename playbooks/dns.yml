@@ -1,0 +1,27 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: Create A records
+    inwx.collection.dns:
+      domain: n0emis.eu
+      type: A
+      record: "{{ item.record }}"
+      value: "{{ item.value }}"
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - record: mail.het.hel.fl
+        value: 95.217.163.175
+
+  - name: Create AAAA records
+    inwx.collection.dns:
+      domain: n0emis.eu
+      type: AAAA
+      record: "{{ item.record }}"
+      value: "{{ item.value }}"
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - record: mail.het.hel.fl
+        value: 2a01:4f9:c010:7b6e::1
