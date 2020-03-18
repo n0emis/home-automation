@@ -1,6 +1,14 @@
 ---
 - import_playbook: dns.yml
+  tags: dns
 
 - hosts: all
   roles:
     - base
+  tags: base
+
+- hosts: mail
+  roles:
+    - docker
+    - mailcow
+  tags: mailcow

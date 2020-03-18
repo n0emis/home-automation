@@ -1,0 +1,3 @@
+mailcow__timezone: Europe/Berlin
+mailcow__config_skip_clamd: y
+mailcow__config_skip_solr: y
