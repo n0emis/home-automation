@@ -46,6 +46,28 @@
       - domain: n0emis.eu
         record: dev
 
+  - name: Create TLSA records
+    inwx.collection.dns:
+      domain: n0emis.eu
+      record: "{{ item }}"
+      type: TLSA
+      cert_usage: 3
+      selector: 1
+      hash_type: 1
+      value: c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - _25._tcp.mail.het.hel.fl
+      - _443._tcp.mail.het.hel.fl
+      - _110._tcp.mail.het.hel.fl
+      - _143._tcp.mail.het.hel.fl
+      - _465._tcp.mail.het.hel.fl
+      - _587._tcp.mail.het.hel.fl
+      - _993._tcp.mail.het.hel.fl
+      - _995._tcp.mail.het.hel.fl
+      - _4190._tcp.mail.het.hel.fl
+
   - name: Create other records
     inwx.collection.dns:
       domain: "{{ item.domain }}"
@@ -59,10 +81,17 @@
         type: CNAME
         record: autodiscover
         value: mail.het.hel.fl.n0emis.eu
-
       - domain: n0emis.eu
         type: CNAME
         record: autoconfig
+        value: mail.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        type: CNAME
+        record: imap
+        value: mail.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        type: CNAME
+        record: smtp
         value: mail.het.hel.fl.n0emis.eu
 
       #- domain: n0emis.eu

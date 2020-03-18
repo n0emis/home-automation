@@ -7,3 +7,5 @@ users:
 
 inwx_user: "{{ lookup('passwordstore', 'hosting/inwx.com subkey=user') }}"
 inwx_password: "{{ lookup('passwordstore', 'hosting/inwx.com') }}"
+
+tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb"
