@@ -1,0 +1,20 @@
+---
+- name: configure openwrt accesspoints
+  hosts: openwrt
+  remote_user: root
+  gather_facts: no
+
+  tasks:
+    - name: install python manually
+      opkg:
+        name: wpad-mini
+        state: absend
+    - name: remove wpad-mini
+      opkg:
+        name: wpad-mini
+        state: absend
+    - name: install wpad and update package-database
+      opkg:
+        name: wpad
+        state: present
+        update_cache: yes

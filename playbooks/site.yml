@@ -12,3 +12,5 @@
     - docker
     - mailcow
   tags: mailcow
+
+- import_playbook: accesspoints.yml

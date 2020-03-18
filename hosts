@@ -1,2 +1,13 @@
+[openwrt:children]
+ap_ug
+ap_og
+
+[ap_ug]
+192.168.5.1 ansible_user=root
+
+[ap_og]
+192.168.5.2 ansible_user=root
+192.168.5.3 ansible_user=root
+
 [mail]
 mail.het.hel.fl.n0emis.eu ansible_user=root
