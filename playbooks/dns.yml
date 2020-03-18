@@ -4,24 +4,68 @@
   tasks:
   - name: Create A records
     inwx.collection.dns:
-      domain: n0emis.eu
+      domain: "{{ item.domain }}"
       type: A
       record: "{{ item.record }}"
       value: "{{ item.value }}"
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
-      - record: mail.het.hel.fl
+      - domain: n0emis.eu
+        record: mail.het.hel.fl
         value: 95.217.163.175
 
   - name: Create AAAA records
     inwx.collection.dns:
-      domain: n0emis.eu
+      domain: "{{ item.domain }}"
       type: AAAA
       record: "{{ item.record }}"
       value: "{{ item.value }}"
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
-      - record: mail.het.hel.fl
+      - domain: n0emis.eu
+        record: mail.het.hel.fl
         value: 2a01:4f9:c010:7b6e::1
+
+  - name: Create MX records
+    inwx.collection.dns:
+      domain: "{{ item.domain }}"
+      type: MX
+      record: "{{ item.record }}"
+      value: 'mail.het.hel.fl.n0emis.eu'
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - domain: n0emis.eu
+        record: ''
+      - domain: n0emis.de
+        record: ''
+      - domain: noemis.me
+        record: ''
+      - domain: n0emis.eu
+        record: dev
+
+  - name: Create other records
+    inwx.collection.dns:
+      domain: "{{ item.domain }}"
+      type: "{{ item.type }}"
+      record: "{{ item.record }}"
+      value: "{{ item.value }}"
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - domain: n0emis.eu
+        type: CNAME
+        record: autodiscover
+        value: mail.het.hel.fl.n0emis.eu
+
+      - domain: n0emis.eu
+        type: CNAME
+        record: autoconfig
+        value: mail.het.hel.fl.n0emis.eu
+
+      #- domain: n0emis.eu
+    #    type: SRV
+    #    record: _autodiscover._tcp
+    #    value: mail.het.hel.fl.n0emis.eu:443
