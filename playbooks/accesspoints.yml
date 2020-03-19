@@ -1,19 +1,18 @@
 ---
 - name: configure openwrt accesspoints
   hosts: openwrt
-  remote_user: root
   gather_facts: no
+  pre_tasks:
+    - name: 'install python'
+      raw: 'opkg update && opkg install python3-light'
 
   tasks:
-    - name: install python manually
+    - name: remove packages
       opkg:
-        name: wpad-mini
-        state: absend
-    - name: remove wpad-mini
-      opkg:
-        name: wpad-mini
-        state: absend
-    - name: install wpad and update package-database
+        name: wpad-mini luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
+        state: absent
+
+    - name: install wpad
       opkg:
         name: wpad
         state: present
