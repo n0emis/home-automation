@@ -11,3 +11,6 @@
 [submodule "roles/docker"]
 	path = roles/docker
 	url = https://git.labcode.dev/ansible_roles/docker
+[submodule "roles/openwrt"]
+	path = roles/openwrt
+	url = https://github.com/gekmihesg/ansible-openwrt

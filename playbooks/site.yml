@@ -2,7 +2,7 @@
 - import_playbook: dns.yml
   tags: dns
 
-- hosts: all
+- hosts: all!openwrt
   roles:
     - base
   tags: base
@@ -14,3 +14,4 @@
   tags: mailcow
 
 - import_playbook: accesspoints.yml
+  tags: ap
