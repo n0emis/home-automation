@@ -5,6 +5,7 @@
 - hosts: all
   roles:
     - base
+    - gantsign.oh-my-zsh
     - jnv.unattended-upgrades
   tags: base
 
@@ -16,10 +17,9 @@
 
 - hosts: bbb
   roles:
-    - bigbluebutton
+    - n0emis.bigbluebutton
   vars:
     bbb_hostname: bbb.n0emis.eu
     bbb_turn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/coturn') }}"
-    bbb_letsencrypt_enable: no
-    bbb_greenlight_enable: no
+    bbb_letsencrypt_email: le@n0emis.eu
   tags: bbb

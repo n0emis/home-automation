@@ -12,8 +12,11 @@
 	path = roles/docker
 	url = https://git.labcode.dev/ansible_roles/docker
 [submodule "roles/bigbluebutton"]
-	path = roles/bigbluebutton
+	path = roles/n0emis.bigbluebutton
 	url = https://github.com/softwaremill/ansible-bigbluebutton
 [submodule "roles/nodejs"]
 	path = roles/geerlingguy.nodejs
 	url = https://github.com/geerlingguy/ansible-role-nodejs
+[submodule "roles/geerlingguy.docker"]
+	path = roles/geerlingguy.docker
+	url = https://github.com/geerlingguy/ansible-role-docker
