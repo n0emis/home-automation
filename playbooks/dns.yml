@@ -14,6 +14,9 @@
       - domain: n0emis.eu
         record: mail.het.hel.fl
         value: 95.217.163.175
+      - domain: n0emis.eu
+        record: bbb.het.nbg.de
+        value: 116.203.19.67
 
   - name: Create AAAA records
     inwx.collection.dns:
@@ -27,6 +30,9 @@
       - domain: n0emis.eu
         record: mail.het.hel.fl
         value: 2a01:4f9:c010:7b6e::1
+      - domain: n0emis.eu
+        record: bbb.het.nbg.de
+        value: 2a01:4f8:c0c:a15b::1
 
   - name: Create MX records
     inwx.collection.dns:
@@ -93,6 +99,10 @@
         type: CNAME
         record: smtp
         value: mail.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        type: CNAME
+        record: bbb
+        value: bbb.het.nbg.de.n0emis.eu
 
       #- domain: n0emis.eu
     #    type: SRV

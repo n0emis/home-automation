@@ -1,2 +1,5 @@
 [mail]
 mail.het.hel.fl.n0emis.eu ansible_user=root
+
+[bbb]
+bbb.het.nbg.de.n0emis.eu ansible_user=root

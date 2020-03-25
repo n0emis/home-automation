@@ -5,6 +5,7 @@
 - hosts: all
   roles:
     - base
+    - jnv.unattended-upgrades
   tags: base
 
 - hosts: mail
@@ -12,3 +13,13 @@
     - docker
     - mailcow
   tags: mailcow
+
+- hosts: bbb
+  roles:
+    - bigbluebutton
+  vars:
+    bbb_hostname: bbb.n0emis.eu
+    bbb_turn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/coturn') }}"
+    bbb_letsencrypt_enable: no
+    bbb_greenlight_enable: no
+  tags: bbb
