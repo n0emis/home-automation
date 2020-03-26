@@ -20,3 +20,6 @@
 [submodule "roles/geerlingguy.docker"]
 	path = roles/geerlingguy.docker
 	url = https://github.com/geerlingguy/ansible-role-docker
+[submodule "roles/gantsign.oh-my-zsh"]
+	path = roles/gantsign.oh-my-zsh
+	url = https://github.com/gantsign/ansible-role-oh-my-zsh/
