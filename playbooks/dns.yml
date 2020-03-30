@@ -103,6 +103,10 @@
         type: CNAME
         record: bbb
         value: bbb.het.nbg.de.n0emis.eu
+      - domain: n0emis.eu
+        type: CNAME
+        record: elastix.int.goe.de
+        value: home.noemis.me
 
       #- domain: n0emis.eu
     #    type: SRV

@@ -1,0 +1,20 @@
+---
+- name: add elastix apt key
+  apt_key:
+    url: http://downloads-global.3cx.com/downloads/3cxpbx/public.key
+    state: present
+
+- name: add elastix repository
+  apt_repository:
+    repo:
+      "deb http://downloads-global.3cx.com/downloads/debian {{ ansible_distribution_release | lower }} main"
+    state: present
+
+- name: install elastix
+  apt:
+    name:
+      - net-tools
+      - dphys-swapfile
+      - 3cxpbx
+    update_cache: yes
+    state: present

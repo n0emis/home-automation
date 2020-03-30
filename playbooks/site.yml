@@ -34,3 +34,8 @@
       starttls_auto: true
       sender: no-reply@n0emis.eu
   tags: bbb
+
+- hosts: pbx
+  roles:
+    - elastix
+  tags: pbx
