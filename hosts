@@ -1,8 +1,12 @@
 [mail]
-mail.het.hel.fl.n0emis.eu ansible_user=root
+mail.het.hel.fl.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-bbb.het.nbg.de.n0emis.eu ansible_user=root
+#bbb.het.nbg.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [pbx]
-192.168.1.11 ansible_user=root
+elastix.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
+
+[proxmox]
+kallisto.int.goe.de.n0emis.eu
+#themisto.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
