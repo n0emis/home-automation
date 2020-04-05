@@ -23,3 +23,6 @@
 [submodule "roles/gantsign.oh-my-zsh"]
 	path = roles/gantsign.oh-my-zsh
 	url = https://github.com/gantsign/ansible-role-oh-my-zsh/
+[submodule "roles/openwrt"]
+	path = roles/openwrt
+	url = https://github.com/gekmihesg/ansible-openwrt

@@ -16,6 +16,8 @@ users:
   oh_my_zsh:
     theme: agnoster
 
+ansible_python_interpreter: "/usr/bin/python3"
+
 inwx_user: "{{ lookup('passwordstore', 'hosting/inwx.com subkey=user') }}"
 inwx_password: "{{ lookup('passwordstore', 'hosting/inwx.com') }}"
 
