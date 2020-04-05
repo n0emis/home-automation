@@ -7,6 +7,26 @@
       raw: 'opkg update && opkg install python3-light'
 
   tasks:
+    - name: add user to root's authorized_keys
+      authorized_key:
+        user: root
+        key: "{{ item.public_key }}"
+        path: /etc/dropbear/authorized_keys
+        state: present
+      with_items:
+      - "{{ users }}"
+      when: item.state != 'absent' and item.public_key is defined and item.sudo is defined and item.sudo
+
+    - name: remove user from root's authorized_keys
+      authorized_key:
+        user: root
+        key: "{{ item.public_key }}"
+        path: /etc/dropbear/authorized_keys
+        state: absent
+      with_items:
+      - "{{ users }}"
+      when: item.state == 'absent' and item.public_key is defined
+
     - name: remove packages
       opkg:
         name: wpad-mini luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
