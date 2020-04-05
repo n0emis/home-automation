@@ -120,4 +120,45 @@
       value: "{{ item.value }}"
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
-    with_items: []
+    with_items:
+      - type: TXT
+        domain: n0emis.eu
+        record: dkim._domainkey
+        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
+      - type: TXT
+        domain: n0emis.eu
+        record: dkim._domainkey.services
+        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
+      - type: TXT
+        domain: n0emis.eu
+        record: dkim._domainkey.dev
+        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
+      - type: TXT
+        domain: n0emis.de
+        record: dkim._domainkey
+        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
+      - type: TXT
+        domain: noemis.me
+        record: dkim._domainkey
+        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
+
+      - type: TXT
+        domain: n0emis.eu
+        record: _dmarc
+        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
+      - type: TXT
+        domain: n0emis.eu
+        record: _dmarc.services
+        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
+      - type: TXT
+        domain: n0emis.eu
+        record: _dmarc.dev
+        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
+      - type: TXT
+        domain: noemis.me
+        record: _dmarc
+        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
+      - type: TXT
+        domain: n0emis.de
+        record: _dmarc
+        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
