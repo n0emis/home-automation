@@ -18,21 +18,6 @@
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton
-  vars:
-    bbb_hostname: bbb.n0emis.eu
-    bbb_turn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/coturn') }}"
-    bbb_greenlight_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/greenlight') }}"
-    bbb_greenlight_db_password: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/greenlight/db') }}"
-    bbb_letsencrypt_email: le@n0emis.eu
-    bbb_greenlight_smtp:
-      server: mail.het.hel.fl.n0emis.eu
-      port: 587
-      domain: n0emis.eu
-      username: no-reply@n0emis.eu
-      password: "{{ lookup('passwordstore', 'comm/mail.het.hel.fl.n0emis.eu/noreply') }}"
-      auth: plain
-      starttls_auto: true
-      sender: no-reply@n0emis.eu
   tags: bbb
 
 - hosts: pbx

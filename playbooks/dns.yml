@@ -12,7 +12,7 @@
       password: "{{ inwx_password }}"
     with_items:
       - domain: n0emis.eu
-        record: mail.het.hel.fl
+        record: ganymed.het.hel.fl
         value: 95.217.163.175
       - domain: n0emis.eu
         record: bbb.het.nbg.de
@@ -28,7 +28,7 @@
       password: "{{ inwx_password }}"
     with_items:
       - domain: n0emis.eu
-        record: mail.het.hel.fl
+        record: ganymed.het.hel.fl
         value: 2a01:4f9:c010:7b6e::1
       - domain: n0emis.eu
         record: bbb.het.nbg.de
@@ -39,12 +39,14 @@
       domain: "{{ item.domain }}"
       type: MX
       record: "{{ item.record }}"
-      value: 'mail.het.hel.fl.n0emis.eu'
+      value: 'ganymed.het.hel.fl.n0emis.eu'
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
       - domain: n0emis.eu
         record: ''
+      - domain: n0emis.eu
+        record: 'services'
       - domain: n0emis.de
         record: ''
       - domain: noemis.me
@@ -64,15 +66,51 @@
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
-      - _25._tcp.mail.het.hel.fl
-      - _443._tcp.mail.het.hel.fl
-      - _110._tcp.mail.het.hel.fl
-      - _143._tcp.mail.het.hel.fl
-      - _465._tcp.mail.het.hel.fl
-      - _587._tcp.mail.het.hel.fl
-      - _993._tcp.mail.het.hel.fl
-      - _995._tcp.mail.het.hel.fl
-      - _4190._tcp.mail.het.hel.fl
+      - _25._tcp.ganymed.het.hel.fl
+      - _443._tcp.ganymed.het.hel.fl
+      - _110._tcp.ganymed.het.hel.fl
+      - _143._tcp.ganymed.het.hel.fl
+      - _465._tcp.ganymed.het.hel.fl
+      - _587._tcp.ganymed.het.hel.fl
+      - _993._tcp.ganymed.het.hel.fl
+      - _995._tcp.ganymed.het.hel.fl
+      - _4190._tcp.ganymed.het.hel.fl
+
+  - name: Create CNAME records
+    inwx.collection.dns:
+      domain: "{{ item.domain }}"
+      type: CNAME
+      record: "{{ item.record }}"
+      value: "{{ item.value }}"
+      username: "{{ inwx_user }}"
+      password: "{{ inwx_password }}"
+    with_items:
+      - domain: n0emis.eu
+        record: autodiscover
+        value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: autoconfig
+        value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: imap
+        value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: smtp
+        value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: mail.het.hel.fl
+        value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: mail
+        value: ganymed.het.hel.fl.n0emis.eu
+
+      - domain: n0emis.eu
+        record: bbb
+        value: bbb.het.nbg.de.n0emis.eu
+
+      - domain: n0emis.eu
+        record: elastix.int.goe.de
+        value: home.noemis.me
 
   - name: Create other records
     inwx.collection.dns:
@@ -82,33 +120,4 @@
       value: "{{ item.value }}"
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
-    with_items:
-      - domain: n0emis.eu
-        type: CNAME
-        record: autodiscover
-        value: mail.het.hel.fl.n0emis.eu
-      - domain: n0emis.eu
-        type: CNAME
-        record: autoconfig
-        value: mail.het.hel.fl.n0emis.eu
-      - domain: n0emis.eu
-        type: CNAME
-        record: imap
-        value: mail.het.hel.fl.n0emis.eu
-      - domain: n0emis.eu
-        type: CNAME
-        record: smtp
-        value: mail.het.hel.fl.n0emis.eu
-      - domain: n0emis.eu
-        type: CNAME
-        record: bbb
-        value: bbb.het.nbg.de.n0emis.eu
-      - domain: n0emis.eu
-        type: CNAME
-        record: elastix.int.goe.de
-        value: home.noemis.me
-
-      #- domain: n0emis.eu
-    #    type: SRV
-    #    record: _autodiscover._tcp
-    #    value: mail.het.hel.fl.n0emis.eu:443
+    with_items: []
