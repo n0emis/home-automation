@@ -26,3 +26,6 @@
 [submodule "roles/openwrt"]
 	path = roles/openwrt
 	url = https://github.com/gekmihesg/ansible-openwrt
+[submodule "roles/n0emis.yate"]
+	path = roles/n0emis.yate
+	url = https://github.com/n0emis/ansible-role-yate

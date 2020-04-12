@@ -15,6 +15,9 @@ ganymed.het.hel.fl.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/b
 [pbx]
 elastix.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
+[yate]
+yate-test.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
+
 [proxmox]
 kallisto.int.goe.de.n0emis.eu
 #themisto.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

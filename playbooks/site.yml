@@ -2,7 +2,7 @@
 - import_playbook: dns.yml
   tags: dns
 
-- hosts: all!openwrt
+- hosts: all !openwrt
   roles:
     - base
     - gantsign.oh-my-zsh
@@ -24,6 +24,11 @@
   roles:
     - elastix
   tags: pbx
+
+- hosts: yate
+  roles:
+    - n0emis.yate
+  tags: yate
 
 - import_playbook: accesspoints.yml
   tags: ap
