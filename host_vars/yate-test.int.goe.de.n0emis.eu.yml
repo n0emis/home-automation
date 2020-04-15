@@ -1,0 +1,81 @@
+---
+local_numberpart: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/4') }}"
+
+yate_cleanup_config: true
+
+yate_config:
+  accfile:
+    dtag_privat:
+      enabled: 'yes'
+      protocol: sip
+      description: telekom4
+      interval: 600
+      username: "0049551{{ local_numberpart }}"
+      authname: "{{ lookup('passwordstore', 't-online.de') }}"
+      password: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
+      registrar: tel.t-online.de:5060
+      domain: tel.t-online.de
+      localaddress: auto
+  regfile:
+    'l01':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l02':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l03':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l04':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l05':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l06':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l07':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l08':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l09':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l10':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+    'l11':
+      password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+  regexroute:
+    default:
+      '${username}^$': '-;error=noauth'
+
+      '^0049551484725$': 'goto dtag_privat_incoming'
+      '^\+49551484725$': 'goto dtag_privat_incoming'
+
+      '^06$': 'return;called=l06'
+      '^09$': 'return;called=l09'
+      '^10$': 'return;called=l10'
+
+      '^00\([0-9]*\)$': 'sip/+\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
+      '^0\([0-9]*\)$': 'sip/+49\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
+      '^\([0-9]*\)$': 'sip/+49551\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
+
+      '^99991001$': 'tone/dial'
+      '^99991002$': 'tone/busy'
+      '^99991003$': 'tone/ring'
+      '^99991004$': 'tone/specdial'
+      '^99991005$': 'tone/congestion'
+      '^99991006$': 'tone/outoforder'
+      '^99991007$': 'tone/milliwatt'
+      '^99991008$': 'tone/info'
+    dtag_privat_incoming:
+      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10'
+  h323chan:
+    ep:
+      ep: 'true'
+      gw: 'false'
+      ident: yate
+  yate:
+    general:
+      msgsniff: 'yes'
+    localsym:
+      h323chan.yate: 'yes'
+    modules:
+      regexroute.yate: 'true'
+      accfile.yate: 'true'
+      regfile.yate: 'true'
+      msgsniff.yate: 'true'
