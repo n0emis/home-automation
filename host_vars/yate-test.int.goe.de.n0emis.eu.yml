@@ -1,6 +1,4 @@
 ---
-local_numberpart: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/4') }}"
-
 yate_cleanup_config: true
 
 yate_config:
@@ -10,12 +8,23 @@ yate_config:
       protocol: sip
       description: telekom4
       interval: 600
-      username: "0049551{{ local_numberpart }}"
+      username: "0049551484725"
       authname: "{{ lookup('passwordstore', 't-online.de') }}"
       password: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
       registrar: tel.t-online.de:5060
       domain: tel.t-online.de
-      localaddress: auto
+      localaddress: 'yes'
+      #outbound: tel.t-online.de:5060
+      #ip_transport: tcp
+    epvpn:
+      enabled: 'yes'
+      protocol: sip
+      description: eventphone_epvpn
+      interval: 600
+      registrar: hg.eventphone.de:5060
+      localaddress: 'yes'
+      username: "{{ lookup('passwordstore', 'infra/eventphone.de/epvpn_home subkey=user') }}"
+      password: "{{ lookup('passwordstore', 'infra/eventphone.de/epvpn_home') }}"
   regfile:
     'l01':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
@@ -43,16 +52,24 @@ yate_config:
     default:
       '${username}^$': '-;error=noauth'
 
+      "^5374$": "goto epvpn_incoming"
+
       '^0049551484725$': 'goto dtag_privat_incoming'
       '^\+49551484725$': 'goto dtag_privat_incoming'
 
       '^06$': 'return;called=l06'
+      '^07$': 'return;called=l07'
+      '^08$': 'return;called=l08'
       '^09$': 'return;called=l09'
       '^10$': 'return;called=l10'
+      '^11$': 'return;called=l11'
 
-      '^00\([0-9]*\)$': 'sip/+\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
-      '^0\([0-9]*\)$': 'sip/+49\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
-      '^\([0-9]*\)$': 'sip/+49551\1;line=dtag_privat;caller=0049551{{ local_numberpart }};'
+      '^[0-9]\{4\}$': "goto epvpn_outgoing"
+
+      '^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
+      '^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
+      '^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
+      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
 
       '^99991001$': 'tone/dial'
       '^99991002$': 'tone/busy'
@@ -62,8 +79,17 @@ yate_config:
       '^99991006$': 'tone/outoforder'
       '^99991007$': 'tone/milliwatt'
       '^99991008$': 'tone/info'
+    dtag_privat_outgoing:
+      #'^00\([0-9]*\)$': 'sip/sip:+\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
+      #'^0\([0-9]*\)$': 'sip/sip:+49\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
+      #'^\([0-9]*\)$': 'sip/sip:+49551\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
+      '.*$': "sip/sip:\\0;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de"
     dtag_privat_incoming:
-      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10'
+      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10 lateroute/l11'
+    epvpn_outgoing:
+      '.*$': "sip/sip:\\0;line=epvpn;caller=5374;domain=hg.eventphone.de"
+    epvpn_incoming:
+      '^.*$': 'fork lateroute/l06 lateroute/l10 lateroute/l11'
   h323chan:
     ep:
       ep: 'true'
