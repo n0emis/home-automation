@@ -15,7 +15,7 @@ yate_config:
       domain: tel.t-online.de
       localaddress: 'yes'
       #outbound: tel.t-online.de:5060
-      #ip_transport: tcp
+      ip_transport: tcp
     epvpn:
       enabled: 'yes'
       protocol: sip
@@ -86,6 +86,10 @@ yate_config:
       '.*$': "sip/sip:\\0;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de"
     dtag_privat_incoming:
       '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10 lateroute/l11'
+    dtag_pfarramt_outgoing:
+      '.*$': "sip/sip:\\0;line=dtag_privat;caller=00495515316375;domain=tel.t-online.de"
+    dtag_pfarramt_incoming:
+      '^.*$': 'fork lateroute/l02'
     epvpn_outgoing:
       '.*$': "sip/sip:\\0;line=epvpn;caller=5374;domain=hg.eventphone.de"
     epvpn_incoming:
@@ -105,3 +109,7 @@ yate_config:
       accfile.yate: 'true'
       regfile.yate: 'true'
       msgsniff.yate: 'true'
+  ysipchan:
+    general:
+      maxpkt: 4096
+      thread: high
