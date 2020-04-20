@@ -80,10 +80,10 @@ yate_config:
 
       '^[0-9]\{4\}$': 'goto epvpn_outgoing'
 
-      #'^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
-      #'^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
-      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
-      '^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
+      '^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
+      '^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
+      '^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
+      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
 
       #'^\([0-9]*\)$': 'goto sipgate_outgoing; caller=\0'
 
@@ -108,7 +108,7 @@ yate_config:
       '.*$': "sip/sip:\\0;line=epvpn;caller=5374;domain=hg.eventphone.de"
 
     privat_incoming:
-      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10 lateroute/l11'
+      '^.*$': 'fork lateroute/l01 lateroute/l03 lateroute/l04 lateroute/l05 lateroute/l06 lateroute/l07 lateroute/l09 lateroute/l10 lateroute/l11'
     dtag_pfarramt_incoming:
       '^.*$': 'fork lateroute/l02'
     epvpn_incoming:
