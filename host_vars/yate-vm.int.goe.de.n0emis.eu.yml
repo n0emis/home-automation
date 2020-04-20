@@ -1,6 +1,8 @@
 ---
 yate_cleanup_config: true
 
+spigate_username: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.eu/sigpate subkey=user') }}"
+
 yate_config:
   accfile:
     dtag_privat:
@@ -9,13 +11,22 @@ yate_config:
       description: telekom4
       interval: 600
       username: "0049551484725"
-      authname: "{{ lookup('passwordstore', 't-online.de') }}"
-      password: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
-      registrar: tel.t-online.de:5060
+      authname: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
+      password: "{{ lookup('passwordstore', 't-online.de') }}"
+      registrar: tel.t-online.de
       domain: tel.t-online.de
       localaddress: 'yes'
       #outbound: tel.t-online.de:5060
-      ip_transport: tcp
+      #ip_transport: tcp
+    sipgate:
+      enabled: 'yes'
+      protocol: sip
+      description: sipgate
+      #interval: 120
+      username: "{{ spigate_username }}"
+      password: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.eu/sigpate') }}"
+      registrar: sipgate.de
+      localaddress: 'yes'
     epvpn:
       enabled: 'yes'
       protocol: sip
@@ -52,24 +63,29 @@ yate_config:
     default:
       '${username}^$': '-;error=noauth'
 
-      "^5374$": "goto epvpn_incoming"
+      '^5374$': "goto epvpn_incoming"
 
-      '^0049551484725$': 'goto dtag_privat_incoming'
-      '^\+49551484725$': 'goto dtag_privat_incoming'
+      '^0049551484725$': 'goto privat_incoming'
+      '^\+49551484725$': 'goto privat_incoming'
 
-      '^06$': 'return;called=l06'
-      '^07$': 'return;called=l07'
-      '^08$': 'return;called=l08'
-      '^09$': 'return;called=l09'
-      '^10$': 'return;called=l10'
-      '^11$': 'return;called=l11'
+      '^29729.*$': 'goto privat_incoming'
 
-      '^[0-9]\{4\}$': "goto epvpn_outgoing"
+      '^05$': 'lateroute/l05'
+      '^06$': 'lateroute/l06'
+      '^07$': 'lateroute/l07'
+      '^08$': 'lateroute/l08'
+      '^09$': 'lateroute/l09'
+      '^10$': 'lateroute/l10'
+      '^11$': 'lateroute/l11'
 
-      '^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
-      '^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
-      '^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
-      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
+      '^[0-9]\{4\}$': 'goto epvpn_outgoing'
+
+      #'^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
+      #'^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
+      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
+      '^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
+
+      #'^\([0-9]*\)$': 'goto sipgate_outgoing; caller=\0'
 
       '^99991001$': 'tone/dial'
       '^99991002$': 'tone/busy'
@@ -84,14 +100,17 @@ yate_config:
       #'^0\([0-9]*\)$': 'sip/sip:+49\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
       #'^\([0-9]*\)$': 'sip/sip:+49551\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
       '.*$': "sip/sip:\\0;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de"
-    dtag_privat_incoming:
-      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10 lateroute/l11'
+    sipgate_outgoing:
+      '.*$': "sip/sip:\\0;line=dtag_privat;caller={{ spigate_username }};domain=sipgate.de"
     dtag_pfarramt_outgoing:
       '.*$': "sip/sip:\\0;line=dtag_privat;caller=00495515316375;domain=tel.t-online.de"
-    dtag_pfarramt_incoming:
-      '^.*$': 'fork lateroute/l02'
     epvpn_outgoing:
       '.*$': "sip/sip:\\0;line=epvpn;caller=5374;domain=hg.eventphone.de"
+
+    privat_incoming:
+      '^.*$': 'fork lateroute/l06 lateroute/l09 lateroute/l10 lateroute/l11'
+    dtag_pfarramt_incoming:
+      '^.*$': 'fork lateroute/l02'
     epvpn_incoming:
       '^.*$': 'fork lateroute/l06 lateroute/l10 lateroute/l11'
   h323chan:
@@ -112,4 +131,7 @@ yate_config:
   ysipchan:
     general:
       maxpkt: 4096
+      thread: high
+  yrtpchan:
+    general:
       thread: high
