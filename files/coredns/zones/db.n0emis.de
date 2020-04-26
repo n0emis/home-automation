@@ -1,6 +1,6 @@
 $ORIGIN n0emis.de.
 @ 3600 IN SOA ns.n0emis.de. noc.n0emis.de. (
-    2020042700 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020042702 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -19,6 +19,9 @@ ns IN AAAA {{ ansible_default_ipv6.address }}
 
 ;;;; DMARC
 _dmarc	86400	IN	TXT	"v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"
+
+;;;; DKIM
+dkim._domainkey 86400 IN	TXT	"v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB"
 
 ;;;; SPF
 @		3600	IN	TXT	"v=spf1 mx ~all"
