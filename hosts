@@ -23,6 +23,9 @@ yate-vm.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/b
 kallisto.int.goe.de.n0emis.eu
 #themisto.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
+[dns]
+elara.het.nbg.de.n0emis.eu
+
 [git]
 elara.het.nbg.de.n0emis.eu
 

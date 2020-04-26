@@ -38,3 +38,6 @@
 [submodule "roles/geerlingguy.postgresql"]
 	path = roles/geerlingguy.postgresql
 	url = https://github.com/geerlingguy/ansible-role-postgresql
+[submodule "roles/cloudalchemy.coredns"]
+	path = roles/cloudalchemy.coredns
+	url = https://github.com/cloudalchemy/ansible-coredns/

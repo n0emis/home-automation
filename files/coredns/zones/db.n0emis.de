@@ -1,0 +1,41 @@
+$ORIGIN n0emis.de.
+@ 3600 IN SOA ns.n0emis.de. noc.n0emis.de. (
+    2020042604 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    3600       ; minimum (1 hour)
+    )
+
+@ 3600 IN NS hydrogen.ns.hetzner.com.
+@ 3600 IN NS oxygen.ns.hetzner.com.
+@ 3600 IN NS helium.ns.hetzner.de.
+;;@ 3600 IN NS ns
+
+ns IN A {{ ansible_default_ipv4.address }}
+ns IN AAAA {{ ansible_default_ipv6.address }}
+
+;; MAIL
+;;;; MX
+@		86400	IN	MX	1 ganymed.het.hel.fl.n0emis.eu.
+
+;;;; DMARC
+_dmarc	86400	IN	TXT	"v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"
+
+;;;; SPF
+@		3600	IN	TXT	"v=spf1 mx ~all"
+
+;;;; CNAME
+banner	3600	IN	CNAME	n0emis.github.io.
+mc		3600	IN	CNAME	home.noemis.me.
+
+;; CAA
+*	3600	IN	CAA	0 issue "letsencrypt.org"
+@	3600	IN	CAA	0 issue "letsencrypt.org"
+
+;; Pages
+banner	3600	IN	CNAME	n0emis.github.io.
+@		    3600	IN	A       185.26.156.94
+@		    3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
+www		3600	IN	A       185.26.156.94
+www		3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d

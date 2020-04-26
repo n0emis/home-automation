@@ -2,6 +2,14 @@
 - import_playbook: dns.yml
   tags: dns
 
+- hosts: dns
+  become: yes
+  vars:
+    coredns_config_file: files/coredns/Corefile.j2
+  roles:
+    - cloudalchemy.coredns
+  tags: dns, coredns
+
 - hosts: all !openwrt
   roles:
     - base
