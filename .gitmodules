@@ -29,3 +29,12 @@
 [submodule "roles/n0emis.yate"]
 	path = roles/n0emis.yate
 	url = https://github.com/n0emis/ansible-role-yate
+[submodule "roles/em0lar.traefik"]
+	path = roles/em0lar.traefik
+	url = https://github.com/em0lar/ansible-role-traefik
+[submodule "roles/thomas_maurice.gitea"]
+	path = roles/thomas_maurice.gitea
+	url = https://github.com/thomas-maurice/ansible-role-gitea
+[submodule "roles/geerlingguy.postgresql"]
+	path = roles/geerlingguy.postgresql
+	url = https://github.com/geerlingguy/ansible-role-postgresql

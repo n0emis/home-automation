@@ -17,6 +17,9 @@
       - domain: n0emis.eu
         record: bbb.het.nbg.de
         value: 116.203.136.254
+      - domain: n0emis.eu
+        record: elara.het.nbg.de
+        value: 78.46.251.132
 
   - name: Create AAAA records
     inwx.collection.dns:
@@ -33,6 +36,9 @@
       - domain: n0emis.eu
         record: bbb.het.nbg.de
         value: 2a01:4f8:c0c:bceb::1
+      - domain: n0emis.eu
+        record: elara.het.nbg.de
+        value: 2a01:4f8:c0c:34bc::1
 
   - name: Create MX records
     inwx.collection.dns:
@@ -103,6 +109,9 @@
       - domain: n0emis.eu
         record: mail
         value: ganymed.het.hel.fl.n0emis.eu
+      - domain: n0emis.eu
+        record: git
+        value: elara.het.nbg.de.n0emis.eu
 
       - domain: n0emis.eu
         record: bbb

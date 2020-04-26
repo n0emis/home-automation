@@ -1,0 +1,48 @@
+gitea_user: "git"
+gitea_home: "/var/lib/gitea"
+# To limit your users to 30 repos
+gitea_user_repo_limit: 30
+# Don't use a public CDN for frontend assets
+gitea_offline_mode: true
+
+# Some 'rendering' options for your URLs
+gitea_http_domain: git.n0emis.eu
+gitea_root_url: https://git.n0emis.eu
+
+# Here we assume we are behind a reverse proxy that will
+# handle https for us, so we bind on localhost:3000 using HTTP
+gitea_protocol: http
+gitea_http_listen: 127.0.0.1
+gitea_http_port: 3000
+
+# SSH server configuration
+gitea_ssh_listen: 0.0.0.0
+gitea_ssh_port: 22
+# For URLs rendering again
+gitea_ssh_domain: git.n0emis.eu
+gitea_start_ssh: false
+
+gitea_secret_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea') }}"
+gitea_disable_gravatar: true
+# To make at least your first user register
+gitea_disable_registration: true
+gitea_require_signin: false
+gitea_enable_captcha: false
+
+gitea_db_type: postgres
+gitea_db_host: localhost
+gitea_db_name: gitea
+gitea_db_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea/db subkey=user') }}"
+gitea_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea/db') }}"
+
+gitea_show_user_email: false
+
+postgresql_databases:
+  - name: "{{ gitea_db_name }}"
+    owner: "{{ gitea_db_user }}"
+
+postgresql_users:
+  - name: "{{ gitea_db_user }}"
+    password: "{{ gitea_db_password }}"
+
+postgres_users_no_log: false

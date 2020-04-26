@@ -1,0 +1,21 @@
+http:
+  routers:
+    services-gitea-http:
+      rule: "Host(`git.n0emis.eu`) || Host(`git.noemis.me`)"
+      service: "services-gitea@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    services-gitea-https:
+      rule: "Host(`git.n0emis.eu`) || Host(`git.noemis.me`)"
+      service: "services-gitea@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_tls"
+  services:
+    services-gitea:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:{{ gitea_http_port }}"

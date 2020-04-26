@@ -15,6 +15,20 @@
     - mailcow
   tags: mailcow
 
+- hosts: reverseproxy
+  become: yes
+  roles:
+    - em0lar.traefik
+    - traefik-services
+  tags: traefik
+
+- hosts: git
+  become: yes
+  roles:
+    - geerlingguy.postgresql
+    - thomas_maurice.gitea
+  tags: gitea
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton

@@ -1,0 +1,8 @@
+---
+- name: Add dynamic traefik configs to server
+  template:
+    dest: "{{ traefik_config_directory }}/dynamic/{{ item.path }}"
+    src: "{{ item.path }}"
+    owner: traefik
+    group: traefik
+  with_filetree: 'templates/'

@@ -1,7 +1,7 @@
 mailcow__timezone: Europe/Berlin
 mailcow__redirect_http_to_https: yes
 #mailcow__theme: darkly
-
+mailcow__config_allow_admin_email_login: y
 mailcow__config_skip_clamd: y
 mailcow__config_skip_solr: y
 mailcow__config_additional_san:
