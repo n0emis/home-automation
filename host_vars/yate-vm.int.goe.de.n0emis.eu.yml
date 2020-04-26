@@ -6,7 +6,7 @@ spigate_username: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.e
 yate_config:
   accfile:
     dtag_privat:
-      enabled: 'yes'
+      enabled: 'no'
       protocol: sip
       description: telekom4
       interval: 600
@@ -113,21 +113,22 @@ yate_config:
       '^.*$': 'fork lateroute/l02'
     epvpn_incoming:
       '^.*$': 'fork lateroute/l06 lateroute/l10 lateroute/l11'
-  h323chan:
-    ep:
-      ep: 'true'
-      gw: 'false'
-      ident: yate
   yate:
     general:
       msgsniff: 'yes'
     localsym:
       h323chan.yate: 'yes'
+none_none:
+  foo:
     modules:
       regexroute.yate: 'true'
       accfile.yate: 'true'
       regfile.yate: 'true'
       msgsniff.yate: 'true'
+  h323chan:
+    ep:
+      ep: 'true'
+      gw: 'false'
   ysipchan:
     general:
       maxpkt: 4096
