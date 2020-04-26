@@ -1,5 +1,6 @@
 gitea_user: "git"
 gitea_home: "/var/lib/gitea"
+gitea_shell: "/bin/bash"
 # To limit your users to 30 repos
 gitea_user_repo_limit: 30
 # Don't use a public CDN for frontend assets
@@ -26,6 +27,7 @@ gitea_secret_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea'
 gitea_disable_gravatar: true
 # To make at least your first user register
 gitea_disable_registration: true
+gitea_show_registration_button: false
 gitea_require_signin: false
 gitea_enable_captcha: false
 
@@ -44,5 +46,3 @@ postgresql_databases:
 postgresql_users:
   - name: "{{ gitea_db_user }}"
     password: "{{ gitea_db_password }}"
-
-postgres_users_no_log: false
