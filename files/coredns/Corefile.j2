@@ -1,18 +1,38 @@
+(mon) {
+    health
+    errors
+}
+
+# inwx secondary ns
+(inwx) {
+    transfer to 185.181.104.96
+}
+
+# hetzner secondary ns
+(hetzner) {
+    transfer to 78.46.255.56
+    transfer to 213.239.242.238
+    transfer to 213.133.105.6
+    transfer to 193.47.99.3
+
+    transfer to 213.133.100.98
+    transfer to 88.198.229.192
+    transfer to 193.47.99.5
+}
+
 #n0emis.eu {
 #    bind {{ ansible_default_ipv4.address }}
 #    bind {{ ansible_default_ipv6.address }}
 #
+#    import mon
+#
+#    hosts /home/dyndns/hosts {
+#        fallthrough
+#    }
+#
 #    root /etc/coredns/zones
 #    file db.n0emis.eu {
-#        # hetzner secondary ns
-#        transfer to 78.46.255.56
-#        transfer to 213.239.242.238
-#        transfer to 213.133.105.6
-#        transfer to 193.47.99.3
-#
-#        transfer to 213.133.100.98
-#        transfer to 88.198.229.192
-#        transfer to 193.47.99.5
+#        import inwx
 #    }
 #}
 
@@ -20,12 +40,16 @@ n0emis.de {
     bind {{ ansible_default_ipv4.address }}
     bind {{ ansible_default_ipv6.address }}
 
-    health
+    import mon
+
+    hosts /home/dyndns/hosts {
+        fallthrough
+    }
 
     root /etc/coredns/zones
     file db.n0emis.de {
         # inwx secondary ns
-        transfer to 185.181.104.96
+        import inwx
     }
 }
 
@@ -33,16 +57,14 @@ n0emis.de {
 #    bind {{ ansible_default_ipv4.address }}
 #    bind {{ ansible_default_ipv6.address }}
 #
+#    import mon
+#
+#    hosts /home/dyndns/hosts {
+#        fallthrough
+#    }
+#
 #    root /etc/coredns/zones
 #    file db.noemis.me {
-#        # hetzner secondary ns
-#        transfer to 78.46.255.56
-#        transfer to 213.239.242.238
-#        transfer to 213.133.105.6
-#        transfer to 193.47.99.3
-#
-#        transfer to 213.133.100.98
-#        transfer to 88.198.229.192
-#        transfer to 193.47.99.5
+#        import inwx
 #    }
 #}

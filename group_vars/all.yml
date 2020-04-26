@@ -23,6 +23,8 @@ inwx_password: "{{ lookup('passwordstore', 'hosting/inwx.com') }}"
 
 tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb"
 
+dyndns_host: elara.het.nbg.de.n0emis.eu
+
 traefik_version: "v2.2.0"
 traefik_config_directory: /etc/traefik
 # HTTP-Challenge
@@ -38,9 +40,7 @@ traefik_tls_letsencrypt_challenges_tls:
   email: "le@services.n0emis.eu"
   name: "le_tls" # Name of the certificate resolver
   storage: "{{ traefik_config_directory }}/acme_tls.json"
-
 traefik_default_cert_resovler: "le_http"
-
 traefik_dashboard:
   enable: yes
   rule: "Host(`{{ ansible_fqdn }}`)"
@@ -48,3 +48,5 @@ traefik_dashboard:
   tls_cert_resolver: "{{ traefik_default_cert_resovler }}"
   https_redirect: yes
   additional_middlewares: []
+
+dyndns_enable: no

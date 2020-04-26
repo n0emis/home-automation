@@ -11,11 +11,18 @@
   tags: dns, coredns
 
 - hosts: all !openwrt
+  become: yes
   roles:
     - base
     - gantsign.oh-my-zsh
     - jnv.unattended-upgrades
   tags: base
+
+- hosts: dyndns
+  become: yes
+  roles:
+    - coredns-dyndns
+  tags: dyndns
 
 - hosts: mail
   roles:
