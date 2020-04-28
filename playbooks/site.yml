@@ -42,6 +42,14 @@
   roles:
     - geerlingguy.postgresql
     - thomas_maurice.gitea
+  tasks:
+    - name: Upload SSH key
+      copy:
+        content: "{{ ssh_deploy_key }}"
+        dest: "{{ gitea_home }}/ssh_deploy_key"
+        owner: "{{ gitea_user }}"
+        group: "{{ gitea_user }}"
+        mode: "0400"
   tags: gitea
 
 - hosts: bbb
