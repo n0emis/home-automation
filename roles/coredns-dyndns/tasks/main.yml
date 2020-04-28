@@ -14,10 +14,35 @@
     exclusive: no
   delegate_to: "{{ dyndns_host }}"
 
-- name: The DynDNS-cronjob exists
+- name: Insert DynDNS-cronjob
   cron:
     user: root
     name: "DynDNS"
     minute: "*"
     hour: "*"
-    job: 'echo "$(curl -4 --fail -s -S http://ipv4.xnet.space) {{ dyndns_zone }}" > /root/hosts && scp /root/hosts dyndns@{{ dyndns_host }}:hosts'
+    job: 'echo "$(curl -4 -f -s -S http://ipv4.xnet.space 2>/dev/null)\n$(curl -6 -f -s -S http://ipv6.xnet.space 2>/dev/null)" > /root/{{ dyndns_zone }}.dyndns && scp /root/{{ dyndns_zone }}.dyndns dyndns@{{ dyndns_host }}:{{ dyndns_zone }}.dyndns'
+
+- name: Upload DynDNS-Script
+  template:
+    src: generate_zone.py
+    dest: /home/dyndns/generate_zone.py
+    owner: dyndns
+    group: dyndns
+    mode: 0755
+  delegate_to: "{{ dyndns_host }}"
+
+- name: Upload DynDNS-Zone template
+  copy:
+    src: zone_template.j2
+    dest: /home/dyndns/zone_template.j2
+    owner: dyndns
+  delegate_to: "{{ dyndns_host }}"
+
+- name: Insert DynDNS-script-cronjob
+  cron:
+    user: dyndns
+    name: "DynDNS-script"
+    minute: "*"
+    hour: "*"
+    job: '/usr/bin/python3 /home/dyndns/generate_zone.py /home/dyndns'
+  delegate_to: "{{ dyndns_host }}"
