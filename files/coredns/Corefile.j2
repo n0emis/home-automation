@@ -3,14 +3,6 @@
     errors
 }
 
-(dyndns) {
-    hosts /home/dyndns/hosts {
-        fallthrough
-        ttl 60
-        reload 1m
-    }
-}
-
 # inwx secondary ns
 (inwx) {
     transfer to 185.181.104.96
@@ -46,12 +38,24 @@ n0emis.de {
     bind {{ ansible_default_ipv6.address }}
 
     import mon
-    import dyndns
 
     root /etc/coredns/zones
     file db.n0emis.de {
         # inwx secondary ns
         import inwx
+	transfer to *
+    }
+}
+
+dyn.n0emis.de {
+    bind {{ ansible_default_ipv4.address }}
+    bind {{ ansible_default_ipv6.address }}
+
+    import mon
+
+    root /home/dyndns
+    file db.dyn.n0emis.de {
+        transfer to *
     }
 }
 
