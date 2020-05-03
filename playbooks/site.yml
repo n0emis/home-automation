@@ -18,6 +18,24 @@
     - jnv.unattended-upgrades
   tags: base
 
+- hosts: php
+  become: yes
+  roles:
+    - geerlingguy.php
+  tasks:
+    - name: Configure php-fpm pool (if enabled).
+      lineinfile:
+        dest: "{{ php_fpm_pool_conf_path }}"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - regexp: "^.?clear_env.?=.+$"
+          line: "clear_env = {{ php_fpm_clear_env }}"
+      when: php_enable_php_fpm
+      notify: restart php-fpm
+  tags: php
+
 - hosts: dyndns
   become: yes
   roles:

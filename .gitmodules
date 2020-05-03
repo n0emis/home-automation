@@ -41,3 +41,6 @@
 [submodule "roles/cloudalchemy.coredns"]
 	path = roles/cloudalchemy.coredns
 	url = https://github.com/cloudalchemy/ansible-coredns/
+[submodule "roles/geerlingguy.php"]
+	path = roles/geerlingguy.php
+	url = https://github.com/geerlingguy/ansible-role-php
