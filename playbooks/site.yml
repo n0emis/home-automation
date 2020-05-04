@@ -70,15 +70,18 @@
         mode: "0400"
   tags: gitea
 
+- hosts: netbox
+  become: yes
+  roles:
+    - geerlingguy.postgresql
+    - geerlingguy.redis
+    - lae.netbox
+  tags: netbox
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton
   tags: bbb
-
-- hosts: pbx
-  roles:
-    - elastix
-  tags: pbx
 
 - hosts: yate
   roles:

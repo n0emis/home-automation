@@ -1,0 +1,21 @@
+http:
+  routers:
+    services-netbox-http:
+      rule: "Host(`netbox.n0emis.eu`) || Host(`netbox.noemis.me`)"
+      service: "services-netbox@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    services-netbox-https:
+      rule: "Host(`netbox.n0emis.eu`) || Host(`netbox.noemis.me`)"
+      service: "services-netbox@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_tls"
+  services:
+    services-netbox:
+      loadBalancer:
+        servers:
+          - url: "http://{{ netbox_socket }}"

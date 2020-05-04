@@ -44,3 +44,9 @@
 [submodule "roles/geerlingguy.php"]
 	path = roles/geerlingguy.php
 	url = https://github.com/geerlingguy/ansible-role-php
+[submodule "roles/lae.netbox"]
+	path = roles/lae.netbox
+	url = https://github.com/n0emis/ansible-role-netbox
+[submodule "roles/geerlingguy.redis"]
+	path = roles/geerlingguy.redis
+	url = https://github.com/geerlingguy/ansible-role-redis

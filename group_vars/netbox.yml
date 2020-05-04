@@ -1,0 +1,32 @@
+---
+netbox_stable: true
+netbox_database: netbox
+netbox_database_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/db subkey=user') }}"
+netbox_database_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/db') }}"
+netbox_database_host: "localhost"
+netbox_socket: "127.0.0.1:3001"
+netbox_protocol: http
+netbox_config:
+  SECRET_KEY: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/secret') }}"
+  ALLOWED_HOSTS:
+    - netbox.n0emis.eu
+    - netbox.noemis.me
+  MEDIA_ROOT: "{{ netbox_shared_path }}/media"
+  REPORTS_ROOT: "{{ netbox_shared_path }}/reports"
+  SCRIPTS_ROOT: "{{ netbox_shared_path }}/scripts"
+
+netbox_superuser_username: "{{ lookup('passwordstore', 'netbox.n0emis.eu') }}"
+netbox_superuser_password: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=user') }}"
+netbox_superuser_email: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=email') }}"
+
+#netbox_stable_version: 2.6.12
+
+postgresql_users:
+  - name: "{{ netbox_database_user }}"
+    password: "{{ netbox_database_password }}"
+
+postgresql_databases:
+  - name: "{{ netbox_database }}"
+    owner: "{{ netbox_database_user }}"
+
+postgresql_users_no_log: no
