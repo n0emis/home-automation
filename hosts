@@ -7,7 +7,7 @@ wndr
 192.168.5.3 ansible_user=root
 
 [mail]
-ganymed.het.hel.fl.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
+ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
 #bbb.het.nbg.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

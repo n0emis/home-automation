@@ -46,7 +46,7 @@
   roles:
     - docker
     - mailcow
-  tags: mailcow
+  tags: mailcow,mail
 
 - hosts: reverseproxy
   become: yes

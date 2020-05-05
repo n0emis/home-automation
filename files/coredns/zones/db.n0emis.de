@@ -1,6 +1,6 @@
 $ORIGIN n0emis.de.
 @ 3600 IN SOA ns.n0emis.de. noc.n0emis.de. (
-    2020050301 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020050501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -17,7 +17,7 @@ ns IN AAAA {{ ansible_default_ipv6.address }}
 
 ;; MAIL
 ;;;; MX
-@		86400	IN	MX	1 ganymed.het.hel.fl.n0emis.eu.
+@		86400	IN	MX	1 ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; DMARC
 _dmarc	86400	IN	TXT	"v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"

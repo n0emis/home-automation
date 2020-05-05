@@ -50,3 +50,5 @@ traefik_dashboard:
   additional_middlewares: []
 
 dyndns_enable: no
+php_date_timezone: "Europe/Berlin"
+nginx_ppa_use: true
