@@ -50,3 +50,12 @@
 [submodule "roles/geerlingguy.redis"]
 	path = roles/geerlingguy.redis
 	url = https://github.com/geerlingguy/ansible-role-redis
+[submodule "roles/n0emis.synapse"]
+	path = roles/n0emis.synapse
+	url = https://github.com/n0emis/ansible-role-synapse
+[submodule "roles/em0lar.mautrix-telegram"]
+	path = roles/em0lar.mautrix-telegram
+	url = https://github.com/em0lar/ansible-role-mautrix-telegram
+[submodule "roles/n0emis.matrix-appservice-irc"]
+	path = roles/n0emis.matrix-appservice-irc
+	url = https://github.com/n0emis/ansible-role-matrix-appservice-irc/

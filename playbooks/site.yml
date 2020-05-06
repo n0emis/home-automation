@@ -55,6 +55,22 @@
     - traefik-services
   tags: traefik
 
+- hosts: synapse
+  become: yes
+  roles:
+    - geerlingguy.postgresql
+    - n0emis.synapse
+  tags: synapse, matrix
+
+- hosts: synapse
+  become: yes
+  roles:
+    - geerlingguy.nodejs
+    - em0lar.mautrix-telegram
+    - n0emis.matrix-appservice-irc
+    #- n0emis.mautrix-whatsapp
+  tags: matrix, bridges
+
 - hosts: git
   become: yes
   roles:
