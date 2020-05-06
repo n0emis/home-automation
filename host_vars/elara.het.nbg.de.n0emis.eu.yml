@@ -1,4 +1,23 @@
 ---
 ansible_python_interpreter: "/usr/bin/python3"
 
-synapse_http_listener_port: '85'
+postgresql_users:
+  - name: "{{ synapse_database_user }}"
+    password: "{{ synapse_database_password }}"
+  - name: "{{ netbox_database_user }}"
+    password: "{{ netbox_database_password }}"
+  - name: "{{ keycloak_postgresql_username }}"
+    password: "{{ keycloak_postgresql_password }}"
+  - name: "{{ gitea_db_name }}"
+    owner: "{{ gitea_db_user }}"
+postgresql_databases:
+  - name: "{{ synapse_database_database }}"
+    owner: "{{ synapse_database_user }}"
+    lc_collate: 'C'
+    lc_ctype: 'C'
+  - name: "{{ netbox_database }}"
+    owner: "{{ netbox_database_user }}"
+  - name: "{{ keycloak_postgresql_database }}"
+    owner: "{{ keycloak_postgresql_username }}"
+  - name: "{{ gitea_db_user }}"
+    password: "{{ gitea_db_password }}"

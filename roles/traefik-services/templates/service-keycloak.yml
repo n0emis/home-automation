@@ -1,0 +1,21 @@
+http:
+  routers:
+    iam-keycloak-http:
+      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`) || Host(`keycloak.n0emis.eu`) || Host(`keycloak.noemis.me`)"
+      service: "iam-keycloak@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    iam-keycloak-https:
+      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`) || Host(`keycloak.n0emis.eu`) || Host(`keycloak.noemis.me`)"
+      service: "iam-keycloak@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_tls"
+  services:
+    iam-keycloak:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:{{ keycloak_http_port }}"

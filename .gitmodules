@@ -59,3 +59,9 @@
 [submodule "roles/n0emis.matrix-appservice-irc"]
 	path = roles/n0emis.matrix-appservice-irc
 	url = https://github.com/n0emis/ansible-role-matrix-appservice-irc/
+[submodule "roles/em0lar.keycloak"]
+	path = roles/em0lar.keycloak
+	url = https://github.com/em0lar/ansible-role-keycloak_postgresql_hostkeycloak-postgres.git
+[submodule "roles/geerlingguy.java"]
+	path = roles/geerlingguy.java
+	url = https://github.com/geerlingguy/ansible-role-java.git

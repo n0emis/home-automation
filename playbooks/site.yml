@@ -71,6 +71,34 @@
     #- n0emis.mautrix-whatsapp
   tags: matrix, bridges
 
+- hosts: iam
+  become: yes
+  roles:
+    - geerlingguy.postgresql
+    - em0lar.keycloak
+  tasks:
+    - name: Change HTTP-Listener for proxy-usage
+      replace:
+        path: "{{ keycloak_config_dir }}/standalone.xml"
+        regexp: '<http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>'
+        replace: '<http-listener name="default" socket-binding="http" redirect-socket="proxy-https" enable-http2="true" proxy-address-forwarding="true"/>'
+      notify: restart keycloak
+
+    - name: Create socket binding for proxy-usage
+      lineinfile:
+        path: "{{ keycloak_config_dir }}/standalone.xml"
+        insertafter: '<socket-binding name="https" port="\${jboss.https.port:8443}"\/>'
+        line: '<socket-binding name="proxy-https" port="443"/>'
+      notify: restart keycloak
+
+    - name: Activate preview features
+      copy:
+        dest: "{{ keycloak_config_dir }}/profile.properties"
+        content: |
+          profile=preview
+      notify: restart keycloak
+  tags: iam, keycloak
+
 - hosts: git
   become: yes
   roles:

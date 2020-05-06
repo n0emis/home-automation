@@ -131,6 +131,19 @@
         record: elastix.int.goe.de
         value: home.noemis.me
 
+      - domain: n0emis.eu
+        record: auth
+        value: elara.het.nbg.de.n0emis.eu
+      - domain: noemis.me
+        record: auth
+        value: elara.het.nbg.de.n0emis.eu
+      - domain: n0emis.eu
+        record: keycloak
+        value: elara.het.nbg.de.n0emis.eu
+      - domain: noemis.me
+        record: keycloak
+        value: elara.het.nbg.de.n0emis.eu
+
   - name: Create other records
     inwx.collection.dns:
       domain: "{{ item.domain }}"

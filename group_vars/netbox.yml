@@ -21,12 +21,4 @@ netbox_superuser_email: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=ema
 
 #netbox_stable_version: 2.6.12
 
-postgresql_users:
-  - name: "{{ netbox_database_user }}"
-    password: "{{ netbox_database_password }}"
-
-postgresql_databases:
-  - name: "{{ netbox_database }}"
-    owner: "{{ netbox_database_user }}"
-
 postgresql_users_no_log: no

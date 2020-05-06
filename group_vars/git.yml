@@ -39,14 +39,6 @@ gitea_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea
 
 gitea_show_user_email: false
 
-postgresql_databases:
-  - name: "{{ gitea_db_name }}"
-    owner: "{{ gitea_db_user }}"
-
-postgresql_users:
-  - name: "{{ gitea_db_user }}"
-    password: "{{ gitea_db_password }}"
-
 ssh_deploy_key: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         30323637653635613131313461323135316362383739643633336536326563643933386466353735
