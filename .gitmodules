@@ -65,3 +65,6 @@
 [submodule "roles/geerlingguy.java"]
 	path = roles/geerlingguy.java
 	url = https://github.com/geerlingguy/ansible-role-java.git
+[submodule "roles/em0lar.codimd"]
+	path = roles/em0lar.codimd
+	url = https://git.labcode.dev/ansible_roles/codimd

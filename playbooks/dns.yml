@@ -144,6 +144,13 @@
         record: keycloak
         value: elara.het.nbg.de.n0emis.eu
 
+      - domain: noemis.me
+        record: md
+        value: home.noemis.me
+      - domain: n0emis.eu
+        record: md
+        value: home.noemis.me
+
   - name: Create other records
     inwx.collection.dns:
       domain: "{{ item.domain }}"

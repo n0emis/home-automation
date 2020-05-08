@@ -1,0 +1,9 @@
+---
+ansible_python_interpreter: "/usr/bin/python3"
+
+postgresql_users:
+  - name: "{{ codimd_db_username }}"
+    password: "{{ codimd_db_password }}"
+postgresql_databases:
+  - name: "{{ codimd_db_database }}"
+    owner: "{{ codimd_db_username }}"

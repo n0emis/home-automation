@@ -8,8 +8,8 @@ postgresql_users:
     password: "{{ netbox_database_password }}"
   - name: "{{ keycloak_postgresql_username }}"
     password: "{{ keycloak_postgresql_password }}"
-  - name: "{{ gitea_db_name }}"
-    owner: "{{ gitea_db_user }}"
+  - name: "{{ gitea_db_user }}"
+    password: "{{ gitea_db_password }}"
 postgresql_databases:
   - name: "{{ synapse_database_database }}"
     owner: "{{ synapse_database_user }}"
@@ -19,5 +19,5 @@ postgresql_databases:
     owner: "{{ netbox_database_user }}"
   - name: "{{ keycloak_postgresql_database }}"
     owner: "{{ keycloak_postgresql_username }}"
-  - name: "{{ gitea_db_user }}"
-    password: "{{ gitea_db_password }}"
+  - name: "{{ gitea_db_name }}"
+    owner: "{{ gitea_db_user }}"

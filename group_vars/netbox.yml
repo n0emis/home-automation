@@ -20,5 +20,3 @@ netbox_superuser_password: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=
 netbox_superuser_email: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=email') }}"
 
 #netbox_stable_version: 2.6.12
-
-postgresql_users_no_log: no
