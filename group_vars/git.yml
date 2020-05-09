@@ -6,6 +6,8 @@ gitea_user_repo_limit: 30
 # Don't use a public CDN for frontend assets
 gitea_offline_mode: true
 
+gitea_version: "1.11.5"
+
 # Some 'rendering' options for your URLs
 gitea_http_domain: git.n0emis.eu
 gitea_root_url: https://git.n0emis.eu
