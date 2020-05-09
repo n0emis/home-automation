@@ -68,3 +68,6 @@
 [submodule "roles/em0lar.codimd"]
 	path = roles/em0lar.codimd
 	url = https://git.labcode.dev/ansible_roles/codimd
+[submodule "roles/Oefenweb.yarn"]
+	path = roles/Oefenweb.yarn
+	url = https://github.com/Oefenweb/ansible-yarn
