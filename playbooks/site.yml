@@ -68,7 +68,7 @@
     - geerlingguy.nodejs
     - em0lar.mautrix-telegram
     - n0emis.matrix-appservice-irc
-    #- n0emis.mautrix-whatsapp
+#    - n0emis.mautrix-whatsapp
   tags: matrix, bridges
 
 - hosts: iam
@@ -88,6 +88,7 @@
       lineinfile:
         path: "{{ keycloak_config_dir }}/standalone.xml"
         insertafter: '<socket-binding name="https" port="\${jboss.https.port:8443}"\/>'
+        regexp: '<socket-binding name="proxy-https" port="443"/>'
         line: '<socket-binding name="proxy-https" port="443"/>'
       notify: restart keycloak
 
