@@ -1,18 +1,18 @@
 $ORIGIN n0emis.de.
 @ 3600 IN SOA ns.n0emis.de. noc.n0emis.de. (
-    2020051005 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020051006 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
-    86400      ; expire (1 day)
+    3600      ; expire (1 day)
     3600       ; minimum (1 hour)
 )
 
 ;; NS
-@ 3600 IN NS ns.inwx.de.
-@ 3600 IN NS ns1
+@                           3600    IN  NS      ns.inwx.de.
+@                           3600    IN  NS      ns1
 
-ns1 IN A {{ ansible_default_ipv4.address }}
-ns1 IN AAAA {{ ansible_default_ipv6.address }}
+ns1                                 IN  A       {{ ansible_default_ipv4.address }}
+ns1                                 IN  AAAA    {{ ansible_default_ipv6.address }}
 
 ;; Server
 ;;;; Uberspace - russel
@@ -40,9 +40,9 @@ _dmarc                      {{ dns_dmarc }}
 pw                          3600    IN  TXT     "foobar2342"
 
 ;; Pages
-www                         86400   IN  CNAME   russel.uberspace.de.
+www                         3600    IN  CNAME   russel.uberspace.de.
 
 banner	                    3600	IN	CNAME	n0emis.github.io.
 
-mc		                    3600	IN	CNAME	int.goe.de.dyn.n0emis.de.
-home	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.de.
+mc		                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+home	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.

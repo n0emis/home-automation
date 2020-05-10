@@ -1,0 +1,66 @@
+$ORIGIN noemis.me.
+@ 3600 IN SOA ns.noemis.me. noc.noemis.me. (
+    2020051101 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    3600       ; minimum (1 hour)
+)
+
+;; NS
+@                           3600    IN  NS      ns.inwx.de.
+@                           3600    IN  NS      ns1
+
+ns1                                 IN  A       {{ ansible_default_ipv4.address }}
+ns1                                 IN  AAAA    {{ ansible_default_ipv6.address }}
+
+;; Server
+;;;; Uberspace - russel
+@                           3600	IN	A	    185.26.156.94
+@                           3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
+
+;; MAIL
+;;;; MX
+@                           {{ dns_mx }}
+
+;;;; DKIM
+dkim._domainkey             {{ dns_dkim }}
+
+;;;; DMARC
+_dmarc                      {{ dns_dmarc }}
+
+;;;; SPF
+@                           {{ dns_spf }}
+
+;; CAA
+*	                        3600	IN	CAA 0   issue "letsencrypt.org"
+@	                        3600	IN	CAA	0   issue "letsencrypt.org"
+
+;; TXT
+
+;; SRV
+_matrix._tcp                3600    IN  SRV 1   10  443 matrix
+_matrix-identity._tcp       3600    IN  SRV 1   10  443 matrix
+
+;; Pages
+www                         3600    IN  CNAME   russel.uberspace.de.
+thelounge	                3600	IN	CNAME	russel.uberspace.de.
+firefly	                    3600	IN	CNAME	russel.uberspace.de.
+fotobox	                    3600	IN	CNAME	russel.uberspace.de.
+
+been	                    3600	IN	CNAME	n0emis.github.io.
+
+mc		                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+md  	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+ipa 	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+home	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+tracker	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+wolke	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+neotopiabooks               3600	IN	CNAME	int.goe.de.dyn.n0emis.eu.
+neotopiabooks-mgmt          3600    IN	CNAME	int.goe.de.dyn.n0emis.eu.
+
+netbox	                    3600	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+keycloak	                3600	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+git		                    3600	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+auth		                3600	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+matrix	                    3600    IN	CNAME	elara.het.nbg.de.n0emis.eu.

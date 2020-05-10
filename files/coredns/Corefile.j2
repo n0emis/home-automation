@@ -34,18 +34,18 @@ n0emis.eu {
     }
 }
 
-#noemis.me {
-#    bind {{ ansible_default_ipv4.address }}
-#    bind {{ ansible_default_ipv6.address }}
-#
-#    import mon
-#    import dyndns
-#
-#    root /etc/coredns/zones
-#    file db.noemis.me {
-#        import inwx
-#    }
-#}
+noemis.me {
+    bind {{ ansible_default_ipv4.address }}
+    bind {{ ansible_default_ipv6.address }}
+
+    import mon
+
+    root /etc/coredns/zones
+    file db.noemis.me {
+        # inwx secondary ns
+        import inwx
+    }
+}
 
 n0emis.de {
     bind {{ ansible_default_ipv4.address }}

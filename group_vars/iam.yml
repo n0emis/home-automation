@@ -6,5 +6,5 @@ keycloak_admin_password: "{{ lookup('passwordstore', 'auth.n0emis.eu/admin') }}"
 keycloak_configure_firewall: false
 keycloak_version: 10.0.1
 
-keycloak_java_opts: "-Xms512m -Xmx1024m -XX:MaxPermSize=768m"
+#keycloak_java_opts: "-Xms512m -Xmx1024m -XX:MaxPermSize=768m"
 keycloak_http_port: 8081
