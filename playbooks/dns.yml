@@ -2,44 +2,6 @@
 - hosts: 127.0.0.1
   connection: local
   tasks:
-  - name: Create A records
-    inwx.collection.dns:
-      domain: "{{ item.domain }}"
-      type: A
-      record: "{{ item.record }}"
-      value: "{{ item.value }}"
-      username: "{{ inwx_user }}"
-      password: "{{ inwx_password }}"
-    with_items:
-      - domain: n0emis.eu
-        record: ganymed.het.hel.fi
-        value: 95.217.163.175
-      - domain: n0emis.eu
-        record: bbb.het.nbg.de
-        value: 116.203.136.254
-      - domain: n0emis.eu
-        record: elara.het.nbg.de
-        value: 78.46.251.132
-
-  - name: Create AAAA records
-    inwx.collection.dns:
-      domain: "{{ item.domain }}"
-      type: AAAA
-      record: "{{ item.record }}"
-      value: "{{ item.value }}"
-      username: "{{ inwx_user }}"
-      password: "{{ inwx_password }}"
-    with_items:
-      - domain: n0emis.eu
-        record: ganymed.het.hel.fi
-        value: 2a01:4f9:c010:7b6e::1
-      - domain: n0emis.eu
-        record: bbb.het.nbg.de
-        value: 2a01:4f8:c0c:bceb::1
-      - domain: n0emis.eu
-        record: elara.het.nbg.de
-        value: 2a01:4f8:c0c:34bc::1
-
   - name: Create MX records
     inwx.collection.dns:
       domain: "{{ item.domain }}"
@@ -49,37 +11,8 @@
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
-      - domain: n0emis.eu
-        record: ''
-      - domain: n0emis.eu
-        record: 'services'
       - domain: noemis.me
         record: ''
-      - domain: n0emis.eu
-        record: dev
-
-  - name: Create TLSA records
-    inwx.collection.dns:
-      domain: n0emis.eu
-      record: "{{ item }}"
-      type: TLSA
-      cert_usage: 3
-      selector: 1
-      hash_type: 1
-      value: c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb
-      username: "{{ inwx_user }}"
-      password: "{{ inwx_password }}"
-    with_items:
-      - _25._tcp.ganymed.het.hel.fi
-      - _443._tcp.ganymed.het.hel.fi
-      - _110._tcp.ganymed.het.hel.fi
-      - _143._tcp.ganymed.het.hel.fi
-      - _465._tcp.ganymed.het.hel.fi
-      - _587._tcp.ganymed.het.hel.fi
-      - _993._tcp.ganymed.het.hel.fi
-      - _995._tcp.ganymed.het.hel.fi
-      - _4190._tcp.ganymed.het.hel.fi
-
   - name: Create CNAME records
     inwx.collection.dns:
       domain: "{{ item.domain }}"
@@ -89,107 +22,9 @@
       username: "{{ inwx_user }}"
       password: "{{ inwx_password }}"
     with_items:
-      - domain: n0emis.eu
-        record: autodiscover
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: autoconfig
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: imap
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: smtp
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: mail.het.hel.fi
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: ganymed.het.hel.fl
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: mail.het.hel.fl
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: mail
-        value: ganymed.het.hel.fi.n0emis.eu
-      - domain: n0emis.eu
-        record: git
-        value: elara.het.nbg.de.n0emis.eu
-      - domain: n0emis.eu
-        record: netbox
-        value: elara.het.nbg.de.n0emis.eu
       - domain: noemis.me
         record: netbox
         value: elara.het.nbg.de.n0emis.eu
-
-      - domain: n0emis.eu
-        record: bbb
-        value: bbb.het.nbg.de.n0emis.eu
-
-      - domain: n0emis.eu
-        record: elastix.int.goe.de
-        value: home.noemis.me
-
-      - domain: n0emis.eu
-        record: auth
-        value: elara.het.nbg.de.n0emis.eu
-      - domain: noemis.me
-        record: auth
-        value: elara.het.nbg.de.n0emis.eu
-      - domain: n0emis.eu
-        record: keycloak
-        value: elara.het.nbg.de.n0emis.eu
-      - domain: noemis.me
-        record: keycloak
-        value: elara.het.nbg.de.n0emis.eu
-
       - domain: noemis.me
         record: md
         value: home.noemis.me
-      - domain: n0emis.eu
-        record: md
-        value: home.noemis.me
-
-  - name: Create other records
-    inwx.collection.dns:
-      domain: "{{ item.domain }}"
-      type: "{{ item.type }}"
-      record: "{{ item.record }}"
-      value: "{{ item.value }}"
-      username: "{{ inwx_user }}"
-      password: "{{ inwx_password }}"
-    with_items:
-      - type: TXT
-        domain: n0emis.eu
-        record: dkim._domainkey
-        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
-      - type: TXT
-        domain: n0emis.eu
-        record: dkim._domainkey.services
-        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
-      - type: TXT
-        domain: n0emis.eu
-        record: dkim._domainkey.dev
-        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
-      - type: TXT
-        domain: noemis.me
-        record: dkim._domainkey
-        value: 'v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB'
-
-      - type: TXT
-        domain: n0emis.eu
-        record: _dmarc
-        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
-      - type: TXT
-        domain: n0emis.eu
-        record: _dmarc.services
-        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
-      - type: TXT
-        domain: n0emis.eu
-        record: _dmarc.dev
-        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'
-      - type: TXT
-        domain: noemis.me
-        record: _dmarc
-        value: 'v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1'

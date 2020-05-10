@@ -7,13 +7,11 @@
 )
 
 @ 3600 IN NS {{ ns_fqdn }}.
-ns IN A {{ ns_v4 }}
-ns IN AAAA {{ ns_v6 }}
 
 {% for record in v4_records %}
-{{ record['domain'] }}.dyn.n0emis.de. 60 A {{ record['address'] }}
+{{ record['domain'] }}.dyn.n0emis.eu. 60 A {{ record['address'] }}
 {% endfor %}
 
 {% for record in v6_records %}
-{{ record['domain'] }}.dyn.n0emis.de. 60 AAAA {{ record['address'] }}
+{{ record['domain'] }}.dyn.n0emis.eu. 60 AAAA {{ record['address'] }}
 {% endfor %}

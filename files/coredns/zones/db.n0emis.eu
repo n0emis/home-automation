@@ -1,83 +1,106 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020042023 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020051005 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
     3600       ; minimum (1 hour)
-    )
+)
 
-@ 3600 IN NS hydrogen.ns.hetzner.com.
-@ 3600 IN NS oxygen.ns.hetzner.com.
-@ 3600 IN NS helium.ns.hetzner.de.
-;;@ 3600 IN NS ns
+;; NS
+@                           3600    IN  NS      ns.inwx.de.
+@                           3600    IN  NS      ns1
+dyn                         3600    IN  NS      ns1
 
-ns IN A {{ ansible_default_ipv4.address }}
-ns IN AAAA {{ ansible_default_ipv6.address }}
+ns1                                 IN  A       {{ ansible_default_ipv4.address }}
+ns1                                 IN  AAAA    {{ ansible_default_ipv6.address }}
 
 ;; Server
 ;;;; Cloud
-meet01.het.nbg.de 3600 IN A 116.203.120.158
-meet01.het.nbg.de 3600 IN AAAA 2a01:4f8:c0c:ac5f::1
-*.meet01.het.nbg.de 3600 IN CNAME meet01.het.nbg.de
-cetus.het.hel.fi 3600 IN A 95.216.160.224
-cetus.het.hel.fi 3600 IN AAAA 2a01:4f9:c010:1dcf::1
+elara.het.nbg.de            86400   IN	A	    78.46.251.132
+elara.het.nbg.de            86400   IN	AAAA	2a01:4f8:c0c:34bc::1
 
-;;;; Home
-home 3600 IN CNAME e4zflsmfb8shzk7c.myfritz.net.
-dione.int.sgb.de 3600 IN CNAME home-dione.labcode.party.
-*.dione.int.sgb.de 3600 IN CNAME dione.int.sgb.de
-vpn.int.sgb.de 3600 IN CNAME home4.labcode.party.
+ganymed.het.hel.fi          86400   IN	A	    95.217.163.175
+ganymed.het.hel.fi          86400   IN	AAAA	2a01:4f9:c010:7b6e::1
+
+jetzt-dev.het.nbg.de        3600	IN	A	    94.130.107.245
+jetzt-dev.het.nbg.de        3600	IN	AAAA	2a01:4f8:c0c:83eb::1
+
+;;;; Uberspace - russel
+@                           3600	IN	A	    185.26.156.94
+@                           3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
+
+;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.
 
 ;; MAIL
 ;;;; MX
-infra 3600 IN MX 1 cetus.het.hel.fi
-@ 3600 IN MX 1 cetus.het.hel.fi
+@                           {{ dns_mx }}
+ca                          {{ dns_mx }}
+dev                         {{ dns_mx }}
+services                    {{ dns_mx }}
 
 ;;;; SRV
-_autodiscover.infra._tcp 3600 IN SRV 1 10 443 cetus.het.hel.fi
-_autodiscover._tcp 3600 IN SRV 1 10 443 cetus.het.hel.fi
+_autodiscover._tcp          3600    IN  SRV 1   10  443 ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; DKIM
-dkim._domainkey 3600 IN TXT "v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyi4rajvnJrJtJDH7kaajbW6SwlN8GBwVsEjeJ54jQeKPOZxk3h8vDwvUbr9aKcZl3FHMMnTeGNEEvOxyTRoSpCcmIi+pcEHeZmtJ75bhBsodgrWIj6hl3i+54DJ2MWkkMnZuLiL8a/2EUjeeyUtn2bFqg3s7Mw88StTh8XQZyGUjWeJea3IauKpEgRE30824p26xk+Ljfl5aXh9osKcY2tIPZRUqX6LEcyjVC3FnyZSC8x+okbTsYLdAWgQoujldnYYPNKKQ2Ql+Ze5dgjJMLtoWvWY0yFtiQBDVATfM+v3BdBF97l7cI/i53aKO09OnF6K306+GMjtQePnWBJqjmwIDAQAB"
+dkim._domainkey             {{ dns_dkim }}
+dkim._domainkey.ca          {{ dns_dkim }}
+dkim._domainkey.dev         {{ dns_dkim }}
+dkim._domainkey.services    {{ dns_dkim }}
+
+;;;; DMARC
+_dmarc                      {{ dns_dmarc }}
+_dmarc.ca                   {{ dns_dmarc }}
+_dmarc.dev                  {{ dns_dmarc }}
+_dmarc.services             {{ dns_dmarc }}
 
 ;;;; SPF
-infra 3600 IN TXT "v=spf1 a mx ~all"
-@ 3600 IN TXT "v=spf1 a mx ~all"
+@                           {{ dns_spf }}
+ca                          {{ dns_spf }}
+dev                         {{ dns_spf }}
+services                    {{ dns_spf }}
 
 ;;;; CNAME
-autoconfig.infra 3600 IN CNAME cetus.het.hel.fi
-autoconfig. 3600 IN CNAME cetus.het.hel.fi
-autodiscover.infra 3600 IN CNAME cetus.het.hel.fi
-autodiscover 3600 IN CNAME cetus.het.hel.fi
-mail 3600 IN CNAME cetus.het.hel.fi
+autoconfig                  86400	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autodiscover                86400	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; TLSA
-_110._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_143._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_25._tcp.cetus.het.hel.fi  3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_4190._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_443._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_465._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_587._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_993._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
-_995._tcp.cetus.het.hel.fi 3600 IN TLSA 3 1 1 f6555cd8bc628329d0dfc1c9070bd8df9f612b843d05384971ce3416c1c1a36d
+_25._tcp.{{ dns_tlsa }}
+_110._tcp.{{ dns_tlsa }}
+_143._tcp.{{ dns_tlsa }}
+_443._tcp.{{ dns_tlsa }}
+_465._tcp.{{ dns_tlsa }}
+_587._tcp.{{ dns_tlsa }}
+_993._tcp.{{ dns_tlsa }}
+_995._tcp.{{ dns_tlsa }}
+_4190._tcp.{{ dns_tlsa }}
 
 ;; CAA
-*	3600	IN	CAA	0 issue "letsencrypt.org"
-@	3600	IN	CAA	0 issue "letsencrypt.org"
+*	                        3600    IN  CAA 0   issue "letsencrypt.org"
+@	                        3600    IN  CAA 0   issue "letsencrypt.org"
 
-;; TXT-Verification
-@ 3600 IN TXT "keybase-site-verification=73L68-5Q8Lcs8SFDUVoaGWCv4wCbOvDvyzd4Ip4-ab0"
-_token._dnswl 3600 IN TXT "gsu43vu129t6z89sn1ohdchk9pspmm94"
+;; TXT
 
 ;; Pages
-cdn 3600 IN CNAME dione.int.sgb.de
-git 3600 IN CNAME dione.int.sgb.de
-kanban 3600 IN CNAME dione.int.sgb.de
-@ 3600 IN CNAME dione.int.sgb.de
-matrix 3600 IN CNAME dione.int.sgb.de
-md 3600 IN CNAME dione.int.sgb.de
-meet 3600 IN CNAME meet01.het.nbg.de
-static 3600 IN CNAME dione.int.sgb.de
-www 3600 IN CNAME dione.int.sgb.de
+www                         86400   IN  CNAME   russel.uberspace.de.
+
+mail                        86400	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+smtp                        86400	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+imap                        86400	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+
+git                         86400	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+netbox                      86400	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+auth                        86400	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+keycloak                    86400	IN	CNAME	elara.het.nbg.de.n0emis.eu.
+
+md                          86400   IN  CNAME   int.goe.de.dyn.n0emis.eu.
+wolke                       86400   IN  CNAME   int.goe.de.dyn.n0emis.eu.
+cloud                       86400   IN  CNAME   int.goe.de.dyn.n0emis.eu.
+
+;;;; For migration purposes
+ganymed.het.hel.fl          86400   IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+mail.het.hel.fl             86400   IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+mail.het.hel.fi             86400   IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+
+;;;; As a sub-CNAME for *.dev.chaos.jetzt
+*.jetzt-dev                 3600	IN	CNAME	jetzt-dev.het.nbg.de.n0emis.eu.

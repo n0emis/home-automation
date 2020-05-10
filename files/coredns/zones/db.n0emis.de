@@ -1,48 +1,48 @@
 $ORIGIN n0emis.de.
 @ 3600 IN SOA ns.n0emis.de. noc.n0emis.de. (
-    2020050501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020051005 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
     3600       ; minimum (1 hour)
-    )
+)
 
 ;; NS
 @ 3600 IN NS ns.inwx.de.
-@ 3600 IN NS ns
-dyn 3600 IN NS {{ ansible_fqdn }}.
+@ 3600 IN NS ns1
 
-ns IN A {{ ansible_default_ipv4.address }}
-ns IN AAAA {{ ansible_default_ipv6.address }}
+ns1 IN A {{ ansible_default_ipv4.address }}
+ns1 IN AAAA {{ ansible_default_ipv6.address }}
+
+;; Server
+;;;; Uberspace - russel
+@                           3600	IN	A	    185.26.156.94
+@                           3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
 
 ;; MAIL
 ;;;; MX
-@		86400	IN	MX	1 ganymed.het.hel.fi.n0emis.eu.
-
-;;;; DMARC
-_dmarc	86400	IN	TXT	"v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"
+@                           {{ dns_mx }}
 
 ;;;; DKIM
-dkim._domainkey 86400 IN	TXT	"v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB"
+dkim._domainkey             {{ dns_dkim }}
+
+;;;; DMARC
+_dmarc                      {{ dns_dmarc }}
 
 ;;;; SPF
-@		3600	IN	TXT	"v=spf1 mx ~all"
-
-;;;; CNAME
-banner	3600	IN	CNAME	n0emis.github.io.
-mc		3600	IN	CNAME	int.goe.de.dyn.n0emis.de.
-home	3600	IN	CNAME	int.goe.de.dyn.n0emis.de.
+@                           {{ dns_spf }}
 
 ;; CAA
-*	3600	IN	CAA	0 issue "letsencrypt.org"
-@	3600	IN	CAA	0 issue "letsencrypt.org"
-
-;; Pages
-banner	3600	IN	CNAME	n0emis.github.io.
-@		    3600	IN	A       185.26.156.94
-@		    3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
-www		3600	IN	A       185.26.156.94
-www		3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
+*	                        3600	IN	CAA 0   issue "letsencrypt.org"
+@	                        3600	IN	CAA	0   issue "letsencrypt.org"
 
 ;; TXT
-pw      3600    IN      TXT     "foobar2342"
+pw                          3600    IN  TXT     "foobar2342"
+
+;; Pages
+www                         86400   IN  CNAME   russel.uberspace.de.
+
+banner	                    3600	IN	CNAME	n0emis.github.io.
+
+mc		                    3600	IN	CNAME	int.goe.de.dyn.n0emis.de.
+home	                    3600	IN	CNAME	int.goe.de.dyn.n0emis.de.

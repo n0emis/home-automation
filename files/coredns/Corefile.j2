@@ -6,6 +6,7 @@
 # inwx secondary ns
 (inwx) {
     transfer to 185.181.104.96
+    transfer to *
 }
 
 # hetzner secondary ns
@@ -20,7 +21,20 @@
     transfer to 193.47.99.5
 }
 
-#n0emis.eu {
+n0emis.eu {
+    bind {{ ansible_default_ipv4.address }}
+    bind {{ ansible_default_ipv6.address }}
+
+    import mon
+
+    root /etc/coredns/zones
+    file db.n0emis.eu {
+        # inwx secondary ns
+        import inwx
+    }
+}
+
+#noemis.me {
 #    bind {{ ansible_default_ipv4.address }}
 #    bind {{ ansible_default_ipv6.address }}
 #
@@ -28,7 +42,7 @@
 #    import dyndns
 #
 #    root /etc/coredns/zones
-#    file db.n0emis.eu {
+#    file db.noemis.me {
 #        import inwx
 #    }
 #}
@@ -46,7 +60,7 @@ n0emis.de {
     }
 }
 
-dyn.n0emis.de {
+dyn.n0emis.eu {
     bind {{ ansible_default_ipv4.address }}
     bind {{ ansible_default_ipv6.address }}
 
@@ -58,15 +72,3 @@ dyn.n0emis.de {
     }
 }
 
-#noemis.me {
-#    bind {{ ansible_default_ipv4.address }}
-#    bind {{ ansible_default_ipv6.address }}
-#
-#    import mon
-#    import dyndns
-#
-#    root /etc/coredns/zones
-#    file db.noemis.me {
-#        import inwx
-#    }
-#}
