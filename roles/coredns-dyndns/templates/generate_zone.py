@@ -6,10 +6,6 @@ import time
 
 import jinja2
 
-ns_fqdn = "{{ hostvars[dyndns_host].ansible_fqdn }}"
-ns_v4 = "{{ hostvars[dyndns_host].ansible_default_ipv4.address }}"
-ns_v6 = "{{ hostvars[dyndns_host].ansible_default_ipv6.address }}"
-
 zonefile = sys.argv[1] + "/db.dyndns.zone"
 
 v4_records = []
@@ -45,9 +41,6 @@ for filename in os.listdir(sys.argv[1]):
                 })
 
 new_content = template.render(
-    ns_fqdn=ns_fqdn,
-    ns_v4=ns_v4,
-    ns_v6=ns_v6,
     v4_records=v4_records,
     v6_records=v6_records,
     soa_serial=int(time.time()) - 1000000000)

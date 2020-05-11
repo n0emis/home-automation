@@ -1,7 +1,4 @@
 ---
-- import_playbook: dns.yml
-  tags: dns
-
 - hosts: dns
   become: yes
   vars:

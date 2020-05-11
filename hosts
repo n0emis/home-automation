@@ -10,7 +10,7 @@ wndr
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-#bbb.het.nbg.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
+#bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [pbx]
 elastix.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
@@ -25,6 +25,7 @@ kallisto.int.goe.de.n0emis.eu
 
 [dns]
 elara.het.nbg.de.n0emis.eu
+ganymed.het.hel.fi.n0emis.eu
 
 [git]
 elara.het.nbg.de.n0emis.eu

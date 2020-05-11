@@ -6,7 +6,7 @@
     3600       ; minimum (1 hour)
 )
 
-@ 3600 IN NS {{ ns_fqdn }}.
+@ 3600 IN NS ns.n0emis.eu.
 
 {% for record in v4_records %}
 {{ record['domain'] }}.dyn.n0emis.eu. 60 A {{ record['address'] }}
