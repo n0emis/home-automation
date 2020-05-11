@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020051104 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020051105 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -109,4 +109,5 @@ mail.het.hel.fl             3600    IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 mail.het.hel.fi             3600    IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; As a sub-CNAME for *.dev.chaos.jetzt
+jetzt-dev                   3600	IN	CNAME	jetzt-dev.het.nbg.de.n0emis.eu.
 *.jetzt-dev                 3600	IN	CNAME	jetzt-dev.het.nbg.de.n0emis.eu.
