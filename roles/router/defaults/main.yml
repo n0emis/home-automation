@@ -1,0 +1,5 @@
+# Default zsh plugins
+oh_my_zsh_plugins:
+  - git
+
+static_hosts: {}

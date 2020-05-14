@@ -1,6 +1,6 @@
 ---
 - name: configure openwrt accesspoints
-  hosts: openwrt
+  hosts: openwrt!cr
   gather_facts: no
   pre_tasks:
     - name: 'install python'

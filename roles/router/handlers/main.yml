@@ -1,0 +1,15 @@
+---
+- name: reload network
+  service:
+    name: "network"
+    state: reloaded
+
+- name: reload firewall
+  service:
+    name: "firewall"
+    state: reloaded
+
+- name: restart dnsmasq
+  service:
+    name: "dnsmasq"
+    state: restarted

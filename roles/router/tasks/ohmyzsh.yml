@@ -1,0 +1,29 @@
+---
+- name: clone oh-my-zsh
+  tags:
+    # Suppress warning: [ANSIBLE0006] git used in place of git module
+    # Git module doesn't allow us to set `core.autocrlf=input`.
+    - skip_ansible_lint
+  command: 'git clone -c core.autocrlf=input --depth=1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh'
+  args:
+    chdir: '/root'
+    creates: '/root/.oh-my-zsh'
+
+- name: set permissions of oh-my-zsh
+  become: yes
+  file:
+    path: '/root/.oh-my-zsh'
+    # Prevent the cloned repository from having insecure permissions. Failing to do
+    # so causes compinit() calls to fail with "command not found: compdef" errors
+    # for users with insecure umasks (e.g., "002", allowing group writability).
+    mode: 'go-w'
+    recurse: yes
+
+- name: write .zshrc
+  become: yes
+  become_user: 'root'
+  template:
+    src: zsh/zshrc.j2
+    dest: '/root/.zshrc'
+    backup: yes
+    mode: 'u=rw,go=r'

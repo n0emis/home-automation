@@ -1,10 +1,14 @@
 [openwrt:children]
 wndr
+cr
 
 [wndr]
 192.168.5.1 ansible_user=root
 192.168.5.2 ansible_user=root
 192.168.5.3 ansible_user=root
+
+[cr]
+io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=172.31.1.101
 
 [mail]
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

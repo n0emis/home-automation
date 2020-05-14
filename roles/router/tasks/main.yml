@@ -1,0 +1,26 @@
+---
+- import_tasks: ohmyzsh.yml
+
+- name: Copy System Config File
+  template:
+    dest: "/etc/config/system"
+    src:  "config/system.j2"
+
+- name: Copy Network Config File
+  template:
+    dest: "/etc/config/network"
+    src:  "config/network.j2"
+  notify: reload network
+
+#- name: Copy Firewall Config File
+#  template:
+#    dest: "/etc/config/firewall"
+#    src:  "config/firewall.j2"
+#  notify: reload firewall
+
+- name: Copy DHCP Config File
+  template:
+    dest: "/etc/config/dhcp"
+    src:  "config/dhcp.j2"
+  notify: restart dnsmasq
+

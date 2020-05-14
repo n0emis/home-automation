@@ -1,0 +1,7 @@
+---
+- hosts: cr
+  roles:
+    - openwrt
+    - router
+  vars:
+    openwrt_install_recommended_packages: no
