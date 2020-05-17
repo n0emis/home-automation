@@ -6,7 +6,9 @@ gitea_user_repo_limit: 30
 # Don't use a public CDN for frontend assets
 gitea_offline_mode: true
 
-gitea_version: "1.11.5"
+gitea_version: "master"
+gitea_dl_url: "https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-{{ gitea_arch }}"
+gitea_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 
 # Some 'rendering' options for your URLs
 gitea_http_domain: git.n0emis.eu
@@ -27,11 +29,12 @@ gitea_start_ssh: false
 
 gitea_secret_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea') }}"
 gitea_disable_gravatar: true
-# To make at least your first user register
-gitea_disable_registration: true
+
+gitea_disable_registration: false
 gitea_show_registration_button: false
 gitea_require_signin: false
 gitea_enable_captcha: false
+gitea_only_allow_external_registration: true
 
 gitea_db_type: postgres
 gitea_db_host: localhost
