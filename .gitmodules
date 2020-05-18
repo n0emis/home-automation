@@ -71,3 +71,6 @@
 [submodule "roles/Oefenweb.yarn"]
 	path = roles/Oefenweb.yarn
 	url = https://github.com/Oefenweb/ansible-yarn
+[submodule "roles/adamruzicka.wireguard"]
+	path = roles/adamruzicka.wireguard
+	url = https://github.com/n0emis/ansible-wireguard

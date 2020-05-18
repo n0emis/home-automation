@@ -139,6 +139,12 @@
     - lae.netbox
   tags: netbox
 
+- hosts: wireguard
+  become: yes
+  roles:
+    - adamruzicka.wireguard
+  tags: wireguard
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton
