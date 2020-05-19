@@ -74,3 +74,6 @@
 [submodule "roles/adamruzicka.wireguard"]
 	path = roles/adamruzicka.wireguard
 	url = https://github.com/n0emis/ansible-wireguard
+[submodule "roles/em0lar.coredns-dynamicdns"]
+	path = roles/em0lar.coredns-dynamicdns
+	url = https://git.labcode.dev/ansible_roles/coredns-dynamicdns

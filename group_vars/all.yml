@@ -54,3 +54,6 @@ traefik_dashboard:
 dyndns_enable: no
 php_date_timezone: "Europe/Berlin"
 nginx_ppa_use: true
+
+dyndns_nameserver:
+  - ns.n0emis.eu

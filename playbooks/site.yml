@@ -36,7 +36,7 @@
 - hosts: dyndns
   become: yes
   roles:
-    - coredns-dyndns
+    - em0lar.coredns-dynamicdns
   tags: dyndns
 
 - hosts: mail
