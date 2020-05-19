@@ -12,6 +12,8 @@ codimd_allowed_origins:
 
 codimd_allow_email_login: false
 codimd_allow_email_register: false
+codimd_allow_anonymous: false
+
 codimd_domain: "md.n0emis.eu"
 codimd_port: 3000
 codimd_saml:
