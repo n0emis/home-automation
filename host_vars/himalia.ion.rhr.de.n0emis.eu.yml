@@ -63,13 +63,4 @@ dn42_peers:
       endpoint: "wg1.margau.ipv6.church:51823"
       pubkey: "OoGS3vepyVU1tuHSUWJv2jIXJTF7RqOvvQcGC/SJslE="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/margau') }}"
-#  - name: "kiubit"
-#    as: "4242423914"
-#    v4: "172.16.0.1"
-#    v6: "fd00::1"
-#    wg:
-#      port: 42003
-#      endpoint: "fooserv.net:12345"
-#      pubkey: "foopub"
-#      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/kiubit') }}"
 
