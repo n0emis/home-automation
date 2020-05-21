@@ -29,3 +29,47 @@ wireguard_wg-cgvpn-c_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf8:7e7f:d097:9940::10/128"
+
+
+### DN42
+dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+
+dn42_local_subnet_v4: "172.20.190.96/27"
+dn42_local_subnet_v6: "fdf4:2331:fa09::/48"
+dn42_local_v4: "172.20.190.96"
+dn42_local_v6: "fdf4:2331:fa09::1"
+dn42_local_as: "4242420197"
+
+dn42_enable_roa: yes
+
+dn42_peers:
+  - name: "v0tti"
+    as: "4242423929"
+    v6: "fe80::42:1"
+    if:
+      v6: fe80::42:42:1
+    wg:
+      port: 42001
+      endpoint: "dn42.v0tti.com:1202"
+      pubkey: "r8C+hxEcgQ8m5ic20TPbQ4xx5lFYIikouv5yDaNq8AU="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/v0tti') }}"
+  - name: "margau"
+    as: "4242421280"
+    v6: "fde3:4c0d:2836:ff00::6"
+    if:
+      v6: "fde3:4c0d:2836:ff00::7"
+    wg:
+      port: 42002
+      endpoint: "wg1.margau.ipv6.church:51823"
+      pubkey: "OoGS3vepyVU1tuHSUWJv2jIXJTF7RqOvvQcGC/SJslE="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/margau') }}"
+#  - name: "kiubit"
+#    as: "4242423914"
+#    v4: "172.16.0.1"
+#    v6: "fd00::1"
+#    wg:
+#      port: 42003
+#      endpoint: "fooserv.net:12345"
+#      pubkey: "foopub"
+#      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/kiubit') }}"
+

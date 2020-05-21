@@ -145,6 +145,12 @@
     - adamruzicka.wireguard
   tags: wireguard
 
+- hosts: dn42
+  become: yes
+  roles:
+    - n0emis.dn42
+  tags: dn42
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton
