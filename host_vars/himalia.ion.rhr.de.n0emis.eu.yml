@@ -47,9 +47,9 @@ dn42_peers:
     as: "4242423929"
     v6: "fe80::42:1"
     if:
-      v6: fe80::42:42:1
+      v6: "fe80::42:42:1"
     wg:
-      port: 42001
+      port: "42001"
       endpoint: "dn42.v0tti.com:1202"
       pubkey: "r8C+hxEcgQ8m5ic20TPbQ4xx5lFYIikouv5yDaNq8AU="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/v0tti') }}"
@@ -59,8 +59,52 @@ dn42_peers:
     if:
       v6: "fde3:4c0d:2836:ff00::7"
     wg:
-      port: 42002
+      port: "42002"
       endpoint: "wg1.margau.ipv6.church:51823"
       pubkey: "OoGS3vepyVU1tuHSUWJv2jIXJTF7RqOvvQcGC/SJslE="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/margau') }}"
+  - name: "zotan"
+    as: "4242422341"
+    v4: "172.20.177.34"  # We are doing multiprotocol
+    v6: "fe80::3"
+    bgp4o6: yes
+    if:
+      v4: "172.20.190.96"
+      v6: "fe80::42:42:1"
+    wg:
+      port: "42004"
+      endpoint: "nbg1.dn42.zotan.network:42430"
+      pubkey: "PlMza8PC6N58vpGqMsBo3UjvjXThl/2WCTK6drjqbgY="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+  - name: "hexanet"
+    as: "4242423078"
+    v6: "fe80::c:3621"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "42005"
+      endpoint: "2a01:4f8:c0c:bd02::2:30197"
+      pubkey: "5XpUor03B3DBHIMx0Z4ufOg7qCGtBqlYXfraRqncRlI= "
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+  - name: "nex"
+    as: "4242423012"
+    v6: "fd9b:37f7:faf7:3000::6:1"
+    if:
+      v6: "{{ dn42_local_v6 }}"
+    wg:
+      port: "42006"
+      endpoint: "n-gw-1.nexadn.de:51826"
+      pubkey: "M4qEMGbc5wHYYrttAQz0klvw491bFtSSttk4MoY0QFI="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+  - name: "mebus"
+    as: "4242420112"
+    v6: "fdf4:2331:fa09:ff00::2"
+    if:
+      v6: "fe80::42:42:1"
+      v6: "fdf4:2331:fa09:ff00::1"
+    wg:
+      port: "42007"
+      endpoint: "[2a00:8a60:e019:10de:5054:ff:fed3:70b0]:12612"
+      pubkey: "hZv2RTGFAkF3QTHxqwOqwfT8lAGyr7A3J0w+iWwj/S4="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
 
