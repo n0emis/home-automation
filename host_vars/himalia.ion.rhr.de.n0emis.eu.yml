@@ -42,6 +42,9 @@ dn42_local_as: "4242420197"
 
 dn42_enable_roa: yes
 
+dn42_pingfinder_enable: yes
+dn42_pingfinder_uuid: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/pingfinder') }}"
+
 dn42_peers:
   - name: "v0tti"
     as: "4242423929"
@@ -100,11 +103,43 @@ dn42_peers:
     as: "4242420112"
     v6: "fdf4:2331:fa09:ff00::2"
     if:
-      v6: "fe80::42:42:1"
       v6: "fdf4:2331:fa09:ff00::1"
     wg:
       port: "42007"
       endpoint: "[2a00:8a60:e019:10de:5054:ff:fed3:70b0]:12612"
       pubkey: "hZv2RTGFAkF3QTHxqwOqwfT8lAGyr7A3J0w+iWwj/S4="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
-
+  - name: "chrismoos"
+    as: "4242421588"
+    v4: "172.20.16.141"
+    v6: "fe80::1588"
+    if:
+      v6: "fe80::100"
+    wg:
+      port: "42008"
+      endpoint: "de-fra02.dn42.tech9.io:54310"
+      pubkey: "MD1EdVe9a0yycUdXCH3A61s3HhlDn17m5d07e4H33S0="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/chrismoos') }}"
+  - name: "xesxen"
+    as: "4242420246"
+    v4: "172.20.14.95"
+    v6: "fe80::7f61:c133:f5a6"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "42009"
+      endpoint: "do-ams3-1.dn42.hackzone.nl:20197"
+      pubkey: "eahB0ySIucY6XIsq5mYiyjMDrxlXvH2ffmKIb6WDRFI="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+  - name: "wrmsr"
+    as: "4242421555"
+    v4: "172.20.233.34"
+    v6: "fe80::0197"
+    bgp4o6: yes
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "51555"
+      endpoint: "de-fra1.dn42.mcl.gg:40197"
+      pubkey: "lPc/Oqm5PjO5QyPEEL93H/QXqlLUMIg/4imzTSqJa0c="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/wrmsr') }}"
