@@ -151,6 +151,12 @@
     - n0emis.dn42
   tags: dn42
 
+- hosts: dnsmasq
+  become: yes
+  roles:
+    - Oefenweb.dnsmasq
+  tags: dnsmasq, dns
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton

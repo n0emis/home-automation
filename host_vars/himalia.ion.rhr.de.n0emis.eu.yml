@@ -30,6 +30,20 @@ wireguard_wg-cgvpn-c_peers:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf8:7e7f:d097:9940::10/128"
 
+### DNSMASQ
+dnsmasq_dnsmasq_d_files_present:
+  dn42:
+    - address=/himalia.n0emis.dn42/{{ dn42_local_v4 }}
+    - address=/himalia.n0emis.dn42/{{ dn42_local_v6 }}
+    - server=/dn42/172.20.0.53
+    - server=/20.172.in-addr.arpa/172.20.0.53
+    - server=/21.172.in-addr.arpa/172.20.0.53
+    - server=/22.172.in-addr.arpa/172.20.0.53
+    - server=/23.172.in-addr.arpa/172.20.0.53
+    - server=/d.f.ip6.arpa/fd42:d42:d42:54::1
+  cccgoe:
+    - server=/cccgoe/fdf8:7e7f:d097:9900::1
+    - server=/7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa/fdf8:7e7f:d097:9900::1
 
 ### DN42
 dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
