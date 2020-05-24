@@ -1,4 +1,8 @@
 ---
+- hosts: all !openwrt
+  gather_facts: yes
+  tags: dnsmasq, dns
+
 - hosts: dns
   become: yes
   vars:
@@ -153,6 +157,7 @@
 
 - hosts: dnsmasq
   become: yes
+  gather_facts: yes
   roles:
     - Oefenweb.dnsmasq
   tags: dnsmasq, dns

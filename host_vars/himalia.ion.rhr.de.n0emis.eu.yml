@@ -2,6 +2,7 @@
 wireguard_networks:
   - wg-cgvpn
   - wg-cgvpn-c
+  - wg-dn42
 
 wireguard_wg-cgvpn_interface:
   address: fdf8:7e7f:d097:9900::4/48
@@ -29,8 +30,26 @@ wireguard_wg-cgvpn-c_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf8:7e7f:d097:9940::10/128"
+  e1mo:
+    public_key: "eokxpF/8WT0ull71TSnM6MWTT/gA4i1dOxSlJwjdZ3c="
+    allowed_ips: "fdf8:7e7f:d097:9940::20/128"
+
+wireguard_wg-dn42_interface:
+  address: fdf4:2331:fa09::2:1/48
+  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
+  listen_port: 41003
+wireguard_wg-dn42_peers:
+  adrastea:
+    public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
+    allowed_ips: "fdf4:2331:fa09::2:2/128"
 
 ### DNSMASQ
+dnsmasq_dnsmasq_conf:
+  - |
+    port=53
+    bind-interfaces
+    except-interface=dn42_*
+
 dnsmasq_dnsmasq_d_files_present:
   dn42:
     - address=/himalia.n0emis.dn42/{{ dn42_local_v4 }}
@@ -44,6 +63,10 @@ dnsmasq_dnsmasq_d_files_present:
   cccgoe:
     - server=/cccgoe/fdf8:7e7f:d097:9900::1
     - server=/7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa/fdf8:7e7f:d097:9900::1
+  n0emis:
+    - "server=/n0emis.eu/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.de/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
 
 ### DN42
 dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
@@ -157,3 +180,15 @@ dn42_peers:
       endpoint: "de-fra1.dn42.mcl.gg:40197"
       pubkey: "lPc/Oqm5PjO5QyPEEL93H/QXqlLUMIg/4imzTSqJa0c="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/wrmsr') }}"
+  - name: "marropax"
+    as: "4242420880"
+    v4: "172.21.106.97"
+    v6: "fe80::beef"
+    bgp4o6: yes
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "50880"
+      endpoint: "dn42-eu.marropax.com:20197"
+      pubkey: "2NjtKD8MdHnxAZMuoXNlN4n5HrJZW2bnudswDNUvSHs="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
