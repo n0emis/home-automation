@@ -54,6 +54,8 @@ dnsmasq_dnsmasq_d_files_present:
   dn42:
     - address=/himalia.n0emis.dn42/{{ dn42_local_v4 }}
     - address=/himalia.n0emis.dn42/{{ dn42_local_v6 }}
+    - "server=/n0emis.dn42/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.dn42/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
     - server=/dn42/172.20.0.53
     - server=/20.172.in-addr.arpa/172.20.0.53
     - server=/21.172.in-addr.arpa/172.20.0.53
@@ -65,8 +67,11 @@ dnsmasq_dnsmasq_d_files_present:
     - server=/7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa/fdf8:7e7f:d097:9900::1
   n0emis:
     - "server=/n0emis.eu/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.eu/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
     - "server=/n0emis.de/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.de/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
     - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
 
 ### DN42
 dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
@@ -107,7 +112,7 @@ dn42_peers:
     as: "4242422341"
     v4: "172.20.177.34"  # We are doing multiprotocol
     v6: "fe80::3"
-    bgp4o6: yes
+    multiprotocol: yes
     if:
       v4: "172.20.190.96"
       v6: "fe80::42:42:1"
@@ -172,7 +177,7 @@ dn42_peers:
     as: "4242421555"
     v4: "172.20.233.34"
     v6: "fe80::0197"
-    bgp4o6: yes
+    multiprotocol: yes
     if:
       v6: "fe80::42:42:1"
     wg:
@@ -184,7 +189,7 @@ dn42_peers:
     as: "4242420880"
     v4: "172.21.106.97"
     v6: "fe80::beef"
-    bgp4o6: yes
+    multiprotocol: yes
     if:
       v6: "fe80::42:42:1"
     wg:
