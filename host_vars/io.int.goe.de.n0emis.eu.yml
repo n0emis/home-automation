@@ -1,0 +1,28 @@
+---
+
+static_hosts:
+  - name: cs
+    v4: 10.152.0.2
+    mac: ec:b1:d7:f1:e6:40
+  - name: grandstream
+    v4: 10.152.1.1
+    mac: c0:74:ad:0b:e1:f5
+  - name: fritz
+    v4: 10.152.1.2
+    mac: 34:81:c4:ed:4a:2d
+  - name: printer
+    v4: 10.152.1.3
+    mac: f8:d0:27:56:be:b3
+  - name: volumio
+    v4: 10.152.1.4
+    mac: b8:27:eb:30:b9:9a
+
+  - name: ap-wrt-00
+    v4: 10.152.0.130
+    mac: 02:8e:f2:4b:f1:ae
+  - name: ap-wrt-01
+    v4: 10.152.0.131
+    mac: 4e:60:de:ea:bd:4d
+  - name: ap-wrt-02
+    v4: 10.152.0.132
+    mac: 02:8e:f2:4b:ee:a2

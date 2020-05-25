@@ -1,0 +1,22 @@
+---
+- hosts: openwrt
+  tasks:
+    - name: add user to root's authorized_keys
+      authorized_key:
+        user: root
+        key: "{{ item.public_key }}"
+        path: /etc/dropbear/authorized_keys
+        state: present
+      with_items:
+      - "{{ users }}"
+      when: item.state != 'absent' and item.public_key is defined and item.sudo is defined and item.sudo
+
+    - name: remove user from root's authorized_keys
+      authorized_key:
+        user: root
+        key: "{{ item.public_key }}"
+        path: /etc/dropbear/authorized_keys
+        state: absent
+      with_items:
+      - "{{ users }}"
+      when: item.state == 'absent' and item.public_key is defined

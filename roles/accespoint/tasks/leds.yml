@@ -1,0 +1,34 @@
+---
+- name: disable status leds
+  shell: 'for i in /sys/class/leds/* ; do echo 0 > "$i"/brightness; done'
+  args:
+    executable: /bin/ash
+
+- name: disable switch leds
+  shell: 'for i in 0 1 2 3 4; do swconfig dev switch0 port $i set led 0; done'
+  args:
+    executable: /bin/ash
+
+- name: disable status leds permanently
+  lineinfile:
+    path: /etc/rc.local
+    line: 'for i in /sys/class/leds/* ; do echo 0 > "$i"/brightness; done'
+    insertbefore: exit 0
+
+- name: disable switch leds permanently
+  lineinfile:
+    path: /etc/rc.local
+    line: 'for i in 0 1 2 3 4; do swconfig dev switch0 port $i set led 0; done'
+    insertbefore: exit 0
+
+
+    - name: commit changes
+      uci:
+        command: commit
+      notify: led reload
+
+  handlers:
+    - name: led reload
+      service:
+        name: led
+        state: reloaded

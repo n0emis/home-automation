@@ -1,0 +1,35 @@
+---
+- name: remove packages
+  opkg:
+    name: wpad-basic #wpad-mini luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
+    state: absent
+
+- name: install wpad
+  opkg:
+    name: wpad
+    state: present
+    update_cache: yes
+
+- name: Copy System Config File
+  template:
+    dest: "/etc/config/system"
+    src:  "config/system.j2"
+  notify: reboot
+
+- name: Copy wireless Config File
+  template:
+    dest: "/etc/config/wireless"
+    src:  "config/wireless.j2"
+  notify: reload wireless
+
+- name: Copy DHCP Config File
+  template:
+    dest: "/etc/config/dhcp"
+    src:  "config/dhcp.j2"
+  notify: restart dnsmasq
+
+- name: Copy Network Config File
+  template:
+    dest: "/etc/config/network"
+    src:  "config/network.j2"
+  notify: reload network

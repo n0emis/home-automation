@@ -1,4 +1,13 @@
 ---
+- name: Install ZSH and dependencies
+  opkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - git-http
+    - zsh
+  tags: packages
+
 - name: clone oh-my-zsh
   tags:
     # Suppress warning: [ANSIBLE0006] git used in place of git module
@@ -27,3 +36,9 @@
     dest: '/root/.zshrc'
     backup: yes
     mode: 'u=rw,go=r'
+
+- name: Use ZSH as login-shell
+  lineinfile:
+    path: "/etc/passwd"
+    regexp: ^root:x:0:0:root:/root:.*
+    line: "root:x:0:0:root:/root:/usr/bin/zsh"

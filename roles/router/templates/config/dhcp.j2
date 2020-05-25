@@ -19,11 +19,20 @@ config dnsmasq
 
 config dhcp 'lan'
 	option interface 'lan'
-	option start '512'
+	option start '513'
 	option leasetime '24d'
 	option dhcpv6 'server'
 	option ra 'server'
-	option limit '512'
+	option limit '511'
+	option ra_management '1'
+
+config dhcp 'knet'
+	option interface 'knet'
+	option start '-240'
+	option leasetime '24d'
+	option dhcpv6 'server'
+	option ra 'server'
+	option limit '230'
 	option ra_management '1'
 
 config dhcp 'wan'

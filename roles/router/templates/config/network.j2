@@ -6,15 +6,24 @@ config interface 'loopback'
 
 config globals 'globals'
 
+config interface 'wan'
+	option type 'bridge'
+	option proto 'dhcp'
+	option ifname 'eth0'
+
 config interface 'lan'
 	option type 'bridge'
 	option proto 'static'
 	option ipaddr '10.152.0.1'
 	option netmask '255.255.252.0'
 	option ip6assign '60'
-	option ifname 'eth1'
+	option ifname 'eth1 eth2'
 
-config interface 'wan'
+config interface 'knet'
 	option type 'bridge'
-	option proto 'dhcp'
-	option ifname 'eth0'
+	option proto 'static'
+	option ipaddr '10.152.4.254'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option ifname 'eth1.4'
+

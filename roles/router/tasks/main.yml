@@ -1,10 +1,25 @@
 ---
+- name: Update package lists
+  opkg:
+    name: vim
+    update_cache: yes
+
+- name: Install default set up packages
+  opkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nmap
+    - bind-dig
+  tags: packages
+
 - import_tasks: ohmyzsh.yml
 
 - name: Copy System Config File
   template:
     dest: "/etc/config/system"
     src:  "config/system.j2"
+  notify: reboot
 
 - name: Copy Network Config File
   template:
@@ -12,11 +27,11 @@
     src:  "config/network.j2"
   notify: reload network
 
-#- name: Copy Firewall Config File
-#  template:
-#    dest: "/etc/config/firewall"
-#    src:  "config/firewall.j2"
-#  notify: reload firewall
+- name: Copy Firewall Config File
+  template:
+    dest: "/etc/config/firewall"
+    src:  "config/firewall.j2"
+  notify: reload firewall
 
 - name: Copy DHCP Config File
   template:

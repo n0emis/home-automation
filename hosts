@@ -3,12 +3,12 @@ wndr
 cr
 
 [wndr]
-192.168.5.1 ansible_user=root
-192.168.5.2 ansible_user=root
-192.168.5.3 ansible_user=root
+ap-wrt-00.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-00 #ansible_host=192.168.1.1
+ap-wrt-01.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-01 #ansible_host=192.168.1.1
+ap-wrt-02.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-02 #ansible_host=192.168.1.1
 
 [cr]
-io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=172.31.1.101
+io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=192.168.2.157
 
 [mail]
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
@@ -62,4 +62,7 @@ himalia.ion.rhr.de.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 
 [dnsmasq]
+himalia.ion.rhr.de.n0emis.eu
+
+[lg]
 himalia.ion.rhr.de.n0emis.eu
