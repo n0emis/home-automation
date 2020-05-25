@@ -73,6 +73,27 @@ dnsmasq_dnsmasq_d_files_present:
     - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
     - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
 
+### LOOKING GLASS
+#bird_lg_webservice_enabled: no
+bird_lg_domain: "n0emis.dn42"
+bird_lg_asn_zone: "asn.dn42"
+bird_lg_webservice_port: 8000
+
+bird_lg_access:
+  - 212.227.174.29
+  - 2001:8d8:1800:30e::1
+  - 172.20.190.96
+  - fdf4:2331:fa09::1
+
+bird_lg_proxys:
+  - name: himalia.n0emis.dn42
+    address: himalia.dn42.n0emis.eu:5000
+    as: "{{ dn42_local_as }}"
+    ips:
+      - "{{ dn42_local_v4 }}"
+      - "{{ dn42_local_v6 }}"
+
+
 ### DN42
 dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
 

@@ -162,6 +162,12 @@
     - Oefenweb.dnsmasq
   tags: dnsmasq, dns
 
+- hosts: lg
+  become: yes
+  roles:
+    - n0emis.bird-lg
+  tags: dn42, lg
+
 - hosts: bbb
   roles:
     - n0emis.bigbluebutton

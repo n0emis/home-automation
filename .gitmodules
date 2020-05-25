@@ -80,3 +80,6 @@
 [submodule "roles/Oefenweb.dnsmasq"]
 	path = roles/Oefenweb.dnsmasq
 	url = https://github.com/Oefenweb/ansible-dnsmasq
+[submodule "roles/n0emis.bird-lg"]
+	path = roles/n0emis.bird-lg
+	url = https://git.n0emis.eu/ansible_roles/bird-lg
