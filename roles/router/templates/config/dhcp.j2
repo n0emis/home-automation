@@ -52,5 +52,8 @@ config host
 	option dns '1'
 	option ip '{{ host.v4 }}'
 	option mac '{{ host.mac }}'
+{% if host.hostid is defined %}
+	option hostid '{{ host.hostid }}'
+{% endif %}
 
 {% endfor %}

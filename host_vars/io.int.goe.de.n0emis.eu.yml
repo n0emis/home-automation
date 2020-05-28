@@ -21,6 +21,7 @@ router_static_hosts:
   - name: grandstream
     v4: 10.152.1.1
     mac: c0:74:ad:0b:e1:f5
+    hostid: 2
   - name: fritz
     v4: 10.152.1.2
     mac: 34:81:c4:ed:4a:2d
