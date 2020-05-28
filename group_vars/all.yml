@@ -58,8 +58,12 @@ nginx_ppa_use: true
 dyndns_nameserver:
   - ns.n0emis.eu
 
-radius_server_ip: "192.168.1.1"
-radius_password: "testing123"
+ap_radius_server_ip: "10.152.4.3"
+ap_radius_password: "testing123"
+#ap_radius_password: "{{ lookup('passwordstore', 'infra/ipa.int.goe.de.n0emis.eu/radius') }}"
+
+ap_iot_wifi_ssid: "{{ lookup('passwordstore', 'infra/wireless/iot subkey=user') }}"
+ap_iot_wifi_password: "{{ lookup('passwordstore', 'infra/wireless/iot') }}"
 
 ### LOOKING GLASS
 dn42_local_v4: "172.20.190.96"

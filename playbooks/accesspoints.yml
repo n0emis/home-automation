@@ -4,7 +4,7 @@
   gather_facts: no
   pre_tasks:
     - name: 'install python'
-      raw: 'opkg update && opkg install python3-light && opkg install python3-logging && opkg install python3-distutils'
+      raw: 'opkg update && opkg install python3-light && opkg install python3-logging && opkg install python3-distutils && opkg install python3-multiprocessing'
   roles:
     - accespoint
 

@@ -2,7 +2,7 @@
 - hosts: openwrt
   tasks:
     - name: add user to root's authorized_keys
-      authorized_key:
+      lineinfile:
         user: root
         key: "{{ item.public_key }}"
         path: /etc/dropbear/authorized_keys

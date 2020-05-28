@@ -35,13 +35,13 @@ wireguard_wg-cgvpn-c_peers:
     allowed_ips: "fdf8:7e7f:d097:9940::20/128"
 
 wireguard_wg-dn42_interface:
-  address: fdf4:2331:fa09::2:1/48
+  address: "fdf4:2331:fa09::2:1/48, {{ dn42_local_v4 }}/27"
   private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
   listen_port: 41003
 wireguard_wg-dn42_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
-    allowed_ips: "fdf4:2331:fa09::2:2/128"
+    allowed_ips: "fdf4:2331:fa09::2:2/128, 172.20.190.126"
 
 ### DNSMASQ
 dnsmasq_dnsmasq_conf:
