@@ -12,6 +12,7 @@
     - nmap
     - bind-dig
     - wireguard
+    - 6in4
   tags: packages
 
 - import_tasks: ohmyzsh.yml

@@ -1,3 +1,4 @@
+
 config defaults
 	option syn_flood '1'
 	option output 'ACCEPT'
@@ -13,8 +14,8 @@ config zone
 	option network 'lan'
 
 config zone
-	option input 'ACCEPT'
 	option name 'knet'
+	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
 	list device 'br-knet'
@@ -27,7 +28,7 @@ config zone
 	option forward 'REJECT'
 	option masq '1'
 	option mtu_fix '1'
-	option network 'wan6 wan'
+	option network 'wan6 wan henet'
 
 config forwarding
 	option src 'lan'
@@ -143,6 +144,14 @@ config forwarding
 	option dest 'wan'
 	option src 'knet'
 
+config rule
+	option src 'wan'
+	option name 'Kallisto-v6'
+	list dest_ip '2001:470:7694::2'
+	option target 'ACCEPT'
+	list proto 'all'
+	option dest 'knet'
+
 {% for port in router_port_redirect %}
 config redirect
 	option src 'wan'
@@ -151,4 +160,5 @@ config redirect
 	option dest_ip '{{ port.ip | default('10.152.4.1') }}'
 	option target 'DNAT'
 	option name '{{ port.name }}'
-{%%}
+
+{% endfor %}

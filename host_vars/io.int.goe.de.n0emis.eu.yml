@@ -37,18 +37,18 @@ router_static_hosts:
 
 router_port_redirect:
   - name: ssh
-    port: 80
-    network: knep
+    port: 22
+    network: knet
     ip: 10.152.4.1
   - name: http
     port: 80
-    network: knep
+    network: knet
     ip: 10.152.4.1
   - name: https
     port: 443
-    network: knep
+    network: knet
     ip: 10.152.4.1
   - name: pve
     port: 8006
-    network: knep
+    network: knet
     ip: 10.152.4.1

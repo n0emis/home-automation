@@ -3,12 +3,15 @@
   opkg:
     name: wpad-basic #wpad-mini luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
     state: absent
-
-- name: install wpad
-  opkg:
-    name: wpad
-    state: present
     update_cache: yes
+
+- name: install dependencies
+  opkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - wpad
+    - hostapd-utils
 
 - name: Copy System Config File
   template:
