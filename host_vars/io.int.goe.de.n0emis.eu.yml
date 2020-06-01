@@ -7,6 +7,9 @@ router_static_hosts:
   - name: cs
     v4: 10.152.0.2
     mac: ec:b1:d7:f1:e6:40
+  - name: gw
+    v4: 10.152.0.3
+    mac: 00:1d:aa:91:dd:9c
 
   - name: ap-wrt-00
     v4: 10.152.0.130
