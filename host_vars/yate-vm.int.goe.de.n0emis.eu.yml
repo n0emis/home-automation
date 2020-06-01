@@ -1,7 +1,7 @@
 ---
 yate_cleanup_config: true
 
-spigate_username: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.eu/sigpate subkey=user') }}"
+sipgate_username: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.eu/sigpate subkey=user') }}"
 
 yate_config:
   accfile:
@@ -18,12 +18,23 @@ yate_config:
       localaddress: 'yes'
       #outbound: tel.t-online.de:5060
       #ip_transport: tcp
+    dtag_pfarramt:
+      enabled: 'yes'
+      protocol: sip
+      description: telekom5
+      interval: 600
+      username: "00495515316375"
+      authname: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
+      password: "{{ lookup('passwordstore', 't-online.de') }}"
+      registrar: tel.t-online.de
+      domain: tel.t-online.de
+      localaddress: 'yes'
     sipgate:
       enabled: 'yes'
       protocol: sip
       description: sipgate
       #interval: 120
-      username: "{{ spigate_username }}"
+      username: "{{ sipgate_username }}"
       password: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.eu/sigpate') }}"
       registrar: sipgate.de
       localaddress: 'yes'
@@ -39,26 +50,37 @@ yate_config:
   regfile:
     'l01':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "01"
     'l02':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "02"
     'l03':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "03"
     'l04':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "04"
     'l05':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "05"
     'l06':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "06"
     'l07':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "07"
     'l08':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "08"
     'l09':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "09"
     'l10':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "10"
     'l11':
       password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+      caller: "11"
   regexroute:
     default:
       '${username}^$': '-;error=noauth'
@@ -68,8 +90,15 @@ yate_config:
       '^0049551484725$': 'goto privat_incoming'
       '^\+49551484725$': 'goto privat_incoming'
 
+      '^00495515316375': 'goto pfarramt_incoming'
+      '^\+495515316375': 'goto pfarramt_incoming'
+
       '^29729.*$': 'goto privat_incoming'
 
+      '^01$': 'lateroute/l01'
+      '^02$': 'lateroute/l02'
+      '^03$': 'lateroute/l03'
+      '^04$': 'lateroute/l04'
       '^05$': 'lateroute/l05'
       '^06$': 'lateroute/l06'
       '^07$': 'lateroute/l07'
@@ -78,14 +107,13 @@ yate_config:
       '^10$': 'lateroute/l10'
       '^11$': 'lateroute/l11'
 
+      '${username}^l02$': 'goto pfarramt'
+
       '^[0-9]\{4\}$': 'goto epvpn_outgoing'
 
       '^00\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+\1'
       '^0\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49\1'
       '^\([0-9]*\)$': 'goto dtag_privat_outgoing; caller=+49551\1'
-      #'^\([0-9]*\)$': 'goto dtag_privat_outgoing;'
-
-      #'^\([0-9]*\)$': 'goto sipgate_outgoing; caller=\0'
 
       '^99991001$': 'tone/dial'
       '^99991002$': 'tone/busy'
@@ -101,38 +129,21 @@ yate_config:
       #'^\([0-9]*\)$': 'sip/sip:+49551\1;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de'
       '.*$': "sip/sip:\\0;line=dtag_privat;caller=0049551484725;domain=tel.t-online.de"
     sipgate_outgoing:
-      '.*$': "sip/sip:\\0;line=dtag_privat;caller={{ spigate_username }};domain=sipgate.de"
+      '.*$': "sip/sip:\\0;line=dtag_privat;caller={{ sipgate_username }};domain=sipgate.de"
+    pfarramt:
+      '^00\([0-9]*\)$': 'goto dtag_pfarramt_outgoing; caller=+\1'
+      '^0\([0-9]*\)$': 'goto dtag_pfarramt_outgoing; caller=+49\1'
+      '^\([0-9]*\)$': 'goto dtag_pfarramt_outgoing; caller=+49551\1'
     dtag_pfarramt_outgoing:
-      '.*$': "sip/sip:\\0;line=dtag_privat;caller=00495515316375;domain=tel.t-online.de"
+      '.*$': "sip/sip:\\0;line=dtag_pfarramt;caller=00495515316375;domain=tel.t-online.de"
     epvpn_outgoing:
       '.*$': "sip/sip:\\0;line=epvpn;caller=5374;domain=hg.eventphone.de"
-
     privat_incoming:
       '^.*$': 'fork lateroute/l01 lateroute/l03 lateroute/l04 lateroute/l05 lateroute/l06 lateroute/l07 lateroute/l09 lateroute/l10 lateroute/l11'
-    dtag_pfarramt_incoming:
+    pfarramt_incoming:
       '^.*$': 'fork lateroute/l02'
     epvpn_incoming:
       '^.*$': 'fork lateroute/l06 lateroute/l10 lateroute/l11'
   yate:
-    general:
-      msgsniff: 'yes'
     localsym:
       h323chan.yate: 'yes'
-none_none:
-  foo:
-    modules:
-      regexroute.yate: 'true'
-      accfile.yate: 'true'
-      regfile.yate: 'true'
-      msgsniff.yate: 'true'
-  h323chan:
-    ep:
-      ep: 'true'
-      gw: 'false'
-  ysipchan:
-    general:
-      maxpkt: 4096
-      thread: high
-  yrtpchan:
-    general:
-      thread: high
