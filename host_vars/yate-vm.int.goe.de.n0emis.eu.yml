@@ -6,7 +6,7 @@ spigate_username: "{{ lookup('passwordstore', 'infra/yate-vm.int.goe.de.n0emis.e
 yate_config:
   accfile:
     dtag_privat:
-      enabled: 'no'
+      enabled: 'yes'
       protocol: sip
       description: telekom4
       interval: 600
