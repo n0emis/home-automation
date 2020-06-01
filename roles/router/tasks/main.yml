@@ -13,6 +13,7 @@
     - bind-dig
     - wireguard
     - 6in4
+    - igmpproxy
   tags: packages
 
 - import_tasks: ohmyzsh.yml
@@ -40,4 +41,10 @@
     dest: "/etc/config/dhcp"
     src:  "config/dhcp.j2"
   notify: restart dnsmasq
+
+- name: Copy igmpproxy Config File
+  template:
+    dest: "/etc/config/igmpproxy"
+    src:  "config/igmpproxy.j2"
+  notify: restart igmpproxy
 

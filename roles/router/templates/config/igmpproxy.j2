@@ -1,0 +1,13 @@
+config igmpproxy
+        option quickleave 1
+
+config phyint
+        option network wan
+        option zone wan # the upstream firewall zone for forward rules
+        option direction upstream
+        list altnet 0.0.0.0/0 # a description of allowed source addresses for multicast packets
+
+config phyint
+        option network lan
+        option zone lan # the downstream firewall zone for forward rules
+        option direction downstream
