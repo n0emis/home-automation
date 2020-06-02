@@ -13,6 +13,7 @@ config interface 'wan'
 	option ipv6 'auto'
 	option password '{{ lookup('passwordstore', 't-online.de') }}'
 	option ifname 'eth0.7'
+	option host_uniq 'E80D0000'
 
 config interface 'henet'
 	option proto '6in4'

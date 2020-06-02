@@ -3,6 +3,7 @@
   opkg:
     name: vim
     update_cache: yes
+  tags: packages
 
 - name: Install default set up packages
   opkg:
@@ -14,6 +15,7 @@
     - wireguard
     - 6in4
     - igmpproxy
+    - tcpdump
   tags: packages
 
 - import_tasks: ohmyzsh.yml

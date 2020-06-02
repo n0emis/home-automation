@@ -1,5 +1,4 @@
 ---
-
 router_static_hosts:
   - name: kallisto
     v4: 10.152.4.1
