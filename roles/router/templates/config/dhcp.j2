@@ -1,20 +1,16 @@
 
 config dnsmasq
 	option domainneeded '1'
-	option boguspriv '1'
-	option filterwin2k '0'
 	option localise_queries '1'
 	option rebind_protection '1'
 	option rebind_localhost '1'
-	option local '/lan/'
+	option local '/int.goe.de.n0emis.eu/'
 	option domain 'int.goe.de.n0emis.eu'
 	option expandhosts '1'
-	option nonegcache '0'
 	option authoritative '1'
 	option readethers '1'
 	option leasefile '/root/dhcp.leases'
 	option resolvfile '/tmp/resolv.conf.auto'
-	option nonwildcard '1'
 	option localservice '1'
 	option sequential_ip '1'
 

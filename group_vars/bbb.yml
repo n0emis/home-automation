@@ -1,6 +1,6 @@
 ---
 bbb_hostname: bbb.n0emis.eu
-bbb_turn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/coturn') }}"
+bbb_coturn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/coturn') }}"
 bbb_greenlight_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/greenlight') }}"
 bbb_greenlight_db_password: "{{ lookup('passwordstore', 'infra/bbb.het.nbg.de.n0emis.eu/greenlight/db') }}"
 bbb_letsencrypt_email: le@n0emis.eu
@@ -14,6 +14,9 @@ bbb_greenlight_smtp:
   auth: plain
   starttls_auto: true
   sender: no-reply@n0emis.eu
+
+bbb_nginx_dh: no
+#bbb_dialplan_quality: "wideband"
 
 
 #bbb_cpuschedule: true
