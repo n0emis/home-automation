@@ -55,3 +55,7 @@ router_port_redirect:
     port: 8006
     network: knet
     ip: 10.152.4.1
+  - name: mc
+    port: 25565
+    network: knet
+    ip: 10.152.4.1
