@@ -59,3 +59,7 @@ router_port_redirect:
     port: 25565
     network: knet
     ip: 10.152.4.1
+
+dtag_pfarramt: "00495515316375"
+dtag_password: "{{ lookup('passwordstore', 't-online.de') }}"
+dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"

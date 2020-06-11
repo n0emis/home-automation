@@ -15,7 +15,7 @@ synapse_server_fqdn_matrix: "matrix.{{ synapse_domain }}"
 synapse_http_listener_port: '85'
 synapse_federation_listener_port: '86'
 
-synapse_pip_version: "1.14.0"
+synapse_pip_version: "1.15.0"
 
 synapse_app_service_config_files:
   - "{{ matrix_appservice_irc_config_path }}/registration.yaml"

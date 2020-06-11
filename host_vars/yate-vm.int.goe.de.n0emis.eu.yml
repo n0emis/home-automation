@@ -16,8 +16,8 @@ yate_config:
       registrar: tel.t-online.de
       domain: tel.t-online.de
       localaddress: 'yes'
-      #outbound: tel.t-online.de:5060
-      #ip_transport: tcp
+      outbound: tel.t-online.de:5060
+      ip_transport: tcp
     dtag_pfarramt:
       enabled: 'yes'
       protocol: sip
@@ -29,6 +29,8 @@ yate_config:
       registrar: tel.t-online.de
       domain: tel.t-online.de
       localaddress: 'yes'
+      outbound: tel.t-online.de:5060
+      ip_transport: tcp
     sipgate:
       enabled: 'yes'
       protocol: sip
