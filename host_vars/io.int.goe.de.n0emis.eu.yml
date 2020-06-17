@@ -3,6 +3,7 @@ router_static_hosts:
   - name: kallisto
     v4: 10.152.4.1
     mac: 6c:3b:e5:0d:83:e3
+    hostid: 2
   - name: cs
     v4: 10.152.0.2
     mac: ec:b1:d7:f1:e6:40
