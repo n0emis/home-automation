@@ -17,8 +17,6 @@ ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/b
 bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.134.94
 
 [yate]
-#yate-test.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
-yate-vm.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [proxmox]
 kallisto.int.goe.de.n0emis.eu
