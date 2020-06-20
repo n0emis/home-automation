@@ -14,7 +14,7 @@ io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/py
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-159.69.42.39 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.134.94
 
 [yate]
 #yate-test.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

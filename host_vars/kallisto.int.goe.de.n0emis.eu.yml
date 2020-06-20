@@ -21,7 +21,8 @@ php_packages_extra:
   - "php{{ php_default_version_debian }}-gd"
   - "php{{ php_default_version_debian }}-mbstring"
   - "php{{ php_default_version_debian }}-pgsql"
-
+  - "php{{ php_default_version_debian }}-bcmath"
+  - "php{{ php_default_version_debian }}-gmp"
 php_memory_limit: "512M"
 php_fpm_pm_max_children: 120
 php_fpm_pm_start_servers: 12

@@ -46,6 +46,8 @@ gitea_show_user_email: false
 
 gitea_theme_default: "arc-green"
 
+gitea_repo_indexer_enabled: true
+
 ssh_deploy_key: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         30323637653635613131313461323135316362383739643633336536326563643933386466353735

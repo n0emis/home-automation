@@ -20,7 +20,7 @@ bbb_nginx_dh: no
 
 
 #bbb_cpuschedule: true
-#bbb_freeswitch_ipv6: false
+bbb_freeswitch_ipv6: true
 
 
 bbb_meteor:
@@ -30,4 +30,3 @@ bbb_meteor:
       skipCheck: true
 
 bbb_mute_on_start: yes
-bbb_freeswitch_ipv6: false

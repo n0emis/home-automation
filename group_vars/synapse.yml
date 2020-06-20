@@ -14,6 +14,7 @@ synapse_domain: "noemis.me"
 synapse_server_fqdn_matrix: "matrix.{{ synapse_domain }}"
 synapse_http_listener_port: '85'
 synapse_federation_listener_port: '86'
+synapse_allow_guest_access: true
 
 synapse_pip_version: "1.15.1"
 
