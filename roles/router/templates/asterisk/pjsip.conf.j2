@@ -1,0 +1,79 @@
+[transport-udp]
+type=transport
+protocol=udp
+bind=0.0.0.0
+
+{% for phone in asterisk_phones %}
+[{{ phone.name }}]
+type=endpoint
+context=from-internal
+disallow=all
+allow=ulaw
+auth={{ phone.name }}
+aors={{ phone.name }}
+
+[{{ phone.name }}]
+type=auth
+auth_type=userpass
+username={{ phone.name }}
+password={{ phone.password | default(asterisk_default_password) }}
+
+[{{ phone.name }}]
+type=aor
+max_contacts=1
+
+{% endfor %}
+
+{% for trunk in asterisk_trunks %}
+[{{ trunk.name }}]
+type=registration
+transport=transport-udp
+outbound_auth={{ trunk.name }}_auth
+server_uri=sip:{{ trunk.domain }}
+client_uri=sip:{{ trunk.callerid }}@{{ trunk.domain }}
+contact_user={{ trunk.callerid }}
+retry_interval=60
+forbidden_retry_interval=600
+expiration=3600
+line=yes
+endpoint={{ trunk.name }}
+
+[{{ trunk.name }}_auth]
+type=auth
+auth_type=userpass
+username={{ trunk.username }}
+password={{ trunk.password }}
+realm={{ trunk.domain }}
+
+[{{ trunk.name }}_aor]
+type = aor
+contact = sip:{{ trunk.domain }}
+
+[{{ trunk.name }}_id]
+type = identify
+match = {{ trunk.domain }}
+endpoint = {{ trunk.name }}_in
+
+[{{ trunk.name }}_in]
+type = endpoint
+transport = transport-udp
+context = to-internal
+disallow = all
+allow = alaw,g722,ulaw
+disable_direct_media_on_nat = yes
+rewrite_contact = yes
+outbound_auth = {{ trunk.name }}_auth
+
+[{{ trunk.name }}_out]
+type = endpoint
+transport = transport-udp
+disallow = all
+allow = alaw,g722,ulaw
+disable_direct_media_on_nat = yes
+callerid = {{ trunk.callerid }}
+from_user = {{ trunk.callerid }}
+from_domain = {{ trunk.domain }}
+outbound_auth = {{ trunk.name }}_auth
+aors = {{ trunk.name }}_aor
+
+{% endfor %}

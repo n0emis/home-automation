@@ -61,6 +61,57 @@ router_port_redirect:
     network: knet
     ip: 10.152.4.1
 
-dtag_pfarramt: "00495515316375"
-dtag_password: "{{ lookup('passwordstore', 't-online.de') }}"
 dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
+dtag_password: "{{ lookup('passwordstore', 't-online.de') }}"
+
+asterisk_trunks:
+#  - name: "dtag_test"
+#    callerid: "00495515316380"
+#    domain: "tel.t-online.de"
+#    password: "{{ dtag_password }}"
+#    username: "{{ dtag_user }}"
+  - name: "dtag_pfarramt"
+    callerid: "00495515316375"
+    domain: "tel.t-online.de"
+    password: "{{ dtag_password }}"
+    username: "{{ dtag_user }}"
+    phones:
+      - "esszimmer"
+  - name: "dtag_privat"
+    callerid: "0049551484725"
+    domain: "tel.t-online.de"
+    password: "{{ dtag_password }}"
+    username: "{{ dtag_user }}"
+    phones:
+      - "wohnzimmer"
+      - "doerte"
+      - "schlafzimmer"
+      - "wolfgang"
+      - "simeon"
+      - "gaeste"
+      - "dect_haus"
+      - "dect_simeon"
+
+asterisk_default_outgoing: "dtag_privat"
+asterisk_default_password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
+
+asterisk_phones:
+  - name: "esszimmer"
+    number: '01'
+    outgoing: "dtag_pfarramt"
+  - name: "wohnzimmer"
+    number: '02'
+  - name: "doerte"
+    number: '03'
+  - name: "schlafzimmer"
+    number: '04'
+  - name: "wolfgang"
+    number: '05'
+  - name: "simeon"
+    number: '06'
+  - name: "gaeste"
+    number: '07'
+  - name: "dect_haus"
+    number: '09'
+  - name: "dect_simeon"
+    number: '10'

@@ -16,6 +16,7 @@
     - 6in4
     - igmpproxy
     - tcpdump
+    - rsync
   tags: packages
 
 - import_tasks: ohmyzsh.yml
@@ -24,7 +25,6 @@
   template:
     dest: "/etc/config/system"
     src:  "config/system.j2"
-  notify: reboot
 
 - name: Copy Network Config File
   template:
@@ -50,3 +50,5 @@
     src:  "config/igmpproxy.j2"
   notify: restart igmpproxy
 
+- import_tasks: asterisk.yml
+  tags: asterisk

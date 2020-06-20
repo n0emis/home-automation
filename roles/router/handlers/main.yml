@@ -18,3 +18,8 @@
   service:
     name: "igmpproxy"
     state: restarted
+
+- name: restart asterisk
+  service:
+    name: "asterisk"
+    state: restarted

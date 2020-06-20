@@ -1,0 +1,23 @@
+- name: Install asterisk
+  opkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - asterisk16
+    - asterisk16-pjsip
+    - asterisk16-bridge-simple
+    - asterisk16-codec-alaw
+    - asterisk16-codec-ulaw
+    - asterisk16-codec-g722
+    - asterisk16-res-rtp-asterisk
+    - asterisk16-sounds
+
+- name: Copy asterisk config-files
+  template:
+    dest: "/etc/asterisk/{{ item }}"
+    src:  "asterisk/{{ item }}.j2"
+  notify: restart asterisk
+  loop:
+    - pjsip.conf
+    - extensions.conf
+    - indications.conf

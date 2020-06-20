@@ -1,0 +1,12 @@
+[from-internal]
+{% for phone in asterisk_phones %}
+exten => {{ phone.number }},1,Dial(PJSIP/{{ phone.name }},60,t)
+{% endfor %}
+
+exten => _0[1-9].,1,Dial(PJSIP/${EXTEN}@dtag_privat_out)
+
+[to-internal]
+{% for trunk in asterisk_trunks %}
+exten => {{ trunk.callerid }},1,Dial(PJSIP/{{ trunk.phones | join('&PJSIP/') }},60,t)
+same => n,Hangup()
+{% endfor %}
