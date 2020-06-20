@@ -6,7 +6,7 @@ bind=0.0.0.0
 {% for phone in asterisk_phones %}
 [{{ phone.name }}]
 type=endpoint
-context=from-internal
+context=from-{{ phone.name }}
 disallow=all
 allow=ulaw
 auth={{ phone.name }}
