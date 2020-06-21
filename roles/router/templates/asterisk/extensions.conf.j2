@@ -6,7 +6,9 @@ exten => {{ phone.number }},1,Dial(PJSIP/{{ phone.name }},60,t)
 {% for phone in asterisk_phones %}
 [from-{{ phone.name }}]
 include => phones
-exten => _0[1-9].,1,Dial(PJSIP/${EXTEN}@{{ phone.outgoing | default(asterisk_default_outgoing) }}_out)
+exten => _00Z.,1,Dial(PJSIP/${EXTEN}@{{ phone.outgoing | default(asterisk_default_outgoing) }}_out)
+exten => _0Z.,1,Dial(PJSIP/${EXTEN}@{{ phone.outgoing | default(asterisk_default_outgoing) }}_out)
+exten => _Z.,1,Dial(PJSIP/0049551${EXTEN}@{{ phone.outgoing | default(asterisk_default_outgoing) }}_out)
 
 {% endfor %}
 
