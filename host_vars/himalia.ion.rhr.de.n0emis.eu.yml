@@ -54,8 +54,8 @@ dnsmasq_dnsmasq_d_files_present:
   dn42:
     - address=/himalia.n0emis.dn42/{{ dn42_local_v4 }}
     - address=/himalia.n0emis.dn42/{{ dn42_local_v6 }}
-    - "server=/n0emis.dn42/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.dn42/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
+    - "server=/n0emis.dn42/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.dn42/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
     - server=/dn42/172.20.0.53
     - server=/20.172.in-addr.arpa/172.20.0.53
     - server=/21.172.in-addr.arpa/172.20.0.53
@@ -66,12 +66,12 @@ dnsmasq_dnsmasq_d_files_present:
     - server=/cccgoe/fdf8:7e7f:d097:9900::1
     - server=/7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa/fdf8:7e7f:d097:9900::1
   n0emis:
-    - "server=/n0emis.eu/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.eu/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
-    - "server=/n0emis.de/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.de/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
-    - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/noemis.me/{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
+    - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
+    - "server=/n0emis.de/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/n0emis.de/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
+    - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
+    - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
 
 ### LOOKING GLASS
 bird_lg_webservice_enabled: no

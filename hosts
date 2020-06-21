@@ -14,7 +14,7 @@ io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/py
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.134.94
+#bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.134.94
 
 [yate]
 
@@ -23,14 +23,14 @@ kallisto.int.goe.de.n0emis.eu
 #themisto.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [dns]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 ganymed.het.hel.fi.n0emis.eu
 
 [git]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [reverseproxy]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
@@ -39,13 +39,13 @@ kallisto.int.goe.de.n0emis.eu
 kallisto.int.goe.de.n0emis.eu
 
 [netbox]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [synapse]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [iam]
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [codimd]
 sinope.int.goe.de.n0emis.eu
@@ -61,4 +61,4 @@ himalia.ion.rhr.de.n0emis.eu
 
 [lg]
 himalia.ion.rhr.de.n0emis.eu
-elara.het.nbg.de.n0emis.eu
+elara.het.nue.de.n0emis.eu

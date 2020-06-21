@@ -20,12 +20,17 @@ oh_my_zsh_theme: "agnoster"
 
 ansible_python_interpreter: "/usr/bin/python3"
 
-inwx_user: "{{ lookup('passwordstore', 'hosting/inwx.com subkey=user') }}"
-inwx_password: "{{ lookup('passwordstore', 'hosting/inwx.com') }}"
+unattended_mail: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    39666636373833623330643661343464336232356264313638393564376533343133396663393237
+    6537663635326262373535646431373933323337646536320a663739633763343237323738626332
+    63323166363261356636313039383830356562376133613735343732623535353537373666353662
+    6334353064616165630a396665653363396138383231313030663065323134333235663563323438
+    35313630643565383931363835326636646536376237373364306130396137363235
 
 tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb"
 
-dyndns_host: elara.het.nbg.de.n0emis.eu
+dyndns_host: elara.het.nue.de.n0emis.eu
 
 traefik_version: "v2.2.1"
 traefik_config_directory: /etc/traefik
@@ -76,8 +81,8 @@ bird_lg_asn_zone: "asn.dn42"
 bird_lg_webservice_port: 8000
 
 bird_lg_access:
-  - "{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv4.address }}"
-  - "{{ hostvars['elara.het.nbg.de.n0emis.eu'].ansible_default_ipv6.address }}"
+  - "{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
+  - "{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
 
 bird_lg_proxys:
   - name: himalia.n0emis.dn42

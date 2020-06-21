@@ -122,17 +122,17 @@
     - geerlingguy.postgresql
     - geerlingguy.nodejs
     - em0lar.codimd
-  tasks:
-    - name: Install Pandoc
-      apt:
-        name:
-          - pandoc
-          - texlive-full
-        state: present
-    - name: Install Eisvogel-Template
-      get_url:
-        url: https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex
-        dest: /usr/share/pandoc/data/templates/eisvogel.latex
+#  tasks:
+#    - name: Install Pandoc
+#      apt:
+#        name:
+#          - pandoc
+#          - texlive-full
+#        state: present
+#    - name: Install Eisvogel-Template
+#      get_url:
+#        url: https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex
+#        dest: /usr/share/pandoc/data/templates/eisvogel.latex
   tags: codimd
 
 - hosts: netbox
