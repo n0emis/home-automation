@@ -30,6 +30,9 @@ wireguard_wg-cgvpn-c_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf8:7e7f:d097:9940::10/128"
+  kallisto:
+    public_key: "FIOfUu0cDyWWQBCXm3CAbzTGnybapJr7i/M42fbxP08="
+    allowed_ips: "fdf8:7e7f:d097:9940::11/128"
   e1mo:
     public_key: "eokxpF/8WT0ull71TSnM6MWTT/gA4i1dOxSlJwjdZ3c="
     allowed_ips: "fdf8:7e7f:d097:9940::20/128"
@@ -201,3 +204,15 @@ dn42_peers:
       endpoint: "dn42-eu.marropax.com:20197"
       pubkey: "2NjtKD8MdHnxAZMuoXNlN4n5HrJZW2bnudswDNUvSHs="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+  - name: "em0lar"
+    as: "4242420215"
+    v4: "172.20.209.1"
+    v6: "fe80::42:1"
+    multiprotocol: yes
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "50215"
+      endpoint: "janus.ion.rhr.de.labcode.de:50197"
+      pubkey: "VqOQCPVPi5vgVkiyYDN45BnJnZwCwyXfhTjLA16Z+Co="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/em0lar') }}"
