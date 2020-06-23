@@ -44,6 +44,12 @@ gitea_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/gitea
 
 gitea_show_user_email: false
 
+gitea_mailer_enabled: true
+gitea_mailer_host: "mail.n0emis.eu:465"
+gitea_mailer_from: "n0emis Git <no-reply@n0emis.eu>"
+gitea_mailer_user: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply subkey=user') }}"
+gitea_mailer_password: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply') }}"
+
 gitea_theme_default: "arc-green"
 
 gitea_repo_indexer_enabled: true
