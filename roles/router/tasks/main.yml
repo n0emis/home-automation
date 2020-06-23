@@ -17,6 +17,9 @@
     - igmpproxy
     - tcpdump
     - rsync
+    - curl
+    - python3-distutils
+    - python3-logging
   tags: packages
 
 - import_tasks: ohmyzsh.yml

@@ -95,6 +95,10 @@ asterisk_trunks:
 asterisk_default_outgoing: "dtag_privat"
 asterisk_default_password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
 
+dyndns_enable: yes
+dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbJ2KHXYON7CyAC2S3BIyLKS/jLI1F7/eG0L4qts/8ieQOvIZb2H3zVCIrjBrkPoQ4+Th/huSd3qfIYrJgNGdki+jRoiop9NCYSJ4++Cypm/w6tA698MTLvP9kneMpCfaKrbjv6fyyY4nIjyOCylznFueq81fosGYmTyxa3/opz4Paody9Xoigz+f5f4rEOHp86TxRk1wC5+IusNX6eX8PTX6GTqEu09FdeX8FitWnHAMfpqfeN0YqvKKUcJ1pZ3kxhASHdwLE4NPTXBUbF9B4dPeOLtYHqMI0AdvBhNEpIVJyAPZPJVyZzQYp7L2vMa+xidk6NhFgSmTXOtVmUOKv root@io"
+dyndns_zone: io.int.goe.de
+
 asterisk_phones:
   - name: "esszimmer"
     number: '01'
