@@ -19,12 +19,18 @@
     - tcpdump
     - rsync
     - curl
+    - python3
     - python3-distutils
     - python3-logging
+    - python3-urllib
+    - ip-full
   tags: packages
 
 - import_tasks: ohmyzsh.yml
   tags: packages
+
+- import_tasks: ip6neigh.yml
+  tags: ip6neigh
 
 - name: Copy System Config File
   template:

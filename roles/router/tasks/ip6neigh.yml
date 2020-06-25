@@ -1,0 +1,23 @@
+---
+- name: Check if ip6neigh is installed
+  command: which ip6neigh
+  changed_when: no
+  register: ip6neigh_check
+
+- name: "Download ip6neigh installer"
+  get_url:
+    url: "https://raw.githubusercontent.com/AndreBL/ip6neigh/master/ip6neigh-setup.sh"
+    dest: /tmp/ip6neigh-setup.sh
+    mode: 0777
+    validate_certs: yes
+  when: ip6neigh_check.rc != 0
+
+- name: "Run ip6neigh installer"
+  command: "/tmp/ip6neigh-setup.sh install"
+  when: ip6neigh_check.rc != 0
+
+- name: Make sure ip6neigh is enabled & started
+  service:
+    name: "ip6neigh"
+    state: started
+    enabled: yes
