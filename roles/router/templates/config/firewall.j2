@@ -14,12 +14,12 @@ config zone
 	option network 'lan'
 
 config zone
-	option name 'knet'
+	option name 'srvkallisto'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	list device 'br-knet'
-	option network 'knet'
+	list device 'br-srvkallisto'
+	option network 'srvkallisto'
 
 config zone
 	option name 'wan'
@@ -28,7 +28,7 @@ config zone
 	option forward 'REJECT'
 	option masq '1'
 	option mtu_fix '1'
-	option network 'wan6 wan henet'
+	option network 'wan6 wan henet cccgoevpn'
 
 config forwarding
 	option src 'lan'
@@ -134,15 +134,15 @@ config include
 
 config forwarding
 	option dest 'lan'
-	option src 'knet'
+	option src 'srvkallisto'
 
 config forwarding
-	option dest 'knet'
+	option dest 'srvkallisto'
 	option src 'lan'
 
 config forwarding
 	option dest 'wan'
-	option src 'knet'
+	option src 'srvkallisto'
 
 config rule
 	option src 'wan'
@@ -150,13 +150,13 @@ config rule
 	list dest_ip '2001:470:7694::2'
 	option target 'ACCEPT'
 	list proto 'all'
-	option dest 'knet'
+	option dest 'srvkallisto'
 
 {% for port in router_port_redirect %}
 config redirect
 	option src 'wan'
 	option src_dport '{{ port.port }}'
-	option dest '{{ port.network | default('knet') }}'
+	option dest '{{ port.network | default('srvkallisto') }}'
 	option dest_ip '{{ port.ip | default('10.152.4.1') }}'
 	option target 'DNAT'
 	option name '{{ port.name }}'

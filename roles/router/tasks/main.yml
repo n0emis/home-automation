@@ -13,6 +13,7 @@
     - nmap
     - bind-dig
     - wireguard
+    - luci-proto-wireguard
     - 6in4
     - igmpproxy
     - tcpdump
@@ -23,6 +24,7 @@
   tags: packages
 
 - import_tasks: ohmyzsh.yml
+  tags: packages
 
 - name: Copy System Config File
   template:

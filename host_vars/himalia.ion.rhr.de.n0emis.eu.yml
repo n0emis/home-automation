@@ -30,6 +30,10 @@ wireguard_wg-cgvpn-c_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf8:7e7f:d097:9940::10/128"
+  io:
+    endpoint: io.int.goe.de.dyn.n0emis.eu:30001
+    public_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn subkey=user') }}"
+    allowed_ips: "fdf8:7e7f:d097::/48"
   kallisto:
     public_key: "FIOfUu0cDyWWQBCXm3CAbzTGnybapJr7i/M42fbxP08="
     allowed_ips: "fdf8:7e7f:d097:9940::11/128"

@@ -42,23 +42,23 @@ router_static_hosts:
 router_port_redirect:
   - name: ssh
     port: 22
-    network: knet
+    network: srvkallisto
     ip: 10.152.4.1
   - name: http
     port: 80
-    network: knet
+    network: srvkallisto
     ip: 10.152.4.1
   - name: https
     port: 443
-    network: knet
+    network: srvkallisto
     ip: 10.152.4.1
   - name: pve
     port: 8006
-    network: knet
+    network: srvkallisto
     ip: 10.152.4.1
   - name: mc
     port: 25565
-    network: knet
+    network: srvkallisto
     ip: 10.152.4.1
 
 dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
