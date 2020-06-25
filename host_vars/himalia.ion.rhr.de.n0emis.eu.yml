@@ -2,7 +2,7 @@
 wireguard_networks:
   - wg-cgvpn
   - wg-cgvpn-c
-  - wg-dn42
+  - dn42-n0emis
 
 wireguard_wg-cgvpn_interface:
   address: fdf8:7e7f:d097:9900::4/48
@@ -37,11 +37,11 @@ wireguard_wg-cgvpn-c_peers:
     public_key: "eokxpF/8WT0ull71TSnM6MWTT/gA4i1dOxSlJwjdZ3c="
     allowed_ips: "fdf8:7e7f:d097:9940::20/128"
 
-wireguard_wg-dn42_interface:
+wireguard_dn42-n0emis_interface:
   address: "fdf4:2331:fa09::2:1/48, {{ dn42_local_v4 }}/27"
   private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
   listen_port: 41003
-wireguard_wg-dn42_peers:
+wireguard_dn42-n0emis_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf4:2331:fa09::2:2/128, 172.20.190.126"
@@ -94,6 +94,8 @@ dn42_enable_roa: yes
 dn42_pingfinder_enable: yes
 dn42_pingfinder_uuid: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/pingfinder') }}"
 
+dn42_configure_linux_network_table: yes
+
 dn42_peers:
   - name: "v0tti"
     as: "4242423929"
@@ -107,7 +109,9 @@ dn42_peers:
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/v0tti') }}"
   - name: "margau"
     as: "4242421280"
+    v4: "172.22.161.105"
     v6: "fde3:4c0d:2836:ff00::6"
+    multiprotocol: yes
     if:
       v6: "fde3:4c0d:2836:ff00::7"
     wg:

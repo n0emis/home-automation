@@ -63,6 +63,10 @@ nginx_ppa_use: true
 dyndns_nameserver:
   - ns.n0emis.eu
 
+#dyndns_pubkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key subkey=user') }}"
+#dyndns_privkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key') | b64decode }}"
+
+
 ap_radius_server_ip: "10.152.4.3"
 ap_radius_password: "testing123"
 #ap_radius_password: "{{ lookup('passwordstore', 'infra/ipa.int.goe.de.n0emis.eu/radius') }}"

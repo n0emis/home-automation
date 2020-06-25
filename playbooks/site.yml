@@ -153,6 +153,35 @@
   become: yes
   roles:
     - n0emis.dn42
+  handlers:
+    - name: save iptables
+      shell: iptables-save > /etc/iptables/rules.v4
+
+    - name: save ip6tables
+      shell: ip6tables-save > /etc/iptables/rules.v6
+  tasks:
+    - name: Install iptables-persistent
+      apt:
+        name: "iptables-persistent"
+        state: present
+
+    - name: Reject ipv4 packets from dn42 to private wireguard
+      iptables:
+        ip_version: ipv4
+        chain: FORWARD
+        in_interface: "dn42_+"
+        out_interface: "wg-+"
+        jump: REJECT
+      notify: save iptables
+
+    - name: Reject ipv6 packets from dn42 to private wireguard
+      iptables:
+        ip_version: ipv6
+        chain: FORWARD
+        in_interface: "dn42_+"
+        out_interface: "wg-+"
+        jump: REJECT
+      notify: save ip6tables
   tags: dn42
 
 - hosts: dnsmasq
@@ -166,7 +195,7 @@
   become: yes
   roles:
     - n0emis.bird-lg
-  tags: dn42, lg
+  tags: lg, lookingglass
 
 - hosts: bbb
   roles:

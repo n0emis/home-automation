@@ -83,3 +83,6 @@
 [submodule "roles/n0emis.bird-lg"]
 	path = roles/n0emis.bird-lg
 	url = https://git.n0emis.eu/ansible_roles/bird-lg
+[submodule "roles/n0emis.dn42"]
+        path = roles/n0emis.dn42
+        url = https://git.n0emis.eu/ansible_roles/dn42
