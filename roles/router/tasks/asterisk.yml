@@ -21,3 +21,4 @@
     - pjsip.conf
     - extensions.conf
     - indications.conf
+    - logger.conf
