@@ -224,3 +224,15 @@ dn42_peers:
       endpoint: "janus.ion.rhr.de.labcode.de:50197"
       pubkey: "VqOQCPVPi5vgVkiyYDN45BnJnZwCwyXfhTjLA16Z+Co="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/em0lar') }}"
+  - name: "kioubit"
+    as: "4242423914"
+    v4: "172.20.53.97"
+    v6: "fe80::ade0"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "53914"
+      endpoint: "de2.g-load.eu:20197"
+      pubkey: "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/kioubit') }}"
+
