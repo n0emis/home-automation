@@ -48,18 +48,52 @@ router_port_redirect:
     port: 80
     network: srvkallisto
     ip: 10.152.4.1
+    reflection_src: "external"
   - name: https
     port: 443
     network: srvkallisto
     ip: 10.152.4.1
+    reflection_src: "external"
   - name: pve
     port: 8006
     network: srvkallisto
     ip: 10.152.4.1
+    reflection_src: "external"
   - name: mc
     port: 25565
     network: srvkallisto
     ip: 10.152.4.1
+    reflection_src: "external"
+
+router_port_allow_ipv6:
+  - name: "kallisto-v6"
+    ip: "2001:470:7694::2"
+    proto: "all"
+
+router_firewall_forwarding:
+  - lan
+  - srvkallisto
+  - wgserver
+
+router_wireguard_interfaces:
+  - name: "cccgoevpn"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn') }}"
+    listen_port: "30001"
+    addresses:
+      - "fdf8:7e7f:d097:9940::2/48"
+    ip6gw: "fdf8:7e7f:d097:9940::1"
+    ip6prefix:
+      - "fdf8:7e7f:d097:9942::/63"
+    peers:
+      - name: "himalia"
+        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
+        endpoint_port: "41002"
+        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
+        allowed_ips:
+          - "fdf8:7e7f:d097::/48"
+        persistent_keepalive: "25"
+        route_allowed_ips: "1"
+
 
 dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
 dtag_password: "{{ lookup('passwordstore', 't-online.de') }}"
@@ -95,10 +129,6 @@ asterisk_trunks:
 asterisk_default_outgoing: "dtag_privat"
 asterisk_default_password: "{{ lookup('passwordstore', 'infra/yate-test.int.goe.de.n0emis.eu/phones') }}"
 
-dyndns_enable: yes
-dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbJ2KHXYON7CyAC2S3BIyLKS/jLI1F7/eG0L4qts/8ieQOvIZb2H3zVCIrjBrkPoQ4+Th/huSd3qfIYrJgNGdki+jRoiop9NCYSJ4++Cypm/w6tA698MTLvP9kneMpCfaKrbjv6fyyY4nIjyOCylznFueq81fosGYmTyxa3/opz4Paody9Xoigz+f5f4rEOHp86TxRk1wC5+IusNX6eX8PTX6GTqEu09FdeX8FitWnHAMfpqfeN0YqvKKUcJ1pZ3kxhASHdwLE4NPTXBUbF9B4dPeOLtYHqMI0AdvBhNEpIVJyAPZPJVyZzQYp7L2vMa+xidk6NhFgSmTXOtVmUOKv root@io"
-dyndns_zone: io.int.goe.de
-
 asterisk_phones:
   - name: "esszimmer"
     number: '01'
@@ -119,3 +149,7 @@ asterisk_phones:
     number: '09'
   - name: "dect_simeon"
     number: '10'
+
+dyndns_enable: "yes"
+dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbJ2KHXYON7CyAC2S3BIyLKS/jLI1F7/eG0L4qts/8ieQOvIZb2H3zVCIrjBrkPoQ4+Th/huSd3qfIYrJgNGdki+jRoiop9NCYSJ4++Cypm/w6tA698MTLvP9kneMpCfaKrbjv6fyyY4nIjyOCylznFueq81fosGYmTyxa3/opz4Paody9Xoigz+f5f4rEOHp86TxRk1wC5+IusNX6eX8PTX6GTqEu09FdeX8FitWnHAMfpqfeN0YqvKKUcJ1pZ3kxhASHdwLE4NPTXBUbF9B4dPeOLtYHqMI0AdvBhNEpIVJyAPZPJVyZzQYp7L2vMa+xidk6NhFgSmTXOtVmUOKv root@io"
+dyndns_zone: "io.int.goe.de"

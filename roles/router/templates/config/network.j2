@@ -43,22 +43,43 @@ config interface 'srvkallisto'
 	option ip6hint '0'
 	option ifname 'eth1.4'
 
-config interface 'cccgoevpn'
+{% for wireguard_interface in router_wireguard_interfaces %}
+config interface '{{ wireguard_interface.name }}'
 	option proto 'wireguard'
-	option private_key '{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn') }}'
-	list addresses 'fdf8:7e7f:d097:9940::2/48'
-	option ip6gw 'fdf8:7e7f:d097:9940::1'
-	option persistent_keepalive '25'
-	option route_allowed_ips '1'
-	option listen_port '30001'
-	list ip6prefix 'fdf8:7e7f:d097:9942::/63'
+	option private_key '{{ wireguard_interface.private_key }}'
+{% if wireguard_interface.listen_port is defined %}
+	option listen_port '{{ wireguard_interface.listen_port }}'
+{% endif %}
+{% for address in wireguard_interface.addresses %}
+	list addresses '{{ address }}'
+{% endfor %}
+{% if wireguard_interface.ip6gw is defined %}
+	option ip6gw '{{ wireguard_interface.ip6gw }}'
+{% endif %}
+{% if wireguard_interface.nohostroute is defined %}
+	option nohostroute '1'
+{% endif %}
+{% for prefix in wireguard_interface.ip6prefix %}
+	list ip6prefix '{{ prefix }}'
+{% endfor %}
 
-config wireguard_cccgoevpn 'himalia'
-	option description 'himalia'
-	option public_key '{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}'
-	option endpoint_host 'himalia.ion.rhr.de.n0emis.eu'
-	option endpoint_port '41002'
-	list allowed_ips 'fdf8:7e7f:d097::/48'
-	option persistent_keepalive '25'
-	option route_allowed_ips '1'
+{% for peer in wireguard_interface.peers %}
+config wireguard_{{ wireguard_interface.name }} '{{ peer.name }}'
+	option description '{{ peer.name }}'
+	option public_key '{{ peer.public_key }}'
+{% if peer.endpoint_host is defined %}
+	option endpoint_host '{{ peer.endpoint_host }}'
+	option endpoint_port '{{ peer.endpoint_port }}'
+{% endif %}
+{% for allowed_ip in peer.allowed_ips %}
+	list allowed_ips '{{ allowed_ip }}'
+{% endfor %}
+{% if peer.persistent_keepalive is defined %}
+	option persistent_keepalive '{{ peer.persistent_keepalive }}'
+{% endif %}
+{% if peer.route_allowed_ips is defined %}
+	option route_allowed_ips '{{ peer.route_allowed_ips }}'
+{% endif %}
+{% endfor %}
 
+{% endfor %}

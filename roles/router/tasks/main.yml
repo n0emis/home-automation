@@ -14,6 +14,7 @@
     - bind-dig
     - wireguard
     - luci-proto-wireguard
+    - luci-app-wireguard
     - 6in4
     - igmpproxy
     - tcpdump
@@ -60,3 +61,9 @@
 
 - import_tasks: asterisk.yml
   tags: asterisk
+
+- name: Install wireguard watchdog cronjob
+  cron:
+    name: "Periodically re-resolve inactive wireguard peers"
+    minute: "*"
+    job: "/usr/bin/wireguard_watchdog"
