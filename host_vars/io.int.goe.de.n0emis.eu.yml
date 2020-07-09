@@ -89,7 +89,7 @@ router_wireguard_interfaces:
       - "fdf8:7e7f:d097:9942::/63"
     nohostroute: yes
     peers:
-      - name: "himalia"
+      - name: "himaliacccgoe"
         endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
         endpoint_port: "41002"
         public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
