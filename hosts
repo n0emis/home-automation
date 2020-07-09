@@ -8,7 +8,7 @@ ap-wrt-01.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr
 ap-wrt-02.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-02 #ansible_host=192.168.1.1
 
 [cr]
-io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3# ansible_host=192.168.2.157
+io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=10.152.0.1
 
 [mail]
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

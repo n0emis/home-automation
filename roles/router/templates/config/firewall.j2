@@ -31,6 +31,14 @@ config zone
 	option mtu_fix '1'
 	option network 'wan6 wan henet cccgoevpn'
 
+config zone
+    option name 'wgserver'
+    option input 'ACCEPT'
+    option output 'ACCEPT'
+    option forward 'ACCEPT'
+    list device 'wgserver'
+    option network 'wgserver'
+
 
 config forwarding
 	option src 'lan'

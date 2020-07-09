@@ -1,6 +1,6 @@
 ---
 wireguard_server_address: "10.152.16.1/32"
-wireguard_server_allowed_ips: "10.152.16.0/20, 10.151.0.0/21"
+wireguard_server_allowed_ips: "10.152.16.0/20, 10.152.0.0/21"
 
 router_static_hosts:
   - name: kallisto
@@ -95,6 +95,37 @@ router_wireguard_interfaces:
         public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
         allowed_ips:
           - "fdf8:7e7f:d097::/48"
+        persistent_keepalive: "25"
+        route_allowed_ips: "1"
+  - name: "wgserver"
+    private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server') }}"
+    listen_port: "30000"
+    addresses:
+      - "10.152.16.1/20"
+    nohostroute: yes
+    peers:
+      - name: "elara"
+        endpoint_host: "elara.het.nue.de.n0emis.eu"
+        endpoint_port: "30000"
+        public_key: "{{ lookup('passwordstore', 'infra/elara.het.nue.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "10.152.18.1/32"
+        persistent_keepalive: "25"
+        route_allowed_ips: "1"
+      - name: "ganymed"
+        endpoint_host: "ganymed.het.hel.fi.n0emis.eu"
+        endpoint_port: "30000"
+        public_key: "{{ lookup('passwordstore', 'infra/ganymed.het.hel.fi.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "10.152.20.1/32"
+        persistent_keepalive: "25"
+        route_allowed_ips: "1"
+      - name: "himalia"
+        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
+        endpoint_port: "30000"
+        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "10.152.22.1/32"
         persistent_keepalive: "25"
         route_allowed_ips: "1"
 

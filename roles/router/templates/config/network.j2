@@ -63,7 +63,7 @@ config interface '{{ wireguard_interface.name }}'
 {% if wireguard_interface.nohostroute is defined %}
 	option nohostroute '1'
 {% endif %}
-{% for prefix in wireguard_interface.ip6prefix %}
+{% for prefix in wireguard_interface.ip6prefix | default([]) %}
 	list ip6prefix '{{ prefix }}'
 {% endfor %}
 
