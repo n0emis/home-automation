@@ -165,8 +165,6 @@
     - adamruzicka.wireguard
   tags: wireguard
 
-
-
 - hosts: dn42
   become: yes
   roles:

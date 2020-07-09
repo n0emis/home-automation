@@ -14,7 +14,7 @@ io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/py
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-#bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.134.94
+#bbb.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=116.203.23.27
 
 [yate]
 
@@ -31,6 +31,7 @@ elara.het.nue.de.n0emis.eu
 
 [reverseproxy]
 elara.het.nue.de.n0emis.eu
+sinope.int.goe.de.n0emis.eu
 
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
