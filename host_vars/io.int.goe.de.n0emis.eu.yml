@@ -1,4 +1,7 @@
 ---
+wireguard_server_address: "10.152.16.1/32"
+wireguard_server_allowed_ips: "10.152.16.0/20, 10.151.0.0/21"
+
 router_static_hosts:
   - name: kallisto
     v4: 10.152.4.1
@@ -84,6 +87,7 @@ router_wireguard_interfaces:
     ip6gw: "fdf8:7e7f:d097:9940::1"
     ip6prefix:
       - "fdf8:7e7f:d097:9942::/63"
+    nohostroute: yes
     peers:
       - name: "himalia"
         endpoint_host: "himalia.ion.rhr.de.n0emis.eu"

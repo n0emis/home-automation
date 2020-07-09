@@ -1,6 +1,8 @@
 ---
 ansible_python_interpreter: "/usr/bin/python3"
 
+wireguard_server_address: "10.152.18.1/32"
+
 postgresql_users:
   - name: "{{ synapse_database_user }}"
     password: "{{ synapse_database_password }}"

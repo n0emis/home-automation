@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020062101 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020070902 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -40,6 +40,7 @@ bbb                         3600    IN  A       116.203.134.94
 @                           3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
 
 ;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.
+io.int.goe.de               3600    IN  CNAME   io.int.goe.de.dyn.n0emis.eu.
 
 ;; MAIL
 ;;;; MX

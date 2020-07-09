@@ -1,0 +1,15 @@
+---
+wireguard_networks:
+  - wg_server
+
+wireguard_wg_server_interface:
+  listen_port: "30000"
+  address: "{{ wireguard_server_address }}"
+  private_key: "{{ wireguard_server_private_key }}"
+
+wireguard_server_allowed_ips: "{{ wireguard_server_address }}"
+
+wireguard_wg_server_peers: {}
+
+wireguard_server_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server') }}"
+wireguard_server_public_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server subkey=public') }}"

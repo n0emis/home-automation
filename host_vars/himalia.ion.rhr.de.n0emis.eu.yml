@@ -1,5 +1,8 @@
 ---
+wireguard_server_address: "10.152.22.1/32"
+
 wireguard_networks:
+  - wg_server
   - wg-cgvpn
   - wg-cgvpn-c
   - dn42-n0emis

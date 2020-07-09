@@ -55,7 +55,9 @@ sinope.int.goe.de.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 
 [wireguard]
+ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
+elara.het.nue.de.n0emis.eu
 
 [dnsmasq]
 himalia.ion.rhr.de.n0emis.eu
@@ -63,3 +65,9 @@ himalia.ion.rhr.de.n0emis.eu
 [lg]
 himalia.ion.rhr.de.n0emis.eu
 elara.het.nue.de.n0emis.eu
+
+[wireguard_member]
+himalia.ion.rhr.de.n0emis.eu
+ganymed.het.hel.fi.n0emis.eu
+elara.het.nue.de.n0emis.eu
+io.int.goe.de.n0emis.eu
