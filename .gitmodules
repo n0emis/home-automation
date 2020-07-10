@@ -6,10 +6,9 @@
 	url = https://github.com/jnv/ansible-role-unattended-upgrades
 [submodule "roles/mailcow"]
 	path = roles/mailcow
-	url = git@github.com:n0emis/ansible-role-base.git
-	branch = redirect-option
-[submodule "roles/docker"]
-	path = roles/docker
+	url = https://github.com/mailcow/mailcow-ansiblerole
+[submodule "roles/em0lar.docker"]
+	path = roles/em0lar.docker
 	url = https://git.labcode.dev/ansible_roles/docker
 [submodule "roles/bigbluebutton"]
 	path = roles/n0emis.bigbluebutton
@@ -22,7 +21,7 @@
 	url = https://github.com/geerlingguy/ansible-role-docker
 [submodule "roles/gantsign.oh-my-zsh"]
 	path = roles/gantsign.oh-my-zsh
-	url = https://github.com/gantsign/ansible-role-oh-my-zsh/
+	url = https://github.com/gantsign/ansible-role-oh-my-zsh
 [submodule "roles/openwrt"]
 	path = roles/openwrt
 	url = https://github.com/gekmihesg/ansible-openwrt
@@ -40,7 +39,7 @@
 	url = https://github.com/geerlingguy/ansible-role-postgresql
 [submodule "roles/cloudalchemy.coredns"]
 	path = roles/cloudalchemy.coredns
-	url = https://github.com/cloudalchemy/ansible-coredns/
+	url = https://github.com/cloudalchemy/ansible-coredns
 [submodule "roles/geerlingguy.php"]
 	path = roles/geerlingguy.php
 	url = https://github.com/geerlingguy/ansible-role-php
@@ -58,21 +57,21 @@
 	url = https://github.com/em0lar/ansible-role-mautrix-telegram
 [submodule "roles/n0emis.matrix-appservice-irc"]
 	path = roles/n0emis.matrix-appservice-irc
-	url = https://github.com/n0emis/ansible-role-matrix-appservice-irc/
+	url = https://github.com/n0emis/ansible-role-matrix-appservice-irc
 [submodule "roles/em0lar.keycloak"]
 	path = roles/em0lar.keycloak
-	url = https://github.com/em0lar/ansible-role-keycloak_postgresql_hostkeycloak-postgres.git
+	url = https://git.labcode.dev/ansible_roles/keycloak-postgres
 [submodule "roles/geerlingguy.java"]
 	path = roles/geerlingguy.java
-	url = https://github.com/geerlingguy/ansible-role-java.git
+	url = https://github.com/geerlingguy/ansible-role-java
 [submodule "roles/em0lar.codimd"]
 	path = roles/em0lar.codimd
 	url = https://git.labcode.dev/ansible_roles/codimd
 [submodule "roles/Oefenweb.yarn"]
 	path = roles/Oefenweb.yarn
 	url = https://github.com/Oefenweb/ansible-yarn
-[submodule "roles/adamruzicka.wireguard"]
-	path = roles/adamruzicka.wireguard
+[submodule "roles/n0emis.wireguard"]
+	path = roles/n0emis.wireguard
 	url = https://github.com/n0emis/ansible-wireguard
 [submodule "roles/em0lar.coredns-dynamicdns"]
 	path = roles/em0lar.coredns-dynamicdns

@@ -45,7 +45,7 @@
 
 - hosts: mail
   roles:
-    - docker
+    - em0lar.docker
     - mailcow
   tags: mailcow,mail
 
@@ -53,7 +53,6 @@
   become: yes
   roles:
     - em0lar.traefik
-    - traefik-services
   tags: traefik
 
 - hosts: synapse
@@ -162,7 +161,7 @@
       when: "hostvars[item].ansible_facts.fqdn is defined and hostvars[item].ansible_facts.fqdn != ansible_fqdn"
       with_items: "{{ groups['wireguard_member'] }}"
   roles:
-    - adamruzicka.wireguard
+    - n0emis.wireguard
   tags: wireguard
 
 - hosts: dn42
