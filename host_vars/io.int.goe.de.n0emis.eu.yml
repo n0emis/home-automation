@@ -3,10 +3,6 @@ wireguard_server_address: "10.152.16.1/32"
 wireguard_server_allowed_ips: "10.152.16.0/20, 10.152.0.0/21"
 
 router_static_hosts:
-  - name: kallisto
-    v4: 10.152.4.1
-    mac: 6c:3b:e5:0d:83:e3
-    hostid: 2
   - name: cs
     v4: 10.152.0.2
     mac: ec:b1:d7:f1:e6:40
@@ -38,9 +34,16 @@ router_static_hosts:
     v4: 10.152.1.4
     mac: b8:27:eb:30:b9:9a
 
+  - name: kallisto
+    v4: 10.152.4.1
+    mac: 6c:3b:e5:0d:83:e3
+    hostid: 2
   - name: ipa
     v4: "{{ ap_radius_server_ip }}"
     mac: D6:8B:7F:C5:6C:59
+  - name: sinope
+    v4: 10.152.4.4
+    mac: 02:77:82:c3:82:57
 
 router_port_redirect:
   - name: ssh
@@ -50,12 +53,12 @@ router_port_redirect:
   - name: http
     port: 80
     network: srvkallisto
-    ip: 10.152.4.1
+    ip: 10.152.4.4
     reflection_src: "external"
   - name: https
     port: 443
     network: srvkallisto
-    ip: 10.152.4.1
+    ip: 10.152.4.4
     reflection_src: "external"
   - name: pve
     port: 8006
@@ -71,6 +74,9 @@ router_port_redirect:
 router_port_allow_ipv6:
   - name: "kallisto-v6"
     ip: "2001:470:7694::2"
+    proto: "all"
+  - name: "sinope-v6"
+    ip: "2001:470:7694:0:77:82ff:fec3:8257"
     proto: "all"
 
 router_firewall_forwarding:

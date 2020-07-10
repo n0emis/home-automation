@@ -59,7 +59,6 @@ traefik_dashboard:
 traefik_dynamic_config_files_paths:
   - "traefik/{{ ansible_fqdn }}/*"
 
-
 dyndns_enable: no
 php_date_timezone: "Europe/Berlin"
 nginx_ppa_use: true

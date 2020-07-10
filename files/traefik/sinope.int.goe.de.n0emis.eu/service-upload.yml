@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-upload-http:
+      rule: "Host(`home.noemis.me`)"
+      service: "service-upload@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-upload-https:
+      rule: "Host(`home.noemis.me`)"
+      service: "service-upload@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-upload:
+      loadBalancer:
+        servers:
+          - url: "http://kallisto.int.goe.de.n0emis.eu:82"

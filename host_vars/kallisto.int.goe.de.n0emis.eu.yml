@@ -7,7 +7,7 @@ base_upgrade: dist
 
 dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEKounogLx9MUfO7/Jnp6OpLtX/LcBVvLIe+x79dfxrok5nklFpI+qr0NAL4izKSR7U2Rz7sBnfoc7SiHsp5VsqIRCYEfNkUX83XXyKlhkz2PDL+ugemAvelfvvLBNnyhLl5KvU/NwKXqa2xIk4l2tlv41ay9wEy5kbrlB/N3uIztEcNFO1el9JV5fMVs7VqjLoq2rV7O3guQxOPJYFHTylS9Kg1O390VBdq5OGdfomfHlcM5o/PzI4qgcnVWH5Ct1jnr847eXMyjQb7bnoZYo5ynsOpX3tn1psHcD8RoJ5/qt40KK3kKS+ijOufHE1r+t2z7Inr5ql1LJnyCva801 root@kallisto"
 dyndns_enable: yes
-dyndns_zone: int.goe.de
+dyndns_zone: kallisto.int.goe.de
 
 php_webserver_daemon: nginx
 php_enable_php_fpm: true

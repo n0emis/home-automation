@@ -22,7 +22,6 @@ config interface 'henet'
 	option username 'n0emis'
 	option tunnelid '{{ lookup('passwordstore', 'tunnelbroker.net/int.goe.de subkey=user') }}'
 	option password '{{ lookup('passwordstore', 'tunnelbroker.net/int.goe.de') }}'
-	list ip6prefix '2001:470:1f0b:bed::/64'
 	list ip6prefix '2001:470:7694::/48'
 
 config interface 'lan'

@@ -7,3 +7,6 @@ postgresql_users:
 postgresql_databases:
   - name: "{{ codimd_db_database }}"
     owner: "{{ codimd_db_username }}"
+
+dyndns_enable: yes
+dyndns_zone: "sinope.int.goe.de"

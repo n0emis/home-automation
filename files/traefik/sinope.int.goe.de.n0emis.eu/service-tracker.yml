@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-tracker-http:
+      rule: "Host(`tracker.noemis.me`)"
+      service: "service-tracker@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-tracker-https:
+      rule: "Host(`tracker.noemis.me`)"
+      service: "service-tracker@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-tracker:
+      loadBalancer:
+        servers:
+          - url: "http://tracker.int.goe.de.n0emis.eu"

@@ -1,21 +1,21 @@
 http:
   routers:
-    services-synapse-http:
+    service-synapse-http:
       rule: "Host(`matrix.noemis.me`)"
-      service: "services-synapse@file"
+      service: "service-synapse@file"
       entryPoints:
         - "http"
       middlewares:
         - "https_redirect"
-    services-synapse-https:
+    service-synapse-https:
       rule: "Host(`matrix.noemis.me`)"
-      service: "services-synapse@file"
+      service: "service-synapse@file"
       entryPoints:
         - "https"
       tls:
         certResolver: "le_tls"
   services:
-    services-synapse:
+    service-synapse:
       loadBalancer:
         servers:
           - url: "http://localhost:{{ synapse_http_listener_port }}"

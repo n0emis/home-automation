@@ -1,0 +1,29 @@
+http:
+  routers:
+    service-codimd-http:
+      rule: "Host(`md.n0emis.eu`) || Host(`md.noemis.me`)"
+      service: "service-codimd@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-codimd-https:
+      rule: "Host(`md.n0emis.eu`) || Host(`md.noemis.me`)"
+      service: "service-codimd@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+      middlewares:
+        - "service-codimd-cors"
+  services:
+    service-codimd:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:{{ codimd_port }}"
+  middlewares:
+    service-codimd-cors:
+      headers:
+        accessControlAllowOriginList:
+          - https://md.n0emis.eu
+          - https://md.noemis.me

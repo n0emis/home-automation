@@ -1,0 +1,29 @@
+http:
+  routers:
+    service-nextcloud-http:
+      rule: "Host(`wolke.n0emis.eu`) || Host(`wolke.noemis.me`)"
+      service: "service-nextcloud@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-nextcloud-https:
+      rule: "Host(`wolke.n0emis.eu`) || Host(`wolke.noemis.me`)"
+      service: "service-nextcloud@file"
+      entryPoints:
+        - "https"
+      middlewares:
+        - "nextcloud-redirectregex"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-nextcloud:
+      loadBalancer:
+        servers:
+          - url: "http://kallisto.int.goe.de.n0emis.eu:81"
+  middlewares:
+    nextcloud-redirectregex:
+      redirectRegex:
+        permanent: true
+        regex: "https://(.*)/.well-known/(card|cal)dav"
+        replacement: "https://${1}/remote.php/dav/"

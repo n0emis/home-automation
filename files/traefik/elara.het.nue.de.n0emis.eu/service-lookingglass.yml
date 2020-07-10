@@ -1,21 +1,21 @@
 http:
   routers:
-    services-lookingglass-http:
+    service-lookingglass-http:
       rule: "Host(`lg.n0emis.eu`)"
-      service: "services-lookingglass@file"
+      service: "service-lookingglass@file"
       entryPoints:
         - "http"
       middlewares:
         - "https_redirect"
-    services-lookingglass-https:
+    service-lookingglass-https:
       rule: "Host(`lg.n0emis.eu`)"
-      service: "services-lookingglass@file"
+      service: "service-lookingglass@file"
       entryPoints:
         - "https"
       tls:
-        certResolver: "le_tls"
+        certResolver: "le_http"
   services:
-    services-lookingglass:
+    service-lookingglass:
       loadBalancer:
         servers:
           - url: "http://localhost:{{ bird_lg_webservice_port }}"
