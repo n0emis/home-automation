@@ -132,6 +132,7 @@ router_wireguard_interfaces:
         public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
         allowed_ips:
           - "10.152.22.1/32"
+          - "10.152.12.0/22"
         persistent_keepalive: "25"
         route_allowed_ips: "1"
 
