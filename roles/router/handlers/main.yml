@@ -9,6 +9,11 @@
     name: "firewall"
     state: reloaded
 
+- name: restart firewall
+  service:
+    name: "firewall"
+    state: restarted
+
 - name: restart dnsmasq
   service:
     name: "dnsmasq"

@@ -51,7 +51,7 @@
   template:
     dest: "/etc/firewall.user"
     src:  "config/firewall.user.j2"
-  notify: reload firewall
+  notify: restart firewall
 
 - name: Copy DHCP Config File
   template:
