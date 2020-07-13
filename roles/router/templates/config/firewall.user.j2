@@ -1,0 +1,18 @@
+# This file is interpreted as shell script.
+# Put your custom iptables rules here, they will
+# be executed with each firewall (re-)start.
+
+# Internal uci firewall chains are flushed and recreated on reload, so
+# put custom rules into the root chains e.g. INPUT or FORWARD or into the
+# special user chains, e.g. input_wan_rule or postrouting_lan_rule.
+
+source /lib/functions/network.sh
+network_get_ipaddr wan wan
+
+{% for port in router_port_redirect %}
+{% if port.reflection_nets is defined %}
+{% for port_reflection_net in port.reflection_nets %}
+iptables -t nat -A zone_{{ port_reflection_net }}_prerouting -d $wan/32 -p tcp -m tcp --dport {{ port.port }} -m comment --comment "fw3_firewall_user: Port Forward {{ port.name }} {{ port_reflection_net }} (reflection)" -j DNAT --to-destination {{ port.ip }}:{{ port.port }}
+{% endfor %}
+{% endif %}
+{% endfor %}

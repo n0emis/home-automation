@@ -47,6 +47,12 @@
     src:  "config/firewall.j2"
   notify: reload firewall
 
+- name: Copy User Firewall Config File
+  template:
+    dest: "/etc/firewall.user"
+    src:  "config/firewall.user.j2"
+  notify: reload firewall
+
 - name: Copy DHCP Config File
   template:
     dest: "/etc/config/dhcp"

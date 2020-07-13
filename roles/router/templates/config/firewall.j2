@@ -195,7 +195,7 @@ config rule
 
 {% for port in router_port_redirect %}
 config redirect
-	option name '{{ port.name }}'
+	option name '{{ port.name }} {{ port.src_network | default('wan') }}'
 	option src '{{ port.src_network | default('wan') }}'
 	option src_dport '{{ port.port }}'
 	option dest '{{ port.dest_network | default('srvkallisto') }}'

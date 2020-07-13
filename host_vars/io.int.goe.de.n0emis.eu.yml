@@ -50,26 +50,32 @@ router_port_redirect:
     port: 22
     network: srvkallisto
     ip: 10.152.4.1
+    reflection_nets:
+      - lan
   - name: http
     port: 80
     network: srvkallisto
     ip: 10.152.4.4
-    reflection_src: "external"
+    reflection_nets:
+      - lan
   - name: https
     port: 443
     network: srvkallisto
     ip: 10.152.4.4
-    reflection_src: "external"
+    reflection_nets:
+      - lan
   - name: pve
     port: 8006
     network: srvkallisto
     ip: 10.152.4.1
-    reflection_src: "external"
+    reflection_nets:
+      - lan
   - name: mc
     port: 25565
     network: srvkallisto
     ip: 10.152.4.1
-    reflection_src: "external"
+    reflection_nets:
+      - lan
 
 router_port_allow_ipv6:
   - name: "kallisto-v6"
@@ -104,7 +110,7 @@ router_wireguard_interfaces:
         persistent_keepalive: "25"
         route_allowed_ips: "1"
   - name: "wgserver"
-    private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server') }}"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server') }}"
     listen_port: "30000"
     addresses:
       - "10.152.16.1/20"
