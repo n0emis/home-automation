@@ -33,6 +33,9 @@ router_static_hosts:
   - name: volumio
     v4: 10.152.1.4
     mac: b8:27:eb:30:b9:9a
+  - name: scanner
+    v4: 10.152.1.5
+    mac: 84:25:3F:47:2C:CC
 
   - name: kallisto
     v4: 10.152.4.1

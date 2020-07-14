@@ -1,0 +1,29 @@
+---
+traefik_version: "v2.2.5"
+traefik_config_directory: /etc/traefik
+# HTTP-Challenge
+traefik_tls_letsencrypt_challenges_http:
+  enable: yes
+  email: "le@services.n0emis.eu"
+  name: "le_http" # Name of the certificate resolver
+  entryPoint: "http"
+  storage: "{{ traefik_config_directory }}/acme_http.json"
+# TLS-Challenge
+traefik_tls_letsencrypt_challenges_tls:
+  enable: yes
+  email: "le@services.n0emis.eu"
+  name: "le_tls" # Name of the certificate resolver
+  storage: "{{ traefik_config_directory }}/acme_tls.json"
+traefik_default_cert_resovler: "le_http"
+traefik_dashboard:
+  enable: yes
+  rule: "Host(`{{ ansible_fqdn }}`)"
+  name: "internal_dashboard"
+  tls_cert_resolver: "{{ traefik_default_cert_resovler }}"
+  https_redirect: yes
+  additional_middlewares: []
+
+#traefik_loglevel: "DEBUG"
+
+traefik_dynamic_config_files_paths:
+  - "traefik/{{ ansible_fqdn }}/*"
