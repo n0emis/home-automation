@@ -2,6 +2,11 @@
 wireguard_server_address: "10.152.22.1/32"
 wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.12.0/22"
 
+wireguard_wg_server_peers:
+  thebe:
+    public_key: "l+U4VBkb0TVRQwVXNTzDLtlvV1JHIcpvS/AgDORfwSA="
+    allowed_ips: "10.152.16.2/32, 10.152.12.0/24"
+
 wireguard_networks:
   - wg_server
   - wg-cgvpn
