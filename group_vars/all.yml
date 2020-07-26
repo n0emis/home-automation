@@ -29,12 +29,12 @@ unattended_mail: !vault |
 
 tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb"
 
-dyndns_host: elara.het.nue.de.n0emis.eu
-
-dyndns_enable: no
 php_date_timezone: "Europe/Berlin"
 nginx_ppa_use: true
 
+dyndns_host: elara.het.nue.de.n0emis.eu
+dyndns_enable: no
+dyndns_seperate: yes
 dyndns_nameserver:
   - ns.n0emis.eu
 
