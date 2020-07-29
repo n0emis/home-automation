@@ -23,3 +23,6 @@ postgresql_databases:
     owner: "{{ keycloak_postgresql_username }}"
   - name: "{{ gitea_db_name }}"
     owner: "{{ gitea_db_user }}"
+
+coturn_static_auth_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/coturn') }}"
+coturn_realm: "turn.n0emis.eu"

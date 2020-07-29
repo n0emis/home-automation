@@ -13,7 +13,7 @@ http:
       entryPoints:
         - "https"
       tls:
-        certResolver: "le_tls"
+        certResolver: "le_http"
   services:
     service-synapse:
       loadBalancer:

@@ -85,3 +85,6 @@
 [submodule "roles/n0emis.dn42"]
         path = roles/n0emis.dn42
         url = https://git.n0emis.eu/ansible_roles/dn42
+[submodule "roles/systemli.coturn"]
+	path = roles/systemli.coturn
+	url = https://github.com/systemli/ansible-role-coturn

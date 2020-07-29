@@ -29,7 +29,7 @@ ganymed.het.hel.fi.n0emis.eu
 [git]
 elara.het.nue.de.n0emis.eu
 
-[reverseproxy]
+[traefik]
 elara.het.nue.de.n0emis.eu
 sinope.int.goe.de.n0emis.eu
 

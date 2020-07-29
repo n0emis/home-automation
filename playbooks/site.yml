@@ -49,7 +49,7 @@
     - mailcow
   tags: mailcow,mail
 
-- hosts: reverseproxy
+- hosts: traefik
   become: yes
   roles:
     - em0lar.traefik
@@ -60,6 +60,7 @@
   roles:
     - geerlingguy.postgresql
     - n0emis.synapse
+    - systemli.coturn
   tags: synapse, matrix
 
 - hosts: synapse

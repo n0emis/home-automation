@@ -1,0 +1,17 @@
+http:
+  routers:
+    service-coturn-http:
+      rule: "Host(`turn.n0emis.eu`)"
+      service: "service-synapse@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-coturn-https:
+      rule: "Host(`turn.n0emis.eu`)"
+      service: "service-synapse@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+

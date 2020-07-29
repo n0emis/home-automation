@@ -16,6 +16,13 @@ synapse_http_listener_port: '85'
 synapse_federation_listener_port: '86'
 synapse_allow_guest_access: true
 
+synapse_turn_uris:
+  - "turn:turn.n0emis.eu:3479?transport=udp"
+  - "turn:turn.n0emis.eu:3479?transport=tcp"
+
+synapse_turn_shared_secret: "{{ coturn_static_auth_secret }}"
+synapse_turn_allow_guests: True
+
 synapse_pip_version: "1.17.0"
 
 synapse_app_service_config_files:
