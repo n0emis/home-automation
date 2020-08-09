@@ -17,5 +17,5 @@ iptables -t nat -A zone_{{ port_reflection_net }}_prerouting -d $wan/32 -p tcp -
 {% endif %}
 {% endfor %}
 
-iptables -t nat -A zone_lan_prerouting -d 10.152.4.1/32 -p tcp -m tcp --dport 443 -j DNAT --to-destination 10.152.4.4:443 -m comment --comment "fw3_firewall_user: Port Forward 443 lan kallisto->sinope"
-iptables -t nat -A zone_lan_prerouting -d 10.152.4.1/32 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.152.4.4:80 -m comment --comment "fw3_firewall_user: Port Forward 443 lan kallisto->sinope"
+iptables -t nat -A PREROUTING -d 10.152.4.1/32 -p tcp -m tcp --dport 443 -j DNAT --to-destination 10.152.4.4:443 -m comment --comment "fw3_firewall_user: Port Forward 443 lan kallisto->sinope"
+iptables -t nat -A PREROUTING -d 10.152.4.1/32 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.152.4.4:80 -m comment --comment "fw3_firewall_user: Port Forward 443 lan kallisto->sinope"

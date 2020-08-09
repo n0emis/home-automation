@@ -49,6 +49,7 @@ gitea_mailer_host: "mail.n0emis.eu:465"
 gitea_mailer_from: "n0emis Git <no-reply@n0emis.eu>"
 gitea_mailer_user: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply subkey=user') }}"
 gitea_mailer_password: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply') }}"
+gitea_enable_notify_mail: true
 
 gitea_theme_default: "arc-green"
 
