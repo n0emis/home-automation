@@ -53,6 +53,31 @@
   become: yes
   roles:
     - em0lar.traefik
+  tasks:
+    - name: Install deps
+      apt:
+        name: jq
+        state: present
+
+    - name: Copy traefik cumpcerts-script
+      template:
+        dest: "{{ traefik_config_directory }}/dumpcerts.sh"
+        src: "../files/traefik/dumpcerts.sh"
+        owner: "root"
+        group: "root"
+        mode: 0744
+
+    - name: setup traefik certificate-exporter cronjob
+      cron:
+        name: "traefik certificate-exporter"
+        hour: "2"
+        user: "root"
+        job: "{{ traefik_config_directory }}/dumpcerts.sh {{ traefik_config_directory }}/acme.json /etc/ssl/"
+
+    - name: run traefik certificate-exporter
+      command: '{{ traefik_config_directory }}/dumpcerts.sh {{ traefik_config_directory }}/acme.json /etc/ssl/'
+      become: true
+      ignore_errors: yes
   tags: traefik
 
 - hosts: synapse

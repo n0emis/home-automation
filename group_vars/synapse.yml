@@ -19,6 +19,8 @@ synapse_allow_guest_access: true
 synapse_turn_uris:
   - "turn:turn.n0emis.eu:3479?transport=udp"
   - "turn:turn.n0emis.eu:3479?transport=tcp"
+  - "turns:turn.n0emis.eu:3479?transport=udp"
+  - "turns:turn.n0emis.eu:3479?transport=tcp"
 
 synapse_turn_shared_secret: "{{ coturn_static_auth_secret }}"
 synapse_turn_allow_guests: True

@@ -7,13 +7,13 @@ traefik_tls_letsencrypt_challenges_http:
   email: "le@services.n0emis.eu"
   name: "le_http" # Name of the certificate resolver
   entryPoint: "http"
-  storage: "{{ traefik_config_directory }}/acme_http.json"
+  storage: "{{ traefik_config_directory }}/acme.json"
 # TLS-Challenge
 traefik_tls_letsencrypt_challenges_tls:
   enable: yes
   email: "le@services.n0emis.eu"
   name: "le_tls" # Name of the certificate resolver
-  storage: "{{ traefik_config_directory }}/acme_tls.json"
+  storage: "{{ traefik_config_directory }}/acme.json"
 traefik_default_cert_resovler: "le_http"
 traefik_dashboard:
   enable: yes

@@ -112,56 +112,60 @@ oldumask=$(umask)
 umask 177
 trap 'umask ${oldumask}' EXIT
 
-priv=$(${jq} -e -r '.le_http.Account.PrivateKey' "${acmefile}") || bad_acme
 
-if [ ! -n "${priv}" ]; then
-        echo "
+providers=$(jq -r 'keys[]' ${acmefile}) || bad_acme
+for provider in $providers; do
+        priv=$(${jq} -e -r --arg provider "$provider" '.[$provider].Account.PrivateKey' "${acmefile}") || bad_acme
+
+        if [ ! -n "${priv}" ]; then
+                echo "
 There didn't seem to be a private key in ${acmefile}.
 Please ensure that there is a key in this file and try again." >&2
-        exit 8
-fi
+                exit 8
+        fi
 
-# traefik stores the private key in stripped base64 format but the certificates
-# bundled as a base64 object without stripping headers.  This normalizes the
-# headers and formatting.
-#
-# In testing this out it was a balance between the following mechanisms:
-# gawk:
-#  echo ${priv} | awk 'BEGIN {print "-----BEGIN RSA PRIVATE KEY-----"}
-#     {gsub(/.{64}/,"&\n")}1
-#     END {print "-----END RSA PRIVATE KEY-----"}' > "${pdir}/letsencrypt.key"
-#
-# openssl:
-# echo -e "-----BEGIN RSA PRIVATE KEY-----\n${priv}\n-----END RSA PRIVATE KEY-----" \
-#   | openssl rsa -inform pem -out "${pdir}/letsencrypt.key"
-#
-# and sed:
-# echo "-----BEGIN RSA PRIVATE KEY-----" > "${pdir}/letsencrypt.key"
-# echo ${priv} | sed -E 's/(.{64})/\1\n/g' >> "${pdir}/letsencrypt.key"
-# sed -i '$ d' "${pdir}/letsencrypt.key"
-# echo "-----END RSA PRIVATE KEY-----" >> "${pdir}/letsencrypt.key"
-# openssl rsa -noout -in "${pdir}/letsencrypt.key" -check  # To check if the key is valid
+        # traefik stores the private key in stripped base64 format but the certificates
+        # bundled as a base64 object without stripping headers.  This normalizes the
+        # headers and formatting.
+        #
+        # In testing this out it was a balance between the following mechanisms:
+        # gawk:
+        #  echo ${priv} | awk 'BEGIN {print "-----BEGIN RSA PRIVATE KEY-----"}
+        #     {gsub(/.{64}/,"&\n")}1
+        #     END {print "-----END RSA PRIVATE KEY-----"}' > "${pdir}/letsencrypt.key"
+        #
+        # openssl:
+        # echo -e "-----BEGIN RSA PRIVATE KEY-----\n${priv}\n-----END RSA PRIVATE KEY-----" \
+        #   | openssl rsa -inform pem -out "${pdir}/letsencrypt.key"
+        #
+        # and sed:
+        # echo "-----BEGIN RSA PRIVATE KEY-----" > "${pdir}/letsencrypt.key"
+        # echo ${priv} | sed -E 's/(.{64})/\1\n/g' >> "${pdir}/letsencrypt.key"
+        # sed -i '$ d' "${pdir}/letsencrypt.key"
+        # echo "-----END RSA PRIVATE KEY-----" >> "${pdir}/letsencrypt.key"
+        # openssl rsa -noout -in "${pdir}/letsencrypt.key" -check  # To check if the key is valid
 
-# In the end, openssl was chosen because most users will need this script
-# *because* of openssl combined with the fact that it will refuse to write the
-# key if it does not parse out correctly. The other mechanisms were left as
-# comments so that the user can choose the mechanism most appropriate to them.
-echo -e "-----BEGIN RSA PRIVATE KEY-----\n${priv}\n-----END RSA PRIVATE KEY-----" \
-   | openssl rsa -inform pem -out "${pdir}/letsencrypt.key"
+        # In the end, openssl was chosen because most users will need this script
+        # *because* of openssl combined with the fact that it will refuse to write the
+        # key if it does not parse out correctly. The other mechanisms were left as
+        # comments so that the user can choose the mechanism most appropriate to them.
+        echo -e "-----BEGIN RSA PRIVATE KEY-----\n${priv}\n-----END RSA PRIVATE KEY-----" \
+           | openssl rsa -inform pem -out "${pdir}/${provider}.key"
+done
 
 # Process the certificates for each of the domains in acme.json
-domains=$(jq -r '.le_http.Certificates[].domain.main' ${acmefile}) || bad_acme
+domains=$(jq -r '.[].Certificates[].domain.main' ${acmefile}) || bad_acme
 for domain in $domains; do
         # Traefik stores a cert bundle for each domain.  Within this cert
         # bundle there is both proper the certificate and the Let's Encrypt CA
         echo "Extracting cert bundle for ${domain}"
-        cert=$(jq -e -r --arg domain "$domain" '.le_http.Certificates[] |
+        cert=$(jq -e -r --arg domain "$domain" '.[].Certificates[] |
                  select (.domain.main == $domain )| .certificate' ${acmefile}) || bad_acme
         echo "${cert}" | ${CMD_DECODE_BASE64} > "${cdir}/${domain}.crt"
         chmod 644 "${cdir}/${domain}.crt"
 
         echo "Extracting private key for ${domain}"
-        key=$(jq -e -r --arg domain "$domain" '.le_http.Certificates[] |
+        key=$(jq -e -r --arg domain "$domain" '.[].Certificates[] |
                 select (.domain.main == $domain )| .key' ${acmefile}) || bad_acme
         echo "${key}" | ${CMD_DECODE_BASE64} > "${pdir}/${domain}.key"
 done
