@@ -19,4 +19,10 @@ netbox_superuser_username: "{{ lookup('passwordstore', 'netbox.n0emis.eu') }}"
 netbox_superuser_password: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=user') }}"
 netbox_superuser_email: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=email') }}"
 
-#netbox_stable_version: 2.6.12
+netbox_stable_version: 2.8.9
+
+netbox_ldap_enabled: true
+netbox_ldap_config_template: netbox/ldap_config.py.j2
+
+ldap_dm_user: "{{ lookup('passwordstore', 'infra/ldap-dm subkey=user') }}"
+ldap_dm_password: "{{ lookup('passwordstore', 'infra/ldap-dm') }}"
