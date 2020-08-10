@@ -62,7 +62,7 @@
     - name: Copy traefik cumpcerts-script
       template:
         dest: "{{ traefik_config_directory }}/dumpcerts.sh"
-        src: "../files/traefik/dumpcerts.sh"
+        src: "files/traefik/dumpcerts.sh"
         owner: "root"
         group: "root"
         mode: 0744
