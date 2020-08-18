@@ -12,10 +12,25 @@ http:
       service: "service-netbox@file"
       entryPoints:
         - "https"
+      middlewares:
+        - "removeAuthHeaders"
       tls:
         certResolver: "le_http"
   services:
     service-netbox:
       loadBalancer:
         servers:
-          - url: "http://{{ netbox_socket }}"
+          - url: "http://{{ louketo_netbox_listen }}"
+  middlewares:
+    removeAuthHeaders:
+      headers:
+        customRequestHeaders:
+          X-Auth-Email: ""
+          X-Auth-Audience: ""
+          X-Auth-ExpiresIn: ""
+          X-Auth-Groups: ""
+          X-Auth-Roles: ""
+          X-Auth-Subject: ""
+          X-Auth-Token: ""
+          X-Auth-UserID: ""
+          X-Auth-Username: ""

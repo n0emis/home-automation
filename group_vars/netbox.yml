@@ -4,7 +4,7 @@ netbox_database: netbox
 netbox_database_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/db subkey=user') }}"
 netbox_database_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/db') }}"
 netbox_database_host: "localhost"
-netbox_socket: "127.0.0.1:3001"
+netbox_socket: "127.0.0.1:3002"
 netbox_protocol: http
 netbox_config:
   SECRET_KEY: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/netbox/secret') }}"
@@ -14,6 +14,13 @@ netbox_config:
   MEDIA_ROOT: "{{ netbox_shared_path }}/media"
   REPORTS_ROOT: "{{ netbox_shared_path }}/reports"
   SCRIPTS_ROOT: "{{ netbox_shared_path }}/scripts"
+  REMOTE_AUTH_ENABLED: True
+  REMOTE_AUTH_BACKEND: 'utilities.auth_backends.RemoteUserBackend'
+  REMOTE_AUTH_HEADER: 'HTTP_X_AUTH_USERNAME'
+  REMOTE_AUTH_AUTO_CREATE_USER: True
+
+netbox_uwsgi_options:
+  buffer-size: 16000
 
 netbox_superuser_username: "{{ lookup('passwordstore', 'netbox.n0emis.eu') }}"
 netbox_superuser_password: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=user') }}"

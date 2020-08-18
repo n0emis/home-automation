@@ -126,6 +126,12 @@
       notify: restart keycloak
   tags: iam, keycloak
 
+- hosts: louketo
+  become: yes
+  roles:
+    - n0emis.louketo
+  tags: louketo
+
 - hosts: git
   become: yes
   roles:
