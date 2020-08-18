@@ -33,7 +33,6 @@ louketo_instances:
   - name: netbox
     config: |
       client-id: netbox
-      client-secret: 7e69e1d6-3c39-412d-97ce-7a93ab74013c
       discovery-url: https://auth.n0emis.eu/auth/realms/n0emis
       enable-default-deny: false
       listen: {{ louketo_netbox_listen }}
