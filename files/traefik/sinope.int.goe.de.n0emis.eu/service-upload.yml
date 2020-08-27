@@ -1,14 +1,14 @@
 http:
   routers:
     service-upload-http:
-      rule: "Host(`home.noemis.me`)"
+      rule: "Host(`home.noemis.me`) || Host(`home.n0emis.eu`)"
       service: "service-upload@file"
       entryPoints:
         - "http"
       middlewares:
         - "https_redirect"
     service-upload-https:
-      rule: "Host(`home.noemis.me`)"
+      rule: "Host(`home.noemis.me`) || Host(`home.n0emis.eu`)"
       service: "service-upload@file"
       entryPoints:
         - "https"

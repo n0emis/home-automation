@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-build-http:
+      rule: "Host(`build.n0emis.eu`)"
+      service: "service-build@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-build-https:
+      rule: "Host(`build.n0emis.eu`)"
+      service: "service-build@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-build:
+      loadBalancer:
+        servers:
+          - url: "http://kallisto.int.goe.de.n0emis.eu:83"
