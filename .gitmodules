@@ -88,6 +88,9 @@
 [submodule "roles/systemli.coturn"]
 	path = roles/systemli.coturn
 	url = https://github.com/systemli/ansible-role-coturn
+[submodule "roles/mrlesmithjr.openldap"]
+	path = roles/mrlesmithjr.openldap
+	url = https://github.com/mrlesmithjr/ansible-openldap
 [submodule "roles/n0emis.louketo"]
 	path = roles/n0emis.louketo
 	url = https://git.n0emis.eu/ansible_roles/louketo

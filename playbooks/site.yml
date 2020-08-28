@@ -97,6 +97,11 @@
 #    - n0emis.mautrix-whatsapp
   tags: matrix, bridges
 
+- hosts: ldap
+  roles:
+    - mrlesmithjr.openldap
+  tags: ldap
+
 - hosts: iam
   become: yes
   roles:

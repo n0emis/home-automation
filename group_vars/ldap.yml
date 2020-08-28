@@ -1,0 +1,31 @@
+openldap_debian_packages:
+  - slapd
+  - ldap-utils
+  - slapd-smbk5pwd
+
+openldap_admin_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ldap/admin') }}"
+openldap_org: "n0emis"
+openldap_tld: "eu"
+
+openldap_config: true
+openldap_populate: true
+openldap_posixgroups: []
+openldap_users: []
+openldap_organizationalunits:
+  - People
+  - Groups
+  - Roles
+
+openldap_schemas:
+  - core
+  - cosine
+  - inetorgperson
+  - nis
+  - samba
+openldap_overlays_and_acls:
+  - name: smbk5pwd
+    ldifs:
+      - path: smbk5pwd.ldif
+        action: add
+      - path: password.ldif
+        action: add

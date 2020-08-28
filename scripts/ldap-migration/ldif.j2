@@ -1,0 +1,15 @@
+{%  for user in users %}
+dn: uid={{ user.uid }},ou=People,dc=n0emis,dc=eu
+sambaSID: sambaSID
+uid: {{ user.uid }}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: sambaSamAccount
+mail: {{ user.mail }}
+sn: {{ user.sn }}
+cn: {{ user.cn }}
+userPassword:: {{ user.pwhash }}
+sambaPwdLastSet: 1598634290
+sambaNTPassword: {{ user.nthash }}
+
+{%  endfor %}

@@ -1,0 +1,11 @@
+dn: cn=module{0},cn=config
+changetype: modify
+add: olcModuleLoad
+olcModuleLoad: smbk5pwd
+
+dn: olcOverlay={0}smbk5pwd,olcDatabase={1}mdb,cn=config
+changetype: add
+olcOverlay: smbk5pwd
+objectClass: olcOverlayConfig
+objectClass: olcSmbK5PwdConfig
+olcSmbK5PwdEnable: samba
