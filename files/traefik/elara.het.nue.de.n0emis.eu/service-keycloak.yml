@@ -1,19 +1,24 @@
 http:
   routers:
     service-keycloak-http:
-      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`) || Host(`keycloak.n0emis.eu`) || Host(`keycloak.noemis.me`)"
+      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`)"
       service: "service-keycloak@file"
       entryPoints:
         - "http"
       middlewares:
         - "https_redirect"
     service-keycloak-https:
-      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`) || Host(`keycloak.n0emis.eu`) || Host(`keycloak.noemis.me`)"
+      rule: "Host(`auth.n0emis.eu`) || Host(`auth.noemis.me`)"
       service: "service-keycloak@file"
       entryPoints:
         - "https"
       tls:
         certResolver: "le_http"
+        domains:
+          - main: "auth.n0emis.eu"
+            sans:
+              - "ipa.noemis.me"
+              - "auth.noemis.me"
   services:
     service-keycloak:
       loadBalancer:
