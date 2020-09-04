@@ -84,8 +84,6 @@ dnsmasq_dnsmasq_d_files_present:
   n0emis:
     - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
     - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
-    - "server=/n0emis.de/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.de/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
     - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
     - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
 

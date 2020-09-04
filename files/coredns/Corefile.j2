@@ -47,19 +47,6 @@ noemis.me {
     }
 }
 
-n0emis.de {
-    bind {{ ansible_default_ipv4.address }}
-    bind {{ ansible_default_ipv6.address }}
-
-    import mon
-
-    root /etc/coredns/zones
-    file db.n0emis.de {
-        # inwx secondary ns
-        import inwx
-    }
-}
-
 dyn.n0emis.eu {
     bind {{ ansible_default_ipv4.address }}
     bind {{ ansible_default_ipv6.address }}
