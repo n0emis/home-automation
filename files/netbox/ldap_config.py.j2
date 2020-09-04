@@ -60,3 +60,37 @@ AUTH_LDAP_FIND_GROUP_PERMS = True
 AUTH_LDAP_CACHE_TIMEOUT = 3600
 
 AUTH_LDAP_AUTHORIZE_ALL_USERS = True
+
+
+import logging
+from django.conf import settings
+from netbox.authentication import RemoteUserBackend
+from django_auth_ldap.backend import LDAPBackend, LDAPSettings
+
+class AuthBackend(RemoteUserBackend):
+    def __init__(self, *args, **kwargs):
+        self.ldap_backend = LDAPBackend()
+
+        settings = LDAPSettings()
+        for param in globals():
+            if param.startswith(settings._prefix):
+                setattr(settings, param[10:], globals().get(param))
+
+        self.ldap_backend.settings = settings
+
+        # Optionally disable strict certificate checking
+        if globals().get('LDAP_IGNORE_CERT_ERRORS', False):
+            ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
+
+        # Enable logging for django_auth_ldap
+        ldap_logger = logging.getLogger('django_auth_ldap')
+        ldap_logger.addHandler(logging.StreamHandler())
+        ldap_logger.setLevel(logging.INFO)
+
+        return super().__init__(*args, **kwargs)
+
+
+    def authenticate(self, request, remote_user):
+        self.ldap_backend.populate_user(remote_user)
+
+        return super().authenticate(request, remote_user)

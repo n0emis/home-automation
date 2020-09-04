@@ -15,7 +15,7 @@ netbox_config:
   REPORTS_ROOT: "{{ netbox_shared_path }}/reports"
   SCRIPTS_ROOT: "{{ netbox_shared_path }}/scripts"
   REMOTE_AUTH_ENABLED: True
-  REMOTE_AUTH_BACKEND: 'utilities.auth_backends.RemoteUserBackend'
+  REMOTE_AUTH_BACKEND: 'netbox.ldap_config.AuthBackend'
   REMOTE_AUTH_HEADER: 'HTTP_X_AUTH_USERNAME'
   REMOTE_AUTH_AUTO_CREATE_USER: True
 
@@ -26,7 +26,7 @@ netbox_superuser_username: "{{ lookup('passwordstore', 'netbox.n0emis.eu') }}"
 netbox_superuser_password: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=user') }}"
 netbox_superuser_email: "{{ lookup('passwordstore', 'netbox.n0emis.eu subkey=email') }}"
 
-netbox_stable_version: 2.8.9
+netbox_stable_version: 2.9.2
 
 netbox_ldap_enabled: true
 netbox_ldap_config_template: netbox/ldap_config.py.j2
