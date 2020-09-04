@@ -6,7 +6,7 @@ gitea_user_repo_limit: 30
 # Don't use a public CDN for frontend assets
 gitea_offline_mode: true
 
-gitea_version: "1.12.3"
+gitea_version: "1.12.4"
 #gitea_dl_url: "https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-{{ gitea_arch }}"
 #gitea_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 
