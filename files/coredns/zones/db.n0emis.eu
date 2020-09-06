@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020090401 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020090601 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -32,7 +32,8 @@ himalia.ion.rhr.de          3600    IN  AAAA    2001:8d8:1800:30e::1
 jetzt-dev.het.nue.de        3600	IN	A	    94.130.107.245
 jetzt-dev.het.nue.de        3600	IN	AAAA	2a01:4f8:c0c:83eb::1
 
-bbb                         3600    IN  A       116.203.23.27 
+bbb-test.het.nue.de         3600    IN  A       88.198.127.233
+bbb-test.het.nue.de         3600    IN  AAAA    2a01:4f8:c0c:882c::1
 
 ;;;; Uberspace - russel
 @                           3600	IN	A	    185.26.156.94
