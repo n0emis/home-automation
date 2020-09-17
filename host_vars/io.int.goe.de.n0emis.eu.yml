@@ -155,6 +155,13 @@ asterisk_trunks:
 #    domain: "tel.t-online.de"
 #    password: "{{ dtag_password }}"
 #    username: "{{ dtag_user }}"
+  - name: "sipgate_pfarramt"
+    callerid: "{{ lookup('passwordstore', 'infra/sipgate.com/pfarramt subkey=user') }}"
+    domain: "sipgate.de"
+    password: "{{ lookup('passwordstore', 'infra/sipgate.com/pfarramt') }}"
+    username: "{{ lookup('passwordstore', 'infra/sipgate.com/pfarramt subkey=user') }}"
+    phones:
+      - "esszimmer"
   - name: "dtag_pfarramt"
     callerid: "00495515316375"
     domain: "tel.t-online.de"
