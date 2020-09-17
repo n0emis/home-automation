@@ -98,6 +98,7 @@
   tags: matrix, bridges
 
 - hosts: ldap
+  become: yes
   roles:
     - mrlesmithjr.openldap
   tags: ldap
