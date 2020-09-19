@@ -1,0 +1,5 @@
+---
+- name: reload freeradius
+  service:
+    name: freeradius
+    state: reloaded

@@ -103,6 +103,11 @@
     - mrlesmithjr.openldap
   tags: ldap
 
+- hosts: radius
+  roles:
+    - freeradius
+  tags: radius,freeradius
+
 - hosts: iam
   become: yes
   roles:

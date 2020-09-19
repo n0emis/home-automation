@@ -1,0 +1,54 @@
+---
+- name: add apt key
+  apt_key:
+    keyserver: "keys.gnupg.net"
+    id: "BE18FC5A41382202"
+
+- name: add apt repo
+  apt_repository:
+    repo: "deb http://packages.networkradius.com/continuous/{{ ansible_distribution | lower }}-{{ ansible_distribution_release }} {{ ansible_distribution_release }} main"
+    state: present
+
+- name: make sure freeradius-packages are installed
+  apt:
+    name: "{{ freeradius_packages }}"
+    state: latest
+
+- name: make sure config directories exist
+  file:
+    state: directory
+    owner: "{{ freeradius_user }}"
+    group: "{{ freeradius_group }}"
+    path: "/dest/dir/{{ item.path }}"
+  with_filetree: "../templates/"
+  when: item.state == 'directory'
+
+- name: copy config files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ freeradius_config_path }}/{{ item.path }}"
+  with_filetree: "../templates/"
+  when: item.state == 'file'
+  notify: reload freeradius
+
+- name: Symlink enabled modules
+  file:
+    src: "../mods-available/{{ item }}"
+    dest: "{{ freeradius_config_path }}/mods-enabled/{{ item }}"
+    state: link
+  loop: "{{ freeradius_modules }}"
+  notify: reload freeradius
+
+- name: Symlink enabled sites
+  file:
+    src: "../sites-available/{{ item }}"
+    dest: "{{ freeradius_config_path }}/sites-enabled/{{ item }}"
+    state: link
+  loop: "{{ freeradius_sites }}"
+  notify: reload freeradius
+
+- name: Make sure freeradius is running and enabled
+  service:
+    name: "freeradius"
+    state: started
+    enabled: yes

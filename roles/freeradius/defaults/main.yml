@@ -1,0 +1,16 @@
+---
+freeradius_config_path: "/etc/freeradius"
+freeradius_user: "freerad"
+freeradius_group: "{{ freeradius_user }}"
+freeradius_packages:
+  - freeradius
+  - freeradius-common
+  - freeradius-config
+  - freeradius-ldap
+
+freeradius_modules:
+  - ldap
+  - eap
+freeradius_sites:
+  - default
+  - inner-tunnel
