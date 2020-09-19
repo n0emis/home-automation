@@ -12,16 +12,55 @@ synapse_enable_group_creation: true
 synapse_enable_registration: false
 synapse_domain: "noemis.me"
 synapse_server_fqdn_matrix: "matrix.{{ synapse_domain }}"
+
+synapse_http_listener_enabled: false
+synapse_federation_listener_enabled: false
 synapse_http_listener_port: '85'
-synapse_federation_listener_port: '86'
+synapse_additional_listeners: |
+  # Unsecure HTTP listener (Client API): for when matrix traffic passes through a reverse proxy
+  # that unwraps TLS.
+  - port: {{ synapse_http_listener_port }}
+    tls: false
+    bind_addresses: ['::1', '127.0.0.1']
+    type: http
+    x_forwarded: true
+
+    resources:
+      - names: [client,federation]
+        compress: false
+
+    additional_resources:
+      "/_matrix/saml2/pick_username":
+        module: "matrix_synapse_saml_mapper.pick_username_resource"
+
 synapse_allow_guest_access: true
 
 synapse_pip_version: "1.19.3"
+synapse_pip_packages_additional:
+  - "git+https://github.com/chaos-jetzt/matrix-synapse-saml-mapper"
 
 synapse_app_service_config_files:
   - "{{ matrix_appservice_irc_config_path }}/registration.yaml"
   - "{{ mautrix_telegram_config_path }}/registration.yaml"
   #- /root/mautrix-whatsapp/registration.yaml
+
+synapse_homeserver_config_extra_options: |
+  user_directory:
+    enabled: true
+    search_all_users: true
+
+  saml2_config:
+    enabled: true
+    sp_config:
+      metadata:
+        remote:
+          - url: https://auth.n0emis.eu/auth/realms/n0emis/protocol/saml/descriptor
+    user_mapping_provider:
+      module: "matrix_synapse_saml_mapper.SamlMappingProvider"
+
+  sso:
+    client_whitelist:
+      - "https://noemis.me/"
 
 synapse_turn_uris:
   - "turn:turn.n0emis.eu:3479?transport=udp"
