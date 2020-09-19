@@ -83,10 +83,10 @@ eap {
 
 	#  EAP-pwd -- secure password-based authentication
 	#
-	#pwd {
+	pwd {
 	#	group = 19
 
-	#	server_id = theserver@example.com
+		server_id = radius@auth.n0emis.eu
 
 		#  This has the same meaning as for TLS.
 		#
@@ -99,8 +99,10 @@ eap {
 		# distinguished by having a User-Name, but
 		# no User-Password, CHAP-Password, EAP-Message, etc.
 		#
-	#	virtual_server = "inner-tunnel"
-	#}
+		virtual_server = "inner-tunnel"
+
+		prep = -1
+	}
 
 
 	#  Cisco LEAP
@@ -175,8 +177,8 @@ eap {
 	#  authenticate via EAP-TLS!  This is likely not what you want.
 	#
 	tls-config tls-common {
-		private_key_password = whatever
-		private_key_file = ${certdir}/server.pem
+		# private_key_password = whatever
+		private_key_file = /etc/ssl/private/auth.n0emis.eu.key
 
 		#  If Private key & Certificate are located in
 		#  the same file, then private_key_file &
@@ -212,7 +214,7 @@ eap {
 		#  give advice which will work everywhere.  Instead,
 		#  we give general guidelines.
 		#
-		certificate_file = ${certdir}/server.pem
+		certificate_file = /etc/ssl/certs/auth.n0emis.eu.crt
 
 		#  Trusted Root CA list
 		#
@@ -225,7 +227,7 @@ eap {
 		#  In that case, this CA file should contain
 		#  *one* CA certificate.
 		#
-		ca_file = ${cadir}/ca.pem
+		ca_file = /etc/ssl/certs/ca-certificates.crt
 
 	 	#  OpenSSL will automatically create certificate chains,
 	 	#  unless we tell it to not do that.  The problem is that

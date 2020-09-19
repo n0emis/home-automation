@@ -4,6 +4,7 @@ openldap_debian_packages:
   - slapd-smbk5pwd
 
 openldap_admin_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ldap/admin') }}"
+openldap_admin_bind: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ldap/admin subkey=user') }}"
 openldap_org: "n0emis"
 openldap_tld: "eu"
 

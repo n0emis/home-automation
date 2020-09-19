@@ -42,9 +42,9 @@ dyndns_nameserver:
 #dyndns_privkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key') | b64decode }}"
 
 
-ap_radius_server_ip: "10.152.4.3"
-ap_radius_password: "testing123"
-#ap_radius_password: "{{ lookup('passwordstore', 'infra/ipa.int.goe.de.n0emis.eu/radius') }}"
+radius_server_ip: "10.152.18.1"
+radius_password: "{{ lookup('passwordstore', 'infra/radius/local') }}"
+radius_password_global: "{{ lookup('passwordstore', 'infra/radius/global') }}"
 
 ap_iot_wifi_ssid: "{{ lookup('passwordstore', 'infra/wireless/iot subkey=user') }}"
 ap_iot_wifi_password: "{{ lookup('passwordstore', 'infra/wireless/iot') }}"

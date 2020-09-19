@@ -25,12 +25,12 @@ ldap {
 
 	#  Administrator account for searching and possibly modifying.
 	#  If using SASL + KRB5 these should be commented out.
-#	identity = 'cn=admin,dc=example,dc=org'
-#	password = mypass
+	identity = '{{ openldap_admin_bind }}'
+	password = {{ openldap_admin_password }}
 
 	#  Unless overridden in another section, the dn from which all
 	#  searches will start from.
-	base_dn = 'dc=example,dc=org'
+	base_dn = 'dc=n0emis,dc=eu'
 
 	#
 	#  You can run the 'ldapsearch' command line tool using the
@@ -127,7 +127,7 @@ ldap {
 	#  attribute ref.
 	update {
 		control:Password-With-Header	+= 'userPassword'
-#		control:NT-Password		:= 'ntPassword'
+		control:NT-Password		:= 'sambaNTPassword'
 #		reply:Reply-Message		:= 'radiusReplyMessage'
 #		reply:Tunnel-Type		:= 'radiusTunnelType'
 #		reply:Tunnel-Medium-Type	:= 'radiusTunnelMediumType'
@@ -197,7 +197,7 @@ ldap {
 		#  "samaccountname=" instead of "uid="
 		#
 {% raw %}
-		filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+		filter = "(&(objectClass=sambaSamAccount)(|(memberOf=cn=wifi_access,ou=Roles,dc=n0emis,dc=eu)(memberOf=cn=keksfamilie,ou=Groups,dc=n0emis,dc=eu))(uid=%{%{Stripped-User-Name}:-%{User-Name}}))"
 {% endraw %}
 
 		#  For Active Directory nested group, you should comment out the previous 'filter = ...'
