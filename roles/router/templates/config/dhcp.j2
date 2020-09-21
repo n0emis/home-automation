@@ -2,8 +2,7 @@
 config dnsmasq
 	option domainneeded '1'
 	option localise_queries '1'
-	option rebind_protection '1'
-	option rebind_localhost '1'
+	option rebind_protection '0'
 	option local '/int.goe.de.n0emis.eu/'
 	option domain 'int.goe.de.n0emis.eu'
 	option expandhosts '1'
@@ -13,6 +12,7 @@ config dnsmasq
 	option resolvfile '/tmp/resolv.conf.auto'
 	option localservice '0'
 	option sequential_ip '1'
+	list server '/tra.vel.xz.n0emis.eu/10.152.12.1'
 
 config dhcp 'lan'
 	option interface 'lan'

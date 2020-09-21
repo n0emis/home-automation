@@ -1,6 +1,6 @@
 ---
 wireguard_server_address: "10.152.22.1/32"
-wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.12.0/22"
+wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.8.0/21"
 
 wireguard_wg_server_peers:
   thebe:
@@ -9,6 +9,7 @@ wireguard_wg_server_peers:
 
 wireguard_networks:
   - wg_server
+  - wg_client
   - wg-cgvpn
   - wg-cgvpn-c
   - dn42-n0emis
@@ -58,6 +59,15 @@ wireguard_dn42-n0emis_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf4:2331:fa09::2:2/128, 172.20.190.126"
+
+wireguard_wg_client_interface:
+  address: "10.152.10.254"
+  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_client') }}"
+  listen_port: 41004
+wireguard_wg_client_peers:
+  adrastea:
+    public_key: "MghE8GgmfP3oRBUqM67lovJyKg1X0glocpvBkKQ0sAA="
+    allowed_ips: "10.152.10.1"
 
 ### DNSMASQ
 dnsmasq_dnsmasq_conf:

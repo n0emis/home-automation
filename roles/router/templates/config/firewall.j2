@@ -32,13 +32,12 @@ config zone
 	option network 'wan6 wan henet cccgoevpn'
 
 config zone
-    option name 'wgserver'
-    option input 'ACCEPT'
-    option output 'ACCEPT'
-    option forward 'ACCEPT'
-    list device 'wgserver'
-    option network 'wgserver'
-
+	option name 'wgserver'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list device 'wgserver'
+	option network 'wgserver'
 
 config forwarding
 	option src 'lan'
@@ -169,11 +168,11 @@ config rule
 
 {% for wireguard_interface in router_wireguard_interfaces %}
 config rule
-    option name 'Wireguard {{ wireguard_interface.name }}'
-    option src 'wan'
-    option dest_port '{{ wireguard_interface.listen_port }}'
-    option proto 'udp'
-    option target 'ACCEPT'
+	option name 'Wireguard {{ wireguard_interface.name }}'
+	option src 'wan'
+	option dest_port '{{ wireguard_interface.listen_port }}'
+	option proto 'udp'
+	option target 'ACCEPT'
 {% endfor %}
 
 {% for port in router_port_allow_ipv6 %}

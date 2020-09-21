@@ -41,9 +41,6 @@ router_static_hosts:
     v4: 10.152.4.1
     mac: 6c:3b:e5:0d:83:e3
     hostid: 2
-  - name: ipa
-    v4: "{{ ap_radius_server_ip }}"
-    mac: D6:8B:7F:C5:6C:59
   - name: sinope
     v4: 10.152.4.4
     mac: 02:77:82:c3:82:57
@@ -79,6 +76,11 @@ router_port_redirect:
     ip: 10.152.4.1
     reflection_nets:
       - lan
+  - name: ffgoeremote fastd
+    port: 10000
+    network: srvkallisto
+    ip: 10.152.4.28
+
 
 router_port_allow_ipv6:
   - name: "kallisto-v6"
@@ -141,7 +143,7 @@ router_wireguard_interfaces:
         public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
         allowed_ips:
           - "10.152.22.1/32"
-          - "10.152.12.0/22"
+          - "10.152.8.0/21"
         persistent_keepalive: "25"
         route_allowed_ips: "1"
 
