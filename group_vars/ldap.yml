@@ -32,3 +32,5 @@ openldap_overlays_and_acls:
         action: add
       - path: memberof.ldif
         action: add
+      - path: access_nt.ldif
+        action: add
