@@ -19,4 +19,3 @@ http:
       loadBalancer:
         servers:
           - url: "https://kallisto.int.goe.de.n0emis.eu:8006"
-            insecureSkipVerify: true
