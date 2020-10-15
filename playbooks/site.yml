@@ -94,6 +94,7 @@
     - geerlingguy.nodejs
     - em0lar.mautrix-telegram
     - n0emis.matrix-appservice-irc
+    - n0emis.mautrix-signal
 #    - n0emis.mautrix-whatsapp
   tags: matrix, bridges
 

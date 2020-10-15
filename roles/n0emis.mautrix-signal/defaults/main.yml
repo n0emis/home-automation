@@ -1,0 +1,26 @@
+---
+mautrix_signal_user: "mautrix-signal"
+mautrix_signal_group: "mautrix-signal"
+
+mautrix_signal_port: "29328"
+mautrix_signal_listen: "127.0.0.1"
+mautrix_signal_address: "http://localhost:{{ mautrix_signal_port }}"
+
+mautrix_signal_version: "0.1.0b2"
+#mautrix_signal_pip: "mautrix-signal=={{ mautrix_signal_version }}[all]"
+mautrix_signal_pip: "https://github.com/tulir/mautrix-signal/tarball/master#egg=mautrix-signal[qrlink]"
+
+mautrix_signal_homeserver_domain: "example.com"
+mautrix_signal_homeserver_address: "https://matrix.{{ mautrix_signal_homeserver_domain }}"
+mautrix_signal_homeserver_verify_ssl: "true"
+
+mautrix_signal_config_path: "/etc/mautrix-signal"
+mautrix_signal_venv_path: "/opt/venvs/mautrix-signal"
+mautrix_signal_log_path: "/var/log/mautrix-signal"
+
+mautrix_signal_permissions:
+  "example.com": "admin"
+
+mautrix_signal_provisioning_enabled: false
+
+mautrix_signal_database: "postgres://username:password@hostname/db"

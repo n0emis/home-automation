@@ -1,0 +1,13 @@
+id: signal
+as_token: {{ mautrix_signal_as_token }}
+hs_token: {{ mautrix_signal_hs_token }}
+namespaces:
+  users:
+    - exclusive: true
+      regex: '@signal_.*:{{ mautrix_signal_homeserver_domain }}'
+    - exclusive: true
+      regex: '@signalbot:{{ mautrix_signal_homeserver_domain }}'
+  aliases: []
+url: {{ mautrix_signal_address }}
+sender_localpart: signalbot
+rate_limited: false

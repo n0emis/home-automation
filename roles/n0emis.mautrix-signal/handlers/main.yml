@@ -1,0 +1,5 @@
+---
+- name: restart mautrix-signal
+  service:
+    name: "mautrix-signal"
+    state: restarted

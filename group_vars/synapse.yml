@@ -35,13 +35,14 @@ synapse_additional_listeners: |
 
 synapse_allow_guest_access: true
 
-synapse_pip_version: "1.20.1"
+synapse_pip_version: "1.21.2"
 synapse_pip_packages_additional:
   - "git+https://github.com/chaos-jetzt/matrix-synapse-saml-mapper"
 
 synapse_app_service_config_files:
   - "{{ matrix_appservice_irc_config_path }}/registration.yaml"
   - "{{ mautrix_telegram_config_path }}/registration.yaml"
+  - "{{ mautrix_signal_config_path }}/registration.yaml"
   #- /root/mautrix-whatsapp/registration.yaml
 
 synapse_homeserver_config_extra_options: |
@@ -85,8 +86,23 @@ mautrix_telegram_permissions:
   "*": "relaybot"
   "noemis.me": "full"
   "@n0emis:noemis.me": "admin"
+mautrix_telegram_version: "0.8.1"
 
 matrix_appservice_irc_config_path: "/etc/matrix-appservice-irc"
 matrix_appservice_irc_id: "a82860dfb161240da86e462378c6777b5aff89fbe881e189d892f87b4822b2c2"
 matrix_appservice_irc_as_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-appservice-irc subkey=as_token') }}"
 matrix_appservice_irc_hs_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-appservice-irc subkey=hs_token') }}"
+matrix_appservice_irc_version: "0.20.3"
+
+mautrix_signal_config_path: "/etc/mautrix-signal"
+mautrix_signal_homeserver_domain: "noemis.me"
+mautrix_signal_permissions:
+  "noemis.me": "full"
+  "@n0emis:noemis.me": "admin"
+mautrix_signal_db_name: "mautrixsignal"
+mautrix_signal_db_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal/db subkey=user') }}"
+mautrix_signal_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal/db') }}"
+mautrix_signal_database: "postgres://{{ mautrix_signal_db_user }}:{{ mautrix_signal_db_password }}@localhost/{{ mautrix_signal_db_name }}"
+mautrix_signal_as_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal subkey=as_token') }}"
+mautrix_signal_hs_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal subkey=hs_token') }}"
+

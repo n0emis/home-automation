@@ -1,0 +1,16 @@
+[Unit]
+Description=mautrix-signal service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{ mautrix_signal_venv_path }}
+ExecStart={{ mautrix_signal_venv_path }}/bin/python -m mautrix_signal \
+    -c {{ mautrix_signal_config_path }}/config.yaml \
+    -r {{ mautrix_signal_config_path }}/registration.yaml
+Restart=always
+User={{ mautrix_signal_user }}
+Group={{ mautrix_signal_group }}
+
+[Install]
+WantedBy=multi-user.target

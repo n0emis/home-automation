@@ -1,0 +1,87 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - "python3.8"
+      - "python3.8-dev"
+      - "python3.8-venv"
+    state: present
+
+- name: Add signald key
+  apt_key:
+    url: "https://updates.signald.org/apt-signing-key.asc"
+
+- name: Add signald repository
+  apt_repository:
+    repo: "deb https://updates.signald.org master main"
+    state: present
+
+- name: Install signald
+  apt:
+    name: "signald"
+    update_cache: yes
+
+- name: Create group
+  group:
+    name: "{{ mautrix_signal_group }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ mautrix_signal_user }}"
+    group: "{{ mautrix_signal_group }}"
+    create_home: yes
+    home: "{{ mautrix_signal_venv_path }}"
+
+- name: Create mautrix-signal config directory
+  file:
+    path: "{{ mautrix_signal_config_path }}"
+    recurse: yes
+    state: directory
+    owner: "{{ mautrix_signal_user }}"
+    group: "{{ mautrix_signal_group }}"
+
+- name: Create mautrix-signal log directory
+  file:
+    path: "{{ mautrix_signal_log_path }}"
+    recurse: yes
+    state: directory
+    owner: "{{ mautrix_signal_user }}"
+    group: "{{ mautrix_signal_group }}"
+
+- name: Add mautrix-signal config to host
+  template:
+    src: "config.yaml"
+    dest: "{{ mautrix_signal_config_path }}/config.yaml"
+    owner: "{{ mautrix_signal_user  }}"
+    group: "{{ mautrix_signal_group }}"
+  notify: restart mautrix-signal
+
+- name: Add mautrix-signal registration config to host
+  template:
+    src: "registration.yaml"
+    dest: "{{ mautrix_signal_config_path }}/registration.yaml"
+    owner: "{{ mautrix_signal_user }}"
+    group: "{{ mautrix_signal_group }}"
+
+- name: Install mautrix-signal pip package
+  pip:
+    name: "{{ mautrix_signal_pip }}"
+    virtualenv: "{{ mautrix_signal_venv_path }}"
+    virtualenv_command: "/usr/bin/python3.8 -m venv"
+    state: present
+  register: mautrix_signal_pip_install
+  become_user: "{{ mautrix_signal_user }}"
+  become: true
+
+- name: Add systemd service file for mautrix-signal
+  template:
+    src: "mautrix-signal.service"
+    dest: "/etc/systemd/system/mautrix-signal.service"
+
+- name: Ensure mautrix-signal systemd service is enabled and running
+  systemd:
+    name: "mautrix-signal"
+    daemon_reload: yes
+    enabled: yes
+    state: started
