@@ -15,6 +15,7 @@ synapse_server_fqdn_matrix: "matrix.{{ synapse_domain }}"
 
 synapse_http_listener_enabled: false
 synapse_federation_listener_enabled: false
+synapse_metrics_enabled: true
 synapse_http_listener_port: '85'
 synapse_additional_listeners: |
   # Unsecure HTTP listener (Client API): for when matrix traffic passes through a reverse proxy
@@ -26,7 +27,7 @@ synapse_additional_listeners: |
     x_forwarded: true
 
     resources:
-      - names: [client,federation]
+      - names: [client,federation,metrics]
         compress: false
 
     additional_resources:
