@@ -19,6 +19,12 @@
     - jnv.unattended-upgrades
   tags: base
 
+- hosts: all !not_monitored
+  become: yes
+  roles:
+    - fahrplandatengarten.icinga
+  tags: icinga,monitoring
+
 - hosts: php
   become: yes
   roles:

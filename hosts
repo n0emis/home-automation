@@ -83,3 +83,6 @@ elara.het.nue.de.n0emis.eu
 
 [radius]
 elara.het.nue.de.n0emis.eu
+
+[not_monitored:children]
+openwrt

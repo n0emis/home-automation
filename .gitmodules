@@ -91,3 +91,6 @@
 [submodule "roles/n0emis.louketo"]
 	path = roles/n0emis.louketo
 	url = https://git.n0emis.eu/ansible_roles/louketo
+[submodule "roles/fahrplandatengarten.icinga"]
+	path = roles/fahrplandatengarten.icinga
+	url = https://github.com/FahrplanDatenGarten/ansible-role-icinga
