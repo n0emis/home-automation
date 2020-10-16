@@ -1,0 +1,23 @@
+---
+mautrix_telegram_user: "mautrix-telegram"
+mautrix_telegram_group: "mautrix-telegram"
+
+mautrix_telegram_port: "29317"
+mautrix_telegram_listen: "127.0.0.1"
+mautrix_telegram_address: "http://localhost:{{ mautrix_telegram_port }}"
+
+mautrix_telegram_version: "0.7.2"
+
+mautrix_telegram_homeserver_domain: "example.com"
+mautrix_telegram_homeserver_address: "https://matrix.{{ mautrix_telegram_homeserver_domain }}"
+mautrix_telegram_homeserver_verify_ssl: "true"
+
+mautrix_telegram_config_path: "/etc/mautrix-telegram"
+mautrix_telegram_venv_path: "/opt/venvs/mautrix-telegram"
+mautrix_telegram_database_path: "/var/lib/mautrix-telegram"
+mautrix_telegram_log_path: "/var/log/mautrix-telegram"
+
+mautrix_telegram_permissions:
+  "example.com": "admin"
+
+mautrix_telegram_provisioning_enabled: false

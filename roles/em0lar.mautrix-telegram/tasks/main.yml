@@ -1,0 +1,77 @@
+---
+- name: Create group
+  group:
+    name: "{{ mautrix_telegram_group }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ mautrix_telegram_user }}"
+    group: "{{ mautrix_telegram_group }}"
+    create_home: yes
+    home: "{{ mautrix_telegram_venv_path }}"
+
+- name: Create mautrix-telegram config directory
+  file:
+    path: "{{ mautrix_telegram_config_path }}"
+    recurse: yes
+    state: directory
+    owner: "{{ mautrix_telegram_user }}"
+    group: "{{ mautrix_telegram_group }}"
+
+- name: Create mautrix-telegram database directory
+  file:
+    path: "{{ mautrix_telegram_database_path }}"
+    recurse: yes
+    state: directory
+    owner: "{{ mautrix_telegram_user }}"
+    group: "{{ mautrix_telegram_group }}"
+
+- name: Create mautrix-telegram log directory
+  file:
+    path: "{{ mautrix_telegram_log_path }}"
+    recurse: yes
+    state: directory
+    owner: "{{ mautrix_telegram_user }}"
+    group: "{{ mautrix_telegram_group }}"
+
+- name: Add mautrix-telegram config to host
+  template:
+    src: "config.yaml"
+    dest: "{{ mautrix_telegram_config_path }}/config.yaml"
+    owner: "{{ mautrix_telegram_user  }}"
+    group: "{{ mautrix_telegram_group }}"
+
+- name: Add mautrix-telegram registration config to host
+  template:
+    src: "registration.yaml"
+    dest: "{{ mautrix_telegram_config_path }}/registration.yaml"
+    owner: "{{ mautrix_telegram_user }}"
+    group: "{{ mautrix_telegram_group }}"
+
+- name: Install mautrix-telegram pip package
+  pip:
+    name: "mautrix-telegram=={{ mautrix_telegram_version }}"
+    virtualenv: "{{ mautrix_telegram_venv_path }}"
+    virtualenv_command: "/usr/bin/python3 -m venv"
+    state: present
+  register: mautrix_telegram_pip_install
+  become_user: "{{ mautrix_telegram_user }}"
+  become: true
+
+#- name: Create mautrix-telegram database
+#  shell: "/opt/matrix-synapse/.venv/bin/alembic -x config=/opt/matrix-synapse/appservices/telegram/config.yaml upgrade head"
+#  when: mautrix_telegram_pip_install.changed
+#  become_user: synapse
+
+- name: Add systemd service file for mautrix-telegram
+  template:
+    src: "mautrix-telegram.service"
+    dest: "/etc/systemd/system/mautrix-telegram.service"
+
+- name: Ensure mautrix-telegram systemd service is enabled and running
+  systemd:
+    name: "mautrix-telegram"
+    daemon_reload: yes
+    enabled: yes
+    state: started

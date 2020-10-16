@@ -1,0 +1,16 @@
+[Unit]
+Description=mautrix-telegram service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{ mautrix_telegram_venv_path }}
+ExecStart={{ mautrix_telegram_venv_path }}/bin/python -m mautrix_telegram \
+    -c {{ mautrix_telegram_config_path }}/config.yaml \
+    -r {{ mautrix_telegram_config_path }}/registration.yaml
+Restart=always
+User={{ mautrix_telegram_user }}
+Group={{ mautrix_telegram_group }}
+
+[Install]
+WantedBy=multi-user.target

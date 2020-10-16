@@ -64,6 +64,11 @@ synapse_homeserver_config_extra_options: |
     client_whitelist:
       - "https://noemis.me/"
 
+  federation_metrics_domains:
+    - matrix.org
+    - chaos.jetzt
+    - labcode.de
+
 synapse_turn_uris:
   - "turn:turn.n0emis.eu:3479?transport=udp"
   - "turn:turn.n0emis.eu:3479?transport=tcp"
