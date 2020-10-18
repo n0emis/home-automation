@@ -86,6 +86,12 @@
       ignore_errors: yes
   tags: traefik
 
+- hosts: minio
+  become: yes
+  roles:
+    - atosatto.minio
+  tags: minio
+
 - hosts: synapse
   become: yes
   roles:

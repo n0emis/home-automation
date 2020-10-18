@@ -94,3 +94,6 @@
 [submodule "roles/fahrplandatengarten.icinga"]
 	path = roles/fahrplandatengarten.icinga
 	url = https://github.com/FahrplanDatenGarten/ansible-role-icinga
+[submodule "roles/atosatto.minio"]
+	path = roles/atosatto.minio
+	url = https://github.com/atosatto/ansible-minio

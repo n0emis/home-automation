@@ -1,0 +1,6 @@
+---
+minio_server_datadirs:
+  - /var/lib/minio
+
+minio_access_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/minio subkey=user') }}"
+minio_secret_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/minio') }}"

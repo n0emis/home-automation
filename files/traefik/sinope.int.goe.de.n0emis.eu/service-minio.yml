@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-minio-http:
+      rule: "Host(`minio.n0emis.eu`)"
+      service: "service-minio@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-minio-https:
+      rule: "Host(`minio.n0emis.eu`)"
+      service: "service-minio@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-minio:
+      loadBalancer:
+        servers:
+          - url: "http://metis.int.goe.de.n0emis.eu:9091"
