@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020100101 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020101802 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -8,70 +8,71 @@ $ORIGIN n0emis.eu.
 )
 
 ;; NS
-@                           3600    IN  NS      ns
-@                           3600    IN  NS      ns2
-dyn                         3600    IN  NS      elara.het.nue.de.n0emis.eu.
+@				3600	IN	NS	ns
+@				3600	IN	NS	ns2
+dyn				3600	IN	NS	elara.het.nue.de.n0emis.eu.
 
-ns                                  IN  A       {{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}
-ns                                  IN  AAAA    {{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}
+ns					IN	A	{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}
+ns					IN	AAAA	{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}
 
-ns2                                 IN  A       {{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}
-ns2                                 IN  AAAA    {{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}
+ns2					IN	A	{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}
+ns2					IN	AAAA	{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}
 
 ;; Server
 ;;;; Cloud
-elara.het.nue.de            3600    IN	A	    78.46.251.132
-elara.het.nue.de            3600    IN	AAAA	2a01:4f8:c0c:34bc::1
+elara.het.nue.de		3600	IN	A	78.46.251.132
+elara.het.nue.de		3600	IN	AAAA	2a01:4f8:c0c:34bc::1
 
-ganymed.het.hel.fi          3600    IN	A	    95.217.163.175
-ganymed.het.hel.fi          3600    IN	AAAA	2a01:4f9:c010:7b6e::1
+ganymed.het.hel.fi		3600	IN	A	95.217.163.175
+ganymed.het.hel.fi		3600	IN	AAAA	2a01:4f9:c010:7b6e::1
 
-himalia.ion.rhr.de          3600    IN  A       212.227.174.29
-himalia.ion.rhr.de          3600    IN  AAAA    2001:8d8:1800:30e::1
+himalia.ion.rhr.de		3600	IN	A	212.227.174.29
+himalia.ion.rhr.de		3600	IN	AAAA	2001:8d8:1800:30e::1
 
-jetzt-dev.het.nue.de        3600	IN	A	    94.130.107.245
-jetzt-dev.het.nue.de        3600	IN	AAAA	2a01:4f8:c0c:83eb::1
+jetzt-dev.het.nue.de		3600	IN	A	94.130.107.245
+jetzt-dev.het.nue.de		3600	IN	AAAA	2a01:4f8:c0c:83eb::1
 
 ;;;; Uberspace - russel
-@                           3600	IN	A	    185.26.156.94
-@                           3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
+@				3600	IN	A	185.26.156.94
+@				3600	IN	AAAA	2a00:d0c0:200:0:b9:1a:9c:5d
 
 ;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.
-kallisto.int.goe.de         3600    IN  CNAME   kallisto.int.goe.de.dyn.n0emis.eu.
-io.int.goe.de               3600    IN  CNAME   io.int.goe.de.dyn.n0emis.eu.
-sinope.int.goe.de           3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
+kallisto.int.goe.de		3600	IN	CNAME	kallisto.int.goe.de.dyn.n0emis.eu.
+io.int.goe.de			3600	IN	CNAME	io.int.goe.de.dyn.n0emis.eu.
+sinope.int.goe.de		3600	IN	CNAME	sinope.int.goe.de.dyn.n0emis.eu.
+metis.int.goe.de		3600	IN	CNAME	sinope.int.goe.de
 
 ;; MAIL
 ;;;; MX
-@                           {{ dns_mx }}
-ca                          {{ dns_mx }}
-dev                         {{ dns_mx }}
-services                    {{ dns_mx }}
+@				{{ dns_mx }}
+ca				{{ dns_mx }}
+dev				{{ dns_mx }}
+services			{{ dns_mx }}
 
 ;;;; SRV
-_autodiscover._tcp          3600    IN  SRV 1   10  443 ganymed.het.hel.fi.n0emis.eu.
+_autodiscover._tcp		3600	IN	SRV 	110 443 ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; DKIM
-dkim._domainkey             {{ dns_dkim }}
-dkim._domainkey.ca          {{ dns_dkim }}
-dkim._domainkey.dev         {{ dns_dkim }}
-dkim._domainkey.services    {{ dns_dkim }}
+dkim._domainkey			{{ dns_dkim }}
+dkim._domainkey.ca		{{ dns_dkim }}
+dkim._domainkey.dev		{{ dns_dkim }}
+dkim._domainkey.services	{{ dns_dkim }}
 
 ;;;; DMARC
-_dmarc                      {{ dns_dmarc }}
-_dmarc.ca                   {{ dns_dmarc }}
-_dmarc.dev                  {{ dns_dmarc }}
-_dmarc.services             {{ dns_dmarc }}
+_dmarc				{{ dns_dmarc }}
+_dmarc.ca			{{ dns_dmarc }}
+_dmarc.dev			{{ dns_dmarc }}
+_dmarc.services			{{ dns_dmarc }}
 
 ;;;; SPF
-@                           {{ dns_spf }}
-ca                          {{ dns_spf }}
-dev                         {{ dns_spf }}
-services                    {{ dns_spf }}
+@				{{ dns_spf }}
+ca				{{ dns_spf }}
+dev				{{ dns_spf }}
+services			{{ dns_spf }}
 
 ;;;; CNAME
-autoconfig                  3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-autodiscover                3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autoconfig			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autodiscover			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 _acme-challenge.kallisto.int.goe.de	3600	IN	CNAME	05cea2be-f516-43ec-a793-5f8d0293c540.auth.acme-dns.io.
 
 ;;;; TLSA
@@ -86,40 +87,42 @@ _995._tcp.{{ dns_tlsa }}
 _4190._tcp.{{ dns_tlsa }}
 
 ;; CAA
-*	                        3600    IN  CAA 0   issue "letsencrypt.org"
-@	                        3600    IN  CAA 0   issue "letsencrypt.org"
+*				3600	IN	CAA 	0 issue "letsencrypt.org"
+@				3600	IN	CAA 	0 issue "letsencrypt.org"
 
 ;; TXT
 
 ;; Pages
-www                         3600    IN  CNAME   russel.uberspace.de.
+www				3600	IN	CNAME	russel.uberspace.de.
 
-mail                        3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-smtp                        3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-imap                        3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+mail				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+smtp				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+imap				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 
-git                         3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
-netbox                      3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
-auth                        3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
-keycloak                    3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
-lg                          3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
-turn                        3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+git				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+netbox				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+auth				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+keycloak			3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+lg				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+turn				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 
-md                          3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
-wolke                       3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
-cloud                       3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
-home                        3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
-build                       3600    IN  CNAME   sinope.int.goe.de.dyn.n0emis.eu.
+md				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
+wolke				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
+cloud				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
+home				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
+build				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
 
-cgvpn                       3600    IN  CNAME   himalia.ion.rhr.de.n0emis.eu.
-dn42                        3600    IN  CNAME   himalia.ion.rhr.de.n0emis.eu.
-himalia.dn42                3600    IN  CNAME   himalia.ion.rhr.de.n0emis.eu.
+cgvpn				3600    IN	CNAME	himalia.ion.rhr.de.n0emis.eu.
+dn42				3600    IN	CNAME	himalia.ion.rhr.de.n0emis.eu.
+himalia.dn42			3600    IN	CNAME	himalia.ion.rhr.de.n0emis.eu.
+
+minio				3600	IN	CNAME	metis.int.goe.de.n0emis.eu.
 
 ;;;; For migration purposes
-ganymed.het.hel.fl          3600    IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-mail.het.hel.fl             3600    IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-mail.het.hel.fi             3600    IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
-elara.het.nbg.de            3600    IN  CNAME   elara.het.nue.de.n0emis.eu.
+ganymed.het.hel.fl		3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+mail.het.hel.fl			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+mail.het.hel.fi			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+elara.het.nbg.de		3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 
 ;;;; As a sub-CNAME for *.dev.chaos.jetzt
 jetzt-dev                   3600	IN	CNAME	jetzt-dev.het.nue.de.n0emis.eu.
