@@ -1,0 +1,53 @@
+---
+- name: Create group
+  group:
+    name: "{{ matrix_media_repo_group }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ matrix_media_repo_user }}"
+    group: "{{ matrix_media_repo_group }}"
+    create_home: yes
+    home: "{{ matrix_media_repo_path }}"
+
+- name: Create required folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ matrix_media_repo_user }}"
+    group: "{{ matrix_media_repo_group }}"
+  loop:
+    - "{{ matrix_media_repo_path }}"
+    - "{{ matrix_media_repo_log_path }}"
+
+- name: Download matrix-media-repo
+  get_url:
+    url: "{{ matrix_media_repo_download_path }}/{{ item }}"
+    dest: "{{ matrix_media_repo_path }}"
+  loop: "{{ matrix_media_repo_downloads }}"
+  notify: restart matrix-media-repo
+
+- name: Make matrix-media-repo executable
+  file:
+    path: "{{ matrix_media_repo_path }}/{{ item }}"
+    mode: "a+x"
+  loop: "{{ matrix_media_repo_downloads }}"
+
+- name: Copy config file
+  template:
+    src: "matrix-media-repo.yaml.j2"
+    dest: "{{ matrix_media_repo_config_file }}"
+  notify: restart matrix-media-repo
+
+- name: Copy systemd-service file
+  template:
+    src: "matrix-media-repo.service.j2"
+    dest: "/etc/systemd/system/matrix-media-repo.service"
+
+- name: Start and enable matrix-media-repo
+  service:
+    name: "matrix-media-repo"
+    state: started
+    enabled: yes
+    daemon_reload: yes

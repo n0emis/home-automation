@@ -1,0 +1,39 @@
+repo:
+  # Generally the bind address should be local as the media repo should be
+  # behind a reverse proxy.
+  bindAddress: '{{ matrix_media_repo_listen }}'
+  port: {{ matrix_media_repo_port }}
+  logDirectory: "{{ matrix_media_repo_log_path }}"
+
+database:
+  # Currently only PostgreSQL is supported. This is *not* the same as your
+  # homeserver's database.
+  postgres: "postgres://{{ matrix_media_repo_db_user }}:{{ matrix_media_repo_db_password }}@localhost/{{ matrix_media_repo_db_name }}"
+
+homeservers:
+  - name: matrix.noemis.me
+    csApi: "https://matrix.noemis.me"
+
+admins:
+  - "@n0emis:noemis.me"
+
+datastores:
+  - type: s3
+    enabled: true
+    forKinds: ["all"]
+    opts:
+      tempPath: "/tmp/mediarepo_s3_upload"
+      endpoint: minio.n0emis.eu
+      accessKeyId: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio subkey=user') }}"
+      accessSecret: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio') }}"
+      ssl: true
+      bucketName: "matrix.noemis.me-media"
+
+downloads:
+  cache:
+    enabled: false
+
+metrics:
+  enabled: true
+  bindAddress: "0.0.0.0"
+  port: 9111

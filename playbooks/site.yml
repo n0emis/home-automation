@@ -103,6 +103,12 @@
 - hosts: synapse
   become: yes
   roles:
+    - n0emis.matrix-media-repo
+  tags: matrix, mediarepo
+
+- hosts: synapse
+  become: yes
+  roles:
     - geerlingguy.nodejs
     - em0lar.mautrix-telegram
     - n0emis.matrix-appservice-irc

@@ -14,6 +14,8 @@ postgresql_users:
     password: "{{ gitea_db_password }}"
   - name: "{{ mautrix_signal_db_user }}"
     password: "{{ mautrix_signal_db_password }}"
+  - name: "{{ matrix_media_repo_db_user }}"
+    password: "{{ matrix_media_repo_db_password }}"
 postgresql_databases:
   - name: "{{ synapse_database_database }}"
     owner: "{{ synapse_database_user }}"
@@ -27,6 +29,8 @@ postgresql_databases:
     owner: "{{ gitea_db_user }}"
   - name: "{{ mautrix_signal_db_name }}"
     owner: "{{ mautrix_signal_db_user }}"
+  - name: "{{ matrix_media_repo_db_user }}"
+    owner: "{{ matrix_media_repo_db_name }}"
 
 coturn_static_auth_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/coturn') }}"
 coturn_realm: "turn.n0emis.eu"

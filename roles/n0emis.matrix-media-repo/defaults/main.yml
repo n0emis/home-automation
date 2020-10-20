@@ -1,0 +1,18 @@
+---
+matrix_media_repo_user: "matrix-media-repo"
+matrix_media_repo_group: "{{ matrix_media_repo_user }}"
+matrix_media_repo_path: "/opt/matrix-media-repo"
+matrix_media_repo_log_path: "/var/log/matrix-media-repo"
+matrix_media_repo_config_file: "/etc/matrix-media-repo.yaml"
+
+matrix_media_repo_listen: 127.0.0.1
+matrix_media_repo_port: 8000
+
+matrix_media_repo_version: "1.2.0"
+
+matrix_media_repo_download_path: "https://github.com/turt2live/matrix-media-repo/releases/download/v{{ matrix_media_repo_version }}"
+matrix_media_repo_downloads:
+  - "gdpr_export-linux-x64"
+  - "gdpr_import-linux-x64"
+  - "import_synapse-linux-x64"
+  - "media_repo-linux-x64"

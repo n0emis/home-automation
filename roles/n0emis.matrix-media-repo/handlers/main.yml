@@ -1,0 +1,5 @@
+---
+- name: restart matrix-media-repo
+  service:
+    name: matrix-media-repo
+    state: restarted

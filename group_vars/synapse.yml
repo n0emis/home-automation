@@ -81,6 +81,12 @@ coturn_tls: True
 coturn_tls_cert: /etc/ssl/certs/turn.n0emis.eu.crt
 coturn_tls_key: /etc/ssl/private/turn.n0emis.eu.key
 
+## Matrix-Media-Repo
+matrix_media_repo_db_name: "mediarepo"
+matrix_media_repo_db_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-media-repo/db subkey=user') }}"
+matrix_media_repo_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-media-repo/db') }}"
+matrix_media_repo_port: 8001
+
 ## Bridges/Appservices
 mautrix_telegram_config_path: "/etc/mautrix-telegram"
 mautrix_telegram_homeserver_domain: "noemis.me"
@@ -111,4 +117,3 @@ mautrix_signal_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn 
 mautrix_signal_database: "postgres://{{ mautrix_signal_db_user }}:{{ mautrix_signal_db_password }}@localhost/{{ mautrix_signal_db_name }}"
 mautrix_signal_as_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal subkey=as_token') }}"
 mautrix_signal_hs_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/mautrix-signal subkey=hs_token') }}"
-

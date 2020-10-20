@@ -1,0 +1,14 @@
+[Unit]
+Description=matrix-media-repo service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{ matrix_media_repo_path }}
+ExecStart={{ matrix_media_repo_path }}/media_repo-linux-x64 -config {{ matrix_media_repo_config_file }}
+Restart=always
+User={{ matrix_media_repo_user }}
+Group={{ matrix_media_repo_group }}
+
+[Install]
+WantedBy=multi-user.target
