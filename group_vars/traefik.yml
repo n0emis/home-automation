@@ -27,3 +27,7 @@ traefik_dashboard:
 
 traefik_dynamic_config_files_paths:
   - "traefik/{{ ansible_fqdn }}/*"
+  - "traefik/all/*"
+
+traefik_metrics_prometheus:
+  manualRouting: true
