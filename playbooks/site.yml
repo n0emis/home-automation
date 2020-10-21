@@ -100,11 +100,11 @@
     - systemli.coturn
   tags: synapse, matrix
 
-- hosts: synapse
-  become: yes
-  roles:
-    - n0emis.matrix-media-repo
-  tags: matrix, mediarepo
+#- hosts: synapse
+#  become: yes
+#  roles:
+#    - n0emis.matrix-media-repo
+#  tags: matrix, mediarepo
 
 - hosts: synapse
   become: yes

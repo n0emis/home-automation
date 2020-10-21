@@ -14,19 +14,19 @@ http:
         - "https"
       tls:
         certResolver: "le_http"
-    service-mmr-https:
-      rule: "Host(`matrix.noemis.me`) && PathPrefix(`/_matrix/media`)"
-      service: "service-mmr@file"
-      entryPoints:
-        - "https"
-      tls:
-        certResolver: "le_http"
+#    service-mmr-https:
+#      rule: "Host(`matrix.noemis.me`) && PathPrefix(`/_matrix/media`)"
+#      service: "service-mmr@file"
+#      entryPoints:
+#        - "https"
+#      tls:
+#        certResolver: "le_http"
   services:
     service-synapse:
       loadBalancer:
         servers:
           - url: "http://localhost:{{ synapse_http_listener_port }}"
-    service-mmr:
-      loadBalancer:
-        servers:
-          - url: "http://localhost:{{ matrix_media_repo_port }}"
+#    service-mmr:
+#      loadBalancer:
+#        servers:
+#          - url: "http://localhost:{{ matrix_media_repo_port }}"
