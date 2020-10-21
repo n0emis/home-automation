@@ -39,6 +39,7 @@ synapse_allow_guest_access: true
 synapse_pip_version: "1.21.2"
 synapse_pip_packages_additional:
   - "git+https://github.com/chaos-jetzt/matrix-synapse-saml-mapper"
+  - "git+https://github.com/matrix-org/synapse-s3-storage-provider"
 
 synapse_app_service_config_files:
   - "{{ matrix_appservice_irc_config_path }}/registration.yaml"
@@ -68,6 +69,17 @@ synapse_homeserver_config_extra_options: |
     - matrix.org
     - chaos.jetzt
     - labcode.de
+
+  media_storage_providers:
+  - module: s3_storage_provider.S3StorageProviderBackend
+    store_local: True
+    store_remote: True
+    store_synchronous: True
+    config:
+      bucket: matrix.noemis.me-media
+      endpoint_url: https://minio.n0emis.eu
+      access_key_id: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio subkey=user') }}"
+      secret_access_key: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio') }}"
 
 synapse_turn_uris:
   - "turn:turn.n0emis.eu:3479?transport=udp"
