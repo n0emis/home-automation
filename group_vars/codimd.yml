@@ -23,3 +23,15 @@ codimd_saml:
   attributes:
     email: "email"
     username: "username"
+
+codimd_upload_type: "minio"
+codimd_additional_config: |
+  "minio": {
+    "accessKey": "koo6voo5naibi2taoZ2eex7rajied8ii",
+    "secretKey": "OSie2Aid3phoo8gaiwo2oow4viwohf4see7aix7jah8reephue6ohlais5aeThie",
+    "endPoint": "minio.n0emis.eu",
+    "port": 443,
+    "secure": true
+  },
+  "s3bucket": "md.n0emis.eu-codimd"
+
