@@ -22,4 +22,5 @@ louketo_instances:
       - uri: /*
         roles:
           - upload:access
+      forbidden-page: /etc/louketo/forbidden.html
     state: present

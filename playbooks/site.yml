@@ -150,6 +150,11 @@
   become: yes
   roles:
     - n0emis.louketo
+  tasks:
+    - name: Copy forbidden template
+      copy:
+        src: "files/louketo/forbidden.html"
+        dest: "{{ louketo_config_path }}/forbidden.html"
   tags: louketo
 
 - hosts: git
