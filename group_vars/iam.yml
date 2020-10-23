@@ -4,6 +4,7 @@ keycloak_postgresql_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqd
 keycloak_postgresql_database: "keycloak"
 keycloak_admin_password: "{{ lookup('passwordstore', 'auth.n0emis.eu/admin') }}"
 keycloak_configure_firewall: false
+keycloak_bind_address: 127.0.0.1
 keycloak_http_port: 8081
 keycloak_welcome_theme: "n0emis-keycloak-theme"
 keycloak_profile_preview: true
@@ -12,3 +13,6 @@ keycloak_version: 11.0.2
 #keycloak_url: "https://home.noemis.me/tmp/keycloak-11.0.0-patched.zip"
 
 #keycloak_java_opts: "-Xms512m -Xmx1024m -XX:MaxPermSize=768m"
+
+keycloak_registration_captcha_version: "1.1.0"
+keycloak_registration_captcha_url: "https://github.com/chaos-jetzt/keycloak-registration-captcha/releases/download/v{{ keycloak_registration_captcha_version }}/registration-captcha.jar"
