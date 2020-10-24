@@ -252,4 +252,14 @@ dn42_peers:
       endpoint: "de2.g-load.eu:20197"
       pubkey: "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/kioubit') }}"
+  - name: "e1mo"
+    as: "4242420565"
+    v4: "172.20.229.160"
+    v6: "fded:e0fd:5fe::1"
+    multiprotocol: yes
+    wg:
+      port: "50565"
+      endpoint: "rout1.nue.het.de.net.srv.dont-break.it:51821"
+      pubkey: "LjXwHWJXz5koYyVsZ0UjSHr/zpxIUz/dPzucJSFSDUg="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/e1mo') }}"
 
