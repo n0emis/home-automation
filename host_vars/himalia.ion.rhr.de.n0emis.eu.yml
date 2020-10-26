@@ -237,7 +237,7 @@ dn42_peers:
       v6: "fe80::43:42:1"
     wg:
       port: "50565"
-      endpoint: "rout1.nue.het.de.net.srv.dont-break.it:51821"
+      endpoint: "de-fra1.dn42.net.dont-break.it:20197"
       pubkey: "LjXwHWJXz5koYyVsZ0UjSHr/zpxIUz/dPzucJSFSDUg="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/e1mo') }}"
 
