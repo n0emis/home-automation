@@ -1,0 +1,21 @@
+$ORIGIN n0emis.dn42.
+@ 3600 IN SOA ns.n0emis.dn42. noc.n0emis.eu. (
+    2020102501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    3600       ; minimum (1 hour)
+)
+
+;; NS
+@				3600	IN	NS	ns
+
+ns					IN	A	172.20.190.96
+ns					IN	AAAA	fdf4:2331:fa09::1
+
+;; Server
+himalia				IN	A	172.20.190.96
+himalia				IN	AAAA	fdf4:2331:fa09::1
+
+;; Pages
+@					IN	CNAME	himalia

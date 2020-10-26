@@ -97,3 +97,9 @@
 [submodule "roles/atosatto.minio"]
 	path = roles/atosatto.minio
 	url = https://github.com/atosatto/ansible-minio
+[submodule "roles/powerdns.pdns"]
+	path = roles/powerdns.pdns
+	url = https://github.com/PowerDNS/pdns-ansible
+[submodule "roles/powerdns.pdns_recursor"]
+	path = roles/powerdns.pdns_recursor
+	url = https://github.com/PowerDNS/pdns_recursor-ansible

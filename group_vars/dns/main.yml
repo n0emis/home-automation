@@ -3,3 +3,58 @@ dns_dmarc:  '3600	IN  TXT "v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n
 dns_mx:     '3600	IN  MX  1 ganymed.het.hel.fi.n0emis.eu.'
 dns_spf:    '3600	IN	TXT "v=spf1 mx ~all"'
 dns_tlsa:   'ganymed.het.hel.fi.n0emis.eu. 3600 IN TLSA 3 1 1 C9C26F6BBC3DE806274AF05FDCE17EB019A6C2FB7281BF5559F5DEDC C07683CB'
+
+powerdns_config_directory: "/etc/powerdns"
+
+pdns_install_repo: "{{ pdns_auth_powerdns_repo_43 }}"
+pdns_config:
+  master: yes
+  expand-alias: yes
+  loglevel: 10
+  local-port: 5300
+
+pdns_backends:
+  bind:
+    config: "{{ powerdns_config_directory }}/named.conf"
+    check-interval: 60
+
+pdns_backends_packages:
+  bind: pdns-backend-bind
+  geo: pdns-backend-geo
+  geoip: pdns-backend-geoip
+  gmysql: pdns-backend-mysql
+  gpgsql: pdns-backend-pgsql
+  gsqlite3: pdns-backend-sqlite3
+  ldap: pdns-backend-ldap
+  lmdb: pdns-backend-lmdb
+  lua: pdns-backend-lua
+  mydns: pdns-backend-mydns
+  pipe: pdns-backend-pipe
+  remote: pdns-backend-remote
+  tinydns: pdns-backend-tinydns
+
+pdns_rec_forward_dn42: "212.227.174.29;2001:8d8:1800:30e::1"
+pdns_rec_forward_cccgoe: "{{ pdns_rec_forward_dn42 }}"
+pdns_rec_forward_dyn: "78.46.251.132;2a01:4f8:c0c:34bc::1"
+
+pdns_rec_service_overrides: {}
+pdns_rec_config:
+  allow-from: "0.0.0.0/0, ::/0"
+  local-address: "0.0.0.0:53 [::]:53"
+  dont-query: "192.168.0.0/16, ::1/128, fe80::/10"
+  forward-zones:
+    - "n0emis.eu=127.0.0.1:5300"
+    - "dyn.n0emis.eu=127.0.0.1:5300"
+    - "noemis.me=127.0.0.1:5300"
+    - "n0emis.dn42=127.0.0.1:5300"
+
+    - "dn42={{ pdns_rec_forward_dn42 }}"
+    - "d.f.ip6.arpa={{ pdns_rec_forward_dn42 }}"
+    - "20.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+    - "21.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+    - "22.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+    - "23.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+
+    - "cccgoe={{ pdns_rec_forward_cccgoe }}"
+    - "7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa={{ pdns_rec_forward_cccgoe }}"
+

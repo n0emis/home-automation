@@ -49,3 +49,5 @@ louketo_instances:
         - uri: /login*
         - uri: /admin/login*
     state: present
+
+pdns_rec_forward_dyn: "127.0.0.1:5300"

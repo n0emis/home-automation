@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020101802 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020102501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -12,11 +12,11 @@ $ORIGIN n0emis.eu.
 @				3600	IN	NS	ns2
 dyn				3600	IN	NS	elara.het.nue.de.n0emis.eu.
 
-ns					IN	A	{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}
-ns					IN	AAAA	{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}
+ns					IN	A	78.46.251.132
+ns					IN	AAAA	2a01:4f8:c0c:34bc::1
 
-ns2					IN	A	{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}
-ns2					IN	AAAA	{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}
+ns2					IN	A	95.217.163.175
+ns2					IN	AAAA	2a01:4f9:c010:7b6e::1
 
 ;; Server
 ;;;; Cloud

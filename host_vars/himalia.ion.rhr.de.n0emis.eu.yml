@@ -69,33 +69,9 @@ wireguard_wg_client_peers:
     public_key: "MghE8GgmfP3oRBUqM67lovJyKg1X0glocpvBkKQ0sAA="
     allowed_ips: "10.152.10.1"
 
-### DNSMASQ
-dnsmasq_dnsmasq_conf:
-  - |
-    port=53
-    bind-interfaces
-    except-interface=dn42_*
-
-dnsmasq_dnsmasq_d_files_present:
-  dn42:
-    - address=/himalia.n0emis.dn42/{{ dn42_local_v4 }}
-    - address=/himalia.n0emis.dn42/{{ dn42_local_v6 }}
-    - "server=/n0emis.dn42/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.dn42/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
-    - server=/dn42/172.20.0.53
-    - server=/20.172.in-addr.arpa/172.20.0.53
-    - server=/21.172.in-addr.arpa/172.20.0.53
-    - server=/22.172.in-addr.arpa/172.20.0.53
-    - server=/23.172.in-addr.arpa/172.20.0.53
-    - server=/d.f.ip6.arpa/fd42:d42:d42:54::1
-  cccgoe:
-    - server=/cccgoe/fdf8:7e7f:d097:9900::1
-    - server=/7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa/fdf8:7e7f:d097:9900::1
-  n0emis:
-    - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/n0emis.eu/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
-    - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv4.address }}"
-    - "server=/noemis.me/{{ hostvars['elara.het.nue.de.n0emis.eu'].ansible_default_ipv6.address }}"
+### DNS
+pdns_rec_forward_dn42: "172.20.0.53;fd42:d42:d42:54::1"
+pdns_rec_forward_cccgoe: "fdf8:7e7f:d097:9900::1"
 
 ### LOOKING GLASS
 bird_lg_webservice_enabled: no
@@ -255,8 +231,10 @@ dn42_peers:
   - name: "e1mo"
     as: "4242420565"
     v4: "172.20.229.160"
-    v6: "fded:e0fd:5fe::1"
+    v6: "fe80::43:1"
     multiprotocol: yes
+    if:
+      v6: "fe80::43:42:1"
     wg:
       port: "50565"
       endpoint: "rout1.nue.het.de.net.srv.dont-break.it:51821"
