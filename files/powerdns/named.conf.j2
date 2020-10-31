@@ -17,6 +17,11 @@ zone "n0emis.dn42" IN {
     file "zones/n0emis.dn42";
 };
 
+zone "n0emis.tk" IN {
+    type master;
+    file "zones/n0emis.tk";
+};
+
 {% if ansible_fqdn == dyndns_host %}
 zone "dyn.n0emis.eu" IN {
     type master;

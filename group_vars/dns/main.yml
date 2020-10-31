@@ -11,7 +11,8 @@ pdns_config:
   master: yes
   expand-alias: yes
   loglevel: 10
-  local-port: 5300
+  local-port: 53
+  resolver: 1.1.1.1
 
 pdns_backends:
   bind:
@@ -33,28 +34,29 @@ pdns_backends_packages:
   remote: pdns-backend-remote
   tinydns: pdns-backend-tinydns
 
-pdns_rec_forward_dn42: "212.227.174.29;2001:8d8:1800:30e::1"
-pdns_rec_forward_cccgoe: "{{ pdns_rec_forward_dn42 }}"
-pdns_rec_forward_dyn: "78.46.251.132;2a01:4f8:c0c:34bc::1"
-
-pdns_rec_service_overrides: {}
-pdns_rec_config:
-  allow-from: "0.0.0.0/0, ::/0"
-  local-address: "0.0.0.0:53 [::]:53"
-  dont-query: "192.168.0.0/16, ::1/128, fe80::/10"
-  forward-zones:
-    - "n0emis.eu=127.0.0.1:5300"
-    - "dyn.n0emis.eu=127.0.0.1:5300"
-    - "noemis.me=127.0.0.1:5300"
-    - "n0emis.dn42=127.0.0.1:5300"
-
-    - "dn42={{ pdns_rec_forward_dn42 }}"
-    - "d.f.ip6.arpa={{ pdns_rec_forward_dn42 }}"
-    - "20.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
-    - "21.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
-    - "22.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
-    - "23.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
-
-    - "cccgoe={{ pdns_rec_forward_cccgoe }}"
-    - "7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa={{ pdns_rec_forward_cccgoe }}"
+#pdns_rec_forward_dn42: "212.227.174.29;2001:8d8:1800:30e::1"
+#pdns_rec_forward_cccgoe: "{{ pdns_rec_forward_dn42 }}"
+#pdns_rec_forward_dyn: "78.46.251.132;2a01:4f8:c0c:34bc::1"
+#
+#pdns_rec_service_overrides: {}
+#pdns_rec_config:
+#  allow-from: "0.0.0.0/0, ::/0"
+#  local-address: "0.0.0.0:53 [::]:53"
+#  dont-query: "192.168.0.0/16, ::1/128, fe80::/10"
+#  forward-zones:
+#    - "n0emis.eu=127.0.0.1:5300"
+#    - "dyn.n0emis.eu=127.0.0.1:5300"
+#    - "noemis.me=127.0.0.1:5300"
+#    - "n0emis.tk=127.0.0.1:5300"
+#    - "n0emis.dn42=127.0.0.1:5300"
+#
+#    - "dn42={{ pdns_rec_forward_dn42 }}"
+#    - "d.f.ip6.arpa={{ pdns_rec_forward_dn42 }}"
+#    - "20.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+#    - "21.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+#    - "22.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+#    - "23.172.in-addr.arpa={{ pdns_rec_forward_dn42 }}"
+#
+#    - "cccgoe={{ pdns_rec_forward_cccgoe }}"
+#    - "7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa={{ pdns_rec_forward_cccgoe }}"
 

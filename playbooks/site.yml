@@ -7,7 +7,7 @@
   become: yes
   roles:
     - powerdns.pdns
-    - powerdns.pdns_recursor
+#    - powerdns.pdns_recursor
   handlers:
     - name: restart pdns
       service:
