@@ -59,6 +59,10 @@ wireguard_dn42-n0emis_peers:
   adrastea:
     public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
     allowed_ips: "fdf4:2331:fa09::2:2/128, 172.20.190.126"
+  io:
+    endpoint: io.int.goe.de.dyn.n0emis.eu:30002
+    public_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn subkey=user') }}"
+    allowed_ips: "fdf4:2331:fa09:4::/63, fdf4:2331:fa09::2:3/128, 172.20.190.125"
 
 wireguard_wg_client_interface:
   address: "10.152.10.254"

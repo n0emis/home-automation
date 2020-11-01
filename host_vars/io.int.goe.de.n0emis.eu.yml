@@ -1,4 +1,6 @@
 ---
+ansible_fqdn: io.int.goe.de.n0emis.eu
+
 wireguard_server_address: "10.152.16.1/32"
 wireguard_server_allowed_ips: "10.152.16.0/20, 10.152.0.0/21"
 
@@ -112,6 +114,27 @@ router_wireguard_interfaces:
         public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
         allowed_ips:
           - "fdf8:7e7f:d097::/48"
+        persistent_keepalive: "25"
+        route_allowed_ips: "1"
+  - name: "dn42"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn') }}"
+    listen_port: "30002"
+    addresses:
+      - "172.20.190.125"
+      - "fdf4:2331:fa09::2:3"
+    ip6gw: "fdf4:2331:fa09::1"
+    ip6prefix:
+      - "fdf4:2331:fa09:4::/63"
+    nohostroute: yes
+    peers:
+      - name: "himaliadn42"
+        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
+        endpoint_port: "41003"
+        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
+        allowed_ips:
+          - 172.16.0.0/12
+          - 10.0.0.0/8
+          - fd00::/8
         persistent_keepalive: "25"
         route_allowed_ips: "1"
   - name: "wgserver"

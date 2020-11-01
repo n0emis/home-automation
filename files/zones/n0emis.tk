@@ -1,0 +1,24 @@
+$ORIGIN n0emis.tk.
+@ 3600 IN SOA ns.n0emis.tk. noc.n0emis.eu. (
+    2020102803 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    3600       ; minimum (1 hour)
+)
+
+;; NS
+@				3600	IN	NS	ns
+@		3600	IN 	A	212.227.174.29
+
+ns		3600	IN	A	212.227.174.29
+ns		3600	IN	AAAA	2001:8d8:1800:30e::1
+
+;; Server
+himalia		3600	IN	A	212.227.174.29
+himalia		3600	IN	AAAA	2001:8d8:1800:30e::1
+
+;; Pages
+test				IN TXT "foobar2342"
+
+tests			IN	ALIAS	himalia.n0emis.tk

@@ -247,18 +247,19 @@
           public_key: "{{ wireguard_server_public_key }}"
           allowed_ips: "{{ wireguard_server_allowed_ips }}"
           endpoint: "{{ ansible_fqdn }}:30000"
-  tags: wireguard
+  tags: wireguard, wg
 
 - hosts: wireguard
+  become: yes
   pre_tasks:
     - name: Create wireguard peers config with host items
       set_fact:
-        wireguard_wg_server_peers: "{{ wireguard_wg_server_peers | combine({ 'server_' + hostvars[item].ansible_facts.fqdn: hostvars[item].wireguard_peer }) }}"
-      when: "hostvars[item].ansible_facts.fqdn is defined and hostvars[item].ansible_facts.fqdn != ansible_fqdn"
+        wireguard_wg_server_peers: "{{ wireguard_wg_server_peers | combine({ 'server_' + hostvars[item].ansible_fqdn: hostvars[item].wireguard_peer }) }}"
+      when: "hostvars[item].ansible_fqdn != ansible_fqdn"
       with_items: "{{ groups['wireguard_member'] }}"
   roles:
     - n0emis.wireguard
-  tags: wireguard
+  tags: wireguard, wg
 
 - hosts: dn42
   become: yes
