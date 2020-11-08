@@ -1,0 +1,42 @@
+---
+- name: Install required packages
+  apt:
+    name:
+      - strongswan
+      - libstrongswan-standard-plugins
+      - libcharon-extra-plugins
+    state: present
+
+- name: Template ipsec config file
+  template:
+    src: "ipsec.conf.j2"
+    dest: "/etc/ipsec.conf"
+  notify: restart strongswan
+
+- name: Template ipsec secrets file
+  template:
+    src: "ipsec.secrets.j2"
+    dest: "/etc/ipsec.secrets"
+  notify: restart strongswan
+
+- name: Template strongswan radius config
+  template:
+    src: "eap-radius.conf.j2"
+    dest: "/etc/strongswan.d/charon/eap-radius.conf"
+  notify: restart strongswan
+
+- name: Install certbot
+  apt:
+    name: certbot
+    state: present
+
+- name: Run certbot
+  command: "certbot certonly --standalone --agree-tos --no-eff-email --email le@n0emis.eu -d himalia.ion.rhr.de.n0emis.eu -d vpn.n0emis.eu -n"
+  args:
+    creates: "/etc/letsencrypt/live/himalia.ion.rhr.de.n0emis.eu/cert.pem"
+
+- name: Link the private key
+  file:
+    src: "/etc/letsencrypt/archive/himalia.ion.rhr.de.n0emis.eu/privkey1.pem"
+    dest: "/etc/ipsec.d/private/privkey.pem"
+    state: hard

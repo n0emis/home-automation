@@ -1,0 +1,26 @@
+config setup
+    charondebug="ike 1, knl 1, cfg 0"
+    uniqueids=no
+
+conn ikev2-vpn
+    auto=add
+    compress=no
+    type=tunnel
+    keyexchange=ikev2
+    fragmentation=yes
+    forceencaps=yes
+    dpdaction=clear
+    dpddelay=300s
+    rekey=no
+    left=%any
+    leftid=@vpn.n0emis.eu
+    leftcert=/etc/letsencrypt/live/himalia.ion.rhr.de.n0emis.eu/fullchain.pem
+    leftsendcert=always
+    leftsubnet=10.152.0.0/16
+    right=%any
+    rightid=%any
+    rightauth=eap-radius
+    rightsourceip=10.152.9.0/24
+    rightdns=8.8.8.8,8.8.4.4
+    rightsendcert=never
+    eap_identity=%identity

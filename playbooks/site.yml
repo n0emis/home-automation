@@ -17,7 +17,7 @@
     - name: Create Bind-Zones directory
       file:
         path: "{{ powerdns_config_directory }}/zones"
-        mode: 0755
+        mode: 0775
         owner: pdns
         group: pdns
         recurse: yes
@@ -260,6 +260,12 @@
   roles:
     - n0emis.wireguard
   tags: wireguard, wg
+
+- hosts: vpn
+  become: yes
+  roles:
+    - strongswan
+  tags: strongswan, vpn
 
 - hosts: dn42
   become: yes
