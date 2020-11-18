@@ -244,4 +244,14 @@ dn42_peers:
       endpoint: "de-fra1.dn42.net.dont-break.it:20197"
       pubkey: "LjXwHWJXz5koYyVsZ0UjSHr/zpxIUz/dPzucJSFSDUg="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/e1mo') }}"
+  - name: "clerie"
+    as: "4242422574"
+    v6: "fe80::42:1"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "52574"
+      endpoint: "dn42-il-gw1.net.clerie.de:50197"
+      pubkey: "NstPqQwlmmod6yDOMVgoG/r3mwPm0tFVjnbV3doj1Xg="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
 
