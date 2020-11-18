@@ -36,7 +36,7 @@ synapse_additional_listeners: |
 
 synapse_allow_guest_access: true
 
-synapse_pip_version: "1.22.1"
+synapse_pip_version: "1.23.0"
 synapse_pip_packages_additional:
   - "git+https://github.com/chaos-jetzt/matrix-synapse-saml-mapper"
   - "git+https://github.com/matrix-org/synapse-s3-storage-provider"

@@ -1,5 +1,5 @@
 ---
-bbb_hostname: "bbb.n0emis.eu"
+bbb_hostname: "bbb-test.n0emis.eu"
 bbb_coturn_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nue.de.n0emis.eu/coturn') }}"
 bbb_greenlight_secret: "{{ lookup('passwordstore', 'infra/bbb.het.nue.de.n0emis.eu/greenlight') }}"
 bbb_greenlight_db_password: "{{ lookup('passwordstore', 'infra/bbb.het.nue.de.n0emis.eu/greenlight/db') }}"
@@ -16,17 +16,8 @@ bbb_greenlight_smtp:
   sender: no-reply@n0emis.eu
 
 bbb_nginx_dh: no
-#bbb_dialplan_quality: "wideband"
 
+bbb_monitoring_all_in_one_enable: yes
 
-#bbb_cpuschedule: true
-bbb_freeswitch_ipv6: true
+bbb_freeswitch_ioschedule_realtime: true
 
-
-bbb_meteor:
-  public:
-    app:
-      autoJoin: true
-      skipCheck: true
-
-bbb_mute_on_start: yes
