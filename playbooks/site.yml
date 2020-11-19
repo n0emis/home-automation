@@ -40,7 +40,7 @@
         dest: "{{ powerdns_config_directory }}/zones"
         owner: pdns
         group: pdns
-        mode: 0644
+        mode: 0775
       with_fileglob: "templates/zones/*"
   tags: dns, powerdns
 
