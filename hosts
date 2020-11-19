@@ -42,6 +42,24 @@ io.int.goe.de.n0emis.eu
 [php]
 kallisto.int.goe.de.n0emis.eu
 
+[php:children]
+nextcloud
+
+[nginx:children]
+nextcloud
+
+[postgresql:children]
+netbox
+synapse
+iam
+git
+codimd
+nextcloud
+
+[redis:children]
+nextcloud
+netbox
+
 [netbox]
 elara.het.nue.de.n0emis.eu
 
@@ -93,3 +111,6 @@ metis.int.goe.de.n0emis.eu
 
 [vpn]
 himalia.ion.rhr.de.n0emis.eu
+
+[nextcloud]
+pasiphae.int.goe.de.n0emis.eu

@@ -76,6 +76,26 @@
       notify: restart php-fpm
   tags: php
 
+- hosts: postgresql
+  become: yes
+  roles:
+    - geerlingguy.postgresql
+  tags:
+    - postgresql
+    - postgres
+
+- hosts: nginx
+  become: yes
+  roles:
+    - geerlingguy.nginx
+  tags: nginx
+
+- hosts: redis
+  become: yes
+  roles:
+    - geerlingguy.redis
+  tags: redis
+
 - hosts: dyndns
   become: yes
   roles:
@@ -128,7 +148,6 @@
 - hosts: synapse
   become: yes
   roles:
-    - geerlingguy.postgresql
     - n0emis.synapse
     - systemli.coturn
   tags: synapse, matrix
@@ -163,7 +182,6 @@
 - hosts: iam
   become: yes
   roles:
-    - geerlingguy.postgresql
     - em0lar.keycloak
   tasks:
     - name: deploy custom keycloak-theme
@@ -199,7 +217,6 @@
 - hosts: git
   become: yes
   roles:
-    - geerlingguy.postgresql
     - thomas_maurice.gitea
   tasks:
     - name: Upload SSH key
@@ -214,7 +231,6 @@
 - hosts: codimd
   become: yes
   roles:
-    - geerlingguy.postgresql
     - geerlingguy.nodejs
     - em0lar.codimd
 #  tasks:
@@ -233,8 +249,6 @@
 - hosts: netbox
   become: yes
   roles:
-    - geerlingguy.postgresql
-    - geerlingguy.redis
     - lae.netbox
   tags: netbox
 
