@@ -20,7 +20,7 @@ http:
     service-nextcloud:
       loadBalancer:
         servers:
-          - url: "http://kallisto.int.goe.de.n0emis.eu:81"
+          - url: "http://pasiphae.int.goe.de.n0emis.eu:81"
   middlewares:
     nextcloud-redirectregex:
       redirectRegex:

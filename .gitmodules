@@ -103,3 +103,9 @@
 [submodule "roles/powerdns.pdns_recursor"]
 	path = roles/powerdns.pdns_recursor
 	url = https://github.com/PowerDNS/pdns_recursor-ansible
+[submodule "roles/n0emis.nextcloud"]
+	path = roles/n0emis.nextcloud
+	url = https://git.n0emis.eu/ansible_roles/nextcloud.git
+[submodule "roles/geerlingguy.nginx"]
+	path = roles/geerlingguy.nginx
+	url = https://github.com/geerlingguy/ansible-role-nginx

@@ -60,6 +60,21 @@
 
 - hosts: php
   become: yes
+  pre_tasks:
+    - name: add php repository (Ubuntu)
+      apt_repository:
+        repo: "ppa:ondrej/php"
+        state: present
+      when: ansible_distribution == "Ubuntu"
+    - name: Import php apt signing key
+      apt_key:
+        url: "https://packages.sury.org/php/apt.gpg"
+      when: ansible_distribution == "Debian"
+    - name: add php repository (Debian)
+      apt_repository:
+        repo: "deb https://packages.sury.org/php/ {{ ansible_distribution_release }} main"
+        state: present
+      when: ansible_distribution == "Debian"
   roles:
     - geerlingguy.php
   tasks:
@@ -321,6 +336,12 @@
   roles:
     - n0emis.bird-lg
   tags: lg, lookingglass
+
+- hosts: nextcloud
+  become: yes
+  roles:
+    - n0emis.nextcloud
+  tags: nextcloud
 
 - hosts: bbb
   roles:

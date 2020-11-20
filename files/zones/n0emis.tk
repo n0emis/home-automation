@@ -1,6 +1,6 @@
 $ORIGIN n0emis.tk.
 @ 3600 IN SOA ns.n0emis.tk. noc.n0emis.eu. (
-    2020102803 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020112002 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -21,4 +21,5 @@ himalia		3600	IN	AAAA	2001:8d8:1800:30e::1
 ;; Pages
 test				IN TXT "foobar2342"
 
-tests			IN	ALIAS	himalia.n0emis.tk
+tests			IN	ALIAS	himalia.n0emis.tk.
+simplesaml		IN	ALIAS	sinope.int.goe.de.n0emis.eu.
