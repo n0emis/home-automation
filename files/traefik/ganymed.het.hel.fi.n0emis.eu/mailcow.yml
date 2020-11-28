@@ -1,0 +1,33 @@
+http:
+  routers:
+    router-mailcow-acme:
+      rule: "PathPrefix(`/.well-known/acme-challenge`)"
+      service: "service-mailcow-http@file"
+      entryPoints:
+        - "http"
+    router-mailcow-http:
+      rule: "PathPrefix(`/`)"
+      service: "service-mailcow-http@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    router-mailcow-https:
+      rule: "PathPrefix(`/`)"
+      service: "service-mailcow-https@file"
+      entryPoints:
+        - "https"
+      tls: {}
+  services:
+    service-mailcow-http:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:{{ mailcow__config_http_port }}"
+    service-mailcow-https:
+      loadBalancer:
+        servers:
+          - url: "https://mail.n0emis.eu:{{ mailcow__config_https_port }}"
+tls:
+  certificates:
+    - certFile: "/opt/mailcow-dockerized/data/assets/ssl/ganymed.het.hel.fi.n0emis.eu/cert.pem"
+      keyFile: "/opt/mailcow-dockerized/data/assets/ssl/ganymed.het.hel.fi.n0emis.eu/key.pem"

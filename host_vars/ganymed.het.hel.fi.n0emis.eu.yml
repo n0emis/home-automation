@@ -1,2 +1,16 @@
 ---
 wireguard_server_address: "10.152.20.1/32"
+
+traefik_user: root
+
+traefik_tls_letsencrypt_challenges_http:
+  enable: no
+traefik_tls_letsencrypt_challenges_tls:
+  enable: yes
+  email: "le@services.n0emis.eu"
+  name: "le_tls" # Name of the certificate resolver
+  storage: "{{ traefik_config_directory }}/acme.json"
+traefik_default_cert_resovler: "le_tls"
+
+traefik_dashboard:
+  enable: no

@@ -12,3 +12,6 @@ mailcow__config_additional_san:
   - mail.het.hel.fi.n0emis.eu
   - mail.het.hel.fl.n0emis.eu
   - ganymed.het.hel.fl.n0emis.eu
+
+mailcow__config_http_port: 81
+mailcow__config_https_port: 444
