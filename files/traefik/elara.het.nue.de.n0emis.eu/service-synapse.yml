@@ -13,14 +13,14 @@ http:
       entryPoints:
         - "https"
       tls:
-        certResolver: "le_http"
+        certResolver: "{{ traefik_default_cert_resovler }}"
 #    service-mmr-https:
 #      rule: "Host(`matrix.noemis.me`) && PathPrefix(`/_matrix/media`)"
 #      service: "service-mmr@file"
 #      entryPoints:
 #        - "https"
 #      tls:
-#        certResolver: "le_http"
+#        certResolver: "{{ traefik_default_cert_resovler }}"
   services:
     service-synapse:
       loadBalancer:

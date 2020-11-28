@@ -13,4 +13,4 @@ http:
       entryPoints:
         - "https"
       tls:
-        certResolver: "le_http"
+        certResolver: "{{ traefik_default_cert_resovler }}"

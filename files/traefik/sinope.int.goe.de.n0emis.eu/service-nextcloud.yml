@@ -15,7 +15,7 @@ http:
       middlewares:
         - "nextcloud-redirectregex"
       tls:
-        certResolver: "le_http"
+        certResolver: "{{ traefik_default_cert_resovler }}"
   services:
     service-nextcloud:
       loadBalancer:
