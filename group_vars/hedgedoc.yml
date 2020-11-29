@@ -1,0 +1,41 @@
+hedgedoc_db_database: "hackmd"
+hedgedoc_db_username: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/codimd/db subkey=user') }}"
+hedgedoc_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/codimd/db') }}"
+
+hedgedoc_session_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/codimd subkey=session') }}"
+
+hedgedoc_allowed_origins:
+  - "md.noemis.me"
+  - "md.n0emis.eu"
+
+hedgedoc_allow_email_login: false
+hedgedoc_allow_email_register: false
+hedgedoc_allow_anonymous: false
+
+hedgedoc_domain: "md.n0emis.eu"
+hedgedoc_port: 3000
+
+hedgedoc_saml_idpCertPath: "{{ hedgedoc_base_path }}/idp_cert.pem"
+hedgedoc_saml_idpCert: "MIICmzCCAYMCBgFx6qjSRDANBgkqhkiG9w0BAQsFADARMQ8wDQYDVQQDDAZuMGVtaXMwHhcNMjAwNTA2MTU0MjQ0WhcNMzAwNTA2MTU0NDI0WjARMQ8wDQYDVQQDDAZuMGVtaXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCpVEqmTR/KXCKPvWSoPcbx5QceUGoDWcFHKFnFbXnHsCTi3VuLduXgUveUZu9oaX6W9ALBkFLOFffAv9bzVaYq89k/OF6uVFBMSP4dmVM3vPTUnn+/dMdrybOEbo/Ujg49xXeip+LigcV9r1WrZTneX8EYnm7o4dY7PjMdi59AdawdQo0ngf51dsN38AQjcB6qQDi7fBx6S1mTNJuNko+jPW0RBjZKMRea9EFfnuZwTIqQqMGeIMYwSJK8uTr4BnNAfQmCF4mBBYzkTPGSSDirQZ2B6JxGMGP/7iC0iQRhFTxUdGth7qvNp4OtIzmyS1dvOn+paCA2Q8wXKTdrG6wtAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAIVH0wMqeT+jyFOlNtd93HGT/mgTNxITWX1MCf8ou3qCVfasqJRZ4T8DkMxl1smFe8BWFHyIMrgf7YPYe9jsDTGxvo1oLBbwsLiAjqmZPBVT1D4rGh0W/B7lQ6UsHc19lY57bV1K85ux/lurtl0kr1VJNkGByZqAvVcLyX4NakVGaQaZWA3TZbnLQJY7UcoOo3nFDsgnKFjtBmtQybyt58hTB2stEqn+tSuCRQHomfLkaYNa9mpwJi9Z7sv4hFHXibxQX6ev9/JCe0i3uAMm4WHAlpZ7QPGIeB/p5ZyYXcNoux7G5ju7q5T0431lYx3iWORAnSvyeGmqe7OLHgNpvmA="
+
+hedgedoc_upload_type: "minio"
+hedgedoc_additional_config: |
+  "saml": {
+    "issuer": "codimd",
+    "identifierFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+    "idpSsoUrl": "https://auth.n0emis.eu/auth/realms/n0emis/protocol/saml",
+    "idpCert": "{{ hedgedoc_saml_idpCertPath }}",
+    "attribute": {
+      "email": "email",
+      "username": "username"
+    }
+  },
+  "minio": {
+    "accessKey": "koo6voo5naibi2taoZ2eex7rajied8ii",
+    "secretKey": "OSie2Aid3phoo8gaiwo2oow4viwohf4see7aix7jah8reephue6ohlais5aeThie",
+    "endPoint": "minio.n0emis.eu",
+    "port": 443,
+    "secure": true
+  },
+  "s3bucket": "md.n0emis.eu-codimd"
+

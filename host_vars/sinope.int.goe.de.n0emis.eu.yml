@@ -2,11 +2,11 @@
 ansible_python_interpreter: "/usr/bin/python3"
 
 postgresql_users:
-  - name: "{{ codimd_db_username }}"
-    password: "{{ codimd_db_password }}"
+  - name: "{{ hedgedoc_db_username }}"
+    password: "{{ hedgedoc_db_password }}"
 postgresql_databases:
-  - name: "{{ codimd_db_database }}"
-    owner: "{{ codimd_db_username }}"
+  - name: "{{ hedgedoc_db_database }}"
+    owner: "{{ hedgedoc_db_username }}"
 
 dyndns_enable: yes
 dyndns_zone: "sinope.int.goe.de"

@@ -54,7 +54,7 @@ netbox
 synapse
 iam
 git
-codimd
+hedgedoc
 nextcloud
 
 [redis:children]
@@ -70,7 +70,7 @@ elara.het.nue.de.n0emis.eu
 [iam]
 elara.het.nue.de.n0emis.eu
 
-[codimd]
+[hedgedoc]
 sinope.int.goe.de.n0emis.eu
 
 [dn42]

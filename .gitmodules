@@ -61,9 +61,9 @@
 [submodule "roles/geerlingguy.java"]
 	path = roles/geerlingguy.java
 	url = https://github.com/geerlingguy/ansible-role-java
-[submodule "roles/em0lar.codimd"]
-	path = roles/em0lar.codimd
-	url = https://git.labcode.dev/ansible_roles/codimd
+[submodule "roles/em0lar.hedgedoc"]
+	path = roles/em0lar.hedgedoc
+	url = https://git.labcode.dev/ansible_roles/hedgedoc
 [submodule "roles/Oefenweb.yarn"]
 	path = roles/Oefenweb.yarn
 	url = https://github.com/Oefenweb/ansible-yarn
@@ -109,3 +109,6 @@
 [submodule "roles/geerlingguy.nginx"]
 	path = roles/geerlingguy.nginx
 	url = https://github.com/geerlingguy/ansible-role-nginx
+[submodule "roles/ocha.yarn"]
+	path = roles/ocha.yarn
+	url = https://github.com/ocha/ansible-role-yarn.git

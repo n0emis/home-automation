@@ -20,7 +20,7 @@ http:
     service-codimd:
       loadBalancer:
         servers:
-          - url: "http://localhost:{{ codimd_port }}"
+          - url: "http://localhost:{{ hedgedoc_port }}"
   middlewares:
     service-codimd-cors:
       headers:

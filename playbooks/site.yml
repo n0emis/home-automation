@@ -243,16 +243,18 @@
         mode: "0400"
   tags: gitea
 
-- hosts: codimd
+- hosts: hedgedoc
   become: yes
   roles:
     - geerlingguy.nodejs
-    - em0lar.codimd
+    - ocha.yarn
+    - em0lar.hedgedoc
   tasks:
     - name: Upload saml cert
       copy:
-        dest: "{{ codimd_saml_idpCertPath }}"
-        content: "{{ codimd_saml_idpCert }}"
+        dest: "{{ hedgedoc_saml_idpCertPath }}"
+        content: "{{ hedgedoc_saml_idpCert }}"
+      notify: restart hedgedoc
 #    - name: Install Pandoc
 #      apt:
 #        name:
@@ -263,7 +265,7 @@
 #      get_url:
 #        url: https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex
 #        dest: /usr/share/pandoc/data/templates/eisvogel.latex
-  tags: codimd
+  tags: codimd,hedgedoc
 
 - hosts: netbox
   become: yes
