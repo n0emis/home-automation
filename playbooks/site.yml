@@ -248,7 +248,11 @@
   roles:
     - geerlingguy.nodejs
     - em0lar.codimd
-#  tasks:
+  tasks:
+    - name: Upload saml cert
+      copy:
+        dest: "{{ codimd_saml_idpCertPath }}"
+        content: "{{ codimd_saml_idpCert }}"
 #    - name: Install Pandoc
 #      apt:
 #        name:
