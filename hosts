@@ -56,6 +56,7 @@ iam
 git
 hedgedoc
 nextcloud
+venueless
 
 [redis:children]
 nextcloud
@@ -115,3 +116,5 @@ himalia.ion.rhr.de.n0emis.eu
 
 [nextcloud]
 pasiphae.int.goe.de.n0emis.eu
+
+[venueless]

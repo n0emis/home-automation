@@ -354,6 +354,11 @@
     - n0emis.bigbluebutton
   tags: bbb
 
+- hosts: venueless
+  roles:
+    - chaos_jetzt.venueless
+  tags: venueless
+
 - hosts: yate
   roles:
     - n0emis.yate

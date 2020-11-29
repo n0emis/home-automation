@@ -1,0 +1,21 @@
+---
+venueless_database_name: "venueless"
+venueless_database_user: "{{ lookup('passwordstore', 'infra/{{ ansible_fqdn }}/venueless/db subkey=user') }}"
+venueless_database_password: "{{ lookup('passwordstore', 'infra/{{ ansible_fqdn }}/venueless/db') }}"
+venueless_redis_password: "{{ redis_requirepass }}"
+
+venueless_port: "8002"
+venueless_listen: "127.0.0.1:{{ venueless_port }}"
+
+#postgresql_global_config_options:
+#  - option: unix_socket_directories
+#    value: '{{ postgresql_unix_socket_directories | join(",") }}'
+#  - option: listen_addresses
+#    value: 'localhost,172.17.0.1'
+#
+#postgresql_hba_entries:
+#  - { type: local, database: all, user: postgres, auth_method: peer }
+#  - { type: local, database: all, user: all, auth_method: peer }
+#  - { type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: md5 }
+#  - { type: host, database: all, user: all, address: '::1/128', auth_method: md5 }
+#  - { type: host, database: "{{ venueless_database_name }}", user: "{{ venueless_database_user }}", address: '172.17.0.1/16', auth_method: md5 }

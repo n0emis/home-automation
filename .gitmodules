@@ -112,3 +112,6 @@
 [submodule "roles/ocha.yarn"]
 	path = roles/ocha.yarn
 	url = https://github.com/ocha/ansible-role-yarn.git
+[submodule "roles/chaos_jetzt.venueless"]
+	path = roles/chaos_jetzt.venueless
+	url = https://github.com/chaos-jetzt/ansible-role-venueless
