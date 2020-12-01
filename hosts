@@ -46,6 +46,9 @@ kallisto.int.goe.de.n0emis.eu
 [php:children]
 nextcloud
 
+[nginx]
+elara.het.nue.de.n0emis.eu
+
 [nginx:children]
 nextcloud
 

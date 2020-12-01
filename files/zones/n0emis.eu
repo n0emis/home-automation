@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020111901 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020120101 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -42,31 +42,39 @@ metis.int.goe.de		3600	IN	ALIAS	sinope.int.goe.de.n0emis.eu.
 ca				{{ dns_mx }}
 dev				{{ dns_mx }}
 services			{{ dns_mx }}
+lists				{{ dns_mx }}
 
 ;;;; SRV
-_autodiscover._tcp		3600	IN	SRV 	110 443 ganymed.het.hel.fi.n0emis.eu.
+_autodiscover._tcp		3600	IN	SRV 	10 0 443 ganymed.het.hel.fi.n0emis.eu.
+_autodiscover._tcp.lists	3600	IN	SRV 	10 0 443 ganymed.het.hel.fi.n0emis.eu.
 
 ;;;; DKIM
 dkim._domainkey			{{ dns_dkim }}
 dkim._domainkey.ca		{{ dns_dkim }}
 dkim._domainkey.dev		{{ dns_dkim }}
 dkim._domainkey.services	{{ dns_dkim }}
+dkim._domainkey.lists		{{ dns_dkim }}
 
 ;;;; DMARC
 _dmarc				{{ dns_dmarc }}
 _dmarc.ca			{{ dns_dmarc }}
 _dmarc.dev			{{ dns_dmarc }}
 _dmarc.services			{{ dns_dmarc }}
+_dmarc.lists			{{ dns_dmarc }}
 
 ;;;; SPF
 @				{{ dns_spf }}
 ca				{{ dns_spf }}
 dev				{{ dns_spf }}
 services			{{ dns_spf }}
+lists				{{ dns_spf }}
 
 ;;;; CNAME
 autoconfig			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 autodiscover			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autoconfig.lists		3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autodiscover.lists		3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+
 _acme-challenge.kallisto.int.goe.de	3600	IN	CNAME	05cea2be-f516-43ec-a793-5f8d0293c540.auth.acme-dns.io.
 
 ;;;; TLSA
@@ -87,12 +95,13 @@ _4190._tcp.{{ dns_tlsa }}
 ;; TXT
 
 ;; Pages
-@				3600	IN	ALIAS	russel.uberspace.de.
-www				3600	IN	CNAME	n0emis.eu.
+@				3600	IN	ALIAS	elara.het.nue.de.n0emis.eu.
+www				3600	IN	CNAME	russel.uberspace.de.
 
 mail				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 smtp				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
 imap				3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+lists				3600	IN	ALIAS	ganymed.het.hel.fi.n0emis.eu.
 
 git				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 netbox				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.

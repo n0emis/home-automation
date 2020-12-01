@@ -51,3 +51,23 @@ louketo_instances:
     state: present
 
 pdns_rec_forward_dyn: "127.0.0.1:5300"
+
+nginx_user: www-data
+nginx_remove_default_vhost: true
+nginx_vhosts:
+  - filename: "n0emis.eu.conf"
+    server_name: "_"
+    listen: "81"
+    state: "present"
+    extra_parameters: |
+      absolute_redirect off;
+
+      location /.well-known/matrix/server {
+        default_type application/json;
+        return 200 '{"m.server": "{{ synapse_server_fqdn_matrix }}:443"}';
+      }
+
+      location /.well-known/matrix/client {
+        default_type application/json;
+        return 200 '{"m.homeserver": {"base_url": "https://{{ synapse_server_fqdn_matrix }}"}}';
+      }
