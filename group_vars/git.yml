@@ -55,6 +55,16 @@ gitea_theme_default: "arc-green"
 
 gitea_repo_indexer_enabled: true
 
+gitea_metrics_enabled: true
+
+gitea_extra_config: |
+        [cron]
+        ENABLED = true
+
+        [cron.resync_all_sshkeys]
+        ENABLED = true
+        SCHEDULE = @every 1h
+
 ssh_deploy_key: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         30323637653635613131313461323135316362383739643633336536326563643933386466353735
