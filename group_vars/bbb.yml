@@ -18,6 +18,3 @@ bbb_greenlight_smtp:
 bbb_nginx_dh: no
 
 bbb_monitoring_all_in_one_enable: yes
-
-bbb_freeswitch_ioschedule_realtime: true
-

@@ -6,7 +6,7 @@ dns_tlsa:   'ganymed.het.hel.fi.n0emis.eu. 3600 IN TLSA 3 1 1 C9C26F6BBC3DE80627
 
 powerdns_config_directory: "/etc/powerdns"
 
-pdns_install_repo: "{{ pdns_auth_powerdns_repo_43 }}"
+pdns_install_repo: "{{ pdns_auth_powerdns_repo_44 }}"
 pdns_config:
   master: yes
   expand-alias: yes
