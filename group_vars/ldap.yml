@@ -16,6 +16,7 @@ openldap_organizationalunits:
   - People
   - Groups
   - Roles
+  - Services
 
 openldap_schemas:
   - core
