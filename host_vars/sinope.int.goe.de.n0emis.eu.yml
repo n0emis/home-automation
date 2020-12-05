@@ -4,12 +4,18 @@ ansible_python_interpreter: "/usr/bin/python3"
 postgresql_users:
   - name: "{{ hedgedoc_db_username }}"
     password: "{{ hedgedoc_db_password }}"
+  - name: "{{ netbox_database_user }}"
+    password: "{{ netbox_database_password }}"
 postgresql_databases:
   - name: "{{ hedgedoc_db_database }}"
     owner: "{{ hedgedoc_db_username }}"
+  - name: "{{ netbox_database }}"
+    owner: "{{ netbox_database_user }}"
 
 dyndns_enable: yes
 dyndns_zone: "sinope.int.goe.de"
+
+louketo_netbox_listen: "127.0.0.1:3001"
 
 louketo_instances:
   - name: upload
@@ -19,8 +25,19 @@ louketo_instances:
       listen: localhost:8081
       upstream-url: http://kallisto.int.goe.de.n0emis.eu:82
       resources:
-      - uri: /*
-        roles:
-          - upload:access
+        - uri: /*
+      roles:
+        - upload:access
       forbidden-page: /etc/louketo/forbidden.html
+    state: present
+  - name: netbox
+    config: |
+      client-id: netbox
+      discovery-url: https://auth.n0emis.eu/auth/realms/n0emis
+      enable-default-deny: false
+      listen: {{ louketo_netbox_listen }}
+      upstream-url: http://{{ netbox_socket }}
+      resources:
+        - uri: /login*
+        - uri: /admin/login*
     state: present

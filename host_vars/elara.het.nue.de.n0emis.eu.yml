@@ -6,8 +6,6 @@ wireguard_server_address: "10.152.18.1/32"
 postgresql_users:
   - name: "{{ synapse_database_user }}"
     password: "{{ synapse_database_password }}"
-  - name: "{{ netbox_database_user }}"
-    password: "{{ netbox_database_password }}"
   - name: "{{ keycloak_postgresql_username }}"
     password: "{{ keycloak_postgresql_password }}"
   - name: "{{ gitea_db_user }}"
@@ -21,8 +19,6 @@ postgresql_databases:
     owner: "{{ synapse_database_user }}"
     lc_collate: 'C'
     lc_ctype: 'C'
-  - name: "{{ netbox_database }}"
-    owner: "{{ netbox_database_user }}"
   - name: "{{ keycloak_postgresql_database }}"
     owner: "{{ keycloak_postgresql_username }}"
   - name: "{{ gitea_db_name }}"
@@ -34,21 +30,6 @@ postgresql_databases:
 
 coturn_static_auth_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/coturn') }}"
 coturn_realm: "turn.n0emis.eu"
-
-louketo_netbox_listen: "127.0.0.1:3001"
-
-louketo_instances:
-  - name: netbox
-    config: |
-      client-id: netbox
-      discovery-url: https://auth.n0emis.eu/auth/realms/n0emis
-      enable-default-deny: false
-      listen: {{ louketo_netbox_listen }}
-      upstream-url: http://{{ netbox_socket }}
-      resources:
-        - uri: /login*
-        - uri: /admin/login*
-    state: present
 
 pdns_rec_forward_dyn: "127.0.0.1:5300"
 
