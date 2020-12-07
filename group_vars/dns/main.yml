@@ -9,10 +9,15 @@ powerdns_config_directory: "/etc/powerdns"
 pdns_install_repo: "{{ pdns_auth_powerdns_repo_44 }}"
 pdns_config:
   master: yes
+  slave: yes
   expand-alias: yes
   loglevel: 10
   local-port: 53
   resolver: 1.1.1.1
+  allow-axfr-ips: 0.0.0.0/0,::/0
+
+pdns_service_overrides:
+  ReadWritePaths: /etc/powerdns
 
 pdns_backends:
   bind:

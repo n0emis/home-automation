@@ -37,6 +37,8 @@ dyndns_enable: no
 dyndns_seperate: yes
 dyndns_nameserver:
   - ns.n0emis.eu
+  - ns2.n0emis.eu
+  - ns3.n0emis.eu
 
 #dyndns_pubkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key subkey=user') }}"
 #dyndns_privkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key') | b64decode }}"
