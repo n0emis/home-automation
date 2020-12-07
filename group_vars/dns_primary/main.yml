@@ -1,11 +1,17 @@
 ---
+pdns_axfr_ips:
+  - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].ansible_default_ipv4.address }}/32"
+  - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].ansible_default_ipv6.address }}/128"
+  - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}/32"
+  - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}/128"
+
 pdns_config:
   master: yes
   expand-alias: yes
   loglevel: 10
   local-port: 53
   resolver: 1.1.1.1
-  allow-axfr-ips: 0.0.0.0/0,::/0
+  allow-axfr-ips: "{{ pdns_axfr_ips | join(', ') }}"
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns
