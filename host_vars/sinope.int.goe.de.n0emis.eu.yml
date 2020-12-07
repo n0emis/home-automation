@@ -26,8 +26,8 @@ louketo_instances:
       upstream-url: http://kallisto.int.goe.de.n0emis.eu:82
       resources:
         - uri: /*
-      roles:
-        - upload:access
+          roles:
+            - upload:access
       forbidden-page: /etc/louketo/forbidden.html
     state: present
   - name: netbox
