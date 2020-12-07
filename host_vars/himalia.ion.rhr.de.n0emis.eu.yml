@@ -148,13 +148,13 @@ dn42_peers:
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
   - name: "nex"
     as: "4242423012"
-    v6: "fd9b:37f7:faf7:3000::6:1"
+    v6: "fd9b:37f7:faf7:3000::2:3:1"
     if:
       v6: "{{ dn42_local_v6 }}"
     wg:
       port: "42006"
-      endpoint: "n-gw-1.nexadn.de:51826"
-      pubkey: "M4qEMGbc5wHYYrttAQz0klvw491bFtSSttk4MoY0QFI="
+      endpoint: "[2001:638:904:ffc9::b]:51823"
+      pubkey: "KwrjRnVR4dyjWFXDlM2Yf9LukYHIfTEvfcMecExuT00="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
   - name: "mebus"
     as: "4242420112"
