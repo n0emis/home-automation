@@ -1,6 +1,9 @@
 ---
 wireguard_server_address: "10.152.20.1/32"
 
+powerdns_secondary_names:
+  - ns2.n0emis.eu
+
 traefik_user: root
 
 traefik_tls_letsencrypt_challenges_http:

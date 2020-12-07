@@ -1,3 +1,4 @@
+---
 dns_dkim:   '3600   IN  TXT "v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB"'
 dns_dmarc:  '3600	IN  TXT "v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"'
 dns_mx:     '3600	IN  MX  1 ganymed.het.hel.fi.n0emis.eu.'
@@ -7,22 +8,28 @@ dns_tlsa:   'ganymed.het.hel.fi.n0emis.eu. 3600 IN TLSA 3 1 1 C9C26F6BBC3DE80627
 powerdns_config_directory: "/etc/powerdns"
 
 pdns_install_repo: "{{ pdns_auth_powerdns_repo_44 }}"
+
 pdns_config:
-  master: yes
   slave: yes
+  superslave: yes
   expand-alias: yes
   loglevel: 10
   local-port: 53
   resolver: 1.1.1.1
-  allow-axfr-ips: 0.0.0.0/0,::/0
+  allow-unsigned-supermaster: yes
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns
 
 pdns_backends:
-  bind:
-    config: "{{ powerdns_config_directory }}/named.conf"
-    check-interval: 60
+  'gsqlite3:pdns':
+    database: "{{ powerdns_database_file }}"
+
+powerdns_database_file: "{{ powerdns_config_directory }}/pdns.sqlite3"
+
+powerdns_primary_ips:
+  - 78.46.251.132
+  - 2a01:4f8:c0c:34bc::1
 
 pdns_backends_packages:
   bind: pdns-backend-bind

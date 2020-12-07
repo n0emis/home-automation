@@ -1,6 +1,6 @@
 $ORIGIN n0emis.dn42.
 @ 3600 IN SOA ns.n0emis.dn42. noc.n0emis.eu. (
-    2020102501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020120701 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -9,6 +9,7 @@ $ORIGIN n0emis.dn42.
 
 ;; NS
 @				3600	IN	NS	ns
+@				3600	IN	NS	ns3.n0emis.eu.
 
 ns					IN	A	172.20.190.96
 ns					IN	AAAA	fdf4:2331:fa09::1
@@ -18,4 +19,4 @@ himalia				IN	A	172.20.190.96
 himalia				IN	AAAA	fdf4:2331:fa09::1
 
 ;; Pages
-@					IN	CNAME	himalia
+;@					IN	CNAME	himalia

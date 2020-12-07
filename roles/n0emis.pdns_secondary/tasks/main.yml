@@ -1,0 +1,45 @@
+---
+- name: Install sqlite
+  apt:
+    name: sqlite3
+    state: present
+
+- name: Make sure pdns-user owns config-directory
+  file:
+    path: "{{ powerdns_config_directory }}"
+    mode: 0775
+    owner: pdns
+    group: pdns
+    state: directory
+
+- name: Check if database file exists
+  stat:
+    path: "{{ powerdns_database_file }}"
+  register: stat_database_file
+- block:
+    - name: Upload database schema if sqlite3 database is not existing
+      copy:
+        src: "schema.sql"
+        dest: "/tmp/powerdns_sqlite3_schema.sql"
+        mode: 0600
+        owner: "pdns"
+
+    - name: Template sqlite3 database
+      shell: "sqlite3 {{ powerdns_database_file }} < /tmp/powerdns_sqlite3_schema.sql"
+      become_user: "pdns"
+
+    - name: Delete uploaded database schema
+      file:
+        path: "/tmp/powerdns_sqlite3_schema.sql"
+        state: absent
+  when: not stat_database_file.stat.exists
+
+- name: add supermaster entries
+  command: "pdnsutil add-supermaster {{ item[0] }} {{ item[1] }}"
+  ignore_errors: yes
+  become: yes
+  become_user: "pdns"
+  with_nested:
+    - "{{ powerdns_primary_ips }}"
+    - "{{ powerdns_secondary_names }}"
+

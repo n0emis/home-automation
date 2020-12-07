@@ -23,13 +23,6 @@ zone "n0emis.tk" IN {
 };
 
 zone "dyn.n0emis.eu" IN {
-{% if ansible_fqdn == dyndns_host %}
     type master;
-{% else %}
-    type slave;
-    masters {
-        78.46.251.132;
-    };
-{% endif %}
     file "zones/dyn.n0emis.eu";
 };

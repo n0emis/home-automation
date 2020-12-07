@@ -8,41 +8,19 @@
   roles:
     - powerdns.pdns
 #    - powerdns.pdns_recursor
-  handlers:
-    - name: restart pdns
-      service:
-        name: pdns
-        state: restarted
-  tasks:
-    - name: Create Bind-Zones directory
-      file:
-        path: "{{ powerdns_config_directory }}/zones"
-        mode: 0775
-        owner: pdns
-        group: pdns
-        recurse: yes
-        state: directory
-    - name: Upload named.conf
-      template:
-        src: "powerdns/named.conf.j2"
-        dest: "{{ powerdns_config_directory }}/named.conf"
-        mode: 0644
-      notify: restart pdns
-    - name: Hardlink dyndns zone file
-      file:
-        src: "/home/dyndns/db.dyndns.zone"
-        dest: "{{ powerdns_config_directory }}/zones/dyn.n0emis.eu"
-        state: hard
-      when: ansible_fqdn == dyndns_host
-    - name: Copy zone files
-      template:
-        src: "{{ item }}"
-        dest: "{{ powerdns_config_directory }}/zones"
-        owner: pdns
-        group: pdns
-        mode: 0775
-      with_fileglob: "templates/zones/*"
   tags: dns, powerdns
+
+- hosts: dns_secondary
+  become: yes
+  roles:
+    - n0emis.pdns_secondary
+  tags: dns, powerdns, dns_secondary
+
+- hosts: dns_primary
+  become: yes
+  roles:
+    - n0emis.pdns_primary
+  tags: dns, powerdns, dns_primary
 
 - hosts: all !openwrt
   become: yes

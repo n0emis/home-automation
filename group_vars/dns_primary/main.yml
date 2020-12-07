@@ -1,0 +1,16 @@
+---
+pdns_config:
+  master: yes
+  expand-alias: yes
+  loglevel: 10
+  local-port: 53
+  resolver: 1.1.1.1
+  allow-axfr-ips: 0.0.0.0/0,::/0
+
+pdns_service_overrides:
+  ReadWritePaths: /etc/powerdns
+
+pdns_backends:
+  bind:
+    config: "{{ powerdns_config_directory }}/named.conf"
+    check-interval: 60

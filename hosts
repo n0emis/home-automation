@@ -22,8 +22,14 @@ bbb-test.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 kallisto.int.goe.de.n0emis.eu
 #themisto.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
-[dns]
+[dns:children]
+dns_secondary
+dns_primary
+
+[dns_primary]
 elara.het.nue.de.n0emis.eu
+
+[dns_secondary]
 ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 

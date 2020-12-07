@@ -2,6 +2,9 @@
 wireguard_server_address: "10.152.22.1/32"
 wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.8.0/21"
 
+powerdns_secondary_names:
+  - ns3.n0emis.eu
+
 wireguard_wg_server_peers:
   thebe:
     public_key: "l+U4VBkb0TVRQwVXNTzDLtlvV1JHIcpvS/AgDORfwSA="
