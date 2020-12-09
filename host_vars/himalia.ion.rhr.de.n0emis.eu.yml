@@ -153,7 +153,7 @@ dn42_peers:
       v6: "{{ dn42_local_v6 }}"
     wg:
       port: "42006"
-      endpoint: "[2001:638:904:ffc9::b]:51823"
+      endpoint: "dn42-c-2.nexadn.de:51823"
       pubkey: "KwrjRnVR4dyjWFXDlM2Yf9LukYHIfTEvfcMecExuT00="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
   - name: "mebus"
