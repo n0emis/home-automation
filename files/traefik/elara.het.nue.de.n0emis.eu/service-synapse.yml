@@ -8,7 +8,7 @@ http:
       middlewares:
         - "https_redirect"
     service-synapse-https:
-      rule: "Host(`matrix.noemis.me`)"
+      rule: "Host(`matrix.noemis.me`) || (Host(`noemis.me`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`)))"
       service: "service-synapse@file"
       entryPoints:
         - "https"
