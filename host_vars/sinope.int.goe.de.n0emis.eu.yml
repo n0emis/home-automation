@@ -13,7 +13,7 @@ postgresql_databases:
     owner: "{{ netbox_database_user }}"
 
 dyndns_enable: yes
-dyndns_zone: "sinope.int.goe.de"
+dyndns_host: "sinope.int.goe.de"
 
 louketo_netbox_listen: "127.0.0.1:3001"
 

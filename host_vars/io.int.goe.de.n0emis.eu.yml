@@ -247,7 +247,6 @@ asterisk_phones:
   - name: "dect_simeon"
     number: '10'
 
-dyndns_enable: "yes"
 dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbJ2KHXYON7CyAC2S3BIyLKS/jLI1F7/eG0L4qts/8ieQOvIZb2H3zVCIrjBrkPoQ4+Th/huSd3qfIYrJgNGdki+jRoiop9NCYSJ4++Cypm/w6tA698MTLvP9kneMpCfaKrbjv6fyyY4nIjyOCylznFueq81fosGYmTyxa3/opz4Paody9Xoigz+f5f4rEOHp86TxRk1wC5+IusNX6eX8PTX6GTqEu09FdeX8FitWnHAMfpqfeN0YqvKKUcJ1pZ3kxhASHdwLE4NPTXBUbF9B4dPeOLtYHqMI0AdvBhNEpIVJyAPZPJVyZzQYp7L2vMa+xidk6NhFgSmTXOtVmUOKv root@io"
 dyndns_priv_base: !vault |
     $ANSIBLE_VAULT;1.1;AES256
@@ -311,4 +310,4 @@ dyndns_priv_base: !vault |
     34383162376439396539346237363332393263376534383433383037353133633433393131616131
     666536303336363165613462653964323631
 dyndns_privkey: "{{ dyndns_priv_base | b64decode }}"
-dyndns_zone: "io.int.goe.de"
+dyndns_host: "io.int.goe.de"

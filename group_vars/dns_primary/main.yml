@@ -5,13 +5,20 @@ pdns_axfr_ips:
   - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}/32"
   - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}/128"
 
+pdns_also_notify:
+  - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].ansible_default_ipv6.address }}"
+  - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}"
+
+
 pdns_config:
   master: yes
   expand-alias: yes
-  loglevel: 10
   local-port: 53
   resolver: 1.1.1.1
   allow-axfr-ips: "{{ pdns_axfr_ips | join(', ') }}"
+  also-notify: "{{ pdns_also_notify | join(', ') }}"
+  dnsupdate: yes
+  allow-dnsupdate-from: ""
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns
@@ -20,3 +27,5 @@ pdns_backends:
   bind:
     config: "{{ powerdns_config_directory }}/named.conf"
     check-interval: 60
+  'gsqlite3:pdns':
+    database: "{{ powerdns_database_file }}"

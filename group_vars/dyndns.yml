@@ -1,0 +1,21 @@
+---
+powerdns_dynamicdns_database_file: "/etc/powerdns/pdns.sqlite3"
+powerdns_dynamicdns_ansible_server: "elara.het.nue.de.n0emis.eu"
+powerdns_dynamicdns_nsupdate_server: "{{ powerdns_dynamicdns_ansible_server }}"
+powerdns_dynamicdns_allow_dnsupdate_from: "0.0.0.0/0, ::/0"
+powerdns_dynamicdns_domainmetadata:
+  - key: "ALLOW-DNSUPDATE-FROM"
+    value: "0.0.0.0/0"
+  - key: "ALLOW-DNSUPDATE-FROM"
+    value: "::/0"
+  - key: "NOTIFY-DNSUPDATE"
+    value: "1"
+powerdns_dynamicdns_tsig_key_name: "dyndns"
+powerdns_dynamicdns_soa_record_mname: "ns.n0emis.eu"
+powerdns_dynamicdns_soa_record_rname: "noc.n0emis.eu"
+powerdns_dynamicdns_nameservers:
+  - ns.n0emis.eu
+  - ns2.n0emis.eu
+  - ns3.n0emis.eu
+powerdns_dynamicdns_zone: "dyn.n0emis.eu"
+powerdns_dynamicdns_record_name: "{{ dyndns_host }}.{{ powerdns_dynamicdns_zone }}"

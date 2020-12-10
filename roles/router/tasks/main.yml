@@ -22,6 +22,7 @@
     - curl
     - python3
     - ip-full
+    - bind-client
   tags: packages
 
 - import_tasks: ohmyzsh.yml

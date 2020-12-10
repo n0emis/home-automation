@@ -9,9 +9,11 @@ $ORIGIN n0emis.eu.
 
 ;; NS
 @				3600	IN	NS	ns
-dyn				3600	IN	NS	ns
 @				3600	IN	NS	ns2
 @				3600	IN	NS	ns3
+dyn				3600	IN	NS	ns
+dyn				3600	IN	NS	ns2
+dyn				3600	IN	NS	ns3
 
 ns				3600	IN	ALIAS	elara.het.nue.de.n0emis.eu.
 ns2				3600	IN	ALIAS	ganymed.het.hel.fi.n0emis.eu.

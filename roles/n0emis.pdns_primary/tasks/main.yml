@@ -15,13 +15,6 @@
     mode: 0644
   notify: restart pdns
 
-- name: Hardlink dyndns zone file
-  file:
-    src: "/home/dyndns/db.dyndns.zone"
-    dest: "{{ powerdns_config_directory }}/zones/dyn.n0emis.eu"
-    state: hard
-  when: ansible_fqdn == dyndns_host
-
 - name: Copy zone files
   template:
     src: "{{ item }}"

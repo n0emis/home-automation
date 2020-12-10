@@ -70,9 +70,6 @@
 [submodule "roles/n0emis.wireguard"]
 	path = roles/n0emis.wireguard
 	url = https://github.com/n0emis/ansible-wireguard
-[submodule "roles/em0lar.coredns-dynamicdns"]
-	path = roles/em0lar.coredns-dynamicdns
-	url = https://git.labcode.dev/ansible_roles/coredns-dynamicdns
 [submodule "roles/Oefenweb.dnsmasq"]
 	path = roles/Oefenweb.dnsmasq
 	url = https://github.com/Oefenweb/ansible-dnsmasq
@@ -115,3 +112,6 @@
 [submodule "roles/chaos_jetzt.venueless"]
 	path = roles/chaos_jetzt.venueless
 	url = https://github.com/chaos-jetzt/ansible-role-venueless
+[submodule "roles/em0lar.powerdns-dynamicdns"]
+	path = roles/em0lar.powerdns-dynamicdns
+	url = https://git.labcode.dev/ansible_roles/powerdns-dynamicdns

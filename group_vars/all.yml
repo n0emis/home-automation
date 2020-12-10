@@ -32,18 +32,6 @@ tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683
 php_date_timezone: "Europe/Berlin"
 nginx_ppa_use: true
 
-dyndns_host: elara.het.nue.de.n0emis.eu
-dyndns_enable: no
-dyndns_seperate: yes
-dyndns_nameserver:
-  - ns.n0emis.eu
-  - ns2.n0emis.eu
-  - ns3.n0emis.eu
-
-#dyndns_pubkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key subkey=user') }}"
-#dyndns_privkey: "{{ lookup('passwordstore', 'infra/dyndns/ssh_key') | b64decode }}"
-
-
 radius_server_ip: "10.152.18.1"
 radius_password: "{{ lookup('passwordstore', 'infra/radius/local') }}"
 radius_password_global: "{{ lookup('passwordstore', 'infra/radius/global') }}"

@@ -92,7 +92,9 @@
 - hosts: dyndns
   become: yes
   roles:
-    - em0lar.coredns-dynamicdns
+    - em0lar.powerdns-dynamicdns
+  serial:
+    - 1
   tags: dyndns
 
 - hosts: mail
