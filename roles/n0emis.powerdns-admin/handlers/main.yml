@@ -1,0 +1,27 @@
+---
+- name: regenerate assets
+  shell: "yarn install --pure-lockfile && {{ powerdns_admin_directory }}/.venv/bin/flask assets build"
+  args:
+    chdir: "{{ powerdns_admin_directory }}"
+  environment:
+    FLASK_CONF: "../configs/pda.py"
+    FLASK_APP: "powerdnsadmin/__init__.py"
+  become: true
+  become_user: "{{ powerdns_admin_user }}"
+  notify: restart powerdns-admin
+
+- name: migrate database
+  command: "{{ powerdns_admin_directory }}/.venv/bin/flask db upgrade"
+  args:
+    chdir: "{{ powerdns_admin_directory }}"
+  environment:
+    FLASK_CONF: "../configs/pda.py"
+    FLASK_APP: "powerdnsadmin/__init__.py"
+  become: true
+  become_user: "{{ powerdns_admin_user }}"
+  notify: restart powerdns-admin
+
+- name: restart powerdns-admin
+  service:
+    name: powerdns-admin
+    state: restarted

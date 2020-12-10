@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Socket for PowerDNS-Admin
+
+[Socket]
+ListenStream={{ powerdns_admin_listen }}
+SocketUser={{ powerdns_admin_user }}
+SocketGroup={{ powerdns_admin_group }}
+
+[Install]
+WantedBy=sockets.target

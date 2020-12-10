@@ -223,11 +223,16 @@
         mode: "0400"
   tags: gitea,git
 
-- hosts: hedgedoc
+- hosts: nodejs
   become: yes
   roles:
     - geerlingguy.nodejs
     - ocha.yarn
+  tags: nodejs, node, yarn
+
+- hosts: hedgedoc
+  become: yes
+  roles:
     - em0lar.hedgedoc
   tasks:
     - name: Upload saml cert
@@ -343,6 +348,12 @@
   roles:
     - n0emis.yate
   tags: yate
+
+- hosts: dnsadmin
+  become: yes
+  roles:
+    - n0emis.powerdns-admin
+  tags: dnsadmin, powerdns-admin
 
 - import_playbook: accesspoints.yml
   tags: ap

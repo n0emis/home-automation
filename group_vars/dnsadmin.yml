@@ -1,0 +1,9 @@
+---
+powerdns_admin_database: "pda"
+powerdns_admin_database_user: "pda"
+powerdns_admin_database_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/powerdns-admin/db') }}"
+powerdns_admin_listen: "127.0.0.1:8083"
+
+powerdns_admin_database_url: "postgresql+psycopg2://{{ powerdns_admin_database_user }}:{{ powerdns_admin_database_password }}@localhost/{{ powerdns_admin_database }}"
+powerdns_admin_salt: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/powerdns-admin subkey=salt') }}"
+powerdns_admin_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/powerdns-admin') }}"

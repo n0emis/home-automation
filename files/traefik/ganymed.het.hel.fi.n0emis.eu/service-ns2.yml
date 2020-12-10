@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-ns2-http:
+      rule: "Host(`ns2.n0emis.eu`)"
+      service: "service-ns2@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-ns2-https:
+      rule: "Host(`ns2.n0emis.eu`)"
+      service: "service-ns2@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-ns2:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8082"

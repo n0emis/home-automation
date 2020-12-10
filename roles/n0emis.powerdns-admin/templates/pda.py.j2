@@ -1,0 +1,15 @@
+import os
+basedir = os.path.abspath(os.path.abspath(os.path.dirname(__file__)))
+
+### BASIC APP CONFIG
+SALT = '{{ powerdns_admin_salt }}'
+SECRET_KEY = '{{ powerdns_admin_secret }}'
+BIND_ADDRESS = '127.0.0.1'
+PORT = 9191
+OFFLINE_MODE = False
+
+### DATABASE
+SQLALCHEMY_DATABASE_URI = '{{ powerdns_admin_database_url }}'
+
+# SAML Authentication
+SAML_ENABLED = False

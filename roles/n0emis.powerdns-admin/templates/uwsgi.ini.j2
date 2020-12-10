@@ -1,0 +1,25 @@
+{{ ansible_managed | comment }}
+[uwsgi]
+protocol=http
+uid={{ powerdns_admin_user }}
+gid={{ powerdns_admin_group }}
+
+chdir={{ powerdns_admin_directory }}
+pythonpath={{ powerdns_admin_directory }}/.venv
+virtualenv={{ powerdns_admin_directory }}/.venv
+
+env = FLASK_CONF=../configs/pda.py
+env = FLASK_APP=powerdnsadmin/__init__.py
+
+mount = /=powerdnsadmin:create_app()
+manage-script-name = true
+
+static-map=/static={{ powerdns_admin_directory }}/powerdnsadmin/static
+
+vacuum = true
+harakiri = 20
+buffer-size = 32768
+post-buffering = 8192
+enable-threads
+
+# vim: ft=dosini

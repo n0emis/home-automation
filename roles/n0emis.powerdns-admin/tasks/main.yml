@@ -1,0 +1,113 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - libmysqlclient-dev
+      - libsasl2-dev
+      - libldap2-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - pkg-config
+      - apt-transport-https
+      - python3-pip
+      - python3-virtualenv
+      - build-essential
+    state: present
+
+- name: Create group
+  group:
+    name: "{{ powerdns_admin_group }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ powerdns_admin_user }}"
+    group: "{{ powerdns_admin_group }}"
+    system: yes
+
+- name: Create PowerDNS-Admin directory
+  file:
+    dest: "{{ powerdns_admin_directory }}"
+    owner: "{{ powerdns_admin_user }}"
+    group: "{{ powerdns_admin_group }}"
+    state: directory
+
+- name: Clone PowerDNS-Admin
+  git:
+    repo: "{{ powerdns_admin_repo }}"
+    dest: "{{ powerdns_admin_directory }}"
+    force: yes
+  become_user: "{{ powerdns_admin_user }}"
+  become: true
+  notify:
+    - regenerate assets
+    - migrate database
+    - restart powerdns-admin
+
+- name: Install pip dependencies
+  pip:
+    requirements: "{{ powerdns_admin_directory }}/requirements.txt"
+    virtualenv: "{{ powerdns_admin_directory }}/.venv/"
+    virtualenv_command: "/usr/bin/python3 -m virtualenv -p python3"
+    state: present
+  become: true
+  become_user: "{{ powerdns_admin_user }}"
+  notify: restart powerdns-admin
+
+- name: Install psycopg
+  pip:
+    name:
+      - "psycopg2-binary"
+      - "psycopg2"
+    virtualenv: "{{ powerdns_admin_directory }}/.venv/"
+    virtualenv_command: "/usr/bin/python3 -m virtualenv -p python3"
+    state: present
+  become: true
+  become_user: "{{ powerdns_admin_user }}"
+  notify:
+    - restart powerdns-admin
+    - migrate database
+
+- name: Template config file
+  template:
+    src: "pda.py.j2"
+    dest: "{{ powerdns_admin_directory }}/configs/pda.py"
+  notify:
+   - restart powerdns-admin
+   - migrate database
+
+- name: Install uWSGI via pip
+  pip:
+    name: "uwsgi"
+    state: latest
+  notify: restart powerdns-admin
+
+- name: Configure uWSGI powerdns-admin application
+  template:
+    src: "uwsgi.ini.j2"
+    dest: "{{ powerdns_admin_directory }}/uwsgi.ini"
+    owner: "{{ powerdns_admin_user }}"
+    group: "{{ powerdns_admin_group }}"
+  notify: restart powerdns-admin
+
+- name: Template systemd service
+  template:
+    src: "powerdns-admin.service.j2"
+    dest: "/etc/systemd/system/powerdns-admin.service"
+  notify: restart powerdns-admin
+
+- name: Template systemd socket
+  template:
+    src: "powerdns-admin.socket.j2"
+    dest: "/etc/systemd/system/powerdns-admin.socket"
+  notify: restart powerdns-admin
+
+- name: enable powerdns-admin
+  service:
+    daemon-reload: yes
+    name: powerdns-admin
+    state: started
+    enabled: yes

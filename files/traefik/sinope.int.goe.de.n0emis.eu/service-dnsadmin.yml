@@ -1,0 +1,21 @@
+http:
+  routers:
+    service-dnsadmin-http:
+      rule: "Host(`dnsadmin.n0emis.eu`)"
+      service: "service-dnsadmin@file"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "https_redirect"
+    service-dnsadmin-https:
+      rule: "Host(`dnsadmin.n0emis.eu`)"
+      service: "service-dnsadmin@file"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "le_http"
+  services:
+    service-dnsadmin:
+      loadBalancer:
+        servers:
+          - url: "{{ powerdns_admin_listen }}"

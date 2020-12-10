@@ -6,11 +6,15 @@ postgresql_users:
     password: "{{ hedgedoc_db_password }}"
   - name: "{{ netbox_database_user }}"
     password: "{{ netbox_database_password }}"
+  - name: "{{ powerdns_admin_database_user }}"
+    password: "{{ powerdns_admin_database_password }}"
 postgresql_databases:
   - name: "{{ hedgedoc_db_database }}"
     owner: "{{ hedgedoc_db_username }}"
   - name: "{{ netbox_database }}"
     owner: "{{ netbox_database_user }}"
+  - name: "{{ powerdns_admin_database }}"
+    owner: "{{ powerdns_admin_database_user }}"
 
 dyndns_enable: yes
 dyndns_host: "sinope.int.goe.de"

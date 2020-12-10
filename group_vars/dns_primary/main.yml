@@ -19,6 +19,13 @@ pdns_config:
   also-notify: "{{ pdns_also_notify | join(', ') }}"
   dnsupdate: yes
   allow-dnsupdate-from: ""
+  webserver: yes
+  webserver-address: 0.0.0.0
+  webserver-allow-from: 0.0.0.0/0,::/0
+  webserver-port: 8082
+  api: yes
+  api-key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ns.n0emis.eu') }}"
+  default-soa-content: "ns.n0emis.eu. noc.n0emis.eu. 0 1800 1800 1209600 300"
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns

@@ -33,6 +33,9 @@ elara.het.nue.de.n0emis.eu
 ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 
+[dnsadmin]
+sinope.int.goe.de.n0emis.eu
+
 [git]
 elara.het.nue.de.n0emis.eu
 
@@ -127,3 +130,7 @@ himalia.ion.rhr.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 
 [venueless]
+
+[nodejs:children]
+hedgedoc
+dnsadmin

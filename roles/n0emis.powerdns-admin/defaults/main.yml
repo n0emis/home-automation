@@ -1,0 +1,8 @@
+---
+powerdns_admin_repo: "https://github.com/ngoduykhanh/PowerDNS-Admin"
+powerdns_admin_directory: "/opt/powerdns-admin"
+powerdns_admin_user: "powerdns-admin"
+powerdns_admin_group: "{{ powerdns_admin_user }}"
+powerdns_admin_listen: "127.0.0.1:9191"
+
+powerdns_admin_database_url: "sqlite:///' + os.path.join(basedir, 'pdns.db') + '"
