@@ -18,4 +18,4 @@ http:
     service-dnsadmin:
       loadBalancer:
         servers:
-          - url: "{{ powerdns_admin_listen }}"
+          - url: "http://{{ powerdns_admin_listen }}"
