@@ -75,6 +75,15 @@ config rule
 	option target 'ACCEPT'
 
 config rule
+	option name 'Allow-Multicast'
+	option src      wan
+	option proto    udp
+	option dest     lan
+	option dest_ip  224.0.0.0/4
+	option target   ACCEPT
+	option family   ipv4
+
+config rule
 	option name 'Allow-IGMP'
 	option src 'wan'
 	option proto 'igmp'

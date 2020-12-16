@@ -1,0 +1,6 @@
+#!/bin/sh
+[ "$ACTION" = "ifup" -a "$INTERFACE" = "wan" ] && {
+    logger "iface wan up detected..."
+    /etc/init.d/asterisk restart
+}
+exit 0

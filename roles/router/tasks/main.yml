@@ -23,6 +23,7 @@
     - python3
     - ip-full
     - bind-client
+    - kmod-ipt-nat6
   tags: packages
 
 - import_tasks: ohmyzsh.yml
@@ -66,6 +67,11 @@
     src:  "config/igmpproxy.j2"
   notify: restart igmpproxy
 
+- name: Copy hotplug action
+  template:
+    dest: "/etc/hotplug.d/iface/99-ifup-wan"
+    src:  "99-ifup-wan.j2"
+
 - import_tasks: asterisk.yml
   tags: asterisk
 
@@ -74,3 +80,10 @@
     name: "Periodically re-resolve inactive wireguard peers"
     minute: "*"
     job: "/usr/bin/wireguard_watchdog"
+
+- name: Install asterisk restart cronjob
+  cron:
+    name: "Nightly asterisk restart"
+    hour: "5"
+    minute: "0"
+    job: "/etc/init.d/asterisk restart"
