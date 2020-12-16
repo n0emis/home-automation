@@ -23,6 +23,20 @@ netbox_config:
     'nextbox_ui_plugin',
   ]
 
+  PLUGINS_CONFIG: {
+    'nextbox_ui_plugin': {
+      'icon_role_map': {
+        'accesspoint': 'accesspoint',
+        'generic-device': 'host',
+        'router': 'router',
+        'switch': 'switch',
+        'server': 'server',
+        'telephony': 'ipphone',
+      }
+    }
+  }
+
+
 netbox_pip_packages:
   - "git+https://github.com/iDebugAll/nextbox-ui-plugin"
 
