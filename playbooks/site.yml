@@ -174,7 +174,7 @@
     - freeradius
   tags: radius,freeradius
 
-- hosts: iam
+- hosts: keycloak
   become: yes
   roles:
     - em0lar.keycloak

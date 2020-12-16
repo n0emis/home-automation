@@ -66,7 +66,7 @@ nextcloud
 [postgresql:children]
 netbox
 synapse
-iam
+keycloak
 git
 hedgedoc
 nextcloud
@@ -82,7 +82,7 @@ sinope.int.goe.de.n0emis.eu
 [synapse]
 elara.het.nue.de.n0emis.eu
 
-[iam]
+[keycloak]
 elara.het.nue.de.n0emis.eu
 
 [hedgedoc]

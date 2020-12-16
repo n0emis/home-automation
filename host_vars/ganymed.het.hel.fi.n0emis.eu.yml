@@ -17,3 +17,7 @@ traefik_default_cert_resovler: "le_tls"
 
 traefik_dashboard:
   enable: no
+
+icinga2_check_packages:
+  - fdgmon-group-essential
+  - fdgmon-check-ssl-cert
