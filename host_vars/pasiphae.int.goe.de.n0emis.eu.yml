@@ -85,8 +85,6 @@ nextcloud_apps:
   - user_ldap
   - user_saml
 
-nextcloud_version: "20.0.2"
-
 nextcloud_datadir: "/data"
 
 nginx_vhosts:

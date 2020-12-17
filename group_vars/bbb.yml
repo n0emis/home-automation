@@ -18,3 +18,8 @@ bbb_greenlight_smtp:
 bbb_nginx_dh: no
 
 bbb_monitoring_all_in_one_enable: yes
+
+oh_my_zsh_custom_config: |
+  source .profile
+
+base_additional_packages: []
