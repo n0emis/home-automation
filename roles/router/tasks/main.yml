@@ -72,8 +72,8 @@
     dest: "/etc/hotplug.d/iface/99-ifup-wan"
     src:  "99-ifup-wan.j2"
 
-- import_tasks: asterisk.yml
-  tags: asterisk
+#- import_tasks: asterisk.yml
+#  tags: asterisk
 
 - name: Install wireguard watchdog cronjob
   cron:
@@ -81,9 +81,9 @@
     minute: "*"
     job: "/usr/bin/wireguard_watchdog"
 
-- name: Install asterisk restart cronjob
-  cron:
-    name: "Nightly asterisk restart"
-    hour: "5"
-    minute: "0"
-    job: "/etc/init.d/asterisk restart"
+#- name: Install asterisk restart cronjob
+#  cron:
+#    name: "Nightly asterisk restart"
+#    hour: "5"
+#    minute: "0"
+#    job: "/etc/init.d/asterisk restart"
