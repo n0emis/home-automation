@@ -28,6 +28,22 @@
     - base
     - gantsign.oh-my-zsh
     - jnv.unattended-upgrades
+  tasks:
+    - name: Remove uname in motd
+      file:
+        path: "/etc/update-motd.d/10-uname"
+        state: absent
+    - name: Use neofetch as motd"
+      copy:
+        content: |
+          #!/bin/sh
+          neofetch
+        dest: "/etc/update-motd.d/10-neofetch"
+        mode: "+x"
+    - name: "Remove content of default motd"
+      copy:
+        content: ""
+        dest: "/etc/motd"
   tags: base
 
 - hosts: all !not_monitored

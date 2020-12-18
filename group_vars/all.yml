@@ -36,7 +36,6 @@ oh_my_zsh_theme: "agnoster"
 
 oh_my_zsh_custom_config: |
   source .profile
-  neofetch
 
 base_additional_packages:
   - neofetch
