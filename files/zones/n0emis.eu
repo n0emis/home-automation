@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020121401 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020121801 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -30,14 +30,16 @@ ganymed.het.hel.fi		3600	IN	AAAA	2a01:4f9:c010:7b6e::1
 himalia.ion.rhr.de		3600	IN	A	212.227.174.29
 himalia.ion.rhr.de		3600	IN	AAAA	2001:8d8:1800:30e::1
 
+carpo.gwd.goe.de		3600	IN	A	141.5.102.103
+
 bbb-test				IN	A	168.119.189.225
 
 ;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.
-kallisto.int.goe.de		3600	IN	ALIAS	kallisto.int.goe.de.dyn.n0emis.eu.
-io.int.goe.de			3600	IN	ALIAS	io.int.goe.de.dyn.n0emis.eu.
-sinope.int.goe.de		3600	IN	ALIAS	sinope.int.goe.de.dyn.n0emis.eu.
-metis.int.goe.de		3600	IN	ALIAS	metis.int.goe.de.dyn.n0emis.eu.
-pasiphae.int.goe.de		3600	IN	ALIAS	pasiphae.int.goe.de.dyn.n0emis.eu.
+kallisto.int.goe.de		3600	IN	CNAME	kallisto.int.goe.de.dyn.n0emis.eu.
+io.int.goe.de			3600	IN	CNAME	io.int.goe.de.dyn.n0emis.eu.
+sinope.int.goe.de		3600	IN	CNAME	sinope.int.goe.de.dyn.n0emis.eu.
+metis.int.goe.de		3600	IN	CNAME	metis.int.goe.de.dyn.n0emis.eu.
+pasiphae.int.goe.de		3600	IN	CNAME	pasiphae.int.goe.de.dyn.n0emis.eu.
 
 ;; MAIL
 ;;;; MX
