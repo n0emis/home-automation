@@ -136,3 +136,9 @@ pasiphae.int.goe.de.n0emis.eu
 [nodejs:children]
 hedgedoc
 dnsadmin
+
+[3cx]
+3cx.int.goe.de.n0emis.eu
+
+[all]
+carpo.gwd.goe.de.n0emis.eu

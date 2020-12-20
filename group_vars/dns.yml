@@ -52,7 +52,6 @@ pdns_backends_packages:
 
 #pdns_rec_forward_dn42: "212.227.174.29;2001:8d8:1800:30e::1"
 #pdns_rec_forward_cccgoe: "{{ pdns_rec_forward_dn42 }}"
-#pdns_rec_forward_dyn: "78.46.251.132;2a01:4f8:c0c:34bc::1"
 #
 #pdns_rec_service_overrides: {}
 #pdns_rec_config:
