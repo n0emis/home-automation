@@ -193,6 +193,7 @@
 - hosts: keycloak
   become: yes
   roles:
+    - geerlingguy.java
     - em0lar.keycloak
   tasks:
     - name: deploy custom keycloak-theme
