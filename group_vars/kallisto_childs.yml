@@ -1,0 +1,17 @@
+---
+icinga2_parent_zone: "kallisto.int.goe.de.n0emis.eu"
+
+icinga2_zones:
+  primary:
+    endpoints:
+      - neso.het.fks.de.fahrplandatengarten.de
+      - nereid.ovh.fra.de.fahrplandatengarten.de
+  kallisto.int.goe.de.n0emis.eu:
+    endpoints:
+      - kallisto.int.goe.de.n0emis.eu
+
+icinga2_endpoints:
+  kallisto.int.goe.de.n0emis.eu:
+    host: kallisto.int.goe.de.n0emis.eu
+  neso.het.fks.de.fahrplandatengarten.de: {}
+  nereid.ovh.fra.de.fahrplandatengarten.de: {}

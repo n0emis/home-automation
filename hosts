@@ -122,6 +122,11 @@ elara.het.nue.de.n0emis.eu
 [not_monitored:children]
 openwrt
 
+[kallisto_childs]
+sinope.int.goe.de.n0emis.eu
+metis.int.goe.de.n0emis.eu
+pasiphae.int.goe.de.n0emis.eu
+
 [minio]
 metis.int.goe.de.n0emis.eu
 

@@ -12,3 +12,30 @@ icinga2_check_packages:
 dyndns_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEKounogLx9MUfO7/Jnp6OpLtX/LcBVvLIe+x79dfxrok5nklFpI+qr0NAL4izKSR7U2Rz7sBnfoc7SiHsp5VsqIRCYEfNkUX83XXyKlhkz2PDL+ugemAvelfvvLBNnyhLl5KvU/NwKXqa2xIk4l2tlv41ay9wEy5kbrlB/N3uIztEcNFO1el9JV5fMVs7VqjLoq2rV7O3guQxOPJYFHTylS9Kg1O390VBdq5OGdfomfHlcM5o/PzI4qgcnVWH5Ct1jnr847eXMyjQb7bnoZYo5ynsOpX3tn1psHcD8RoJ5/qt40KK3kKS+ijOufHE1r+t2z7Inr5ql1LJnyCva801 root@kallisto"
 dyndns_enable: yes
 dyndns_host: "kallisto.int.goe.de"
+
+icinga2_zones:
+  primary:
+    endpoints:
+      - neso.het.fks.de.fahrplandatengarten.de
+      - nereid.ovh.fra.de.fahrplandatengarten.de
+  sinope.int.goe.de.n0emis.eu:
+    endpoints:
+      - sinope.int.goe.de.n0emis.eu
+    parent: "{{ ansible_fqdn }}"
+  metis.int.goe.de.n0emis.eu:
+    endpoints:
+      - metis.int.goe.de.n0emis.eu
+    parent: "{{ ansible_fqdn }}"
+  pasiphae.int.goe.de.n0emis.eu:
+    endpoints:
+      - pasiphae.int.goe.de.n0emis.eu
+    parent: "{{ ansible_fqdn }}"
+
+icinga2_endpoints:
+  neso.het.fks.de.fahrplandatengarten.de:
+    host: neso.het.fks.de.fahrplandatengarten.de
+  nereid.ovh.fra.de.fahrplandatengarten.de:
+    host: nereid.ovh.fra.de.fahrplandatengarten.de
+  sinope.int.goe.de.n0emis.eu: {}
+  metis.int.goe.de.n0emis.eu: {}
+  pasiphae.int.goe.de.n0emis.eu: {}
