@@ -1,6 +1,6 @@
 $ORIGIN noemis.me.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020121403 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020122201 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600      ; expire (1 day)
@@ -28,8 +28,9 @@ _dmarc                      {{ dns_dmarc }}
 @                           {{ dns_spf }}
 
 ;; CAA
-*	                        3600	IN	CAA 0   issue "letsencrypt.org"
-@	                        3600	IN	CAA	0   issue "letsencrypt.org"
+@				3600	IN	CAA 	0 issue "letsencrypt.org"
+@				3600	IN	CAA 	0 issue "buypass.no"
+@				3600	IN	CAA 	0 iodef "mailto:noc@n0emis.eu"
 
 ;; TXT
 

@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020121801 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2020122201 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -94,8 +94,9 @@ _995._tcp.{{ dns_tlsa }}
 _4190._tcp.{{ dns_tlsa }}
 
 ;; CAA
-*				3600	IN	CAA 	0 issue "letsencrypt.org"
 @				3600	IN	CAA 	0 issue "letsencrypt.org"
+@				3600	IN	CAA 	0 issue "buypass.no"
+@				3600	IN	CAA 	0 iodef "mailto:noc@n0emis.eu"
 
 ;; TXT
 
