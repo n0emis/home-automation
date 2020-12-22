@@ -1,0 +1,25 @@
+---
+base_additional_packages:
+  - neofetch
+
+ansible_python_interpreter: "/usr/bin/python3"
+
+unattended_mail: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    39666636373833623330643661343464336232356264313638393564376533343133396663393237
+    6537663635326262373535646431373933323337646536320a663739633763343237323738626332
+    63323166363261356636313039383830356562376133613735343732623535353537373666353662
+    6334353064616165630a396665653363396138383231313030663065323134333235663563323438
+    35313630643565383931363835326636646536376237373364306130396137363235
+
+tlsa_data: "3 1 1 c9c26f6bbc3de806274af05fdce17eb019a6c2fb7281bf5559f5dedcc07683cb"
+
+php_date_timezone: "Europe/Berlin"
+nginx_ppa_use: true
+
+radius_server_ip: "10.152.18.1"
+radius_password: "{{ lookup('passwordstore', 'infra/radius/local') }}"
+radius_password_global: "{{ lookup('passwordstore', 'infra/radius/global') }}"
+
+ap_iot_wifi_ssid: "{{ lookup('passwordstore', 'infra/wireless/iot subkey=user') }}"
+ap_iot_wifi_password: "{{ lookup('passwordstore', 'infra/wireless/iot') }}"
