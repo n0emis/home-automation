@@ -28,3 +28,8 @@
   service:
     name: "asterisk"
     state: restarted
+
+- name: restart prometheus-node-exporter-lua
+  service:
+    name: "prometheus-node-exporter-lua"
+    state: restarted

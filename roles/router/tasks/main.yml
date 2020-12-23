@@ -26,6 +26,16 @@
     - kmod-ipt-nat6
   tags: packages
 
+- name: Install prometheus packages
+  opkg:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - prometheus-node-exporter-lua
+    - prometheus-node-exporter-lua-netstat
+    - prometheus-node-exporter-lua-openwrt
+  tags: packages
+
 - import_tasks: ohmyzsh.yml
   tags: packages
 
@@ -66,6 +76,12 @@
     dest: "/etc/config/igmpproxy"
     src:  "config/igmpproxy.j2"
   notify: restart igmpproxy
+
+- name: Copy Prometheus Node Exporter Config File
+  template:
+    dest: "/etc/config/prometheus-node-exporter-lua"
+    src:  "config/prometheus-node-exporter-lua.j2"
+  notify: restart prometheus-node-exporter-lua
 
 - name: Copy hotplug action
   template:
