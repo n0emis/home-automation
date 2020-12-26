@@ -1,0 +1,4 @@
+---
+borgmatic_hooks:
+  postgresql_databases:
+    - name: all

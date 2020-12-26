@@ -15,3 +15,10 @@ mailcow__config_additional_san:
 
 mailcow__config_http_port: 81
 mailcow__config_https_port: 444
+
+borgmatic_before_backup_command:
+  - echo "`date` - Starting backup."
+  - "cd /opt/mailcow-dockerized && MAILCOW_BACKUP_LOCATION=/root/mailcow-backup ./helper-scripts/backup_and_restore.sh backup all"
+borgmatic_after_backup_command:
+  - echo "`date` - Finished backup."
+  - "rm -r /root/mailcow-backup/*"

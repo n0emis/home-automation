@@ -115,3 +115,6 @@
 [submodule "roles/em0lar.powerdns-dynamicdns"]
 	path = roles/em0lar.powerdns-dynamicdns
 	url = https://git.labcode.dev/ansible_roles/powerdns-dynamicdns
+[submodule "roles/borgbase.borgbackup"]
+	path = roles/borgbase.borgbackup
+	url = https://github.com/borgbase/ansible-role-borgbackup

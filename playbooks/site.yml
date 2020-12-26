@@ -73,6 +73,37 @@
     - fahrplandatengarten.icinga
   tags: icinga,monitoring
 
+- hosts: backuped
+  become: yes
+  pre_tasks:
+    - name: Install borgbackup apt package
+      apt:
+        name: "borgbackup"
+        state: present
+      delegate_to: "kallisto.int.goe.de.n0emis.eu"
+    - name: Create zfs-volume for backups
+      zfs:
+        name: "rpool/backup/borg/{{ ansible_fqdn }}"
+        state: present
+      delegate_to: "kallisto.int.goe.de.n0emis.eu"
+    - name: Add authorized keys for hosts
+      authorized_key:
+        user: "root"
+        key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ssh subkey=pub') | b64decode }}"
+        key_options: 'command="cd /rpool/backup/borg/{{ ansible_fqdn }};borg serve --restrict-to-path /rpool/backup/borg/{{ ansible_fqdn }}",restrict'
+      delegate_to: "kallisto.int.goe.de.n0emis.eu"
+  roles:
+    - borgbase.borgbackup
+  tasks:
+    - name: Check if repo is initialized
+      command: "borgmatic list"
+      register: borgmatic_list
+      ignore_errors: yes
+    - name: Initialize repo
+      command: "borgmatic init --encryption repokey"
+      when: "'FileNotFoundError' in borgmatic_list.stdout"
+  tags: backup, borg
+
 - hosts: php
   become: yes
   pre_tasks:
