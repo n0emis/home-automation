@@ -29,11 +29,32 @@
     - gantsign.oh-my-zsh
     - jnv.unattended-upgrades
   tasks:
+    - name: Deploy ssh key to host
+      copy:
+        content: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ssh') | b64decode }}"
+        dest: "/root/.ssh/{{ ansible_fqdn }}"
+        mode: '0600'
+      ignore_errors: yes
+      register: ssh_key
+    - name: Deploy ssh pubkey to host
+      copy:
+        content: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ssh subkey=pub') | b64decode }}"
+        dest: "/root/.ssh/{{ ansible_fqdn }}.pub"
+        mode: '0600'
+      when: not ssh_key.failed
+    - name: Use ssh key by default for everything
+      blockinfile:
+        path: "{{ ansible_user_dir }}/.ssh/config"
+        create: yes
+        block: |
+          Host *
+            IdentityFile "{{ ansible_user_dir }}/.ssh/{{ ansible_fqdn }}"
+      when: not ssh_key.failed
     - name: Remove uname in motd
       file:
         path: "/etc/update-motd.d/10-uname"
         state: absent
-    - name: Use neofetch as motd"
+    - name: Use neofetch as motd
       copy:
         content: |
           #!/bin/sh
