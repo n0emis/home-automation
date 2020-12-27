@@ -1,7 +1,7 @@
 ---
 dyndns_host: "pasiphae.int.goe.de"
 
-postgresql_users:
+postgresql_host_users:
   - name: "{{ nextcloud_db_user }}"
     password: "{{ nextcloud_db_password }}"
 postgresql_databases:

@@ -1,7 +1,7 @@
 ---
 ansible_python_interpreter: "/usr/bin/python3"
 
-postgresql_users:
+postgresql_host_users:
   - name: "{{ hedgedoc_db_username }}"
     password: "{{ hedgedoc_db_password }}"
   - name: "{{ netbox_database_user }}"

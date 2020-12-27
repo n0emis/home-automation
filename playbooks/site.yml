@@ -99,6 +99,7 @@
       command: "borgmatic list"
       register: borgmatic_list
       ignore_errors: yes
+      changed_when: no
     - name: Initialize repo
       command: "borgmatic init --encryption repokey"
       when: "'FileNotFoundError' in borgmatic_list.stdout"
