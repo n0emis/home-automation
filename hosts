@@ -51,9 +51,6 @@ io.int.goe.de.n0emis.eu
 metis.int.goe.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 
-[php]
-kallisto.int.goe.de.n0emis.eu
-
 [php:children]
 nextcloud
 

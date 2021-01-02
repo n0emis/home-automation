@@ -1,5 +1,5 @@
 ---
-hedgedoc_version: "1.7.0"
+hedgedoc_version: "1.7.1"
 hedgedoc_source: http://kallisto.int.goe.de.n0emis.eu:82/tmp/hedgedoc-{{ hedgedoc_version }}.tar.gz
 
 hedgedoc_db_database: "hackmd"

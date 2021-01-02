@@ -20,7 +20,7 @@ http:
     io_metrics:
       loadBalancer:
         servers:
-          - url: "http://io.int.goe.de.n0emis.eu:9100"
+          - url: "http://10.152.4.254:9100"
   middlewares:
     io-metrics-auth:
       basicAuth:
