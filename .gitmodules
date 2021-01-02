@@ -112,3 +112,6 @@
 [submodule "roles/borgbase.borgbackup"]
 	path = roles/borgbase.borgbackup
 	url = https://github.com/borgbase/ansible-role-borgbackup
+[submodule "roles/n0emis.pdns_secondary"]
+	path = roles/n0emis.pdns_secondary
+	url = https://git.n0emis.eu/ansible_roles/pdns_secondary
