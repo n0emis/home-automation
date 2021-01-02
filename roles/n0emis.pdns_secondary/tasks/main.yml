@@ -34,6 +34,15 @@
         state: absent
   when: not stat_database_file.stat.exists
 
+- name: Check if TSIG key is in database
+  command: "sqlite3 {{ powerdns_database_file }} \"SELECT * FROM tsigkeys WHERE name='{{ powerdns_tsig_key_name }}';\""
+  changed_when: false
+  register: sqlite3_command_tsig_key_check
+
+- name: Add TSIG key to database
+  command: "pdnsutil import-tsig-key {{ powerdns_tsig_key_name }} hmac-sha512 {{ powerdns_tsig_key }}"
+  when: sqlite3_command_tsig_key_check.stdout | length == 0
+
 - name: add supermaster entries
   command: "pdnsutil add-supermaster {{ item[0] }} {{ item[1] }}"
   ignore_errors: yes

@@ -23,6 +23,8 @@ pdns_config:
   webserver-address: 0.0.0.0
   webserver-allow-from: 0.0.0.0/0,::/0
   webserver-port: 8082
+  slave: yes
+  superslave: yes
   api: yes
   api-key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ns.n0emis.eu') }}"
   default-soa-content: "ns.n0emis.eu. noc.n0emis.eu. 0 1800 1800 1209600 300"

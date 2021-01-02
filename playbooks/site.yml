@@ -10,7 +10,7 @@
 #    - powerdns.pdns_recursor
   tags: dns, powerdns
 
-- hosts: dns_secondary
+- hosts: dns
   become: yes
   roles:
     - n0emis.pdns_secondary
