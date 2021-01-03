@@ -1,18 +1,20 @@
 ---
 - name: Create Bind-Zones directory
   file:
-    path: "{{ powerdns_config_directory }}/zones"
+    path: "{{ item }}"
     mode: 0775
     owner: pdns
     group: pdns
     recurse: yes
     state: directory
+  loop:
+    - "{{ powerdns_config_directory }}"
+    - "{{ powerdns_config_directory }}/zones"
 
 - name: Upload named.conf
   template:
     src: "powerdns/named.conf.j2"
     dest: "{{ powerdns_config_directory }}/named.conf"
-    mode: 0644
   notify: restart pdns
 
 - name: Copy zone files
@@ -23,3 +25,20 @@
     group: pdns
     mode: 0775
   with_fileglob: "templates/zones/*"
+
+- name: Check if Bind dnssec db already exists
+  stat:
+    path: "{{ powerdns_bind_dnssec_database_file }}"
+  register: stat_dnssec_file
+
+- name: Create Bind dnssec db
+  command: "pdnsutil create-bind-db {{ powerdns_bind_dnssec_database_file }}"
+  become: yes
+  become_user: pdns
+  when: not stat_dnssec_file.stat.exists
+
+- include_tasks: import_tsig_keys.yml
+  loop: "{{ pdns_bind_tsig_keys }}"
+
+- include_tasks: activate_tsig_keys.yml
+  loop: "{{ pdns_bind_domains_tsig }}"

@@ -1,0 +1,10 @@
+---
+- name: "Check if TSIG key '{{ item.name }}'"
+  command: "sqlite3 {{ powerdns_bind_dnssec_database_file }} \"SELECT * FROM tsigkeys where name='{{ item.name }}' AND algorithm='{{ item.algorithm }}';\""
+  register: sqlite3_tsigkey_check_command
+  changed_when: false
+
+- name: "Import TSIG key '{{ item.name }}'"
+  command: "sqlite3 {{ powerdns_bind_dnssec_database_file }} \"INSERT INTO tsigkeys (name, algorithm, secret) values ('{{ item.name }}', '{{ item.algorithm }}', '{{ item.secret }}');\""
+  when: sqlite3_tsigkey_check_command.stdout | length == 0
+  notify: restart pdns

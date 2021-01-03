@@ -10,6 +10,8 @@ powerdns_dynamicdns_domainmetadata:
     value: "::/0"
   - key: "NOTIFY-DNSUPDATE"
     value: "1"
+  - key: "TSIG-ALLOW-AXFR"
+    value: "dnscluster"
 powerdns_dynamicdns_tsig_key_name: "dyndns"
 powerdns_dynamicdns_soa_record_mname: "ns.n0emis.eu"
 powerdns_dynamicdns_soa_record_rname: "noc.n0emis.eu"

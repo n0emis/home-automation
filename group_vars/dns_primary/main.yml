@@ -4,6 +4,8 @@ pdns_axfr_ips:
   - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].ansible_default_ipv6.address }}/128"
   - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv4.address }}/32"
   - "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].ansible_default_ipv6.address }}/128"
+  - "95.216.160.224/32"
+  - "2a01:4f9:c010:1dcf::1/128"
 
 pdns_also_notify:
   - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].ansible_default_ipv6.address }}"
@@ -36,5 +38,14 @@ pdns_backends:
   bind:
     config: "{{ powerdns_config_directory }}/named.conf"
     check-interval: 60
+    dnssec-db: "{{ powerdns_bind_dnssec_database_file }}"
   'gsqlite3:pdns':
     database: "{{ powerdns_database_file }}"
+
+pdns_bind_tsig_keys:
+  - name: "{{ powerdns_tsig_key_name }}"
+    secret: "{{ powerdns_tsig_key }}"
+    algorithm: "hmac-sha512"
+pdns_bind_domains_tsig:
+  - { domain: n0emis.eu, key: "{{ powerdns_tsig_key_name }}" }
+  - { domain: noemis.me, key: "{{ powerdns_tsig_key_name }}" }

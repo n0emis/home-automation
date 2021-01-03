@@ -30,6 +30,7 @@ pdns_backends:
     database: "{{ powerdns_database_file }}"
 
 powerdns_database_file: "{{ powerdns_config_directory }}/pdns.sqlite3"
+powerdns_bind_dnssec_database_file: "{{ powerdns_config_directory }}/pdns-dnssec-bind.sqlite3"
 
 powerdns_primary_ips:
   - 78.46.251.132

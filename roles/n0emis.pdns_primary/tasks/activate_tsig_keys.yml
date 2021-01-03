@@ -1,0 +1,14 @@
+---
+- name: "Check if TSIG key '{{ item.name }}' is activated for domain '{{ item.domain }}'"
+  command: "sqlite3 {{ powerdns_bind_dnssec_database_file }} \"SELECT * FROM domainmetadata where domain='{{ item.domain }}' AND kind='TSIG-ALLOW-AXFR' AND content='{{ item.key }}';\""
+  changed_when: false
+  become: yes
+  become_user: pdns
+  register: sqlite3_command_tsig_activated_for_domain
+
+- name: "Activate TSIG key '{{ item.name }}' for domain '{{ item.domain }}'"
+  command: "sqlite3 {{ powerdns_bind_dnssec_database_file }} \"INSERT INTO domainmetadata (domain, kind, content) VALUES ('{{ item.domain }}', 'TSIG-ALLOW-AXFR', '{{ item.key }}');\""
+  when: sqlite3_command_tsig_activated_for_domain.stdout | length == 0
+  become: yes
+  become_user: pdns
+  notify: restart pdns
