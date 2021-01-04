@@ -46,6 +46,11 @@ router_static_hosts:
   - name: sinope
     v4: 10.152.4.4
     mac: 02:77:82:c3:82:57
+    hostid: 4
+  - name: pasiphae
+    v4: 10.152.4.5
+    mac: 8e:85:c2:81:9e:d9
+    hostid: 5
 
 router_port_redirect:
   - name: ssh
@@ -54,16 +59,16 @@ router_port_redirect:
     ip: 10.152.4.1
     reflection_nets:
       - lan
-  - name: http
+  - name: http pasiphae
     port: 80
     network: srvkallisto
-    ip: 10.152.4.4
+    ip: 10.152.4.5
     reflection_nets:
       - lan
-  - name: https
+  - name: https pasiphae
     port: 443
     network: srvkallisto
-    ip: 10.152.4.4
+    ip: 10.152.4.5
     reflection_nets:
       - lan
   - name: pve
@@ -90,6 +95,12 @@ router_port_allow_ipv6:
     proto: "all"
   - name: "sinope-v6"
     ip: "2001:470:7694:0:77:82ff:fec3:8257"
+    proto: "all"
+  - name: "sinope2-v6"
+    ip: "2001:470:7694::a62"
+    proto: "all"
+  - name: "pasiphae-v6"
+    ip: "2001:470:7694:0:8c85:c2ff:fe81:9ed9"
     proto: "all"
 
 router_firewall_forwarding:

@@ -115,3 +115,6 @@
 [submodule "roles/n0emis.pdns_secondary"]
 	path = roles/n0emis.pdns_secondary
 	url = https://git.n0emis.eu/ansible_roles/pdns_secondary
+[submodule "roles/em0lar.caddy"]
+	path = roles/em0lar.caddy
+	url = https://git.labcode.dev/ansible_roles/caddy
