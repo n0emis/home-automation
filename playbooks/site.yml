@@ -203,6 +203,12 @@
       ignore_errors: yes
   tags: traefik
 
+- hosts: caddy
+  become: yes
+  roles:
+    - em0lar.caddy
+  tags: caddy
+
 - hosts: minio
   become: yes
   roles:

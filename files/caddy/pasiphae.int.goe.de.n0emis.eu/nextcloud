@@ -1,0 +1,43 @@
+wolke.n0emis.eu, wolke.noemis.me {
+  root * /var/www/nextcloud/current
+  file_server
+
+  php_fastcgi localhost:9000 {
+    env modHeadersAvailable true
+    env front_controller_active true
+  }
+
+  header {
+    Strict-Transport-Security max-age=31536000;
+    Referrer-Policy no-referrer
+    X-Content-Type-Options nosniff
+    X-Download-Options noopen
+    X-Frame-Options SAMEORIGIN
+    X-Permitted-Cross-Domain-Policies none
+    X-Robots-Tag none
+    X-XSS-Protection "1; mode=block"
+  }
+
+  redir /.well-known/carddav /remote.php/dav 301
+  redir /.well-known/caldav /remote.php/dav 301
+  redir /.well-known/webfinger /public.php?service=webfinger 301
+
+  # .htaccess / data / config / ... shouldn't be accessible from outside
+  @forbidden {
+    path /build/*
+    path /tests/*
+    path /config/*
+    path /lib/*
+    path /3rdparty/*
+    path /templates/*
+    path /data/*
+    path /autotest
+    path /occ
+    path /issue
+    path /indie
+    path /console
+    path /.htaccess
+  }
+
+  respond @forbidden 403
+}

@@ -1,0 +1,3 @@
+build.n0emis.eu {
+	reverse_proxy http://kallisto.int.goe.de.n0emis.eu:83
+}

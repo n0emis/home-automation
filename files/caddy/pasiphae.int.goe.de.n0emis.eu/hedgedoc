@@ -1,0 +1,7 @@
+md.n0emis.eu {
+	reverse_proxy http://sinope.int.goe.de.n0emis.eu:3000
+}
+
+md.noemis.me {
+	redir https://md.n0emis.eu{uri}
+}

@@ -1,0 +1,8 @@
+{{ ansible_fqdn }} {
+	basicauth /metrics {
+		metrics {{ lookup('passwordstore', 'infra/caddy-metrics') | password_hash('bcrypt') | b64encode }}
+	}
+	metrics /metrics
+
+	import default_404
+}

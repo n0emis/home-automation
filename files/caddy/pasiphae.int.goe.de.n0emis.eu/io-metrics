@@ -1,0 +1,7 @@
+io-metrics.int.goe.de.n0emis.eu {
+	reverse_proxy /metrics http://sinope.int.goe.de.n0emis.eu:8081
+
+	basicauth /metrics {
+		metrics {{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/metrics') | password_hash('bcrypt') | b64encode }}
+	}
+}

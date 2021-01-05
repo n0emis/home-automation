@@ -1,0 +1,3 @@
+simplesaml.n0emis.tk {
+	reverse_proxy http://localhost:82
+}

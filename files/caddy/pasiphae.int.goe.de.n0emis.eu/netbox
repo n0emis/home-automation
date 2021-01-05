@@ -1,0 +1,5 @@
+netbox.n0emis.eu, netbox.noemis.me {
+	request_header -X-Auth-Username
+
+	reverse_proxy http://sinope.int.goe.de.n0emis.eu:3001
+}

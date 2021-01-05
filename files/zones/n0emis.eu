@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2021010304 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2021010502 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -38,7 +38,7 @@ carpo.gwd.goe.de		3600	IN	A	141.5.102.103
 bbb-test				IN	A	168.119.189.225
 
 ;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.
-kallisto.int.goe.de		3600	IN	CNAME	kallisto.int.goe.de.dyn.n0emis.eu.
+kallisto.int.goe.de		3600	IN	CNAME	v4-kallisto.int.goe.de.dyn.n0emis.eu.
 io.int.goe.de			3600	IN	CNAME	io.int.goe.de.dyn.n0emis.eu.
 sinope.int.goe.de		3600	IN	CNAME	sinope.int.goe.de.dyn.n0emis.eu.
 metis.int.goe.de		3600	IN	CNAME	metis.int.goe.de.dyn.n0emis.eu.
@@ -118,16 +118,16 @@ keycloak			3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 lg				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 turn				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 
-md				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-wolke				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-cloud				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-dev.cloud			3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-home				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-build				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-netbox				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-minio				3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-dnsadmin			3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
-io-metrics.int.goe.de		3600	IN	CNAME	sinope.int.goe.de.n0emis.eu.
+md				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+wolke				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+cloud				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+dev.cloud			3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+home				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+build				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+netbox				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+minio				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+dnsadmin			3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+io-metrics.int.goe.de		3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
 
 vpn				3600    IN	CNAME	himalia.ion.rhr.de.n0emis.eu.
 cgvpn				3600    IN	CNAME	himalia.ion.rhr.de.n0emis.eu.

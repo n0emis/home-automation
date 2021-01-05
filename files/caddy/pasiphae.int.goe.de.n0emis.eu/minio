@@ -1,0 +1,3 @@
+minio.n0emis.eu {
+	reverse_proxy http://metis.int.goe.de.n0emis.eu:9091
+}

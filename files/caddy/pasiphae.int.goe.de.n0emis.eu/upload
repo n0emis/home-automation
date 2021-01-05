@@ -1,0 +1,3 @@
+home.noemis.me, home.n0emis.eu {
+	reverse_proxy http://sinope.int.goe.de.n0emis.eu:8081
+}

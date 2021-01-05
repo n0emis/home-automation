@@ -1,6 +1,6 @@
 $ORIGIN n0emis.tk.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2020121405 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2021010501 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -25,7 +25,7 @@ test				IN TXT "foobar2342"
 
 tests			IN	ALIAS	himalia.n0emis.tk.
 tests2			IN	ALIAS	himalia.n0emis.tk.
-simplesaml		IN	CNAME	sinope.int.goe.de.n0emis.eu.
+simplesaml		IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
 
 grafana			IN	CNAME	c102-100.cloud.gwdg.de.
 dashboard		IN	CNAME	c102-100.cloud.gwdg.de.

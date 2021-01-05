@@ -19,14 +19,14 @@ postgresql_databases:
 dyndns_enable: yes
 dyndns_host: "sinope.int.goe.de"
 
-louketo_netbox_listen: "127.0.0.1:3001"
+louketo_netbox_listen: ":3001"
 
 louketo_instances:
   - name: upload
     config: |
       client-id: upload
       discovery-url: https://auth.n0emis.eu/auth/realms/n0emis
-      listen: localhost:8081
+      listen: :8081
       upstream-url: http://kallisto.int.goe.de.n0emis.eu:82
       resources:
         - uri: /*
