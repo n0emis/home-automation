@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2021010502 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2021010601 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -117,6 +117,8 @@ auth				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 keycloak			3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 lg				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 turn				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+chat				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
+element				3600	IN	CNAME	elara.het.nue.de.n0emis.eu.
 
 md				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
 wolke				3600	IN	CNAME	pasiphae.int.goe.de.n0emis.eu.

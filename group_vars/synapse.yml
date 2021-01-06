@@ -1,4 +1,7 @@
 ---
+synapse_pip_version: "1.24.0"
+element_version: "1.7.16"
+
 synapse_database_host: "localhost"
 synapse_database_database: "synapse"
 synapse_database_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/synapse/db subkey=user') }}"
@@ -12,6 +15,7 @@ synapse_enable_group_creation: true
 synapse_enable_registration: false
 synapse_domain: "noemis.me"
 synapse_server_fqdn_matrix: "matrix.{{ synapse_domain }}"
+synapse_password_config_enabled: false
 
 synapse_http_listener_enabled: false
 synapse_federation_listener_enabled: false
@@ -36,7 +40,6 @@ synapse_additional_listeners: |
 
 synapse_allow_guest_access: true
 
-synapse_pip_version: "1.24.0"
 synapse_pip_packages_additional:
   - "git+https://github.com/chaos-jetzt/matrix-synapse-saml-mapper"
   - "git+https://github.com/matrix-org/synapse-s3-storage-provider"
@@ -63,7 +66,8 @@ synapse_homeserver_config_extra_options: |
 
   sso:
     client_whitelist:
-      - "https://noemis.me/"
+      - "https://element.n0emis.eu/"
+      - "element://element"
 
   federation_metrics_domains:
     - matrix.org

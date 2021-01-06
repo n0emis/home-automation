@@ -1,0 +1,8 @@
+element.n0emis.eu {
+	root * /var/www/element
+	file_server
+}
+
+chat.n0emis.eu {
+	redir https://element.n0emis.eu{uri}
+}

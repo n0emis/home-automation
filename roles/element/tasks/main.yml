@@ -1,0 +1,24 @@
+- name: Create installation directory for Element
+  file:
+    path: "{{ element_installation_path }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+- name: Download and unarchive Element
+  unarchive:
+    remote_src: yes
+    src: https://github.com/vector-im/element-web/releases/download/v{{ element_version }}/element-v{{ element_version }}.tar.gz
+    extra_opts: --strip-components=1
+    dest: "{{ element_installation_path }}"
+    owner: www-data
+    group: www-data
+
+- name: Create Element custom configuration
+  template:
+    src: config.json.j2
+    dest: "{{ element_installation_path }}/config.json"
+    owner: root
+    group: root
+    mode: 0664

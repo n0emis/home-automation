@@ -224,6 +224,12 @@
 - hosts: synapse
   become: yes
   roles:
+    - element
+  tags: element, matrix
+
+- hosts: synapse
+  become: yes
+  roles:
     - n0emis.synapse
     - systemli.coturn
   tags: synapse, matrix

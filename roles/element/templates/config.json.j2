@@ -1,0 +1,41 @@
+{
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://{{ synapse_server_fqdn_matrix }}",
+            "server_name": "{{ synapse_domain }}"
+        }
+    },
+    "disable_guests": false,
+    "disable_login_language_selector": false,
+    "brand": "element.n0emis.eu",
+    "defaultCountryCode": "DE",
+    "showLabsSettings": true,
+    "features": {
+        "feature_latex_maths" : "enable",
+        "feature_new_spinner" : "enable",
+        "feature_pinning" : "enable",
+        "feature_custom_status" : "enable",
+        "feature_custom_tags" : "enable",
+        "feature_state_counters" : "enable",
+        "feature_bridge_state" : "enable",
+        "feature_presence_in_room_list" : "enable",
+        "feature_custom_themes" : "enable",
+
+        "feature_many_integration_managers": "labs",
+        "feature_mjolnir": "labs",
+        "feature_dm_verification": "labs",
+        "feature_roomlist_preview_reactions_all": "labs",
+        "feature_roomlist_preview_reactions_dms": "labs",
+        "feature_communities_v2_prototypes": "labs",
+        "feature_dehydration": "labs"
+    },
+    "default_theme": "dark",
+    "roomDirectory": {
+        "servers": [
+            "matrix.org",
+            "noemis.me",
+            "matrix.cccgoe.de",
+            "chaos.jetzt"
+        ]
+    }
+}
