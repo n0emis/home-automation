@@ -1,0 +1,17 @@
+matrix.noemis.me {
+	reverse_proxy http://localhost:{{ synapse_http_listener_port }}
+}
+
+noemis.me {
+	route {
+		respond /.well-known/matrix/server `{"m.server": "{{ synapse_server_fqdn_matrix }}:443"}`
+		respond /.well-known/matrix/client `{"m.homeserver": {"base_url": "https://{{ synapse_server_fqdn_matrix }}"}`
+
+		redir https://www.n0emis.eu/{uri}
+	}
+	header /.well-known/matrix/* Content-Type "application/json"
+}
+
+n0emis.eu {
+	redir https://www.n0emis.eu/{uri}
+}

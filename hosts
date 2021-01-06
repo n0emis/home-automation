@@ -40,10 +40,10 @@ sinope.int.goe.de.n0emis.eu
 elara.het.nue.de.n0emis.eu
 
 [traefik]
-elara.het.nue.de.n0emis.eu
 ganymed.het.hel.fi.n0emis.eu
 
 [caddy]
+elara.het.nue.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 
 [dyndns]
@@ -57,7 +57,6 @@ pasiphae.int.goe.de.n0emis.eu
 nextcloud
 
 [nginx]
-elara.het.nue.de.n0emis.eu
 
 [postgresql:children]
 netbox

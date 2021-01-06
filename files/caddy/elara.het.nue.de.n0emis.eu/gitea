@@ -1,0 +1,3 @@
+git.n0emis.eu, git.noemis.me {
+	reverse_proxy http://localhost:{{ gitea_http_port }}
+}

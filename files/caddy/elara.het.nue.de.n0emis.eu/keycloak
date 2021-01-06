@@ -1,0 +1,7 @@
+auth.n0emis.eu {
+	reverse_proxy http://localhost:{{ keycloak_http_port }}
+}
+
+auth.noemis.me, ipa.noemis.me {
+	redir https://auth.n0emis.eu{uri}
+}
