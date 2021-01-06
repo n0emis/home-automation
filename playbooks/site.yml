@@ -209,6 +209,12 @@
     - em0lar.caddy
   tags: caddy
 
+- hosts: dehydrated
+  become: yes
+  roles:
+    - rixx.dehydrated
+  tags: dehydrated
+
 - hosts: minio
   become: yes
   roles:

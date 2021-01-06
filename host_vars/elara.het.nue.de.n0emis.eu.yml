@@ -36,3 +36,19 @@ coturn_static_auth_secret: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn +
 coturn_realm: "turn.n0emis.eu"
 
 pdns_rec_forward_dyn: "127.0.0.1:5300"
+
+dehydrated_deploy_cert_hook: |
+  systemctl restart coturn
+
+  cp /etc/ssl/letsencrypt/certs/auth.n0emis.eu/fullchain.pem /etc/freeradius/certs
+  cp /etc/ssl/letsencrypt/certs/auth.n0emis.eu/privkey.pem /etc/freeradius/certs
+  chown freerad. /etc/freeradius/certs/*.pem
+  systemctl reload freeradius
+
+dehydrated_domains:
+  - domains:
+      - auth.n0emis.eu
+      - auth.noemis.me
+      - ipa.noemis.me
+  - domains:
+      - turn.n0emis.eu

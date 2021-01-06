@@ -90,8 +90,8 @@ synapse_turn_uris:
 synapse_turn_shared_secret: "{{ coturn_static_auth_secret }}"
 synapse_turn_allow_guests: True
 coturn_tls: True
-coturn_tls_cert: /etc/ssl/certs/turn.n0emis.eu.crt
-coturn_tls_key: /etc/ssl/private/turn.n0emis.eu.key
+coturn_tls_cert: /etc/ssl/letsencrypt/certs/turn.n0emis.eu/fullchain.pem
+coturn_tls_key: /etc/ssl/letsencrypt/certs/turn.n0emis.eu/privkey.pem
 
 ## Matrix-Media-Repo
 matrix_media_repo_db_name: "mediarepo"

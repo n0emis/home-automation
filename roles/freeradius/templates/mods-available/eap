@@ -178,7 +178,7 @@ eap {
 	#
 	tls-config tls-common {
 		# private_key_password = whatever
-		private_key_file = /etc/ssl/private/auth.n0emis.eu.key
+		private_key_file = /etc/freeradius/certs/privkey.pem
 
 		#  If Private key & Certificate are located in
 		#  the same file, then private_key_file &
@@ -214,7 +214,7 @@ eap {
 		#  give advice which will work everywhere.  Instead,
 		#  we give general guidelines.
 		#
-		certificate_file = /etc/ssl/certs/auth.n0emis.eu.crt
+		certificate_file = /etc/freeradius/certs/fullchain.pem
 
 		#  Trusted Root CA list
 		#

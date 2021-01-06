@@ -1,0 +1,3 @@
+---
+dehydrated_well_known_path: "/var/www/_acme-challenge"
+dehydrated_acme_challenge_path: "{{ dehydrated_well_known_path }}"

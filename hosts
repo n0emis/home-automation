@@ -58,6 +58,9 @@ nextcloud
 
 [nginx]
 
+[dehydrated]
+elara.het.nue.de.n0emis.eu
+
 [postgresql:children]
 netbox
 synapse

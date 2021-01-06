@@ -1,0 +1,5 @@
+:80/.well-known/acme-challenge/* {
+	uri strip_prefix /.well-known/acme-challenge
+	root * {{ dehydrated_well_known_path }}
+    file_server
+}

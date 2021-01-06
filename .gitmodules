@@ -118,3 +118,6 @@
 [submodule "roles/em0lar.caddy"]
 	path = roles/em0lar.caddy
 	url = https://git.labcode.dev/ansible_roles/caddy
+[submodule "roles/rixx.dehydrated"]
+	path = roles/rixx.dehydrated
+	url = https://github.com/rixx/ansible-dehydrated
