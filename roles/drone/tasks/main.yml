@@ -1,0 +1,31 @@
+- name: Create/run drone-server docker container
+  docker_container:
+    name: drone
+    image: drone/drone:1
+    restart_policy: always
+    ports:
+      - "8001:80"
+    volumes:
+      - "/var/lib/drone:/data"
+    env:
+      DRONE_GITEA_SERVER: "https://git.n0emis.eu"
+      DRONE_GITEA_CLIENT_ID: "{{ drone_ci_client_id }}"
+      DRONE_GITEA_CLIENT_SECRET: "{{ drone_ci_client_secret }}"
+      DRONE_RPC_SECRET: "{{ drone_rpc_secret }}"
+      DRONE_SERVER_HOST: "drone.n0emis.eu"
+      DRONE_SERVER_PROTO: "https"
+      DRONE_USER_CREATE: "username:n0emis,admin:true"
+
+- name: Create/run drone-runner01 docker container
+  docker_container:
+    name: drone-runner01
+    image: drone/drone-runner-docker:1
+    restart_policy: always
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      DRONE_RPC_PROTO: "https"
+      DRONE_RPC_HOST: "drone.n0emis.eu"
+      DRONE_RPC_SECRET: "{{ drone_rpc_secret }}"
+      DRONE_RUNNER_CAPACITY: "2"
+      DRONE_RUNNER_NAME: "runner01.drone.n0emis.eu"

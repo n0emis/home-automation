@@ -45,6 +45,7 @@ ganymed.het.hel.fi.n0emis.eu
 [caddy]
 elara.het.nue.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
+carpo.gwd.goe.de.n0emis.eu
 
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
@@ -143,7 +144,7 @@ dnsadmin
 [3cx]
 3cx.int.goe.de.n0emis.eu
 
-[all]
+[drone]
 carpo.gwd.goe.de.n0emis.eu
 
 [backuped]

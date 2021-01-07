@@ -443,5 +443,11 @@
     - n0emis.powerdns-admin
   tags: dnsadmin, powerdns-admin
 
+- hosts: drone
+  become: yes
+  roles:
+    - drone
+  tags: drone
+
 - import_playbook: accesspoints.yml
   tags: ap
