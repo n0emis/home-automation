@@ -17,6 +17,9 @@ config dnsmasq
 	list server '1.1.1.1'
 	list server '/tra.vel.xz.n0emis.eu/10.152.12.1'
 	list server '/dn42/178.46.251.132'
+	list server '/github.com/2a01:4f9:c010:3f02::1'
+	list server '/amazonaws.com/2a01:4f9:c010:3f02::1'
+	list server '/acme-dns.n0emis.eu/78.46.251.132#5303'
 
 config dhcp 'lan'
 	option interface 'lan'
