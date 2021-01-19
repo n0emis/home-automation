@@ -8,15 +8,16 @@ dns_tlsa:   'ganymed.het.hel.fi.n0emis.eu. 3600 IN TLSA 3 1 1 C9C26F6BBC3DE80627
 powerdns_config_directory: "/etc/powerdns"
 
 pdns_install_repo: "{{ pdns_auth_powerdns_repo_44 }}"
+pdns_file_owner: "pdns"
 
 pdns_config:
   slave: yes
   superslave: yes
+  allow-unsigned-supermaster: yes
   expand-alias: yes
   loglevel: 10
   local-port: 53
   resolver: 1.1.1.1
-  allow-unsigned-supermaster: yes
   webserver: yes
   webserver-address: 0.0.0.0
   webserver-allow-from: 0.0.0.0/0,::/0
