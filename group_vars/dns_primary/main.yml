@@ -16,7 +16,7 @@ pdns_config:
   master: yes
   expand-alias: yes
   local-port: 53
-  resolver: 1.1.1.1
+  resolver: "::1"
   allow-axfr-ips: "{{ pdns_axfr_ips | join(', ') }}"
   also-notify: "{{ pdns_also_notify | join(', ') }}"
   dnsupdate: yes
