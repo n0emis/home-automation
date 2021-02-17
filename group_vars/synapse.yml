@@ -1,6 +1,6 @@
 ---
-synapse_pip_version: "1.25.0"
-element_version: "1.7.17"
+synapse_pip_version: "1.27.0"
+element_version: "1.7.21"
 
 synapse_database_host: "localhost"
 synapse_database_database: "synapse"
