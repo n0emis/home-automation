@@ -138,14 +138,7 @@ dn42_peers:
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
   - name: "hexanet"
     as: "4242423078"
-    v6: "fe80::c:3621"
-    if:
-      v6: "fe80::42:42:1"
-    wg:
-      port: "42005"
-      endpoint: "2a01:4f8:c0c:bd02::2:30197"
-      pubkey: "5XpUor03B3DBHIMx0Z4ufOg7qCGtBqlYXfraRqncRlI= "
-      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+    state: absent
   - name: "nex"
     as: "4242423012"
     v6: "fd9b:37f7:faf7:3000::2:3:1"
@@ -189,29 +182,10 @@ dn42_peers:
       pubkey: "eahB0ySIucY6XIsq5mYiyjMDrxlXvH2ffmKIb6WDRFI="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
   - name: "wrmsr"
-    as: "4242421555"
-    v4: "172.20.233.34"
-    v6: "fe80::0197"
-    multiprotocol: yes
-    if:
-      v6: "fe80::42:42:1"
-    wg:
-      port: "51555"
-      endpoint: "de-fra1.dn42.mcl.gg:40197"
-      pubkey: "lPc/Oqm5PjO5QyPEEL93H/QXqlLUMIg/4imzTSqJa0c="
-      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/wrmsr') }}"
+    state: absent
   - name: "marropax"
     as: "4242420880"
-    v4: "172.21.106.97"
-    v6: "fe80::beef"
-    multiprotocol: yes
-    if:
-      v6: "fe80::42:42:1"
-    wg:
-      port: "50880"
-      endpoint: "dn42-eu.marropax.com:20197"
-      pubkey: "2NjtKD8MdHnxAZMuoXNlN4n5HrJZW2bnudswDNUvSHs="
-      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+    state: absent
   - name: "em0lar"
     as: "4242420215"
     v4: "172.20.209.1"
