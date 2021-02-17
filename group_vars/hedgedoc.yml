@@ -41,5 +41,6 @@ hedgedoc_additional_config: |
     "port": 443,
     "secure": true
   },
-  "s3bucket": "md.n0emis.eu-codimd"
+  "s3bucket": "md.n0emis.eu-codimd",
+  "allowGravatar": true
 
