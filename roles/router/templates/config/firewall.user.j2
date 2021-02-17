@@ -23,5 +23,12 @@ iptables -t nat -A PREROUTING -d 10.152.4.1/32 -p tcp -m tcp --dport 443 -j DNAT
 iptables -t nat -A PREROUTING -d 10.152.4.41/32 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.152.4.5:80 -m comment --comment "fw3_firewall_user: Port Forward 80 lan foo->pasiphae"
 iptables -t nat -A PREROUTING -d 10.152.4.41/32 -p tcp -m tcp --dport 443 -j DNAT --to-destination 10.152.4.5:443 -m comment --comment "fw3_firewall_user: Port Forward 443 lan foo->pasiphae"
 
+iptables -t nat -A PREROUTING -d 10.152.4.56/32 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.152.4.5:80 -m comment --comment "fw3_firewall_user: Port Forward 80 lan 3cx->pasiphae"
+iptables -t nat -A PREROUTING -d 10.152.4.56/32 -p tcp -m tcp --dport 443 -j DNAT --to-destination 10.152.4.5:443 -m comment --comment "fw3_firewall_user: Port Forward 443 lan 3cx->pasiphae"
+
 ip6tables -t nat -A PREROUTING -d 2001:470:7694::2/128 -p tcp -m tcp --dport 80 -j DNAT --to-destination 2001:470:7694:0:8c85:c2ff:fe81:9ed9 -m comment --comment "fw3_firewall_user: Port Forward 80 lan kallisto->pasiphae"
 ip6tables -t nat -A PREROUTING -d 2001:470:7694::2/128 -p tcp -m tcp --dport 443 -j DNAT --to-destination 2001:470:7694:0:8c85:c2ff:fe81:9ed9 -m comment --comment "fw3_firewall_user: Port Forward 443 lan kallisto->pasiphae"
+
+iptables -t nat -A PREROUTING -p udp --dst 10.161.161.161 --dport 161 -j DNAT --to-destination 10.152.0.3
+iptables -t nat -A PREROUTING -p icmp --dst 10.161.161.161 -j DNAT --to-destination 10.152.0.3
+iptables -t nat -A POSTROUTING -p icmp --dst 10.152.0.3 -j SNAT --to-source 10.152.0.1

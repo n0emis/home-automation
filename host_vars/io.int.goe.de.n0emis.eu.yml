@@ -87,6 +87,24 @@ router_port_redirect:
     port: 10000
     network: srvkallisto
     ip: 10.152.4.28
+  - name: 3cx-web
+    port: 5001
+    network: srvkallisto
+    ip: 10.152.4.56
+    reflection_nets:
+      - lan
+  - name: 3cx-sip
+    port: 5060-5090
+    network: srvkallisto
+    ip: 10.152.4.56
+    reflection_nets:
+      - lan
+  - name: 3cx-media
+    port: 9000-10999
+    network: srvkallisto
+    ip: 10.152.4.56
+    reflection_nets:
+      - lan
 
 
 router_port_allow_ipv6:
