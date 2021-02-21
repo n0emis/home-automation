@@ -1,0 +1,23 @@
+---
+bitwarden_db_name: "bitwarden"
+bitwarden_db_user: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/bitwarden/db subkey=user') }}"
+bitwarden_db_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/bitwarden/db') }}"
+
+bitwardenrs_version: "1.19.0"
+bitwardenrs_webvault_version: "2.18.1d"
+
+bitwardenrs_config:
+  DOMAIN: "https://bitwarden.n0emis.eu"
+  ROCKET_PORT: "8000"
+  WEBSOCKET_PORT: "8001"
+  DATABASE_URL: "postgresql://{{ bitwarden_db_user }}:{{ bitwarden_db_password }}@localhost/{{ bitwarden_db_name }}"
+  ADMIN_TOKEN: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/bitwarden/admin') }}"
+  SIGNUPS_ALLOWED: "false"
+  SIGNUPS_VERIFY: "true"
+  INVITATION_ORG_NAME: "n0emis Bitwarden"
+  SMTP_HOST: "mail.n0emis.eu"
+  SMTP_FROM: "bitwarden@n0emis.eu"
+  SMTP_FROM_NAME: "n0emis Bitwarden"
+  SMTP_USERNAME: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply subkey=user') }}"
+  SMTP_PASSWORD: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply') }}"
+

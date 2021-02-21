@@ -7,4 +7,4 @@ postgresql_all_users:
   - name: root
     role_attr_flags: "SUPERUSER"
 
-prostgresql_users: "{{ postgresql_host_users + postgresql_all_users }}"
+postgresql_users: "{{ postgresql_host_users + postgresql_all_users }}"

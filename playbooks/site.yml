@@ -443,6 +443,12 @@
     - n0emis.powerdns-admin
   tags: dnsadmin, powerdns-admin
 
+- hosts: bitwarden
+  become: yes
+  roles:
+    - dmaes.bitwardenrs
+  tags: bitwarden
+
 - hosts: drone
   become: yes
   roles:

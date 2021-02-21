@@ -121,3 +121,6 @@
 [submodule "roles/rixx.dehydrated"]
 	path = roles/rixx.dehydrated
 	url = https://github.com/rixx/ansible-dehydrated
+[submodule "roles/dmaes.bitwardenrs"]
+	path = roles/dmaes.bitwardenrs
+	url = https://github.com/dmaes/ansible-role-bitwardenrs

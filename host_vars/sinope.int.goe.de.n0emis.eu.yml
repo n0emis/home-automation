@@ -8,6 +8,8 @@ postgresql_host_users:
     password: "{{ netbox_database_password }}"
   - name: "{{ powerdns_admin_database_user }}"
     password: "{{ powerdns_admin_database_password }}"
+  - name: "{{ bitwarden_db_user }}"
+    password: "{{ bitwarden_db_password }}"
 postgresql_databases:
   - name: "{{ hedgedoc_db_database }}"
     owner: "{{ hedgedoc_db_username }}"
@@ -15,6 +17,8 @@ postgresql_databases:
     owner: "{{ netbox_database_user }}"
   - name: "{{ powerdns_admin_database }}"
     owner: "{{ powerdns_admin_database_user }}"
+  - name: "{{ bitwarden_db_name }}"
+    owner: "{{ bitwarden_db_user }}"
 
 dyndns_enable: yes
 dyndns_host: "sinope.int.goe.de"

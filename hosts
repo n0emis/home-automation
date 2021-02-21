@@ -70,6 +70,7 @@ git
 hedgedoc
 nextcloud
 venueless
+bitwarden
 
 [redis:children]
 nextcloud
@@ -152,4 +153,6 @@ elara.het.nue.de.n0emis.eu
 ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 
+[bitwarden]
+sinope.int.goe.de.n0emis.eu
 [all]
