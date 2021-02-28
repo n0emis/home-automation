@@ -20,7 +20,7 @@ pdns_config:
   allow-axfr-ips: "{{ pdns_axfr_ips | join(', ') }}"
   also-notify: "{{ pdns_also_notify | join(', ') }}"
   dnsupdate: yes
-  allow-dnsupdate-from: ""
+  allow-dnsupdate-from: "0.0.0.0/0,::/0"
   webserver: yes
   webserver-address: 0.0.0.0
   webserver-allow-from: 0.0.0.0/0,::/0

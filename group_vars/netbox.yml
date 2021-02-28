@@ -1,5 +1,5 @@
 ---
-netbox_stable_version: 2.10.4
+netbox_stable_version: 2.10.5
 
 netbox_stable: true
 netbox_database: netbox
