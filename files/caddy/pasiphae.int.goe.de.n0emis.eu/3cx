@@ -1,3 +1,7 @@
 3cx.int.goe.de.n0emis.eu {
-	reverse_proxy http://3cx.int.goe.de.n0emis.eu:5001
+	reverse_proxy https://3cx.int.goe.de.n0emis.eu:5001 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
 }
