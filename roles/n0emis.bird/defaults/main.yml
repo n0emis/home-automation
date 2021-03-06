@@ -1,0 +1,3 @@
+---
+bird_config_file: "/etc/bird/bird.conf"
+bird_extra: ""

@@ -29,15 +29,22 @@ config zone
 	option forward 'REJECT'
 	option masq '1'
 	option mtu_fix '1'
-	option network 'wan6 wan henet cccgoevpn dn42'
+	option network 'wan6 wan henet'
 
 config zone
 	option name 'wgserver'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	list device 'wgserver'
-	option network 'wgserver'
+	option network '{% for peer in groups['wireguard_member'] %}wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {% endfor %}'
+
+config zone
+	option network 'voip'
+	option input 'ACCEPT'
+	option name 'voip'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
 
 config forwarding
 	option src 'lan'
@@ -45,6 +52,10 @@ config forwarding
 
 config forwarding
 	option src 'srvkallisto'
+	option dest 'wan'
+
+config forwarding
+	option src 'voip'
 	option dest 'wan'
 
 {% for src in router_firewall_forwarding %}

@@ -346,28 +346,18 @@
     - lae.netbox
   tags: netbox
 
-- hosts: wireguard_member
-  gather_facts: yes
-  tasks:
-    - name: Create wireguard_peer config for wireguard server
-      set_fact:
-        wireguard_peer:
-          public_key: "{{ wireguard_server_public_key }}"
-          allowed_ips: "{{ wireguard_server_allowed_ips }}"
-          endpoint: "{{ ansible_fqdn }}:30000"
-  tags: wireguard, wg
-
 - hosts: wireguard
   become: yes
-  pre_tasks:
-    - name: Create wireguard peers config with host items
-      set_fact:
-        wireguard_wg_server_peers: "{{ wireguard_wg_server_peers | combine({ 'server_' + hostvars[item].ansible_fqdn: hostvars[item].wireguard_peer }) }}"
-      when: "hostvars[item].ansible_fqdn != ansible_fqdn"
-      with_items: "{{ groups['wireguard_member'] }}"
   roles:
     - n0emis.wireguard
   tags: wireguard, wg
+
+- hosts: wireguard-mesh
+  become: yes
+  roles:
+    - n0emis.server-networking
+    - n0emis.bird
+  tags: bird, , network, networking
 
 - hosts: vpn
   become: yes

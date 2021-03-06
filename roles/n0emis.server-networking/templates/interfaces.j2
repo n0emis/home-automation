@@ -1,0 +1,39 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# Include files from /etc/network/interfaces.d:
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    address {{ local_v4 }}/32
+{#    up ip a add 172.20.190.96/32 dev lo#}
+{#    up ip a add fdf4:2331:fa09::1/128 dev lo#}
+{#    post-up ip rule add table 42#}
+{#    post-up ip -6 rule add table 42#}
+
+{% for peer in groups['wireguard_member'] %}
+{% if hostvars[peer].ansible_hostname != ansible_hostname %}
+# link between `{{ hostvars[peer].ansible_hostname }}` and `{{ ansible_hostname }}`
+auto wg-s-{{ hostvars[peer].ansible_hostname }}
+iface wg-s-{{ hostvars[peer].ansible_hostname }} inet manual
+    address {{ local_v4 }}/32
+    pointopoint {{ hostvars[peer].local_v4 }}/32
+    scope link
+
+    address {{ local_ll }}/64
+    pointopoint {{ hostvars[peer].local_ll }}/64
+    scope link
+
+    link-type wireguard
+    pre-up ip link add dev $IFACE type wireguard
+    pre-up wg setconf $IFACE /etc/wireguard/wg-s-{{ hostvars[peer].ansible_hostname }}
+
+    # pointopoint does not word on iproute2 on debian. temp fix
+    post-up ip route add {{ hostvars[peer].local_v4 }} dev $IFACE
+
+    post-down ip link del dev $IFACE
+
+{% endif %}
+{% endfor %}

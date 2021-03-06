@@ -1,0 +1,6 @@
+---
+- name: reload networking
+  command: ifreload -a
+
+- name: reload wireguard
+  command: wg syncconf wg-server /etc/wireguard/wg-server.conf

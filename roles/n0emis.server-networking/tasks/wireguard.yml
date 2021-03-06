@@ -1,0 +1,20 @@
+- set_fact:
+    if_name: "wg-s-{{ hostvars[host].ansible_hostname }}"
+
+- name: Install wg-quick@{{ if_name }} config
+  template:
+    dest: "/etc/wireguard/{{ if_name }}.conf"
+    src: "wg-server.conf.j2"
+  register: "configuration"
+
+- name: Enable wg-quick@{{ if_name }} service
+  service:
+    name: "wg-quick@{{ if_name }}"
+    enabled: yes
+
+- name: Restart wg-quick@{{ if_name }}
+  service:
+    name: "wg-quick@{{ if_name }}"
+    state: restarted
+  when:
+    - "configuration is changed"

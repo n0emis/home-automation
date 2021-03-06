@@ -91,7 +91,10 @@ sinope.int.goe.de.n0emis.eu
 [dn42]
 himalia.ion.rhr.de.n0emis.eu
 
-[wireguard]
+[wireguard:children]
+wireguard-mesh
+
+[wireguard-mesh]
 ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 elara.het.nue.de.n0emis.eu

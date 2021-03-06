@@ -1,0 +1,113 @@
+log syslog all;
+
+# ID of this router (32bit value) - usually it's the loopback Legacy-IP
+router id {{ wireguard_server_address | ipaddr('address') }};
+
+ipv4 table igp4;
+ipv6 table igp6;
+
+function is_self_net() {
+    if net.type = NET_IP4 then {
+        return net ~ [10.152.0.0/16+, 172.20.190.96/27+];
+    } else if net.type = NET_IP6 then {
+        return net ~ [fdf4:2331:fa09::/48+, fdf8:7e7f:d097::/48+];
+    }
+};
+
+
+# This pseudo-protocol watches all interface up/down events.
+protocol device {
+    scan time 10;   # Scan interfaces every 10 seconds
+};
+
+protocol kernel {
+    learn;
+    scan time 20;
+
+    ipv4 {
+        table igp4;
+        import none;
+        export filter {
+            if source = RTS_STATIC then reject;
+            if source = RTS_DEVICE then reject;
+            accept;
+        };
+    };
+};
+
+protocol kernel {
+    learn;
+    scan time 20;
+
+    ipv6 {
+        table igp6;
+        import none;
+        export filter {
+            if source = RTS_STATIC then reject;
+            if source = RTS_DEVICE then reject;
+            accept;
+        };
+    };
+};
+
+protocol direct {
+    ipv4 {
+        table igp4;
+        import keep filtered;
+        import where is_self_net();
+    };
+    ipv6 {
+        table igp6;
+        import keep filtered;
+        import where is_self_net();
+    };
+}
+
+{% for peer in groups['wireguard_member'] %}
+{% if hostvars[peer].ansible_hostname != ansible_hostname %}
+protocol bgp igp_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {
+    local as {{ local_asn }};
+    neighbor {{ hostvars[peer].local_ll }} as {{ hostvars[peer].local_asn }};
+{% if ansible_os_family=="OpenWrt" %}
+    interface "wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }}";
+{% else %}
+    interface "wg-s-{{ hostvars[peer].ansible_hostname.split('.')[0] }}";
+{% endif %}
+
+    ipv4 {
+        table igp4;
+        import all;
+        export filter {
+            krt_prefsrc={{ local_v4 }};
+            accept;
+        };
+    };
+    ipv6 {
+        table igp6;
+        import all;
+        export all;
+    };
+};
+{% endif %}
+{% endfor %}
+
+{#protocol babel {#}
+{#    ipv4 {#}
+{#        table igp4;#}
+{#        import all;#}
+{#        export filter {#}
+{#            krt_prefsrc={{ local_v4 }};#}
+{#            accept;#}
+{#        };#}
+{##}
+{#};#}
+{#    ipv6 {#}
+{#        table igp6;#}
+{#        import all;#}
+{#        export all;#}
+{#    };#}
+{##}
+{#    interface "wgs*", "wg-s*", "wg_s*";#}
+{#};#}
+
+{{ bird_extra }}

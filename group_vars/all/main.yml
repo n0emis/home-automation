@@ -24,3 +24,7 @@ radius_password_global: "{{ lookup('passwordstore', 'infra/radius/global') }}"
 
 ap_iot_wifi_ssid: "{{ lookup('passwordstore', 'infra/wireless/iot subkey=user') }}"
 ap_iot_wifi_password: "{{ lookup('passwordstore', 'infra/wireless/iot') }}"
+
+local_v4: "{{ wireguard_server_address | ipaddr('address') }}"
+local_asn: "{{ 4200000000 + (((wireguard_server_address | ipaddr('address')).split('.')[2] | int) * 1000) + ((wireguard_server_address | ipaddr('address')).split('.')[3] | int) }}"
+local_ll: "fe80::{{ (wireguard_server_address | ipaddr('address')).split('.')[2] }}:{{ (wireguard_server_address | ipaddr('address')).split('.')[3] }}"

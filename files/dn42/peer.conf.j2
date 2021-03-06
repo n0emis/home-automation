@@ -1,0 +1,38 @@
+{% if peer.v4 is defined and not peer.multiprotocol is defined %}
+protocol bgp {{ peer.name }}_v4 from dnpeers {
+    neighbor {{ peer.v4 }} as {{ peer.as }};
+
+    ipv4 {
+        table dn42_v4;
+        import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+        export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+    };
+{% if peer.debug is defined %}
+    debug {{ peer.debug }};
+{% endif %}
+};
+{% endif %}
+
+{% if peer.v6 is defined %}
+protocol bgp {{ peer.name }}{% if not peer.multiprotocol is defined %}_v6{% endif %} from dnpeers {
+    neighbor {{ peer.v6 }}%{{ peer.if.name | default(dn42_wg_default_if_prefix + peer.name) }} as {{ peer.as }};
+
+{% if peer.multiprotocol is defined %}
+    ipv4 {
+        table dn42_v4;
+        import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+        export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+    };
+{% endif %}
+
+    ipv6 {
+        table dn42_v6;
+        import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+        export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
+    };
+
+{% if peer.debug is defined %}
+    debug {{ peer.debug }};
+{% endif %}
+};
+{% endif %}

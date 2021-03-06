@@ -1,8 +1,11 @@
 ---
 ansible_fqdn: io.int.goe.de.n0emis.eu
+ansible_hostname: "io"
 
 wireguard_server_address: "10.152.16.1/32"
 wireguard_server_allowed_ips: "10.152.16.0/20, 10.152.0.0/21"
+
+bird_config_file: "/etc/bird.conf"
 
 router_static_hosts:
   - name: cs
@@ -131,79 +134,60 @@ router_firewall_forwarding:
   - lan
   - srvkallisto
   - wgserver
+  - voip
 
 router_wireguard_interfaces:
-  - name: "cccgoevpn"
-    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn') }}"
-    listen_port: "30001"
-    addresses:
-      - "fdf8:7e7f:d097:9940::2/48"
-    ip6gw: "fdf8:7e7f:d097:9940::1"
-    ip6prefix:
-      - "fdf8:7e7f:d097:9942::/63"
-    nohostroute: yes
-    peers:
-      - name: "himaliacccgoe"
-        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
-        endpoint_port: "41002"
-        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
-        allowed_ips:
-          - "fdf8:7e7f:d097::/48"
-        persistent_keepalive: "25"
-        route_allowed_ips: "1"
-  - name: "dn42"
-    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn') }}"
-    listen_port: "30002"
-    addresses:
-      - "172.20.190.125"
-      - "fdf4:2331:fa09::2:3"
-    ip6gw: "fdf4:2331:fa09::1"
-    ip6prefix:
-      - "fdf4:2331:fa09:4::/63"
-    nohostroute: yes
-    peers:
-      - name: "himaliadn42"
-        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
-        endpoint_port: "41003"
-        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg-cgvpn subkey=user') }}"
-        allowed_ips:
-          - 172.16.0.0/12
-          - 10.0.0.0/8
-          - fd00::/8
-        persistent_keepalive: "25"
-        route_allowed_ips: "1"
-  - name: "wgserver"
+  - name: "wg_s_himalia"
     private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server') }}"
-    listen_port: "30000"
+    listen_port: "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].wireguard_peer_port }}"
     addresses:
-      - "10.152.16.1/20"
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
+      - name: "himalia"
+        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
+        endpoint_port: "{{ wireguard_peer_port }}"
+        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "::/0"
+          - "0.0.0.0/0"
+        persistent_keepalive: "25"
+        route_allowed_ips: "0"
+  - name: "wg_s_elara"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['elara.het.nue.de.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
     nohostroute: yes
     peers:
       - name: "elara"
         endpoint_host: "elara.het.nue.de.n0emis.eu"
-        endpoint_port: "30000"
+        endpoint_port: "{{ wireguard_peer_port }}"
         public_key: "{{ lookup('passwordstore', 'infra/elara.het.nue.de.n0emis.eu/wg_server subkey=public') }}"
         allowed_ips:
-          - "10.152.18.1/32"
+          - "::/0"
+          - "0.0.0.0/0"
         persistent_keepalive: "25"
-        route_allowed_ips: "1"
+        route_allowed_ips: "0"
+  - name: "wg_s_ganymed"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['ganymed.het.hel.fi.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
       - name: "ganymed"
         endpoint_host: "ganymed.het.hel.fi.n0emis.eu"
-        endpoint_port: "30000"
+        endpoint_port: "{{ wireguard_peer_port }}"
         public_key: "{{ lookup('passwordstore', 'infra/ganymed.het.hel.fi.n0emis.eu/wg_server subkey=public') }}"
         allowed_ips:
-          - "10.152.20.1/32"
+          - "::/0"
+          - "0.0.0.0/0"
         persistent_keepalive: "25"
-        route_allowed_ips: "1"
-      - name: "himalia"
-        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
-        endpoint_port: "30000"
-        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
-        allowed_ips:
-          - "10.152.22.1/32"
-          - "10.152.8.0/21"
-        persistent_keepalive: "25"
-        route_allowed_ips: "1"
+        route_allowed_ips: "0"
 
 
 dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"

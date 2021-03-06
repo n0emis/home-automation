@@ -1,0 +1,19 @@
+#!/bin/sh
+[ "$ACTION" = "ifup" -a "$INTERFACE" = "wan" ] && {
+    logger "iface wan up detected..."
+{#    /etc/init.d/asterisk restart#}
+}
+
+{% for peer in groups['wireguard_member'] %}
+{% if hostvars[peer].ansible_hostname != ansible_hostname %}
+{%- set if_name = "wg_s_" + hostvars[peer].ansible_hostname.split('.')[0] -%}
+[ "$ACTION" = "ifup" -a "$INTERFACE" = "wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }}" ] && {
+    logger "iface {{ if_name }} up detected..."
+    /sbin/ip addr del dev {{ if_name }} {{ local_v4 }}/32 && {# ... -#}
+    /sbin/ip addr add dev {{ if_name }} {{ local_v4 }}/32 peer {{ hostvars[peer].local_v4 }}/32
+}
+{% endif %}
+{% endfor %}
+
+exit 0
+

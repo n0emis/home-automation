@@ -1,85 +1,4 @@
 ---
-wireguard_server_address: "10.152.22.1/32"
-wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.8.0/21"
-
-powerdns_secondary_names:
-  - ns3.n0emis.eu
-
-wireguard_wg_server_peers:
-  thebe:
-    public_key: "l+U4VBkb0TVRQwVXNTzDLtlvV1JHIcpvS/AgDORfwSA="
-    allowed_ips: "10.152.16.2/32, 10.152.12.0/24"
-
-wireguard_networks:
-  - wg_server
-  - wg_client
-  - wg-cgvpn
-  - wg-cgvpn-c
-  - dn42-n0emis
-
-wireguard_wg-cgvpn_interface:
-  address: fdf8:7e7f:d097:9900::4/48
-  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
-  listen_port: 41001
-wireguard_wg-cgvpn_peers:
-  panda:
-    endpoint: panda1.s-klamt.de:23138
-    public_key: "tTEcFySDPkYo6M/nVH1GHYAyTbC65YgL0kk+XGpb9DA="
-    allowed_ips: "fdf8:7e7f:d097:9910::/60, fdf8:7e7f:d097:9900::1/128"
-  dewitte:
-    endpoint: vpn.reichel.one:42023
-    public_key: "NT6pY3uXAQbPnr7oQ8TPU7CPf55cVGxRnbY6Y2IQmGU="
-    allowed_ips: "fdf8:7e7f:d097:9920::/60, fdf8:7e7f:d097:9900::2/128"
-  frink:
-    endpoint: sg46lan.spdns.de:51822
-    public_key: "yxtoqUZREgiz6DcyJHRtTcmtzSdjSZKWIgdp8D9Fmy4="
-    allowed_ips: "fdf8:7e7f:d097:9930::/60, fdf8:7e7f:d097:9900::3/128"
-
-wireguard_wg-cgvpn-c_interface:
-  address: fdf8:7e7f:d097:9940::1/60
-  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
-  listen_port: 41002
-wireguard_wg-cgvpn-c_peers:
-  adrastea:
-    public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
-    allowed_ips: "fdf8:7e7f:d097:9940::10/128"
-  io:
-    endpoint: io.int.goe.de.dyn.n0emis.eu:30001
-    public_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn subkey=user') }}"
-    allowed_ips: "fdf8:7e7f:d097::/48"
-  kallisto:
-    public_key: "FIOfUu0cDyWWQBCXm3CAbzTGnybapJr7i/M42fbxP08="
-    allowed_ips: "fdf8:7e7f:d097:9940::11/128"
-  e1mo:
-    public_key: "eokxpF/8WT0ull71TSnM6MWTT/gA4i1dOxSlJwjdZ3c="
-    allowed_ips: "fdf8:7e7f:d097:9940::20/128"
-
-wireguard_dn42-n0emis_interface:
-  address: "fdf4:2331:fa09::2:1/48, {{ dn42_local_v4 }}/27"
-  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg-cgvpn') }}"
-  listen_port: 41003
-wireguard_dn42-n0emis_peers:
-  adrastea:
-    public_key: "HIbjMOH9UGk0zNI1nI0bmLRVB5ncnBWI3zoP7YuXpQQ="
-    allowed_ips: "fdf4:2331:fa09::2:2/128, 172.20.190.126"
-  io:
-    endpoint: io.int.goe.de.dyn.n0emis.eu:30002
-    public_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/cccgoevpn subkey=user') }}"
-    allowed_ips: "fdf4:2331:fa09:4::/63, fdf4:2331:fa09::2:3/128, 172.20.190.125"
-
-wireguard_wg_client_interface:
-  address: "10.152.10.254"
-  private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_client') }}"
-  listen_port: 41004
-wireguard_wg_client_peers:
-  adrastea:
-    public_key: "MghE8GgmfP3oRBUqM67lovJyKg1X0glocpvBkKQ0sAA="
-    allowed_ips: "10.152.10.1"
-
-### DNS
-pdns_rec_forward_dn42: "172.20.0.53;fd42:d42:d42:54::1"
-pdns_rec_forward_cccgoe: "fdf8:7e7f:d097:9900::1"
-
 ### LOOKING GLASS
 bird_lg_webservice_enabled: no
 bird_lg_proxy_enabled: yes
@@ -89,9 +8,11 @@ dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn4
 
 dn42_local_subnet_v4: "172.20.190.96/27"
 dn42_local_subnet_v6: "fdf4:2331:fa09::/48"
+dn42_local_subnet_v6_2: "fdf8:7e7f:d097::/48"
 dn42_local_v4: "172.20.190.96"
 dn42_local_v6: "fdf4:2331:fa09::1"
 dn42_local_as: "4242420197"
+dn42_region: "41"
 
 dn42_enable_roa: yes
 
@@ -99,6 +20,10 @@ dn42_pingfinder_enable: yes
 dn42_pingfinder_uuid: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/pingfinder') }}"
 
 dn42_configure_linux_network_table: yes
+
+dn42_bird2_directory: "/etc/bird/dn42/"
+dn42_bird2_template: "templates/dn42/bird.conf.j2"
+dn42_bird2_peer_template: "templates/dn42/peer.conf.j2"
 
 dn42_peers:
   - name: "v0tti"

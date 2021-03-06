@@ -1,0 +1,5 @@
+---
+- name: reload bird
+  command: "birdc configure"
+  register: _birdc_reload
+  failed_when: "'Reconfigur' not in _birdc_reload.stdout"

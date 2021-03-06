@@ -1,0 +1,14 @@
+[Interface]
+PrivateKey = {{ wireguard_server_private_key }}
+Address = {{ local_v4 }}/32, {{ local_ll }}/64
+PostUp = /sbin/ip addr del dev {{ if_name }} {{ local_v4 }}/32 && {# ... -#}
+    /sbin/ip addr add dev {{ if_name }} {{ local_v4 }}/32 peer {{ hostvars[host].local_v4 }}/32 && {# ... -#}
+    /sbin/ip addr del dev {{ if_name }} {{ local_ll }}/64 && {# ... -#}
+    /sbin/ip addr add dev {{ if_name }} {{ local_ll }}/64 peer {{ hostvars[host].local_ll }}/64
+Table = off
+ListenPort = {{ hostvars[host].wireguard_peer_port }}
+
+[Peer]
+PublicKey = {{ hostvars[host].wireguard_server_public_key }}
+Endpoint = {{ host }}:{{ wireguard_peer_port }}
+AllowedIPs = ::/0, 0.0.0.0/0

@@ -24,6 +24,8 @@
     - ip-full
     - bind-client
     - kmod-ipt-nat6
+    - bird2
+    - bird2c
   tags: packages
 
 - name: Install prometheus packages
@@ -85,8 +87,8 @@
 
 - name: Copy hotplug action
   template:
-    dest: "/etc/hotplug.d/iface/99-ifup-wan"
-    src:  "99-ifup-wan.j2"
+    dest: "/etc/hotplug.d/iface/99-ifup-custom"
+    src:  "99-ifup-custom.j2"
 
 #- import_tasks: asterisk.yml
 #  tags: asterisk
