@@ -10,10 +10,10 @@ bitwardenrs_config:
   ADMIN_TOKEN: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/bitwarden/admin') }}"
   SIGNUPS_ALLOWED: "false"
   SIGNUPS_VERIFY: "true"
-  INVITATION_ORG_NAME: "n0emis Bitwarden"
+  INVITATION_ORG_NAME: "n0emis_Bitwarden"
   SMTP_HOST: "mail.n0emis.eu"
   SMTP_FROM: "bitwarden@n0emis.eu"
-  SMTP_FROM_NAME: "n0emis Bitwarden"
+  SMTP_FROM_NAME: "n0emis_Bitwarden"
   SMTP_USERNAME: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply subkey=user') }}"
   SMTP_PASSWORD: "{{ lookup('passwordstore', 'comm/mail.n0emis.eu/noreply') }}"
 

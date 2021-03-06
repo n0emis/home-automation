@@ -1,5 +1,5 @@
 ---
-keycloak_version: "12.0.2"
+keycloak_version: "12.0.4"
 
 keycloak_postgresql_username: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/keycloak/db subkey=user') }}"
 keycloak_postgresql_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/keycloak/db') }}"
@@ -17,5 +17,5 @@ keycloak_java_opts: "-Xms256m -Xmx768m"
 keycloak_registration_captcha_version: "1.1.0"
 keycloak_registration_captcha_url: "https://github.com/chaos-jetzt/keycloak-registration-captcha/releases/download/v{{ keycloak_registration_captcha_version }}/registration-captcha.jar"
 
-keycloak_metrics_spi_version: "2.1.0"
+keycloak_metrics_spi_version: "2.2.0"
 keycloak_metrics_spi_url: "https://github.com/aerogear/keycloak-metrics-spi/releases/download/{{ keycloak_metrics_spi_version }}/keycloak-metrics-spi-{{ keycloak_metrics_spi_version }}.jar"

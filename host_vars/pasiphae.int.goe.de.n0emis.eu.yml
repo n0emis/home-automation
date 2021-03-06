@@ -55,6 +55,8 @@ nextcloud_config:
     value: "false"
   - key: "ldapProviderFactory"
     value: "OCA\\\\User_LDAP\\\\LDAPProviderFactory"
+  - key: "default_phone_region"
+    value: "de"
 
 nextcloud_apps:
   - audioplayer
@@ -84,5 +86,6 @@ nextcloud_apps:
   - terms_of_service
   - user_ldap
   - user_saml
+  - notify_push
 
 nextcloud_datadir: "/data"
