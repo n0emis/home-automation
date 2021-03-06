@@ -31,11 +31,15 @@ dn42_peers:
     v6: "fe80::42:1"
     if:
       v6: "fe80::42:42:1"
+    multiprotocol: yes
     wg:
       port: "42001"
       endpoint: "dn42.v0tti.com:1202"
       pubkey: "r8C+hxEcgQ8m5ic20TPbQ4xx5lFYIikouv5yDaNq8AU="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/v0tti') }}"
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "margau"
     as: "4242421280"
     v4: "172.22.161.105"
@@ -48,6 +52,9 @@ dn42_peers:
       endpoint: "wg1.margau.ipv6.church:51823"
       pubkey: "OoGS3vepyVU1tuHSUWJv2jIXJTF7RqOvvQcGC/SJslE="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/margau') }}"
+    latency: 2
+    bandwidth: 24
+    security: 34
   - name: "zotan"
     as: "4242422341"
     v4: "172.20.177.34"  # We are doing multiprotocol
@@ -61,40 +68,50 @@ dn42_peers:
       endpoint: "nbg1.dn42.zotan.network:42430"
       pubkey: "PlMza8PC6N58vpGqMsBo3UjvjXThl/2WCTK6drjqbgY="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
-  - name: "hexanet"
-    as: "4242423078"
     state: absent
   - name: "nex"
     as: "4242423012"
     v6: "fd9b:37f7:faf7:3000::2:3:1"
     if:
       v6: "{{ dn42_local_v6 }}"
+    multiprotocol: yes
     wg:
       port: "42006"
       endpoint: "dn42-c-2.nexadn.de:51823"
       pubkey: "KwrjRnVR4dyjWFXDlM2Yf9LukYHIfTEvfcMecExuT00="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "mebus"
     as: "4242420112"
     v6: "fdf4:2331:fa09:ff00::2"
     if:
       v6: "fdf4:2331:fa09:ff00::1"
+    multiprotocol: yes
     wg:
       port: "42007"
       endpoint: "[2a00:8a60:e019:10de:5054:ff:fed3:70b0]:12612"
       pubkey: "hZv2RTGFAkF3QTHxqwOqwfT8lAGyr7A3J0w+iWwj/S4="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "chrismoos"
     as: "4242421588"
     v4: "172.20.16.141"
     v6: "fe80::1588"
     if:
       v6: "fe80::100"
+    multiprotocol: yes
     wg:
-      port: "42008"
+      port: "51588"
       endpoint: "de-fra02.dn42.tech9.io:54310"
       pubkey: "MD1EdVe9a0yycUdXCH3A61s3HhlDn17m5d07e4H33S0="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/chrismoos') }}"
+    latency: 2
+    bandwidth: 24
+    security: 34
   - name: "xesxen"
     as: "4242420246"
     v4: "172.20.14.95"
@@ -106,11 +123,9 @@ dn42_peers:
       endpoint: "do-ams3-1.dn42.hackzone.nl:20197"
       pubkey: "eahB0ySIucY6XIsq5mYiyjMDrxlXvH2ffmKIb6WDRFI="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
-  - name: "wrmsr"
-    state: absent
-  - name: "marropax"
-    as: "4242420880"
-    state: absent
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "em0lar"
     as: "4242420215"
     v4: "172.20.209.1"
@@ -123,6 +138,9 @@ dn42_peers:
       endpoint: "janus.ion.rhr.de.labcode.de:50197"
       pubkey: "VqOQCPVPi5vgVkiyYDN45BnJnZwCwyXfhTjLA16Z+Co="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/em0lar') }}"
+    latency: 1
+    bandwidth: 24
+    security: 34
   - name: "kioubit"
     as: "4242423914"
     v4: "172.20.53.97"
@@ -134,6 +152,9 @@ dn42_peers:
       endpoint: "de2.g-load.eu:20197"
       pubkey: "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/kioubit') }}"
+    latency: 2
+    bandwidth: 24
+    security: 34
   - name: "e1mo"
     as: "4242420565"
     v4: "172.20.229.160"
@@ -146,16 +167,23 @@ dn42_peers:
       endpoint: "de-fra1.dn42.net.dont-break.it:20197"
       pubkey: "LjXwHWJXz5koYyVsZ0UjSHr/zpxIUz/dPzucJSFSDUg="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/e1mo') }}"
+    latency: 1
+    bandwidth: 24
+    security: 34
   - name: "clerie"
     as: "4242422574"
     v6: "fe80::42:1"
     if:
       v6: "fe80::42:42:1"
+    multiprotocol: yes
     wg:
       port: "52574"
       endpoint: "dn42-il-gw1.net.clerie.de:50197"
       pubkey: "NstPqQwlmmod6yDOMVgoG/r3mwPm0tFVjnbV3doj1Xg="
       privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "uffsalot"
     as: "4242420780"
     v4: "172.20.191.129"
@@ -166,13 +194,174 @@ dn42_peers:
       port: "50780"
       endpoint: "dn42-de-fra4.brand-web.net:40197"
       pubkey: "7V65FxvD9AQetyUr0qSiu+ik8samB4Atrw2ekvC0xQM="
+    latency: 2
+    bandwidth: 24
+    security: 34
   - name: "munsternet"
     as: "4242422237"
     v6: "fe80::42:2237"
     if:
       v6: "fe80::42:42:1"
+    multiprotocol: yes
     wg:
       port: "52237"
       endpoint: "de-fra01.dn42.munsternet.eu:20197"
       pubkey: "p8SOiZ+EN6DOHVUbBb/kUiq81Uu006Xrz0B55W+fqDg="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "cperrin"
+    as: 4242423735
+    v6: "fe80::3735:4"
+    multiprotocol: yes
+    wg:
+      port: "53735"
+      endpoint: "de1.dn42.cperrin.xyz:50197"
+      pubkey: "JE2oXbqNV2CAJmbmq01VbAYZD11AvvnpENq6mIiLr3A="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "p0tat05"
+    as: 4242421876
+    v4: "172.22.66.59"
+    v6: "fe80::1876"
+    multiprotocol: yes
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "51876"
+      endpoint: "157.90.166.124:20197"
+      pubkey: "rlfzxSL24UfKvl3cZsHcUr+i3MtG13tu8PRdDqOX3A0="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "napshome"
+    as: 4242421050
+    v4: 172.22.169.141
+    v6: fda9:26a9:1c47:1d42:42:42:0197:1050
+    multiprotocol: yes
+    wg:
+      port: "51050"
+      endpoint: "ffm1-de.dn42.napshome.net:50197"
+      pubkey: "uo7tLeb1QNoRJtecjUV4TeNYgw2imd11oLx7Hftg2SM="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "moecast"
+    as: 4242420604
+    v4: "172.23.89.3"
+    v6: "fe80::604:3"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "50604"
+      endpoint: "de1.dn42.cas7.moe:20197"
+      pubkey: "1dJpFLegKHKButkXqbv1KLLMTmS6KtFkWBz6GRo2uxE="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "aasg"
+    as: 4242420827
+    v6: "fe80::2174:c008:1460:d271"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg: 
+      port: "50827"
+      endpoint: "behemoth.lorkep.trade:50197"
+      pubkey: "6oDGG1ssnWdXR9vSeUKsaExw0Ze3005NmLG/Nyb0fEE="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "yura"
+    as: 4242422464
+    v4: "172.20.191.193"
+    v6: "fe80::2464"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "52464"
+      endpoint: "fra.dneo.moeternet.com:20197"
+      pubkey: "qIhJZf6mTruzO4GTCUrJnLqs9ID4TI1GctRhaRilBkg="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "jlu5"
+    as: 4242421080
+    v4: "172.20.229.117"
+    v6: "fe80::117"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "51080"
+      endpoint: "dn42-de-nbg01.jlu5.com:50197"
+      pubkey: "oiSSSOMYxiiM0eQP9p8klwEfNn34hkNNv4S289WUciU="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "burble"
+    as: 4242422601
+    v4: "172.20.129.169"
+    v6: "fe80::42:2601:31:1"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "52601"
+      endpoint: "dn42-de-fra1.burble.com:20197"
+      pubkey: "DQx7LqPiidLHlw0ocBOXQMLg3NFLNT52TyqE1+eTohE="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "sunnet"
+    as: 4242423088
+    v4: "172.21.100.195"
+    v6: "fe80::3088:195"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "53088"
+      endpoint: "fra1-de.dn42.6700.cc:20197"
+      pubkey: "TWQhJYK+ynNz7A4GMAQSHAyUUKTnAYrBfWTzzjzhAFs="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "lantian"
+    as: 4242422547
+    v4: "172.22.76.187"
+    v6: "fe80::2547"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "52547"
+      endpoint: "virtono.lantian.pub:20197"
+      pubkey: "DkmSBCIgrxPPZmT07DraoCSD/jSByjPkYqHJWfVZ5hM="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "welterde"
+    as: 64738
+    v6: fdef:5d0d:ee12:0105:2:fcde:31e5:1
+    if:
+      v6: fdef:5d0d:ee12:0105:2:fcde:31e5:2
+    wg:
+      port: "54738"
+      endpoint: "gate0.defra0.dn42.welterde.net:42005"
+      pubkey: "XC29xTOkt6/Pr7CA0uwRQqQD1Jb2Gof5zkb3HBjlzhs="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "hexanet" # gone from dn42
+    as: "4242423078"
+    state: absent
+  - name: "wrmsr" # gone from dn42
+    state: absent
+  - name: "marropax" # gone from dn42
+    as: "4242420880"
+    state: absent
 
