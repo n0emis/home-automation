@@ -2,6 +2,8 @@
 wireguard_server_address: "10.152.22.1/32"
 wireguard_server_allowed_ips: "{{ wireguard_server_address }}, 10.152.8.0/21"
 
+networking_nftables: yes
+
 powerdns_secondary_names:
   - ns3.n0emis.eu
 
@@ -44,7 +46,7 @@ wireguard_wg-cgvpn-c_peers:
     allowed_ips: "fdf8:7e7f:d097:9940::20/128"
 
 wireguard_wg_client_interface:
-  address: "10.152.10.254"
+  address: "10.152.10.254/24"
   private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_client') }}"
   listen_port: 41004
 wireguard_wg_client_peers:

@@ -16,3 +16,23 @@
   loop: "{{ groups['wireguard_member'] }}"
   loop_control:
     loop_var: "host"
+
+- name: Install nftables
+  apt:
+    name: "nftables"
+    state: present
+  when: networking_nftables
+
+- name: Copy nftables config
+  template:
+    src: "{{ networking_nftables_file }}"
+    dest: "/etc/nftables.conf"
+  notify: reload nftables
+  when: networking_nftables
+
+- name: Make sure nftables is enabled and running
+  systemd:
+    name: "nftables"
+    state: started
+    enabled: yes
+  when: networking_nftables

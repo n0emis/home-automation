@@ -1,6 +1,5 @@
 ---
-- name: reload networking
-  command: ifreload -a
-
-- name: reload wireguard
-  command: wg syncconf wg-server /etc/wireguard/wg-server.conf
+- name: reload nftables
+  systemd:
+    name: "nftables"
+    state: reloaded

@@ -1,0 +1,3 @@
+---
+networking_nftables: false
+networking_nftables_file: "networking/{{ ansible_fqdn }}/nftables.conf"
