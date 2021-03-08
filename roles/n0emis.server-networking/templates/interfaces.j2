@@ -14,10 +14,10 @@ iface lo inet loopback
 {#    post-up ip -6 rule add table 42#}
 
 {% for peer in groups['wireguard_member'] %}
-{% if hostvars[peer].ansible_hostname != ansible_hostname %}
-# link between `{{ hostvars[peer].ansible_hostname }}` and `{{ ansible_hostname }}`
-auto wg-s-{{ hostvars[peer].ansible_hostname }}
-iface wg-s-{{ hostvars[peer].ansible_hostname }} inet manual
+{% if hostvars[peer].inventory_hostname_short != inventory_hostname_short %}
+# link between `{{ hostvars[peer].inventory_hostname_short }}` and `{{ inventory_hostname_short }}`
+auto wg-s-{{ hostvars[peer].inventory_hostname_short }}
+iface wg-s-{{ hostvars[peer].inventory_hostname_short }} inet manual
     address {{ local_v4 }}/32
     pointopoint {{ hostvars[peer].local_v4 }}/32
     scope link
@@ -28,7 +28,7 @@ iface wg-s-{{ hostvars[peer].ansible_hostname }} inet manual
 
     link-type wireguard
     pre-up ip link add dev $IFACE type wireguard
-    pre-up wg setconf $IFACE /etc/wireguard/wg-s-{{ hostvars[peer].ansible_hostname }}
+    pre-up wg setconf $IFACE /etc/wireguard/wg-s-{{ hostvars[peer].inventory_hostname_short }}
 
     # pointopoint does not word on iproute2 on debian. temp fix
     post-up ip route add {{ hostvars[peer].local_v4 }} dev $IFACE

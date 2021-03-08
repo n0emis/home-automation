@@ -1,8 +1,8 @@
 ---
-ansible_fqdn: io.int.goe.de.n0emis.eu
+ansible_fqdn: "io.int.goe.de.n0emis.eu"
 ansible_hostname: "io"
 
-wireguard_server_address: "10.152.16.1/32"
+wireguard_server_address: "10.152.0.1/32"
 wireguard_server_allowed_ips: "10.152.16.0/20, 10.152.0.0/21"
 
 bird_config_file: "/etc/bird.conf"

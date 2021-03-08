@@ -1,5 +1,5 @@
 - set_fact:
-    if_name: "wg-s-{{ hostvars[host].ansible_hostname }}"
+    if_name: "wg-s-{{ hostvars[host].inventory_hostname_short }}"
 
 - name: Install wg-quick@{{ if_name }} config
   template:

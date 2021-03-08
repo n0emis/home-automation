@@ -68,7 +68,7 @@ protocol direct {
 protocol bgp igp_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {
     local as {{ local_asn }};
     neighbor {{ hostvars[peer].local_ll }} as {{ hostvars[peer].local_asn }};
-{% if ansible_os_family=="OpenWrt" %}
+{% if ansible_distribution=="OpenWrt" %}
     interface "wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }}";
 {% else %}
     interface "wg-s-{{ hostvars[peer].ansible_hostname.split('.')[0] }}";

@@ -356,8 +356,13 @@
   become: yes
   roles:
     - n0emis.server-networking
+  tags: network, networking
+
+- hosts: wireguard_member
+  become: yes
+  roles:
     - n0emis.bird
-  tags: bird, , network, networking
+  tags: bird, networking
 
 - hosts: vpn
   become: yes
