@@ -341,6 +341,59 @@ dn42_peers:
     latency: 2
     bandwidth: 24
     security: 34
+  - name: "yuetau"
+    as: 4242420925
+    v4: 172.21.68.37
+    v6: fe80::925
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "20925"
+      endpoint: "lon.yuetau.net:20197"
+      pubkey: "ZGRXw93MgbDloedAxxCssgXjRFQHmk8pHpvCYytToSI="
+  - name: "jrb0001_de"
+    as: 4242420119
+    v4: "172.20.1.2"
+    v6: "fe80::119"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "20119"
+      endpoint: "[2001:19f0:6c01:176d:5400:1ff:fefe:6698]:20197"
+      pubkey: "v5P00HJje1ucENA2VodkKMmrtTlB4fduMvAJLuleo0c="
+    blatency: 2
+    bbandwidth: 24
+    bsecurity: 34
+  - name: "jrb0001_fr"
+    as: 4242420119
+    v4: "172.20.1.4"
+    v6: "fe80::119"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "40119"
+      endpoint: "[2001:19f0:6801:10ba:5400:2ff:fe0f:b5a7]:20197"
+      pubkey: "ol2Coxvh1yrOwoMFHOKpAYnpuv7nLsRjluLK+owJV3U="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "lss233"
+    as: 4242421826
+    v4: "172.20.143.52"
+    v6: "fe80::1826"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "21826"
+      endpoint: "lux.n.lss233.com:50197"
+      pubkey: "2hVHLTlQtH90qtLOHD9Yx35OpR08o46fcwa7PgeF+Wk="
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent
