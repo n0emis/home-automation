@@ -1,0 +1,56 @@
+---
+- name: Check if ifupown2 is installed
+  stat:
+    path: "/usr/share/ifupdown2/__main__.py"
+  register: _ifupdown2_file
+
+- name: Download ifupdown2 package
+  get_url:
+    url: "https://build.n0emis.eu/repositories/ifupdown2_3.0.0-1_all.deb"
+    dest: "/tmp/ifupdown2.deb"
+  when: "not _ifupdown2_file.stat.exists"
+
+## TODO: make nicer
+#- name: Install ifupdown2
+#  become: true
+#  shell: "nohup dpkg -i /tmp/ifupdown2.deb; sleep 5; ifup -a &"
+#  when: "not _ifupdown2_file.stat.exists"
+#
+#- name: Wait for ifupdown2 to get installed
+#  wait_for:
+#    timeout: 20
+#  when: "not _ifupdown2_file.stat.exists"
+
+# TODO: evaluate if the following works
+- name: Install ifupdown2
+  become: true
+  shell: "dpkg -i /tmp/ifupdown2.deb; sleep 5; ifup -a"
+  when: "not _ifupdown2_file.stat.exists"
+  async: 45
+  poll: 5
+
+- name: Copy network config
+  template:
+    src: "{{ networking_interfaces_file }}"
+    dest: "/etc/network/interfaces"
+  notify: ifreload
+
+- name: Make sure cloud-init is disabled
+  copy:
+    content: "network: {config: disabled}"
+    dest: "/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg"
+
+- name: Remove cloud-init network config
+  file:
+    path: "/etc/network/interfaces.d/50-cloud-init.cfg"
+    state: absent
+
+- name: Template wireguard configs
+  template:
+    dest: "/etc/wireguard/wg-s-{{ hostvars[host].inventory_hostname_short }}.conf"
+    src: "wg-ifupdown2.conf.j2"
+  when: "hostvars[host].ansible_fqdn != ansible_fqdn"
+  loop: "{{ wireguard_mesh_neighbours }}"
+  loop_control:
+    loop_var: "host"
+  notify: ifreload

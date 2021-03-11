@@ -28,3 +28,9 @@ ap_iot_wifi_password: "{{ lookup('passwordstore', 'infra/wireless/iot') }}"
 local_v4: "{{ wireguard_server_address | ipaddr('address') }}"
 local_asn: "{{ 4200000000 + (((wireguard_server_address | ipaddr('address')).split('.')[2] | int) * 1000) + ((wireguard_server_address | ipaddr('address')).split('.')[3] | int) }}"
 local_ll: "fe80::{{ (wireguard_server_address | ipaddr('address')).split('.')[0] }}:{{ (wireguard_server_address | ipaddr('address')).split('.')[1] }}:{{ (wireguard_server_address | ipaddr('address')).split('.')[2] }}:{{ (wireguard_server_address | ipaddr('address')).split('.')[3] }}"
+
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] }}"
+wireguard_server_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server') }}"
+wireguard_server_public_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server subkey=public') }}"
+
+wireguard_peer_port: "{{ 65535 - (((wireguard_server_address | ipaddr('address') | ipaddr('int')) - ('10.152.0.0' | ipaddr('int'))) / 4) | int }}"

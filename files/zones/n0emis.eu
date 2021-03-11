@@ -37,6 +37,8 @@ himalia.ion.rhr.de		3600	IN	AAAA	2001:8d8:1800:30e::1
 
 carpo.gwd.goe.de		3600	IN	A	141.5.102.103
 
+chaldene.gwd.goe.de             3600    IN      A       141.5.102.100
+
 bbb-test				IN	A	168.119.189.225
 
 ;;;; Home -> will get served via int.goe.de.dyn.n0emis.eu.

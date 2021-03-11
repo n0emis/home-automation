@@ -63,7 +63,7 @@ protocol direct {
     };
 }
 
-{% for peer in groups['wireguard_member'] %}
+{% for peer in wireguard_mesh_neighbours %}
 {% if hostvars[peer].ansible_hostname != ansible_hostname %}
 protocol bgp igp_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {
     local as {{ local_asn }};

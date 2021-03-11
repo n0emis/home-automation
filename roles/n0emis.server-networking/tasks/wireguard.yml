@@ -4,7 +4,7 @@
 - name: Install wg-quick@{{ if_name }} config
   template:
     dest: "/etc/wireguard/{{ if_name }}.conf"
-    src: "wg-server.conf.j2"
+    src: "wg-quick.conf.j2"
   register: "configuration"
 
 - name: Enable wg-quick@{{ if_name }} service

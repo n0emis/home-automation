@@ -1,52 +1,21 @@
 ---
-- block:
-  - name: Install requirements
-    apt:
-      name:
-        - gpg
-        - tcpdump
-        - mtr
-
-  - name: Ensure forwarding of ipv4-packets is allowed
-    sysctl:
-      name: net.ipv4.ip_forward
-      value: '1'
-      state: present
-
-  - name: Ensure forwarding of ipv6-packets is allowed
-    sysctl:
-      name: net.ipv6.conf.all.forwarding
-      value: '1'
-      state: present
-
-  - name: Ensure reverse path filtering is disabled for v4
-    sysctl:
-      name: net.ipv4.conf.all.rp_filter
-      value: '0'
-      state: present
-
-  - name: Ensure default reverse path filtering is disabled for v4
-    sysctl:
-      name: net.ipv4.conf.all.rp_filter
-      value: '0'
-      state: present
-
-  - name: Ensure no redirects are sent for v4
-    sysctl:
-      name: net.ipv4.conf.all.send_redirects
-      value: '0'
-      state: present
-
-  - name: Ensure no redirects are accepted for v4
-    sysctl:
-      name: net.ipv4.conf.all.accept_redirects
-      value: '0'
-      state: present
+- name: Install requirements
+  apt:
+    name:
+      - gpg
+      - tcpdump
+      - mtr
   when: ansible_os_family == "Debian"
 
-- name: Add birds packaging Key
+- name: Add birds packaging Key 1/2
   apt_key:
     url: "https://bird.network.cz/debian/apt.key"
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Add birds packaging Key 2/2
+  apt_key:
+    url: "https://packages.sury.org/bird/apt.gpg"
     state: present
   when: ansible_distribution == "Debian"
 
@@ -60,14 +29,13 @@
   apt:
     deb: "https://build.n0emis.eu/repositories/bird2.deb"
     state: present
-  when: ansible_distribution == "Debian"
-
+  when: ansible_fqdn == "himalia.ion.rhr.de.n0emis.eu"
 
 - name: Install bird2
   apt:
     name: "bird2"
     state: present
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_fqdn != "himalia.ion.rhr.de.n0emis.eu"
 
 - name: Copy bird config-file
   template:

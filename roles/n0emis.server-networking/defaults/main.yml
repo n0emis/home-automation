@@ -1,3 +1,6 @@
 ---
 networking_nftables: false
 networking_nftables_file: "networking/{{ ansible_fqdn }}/nftables.conf"
+
+networking_ifupdown2: false
+networking_interfaces_file: "interfaces.j2"

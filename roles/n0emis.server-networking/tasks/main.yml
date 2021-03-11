@@ -1,8 +1,8 @@
 ---
-- name: Install dependencies
-  apt:
-    name:
-      - wireguard
+#- name: Install dependencies
+#  apt:
+#    name:
+#      - wireguard
 
 # TODO: ...
 #- name: Template Network config
@@ -11,9 +11,19 @@
 #    dest: /etc/network/interfaces
 #  notify: reload networking
 
+- import_tasks: sysctl.yml
+
+- name: test
+  debug:
+    msg: foo
+
+- name: Install and configure ifupdpwn2
+  include_tasks: ifupdown2.yml
+  when: "networking_ifupdown2"
+
 - include_tasks: wireguard.yml
-  when: "hostvars[host].ansible_fqdn != ansible_fqdn"
-  loop: "{{ groups['wireguard_member'] }}"
+  when: "hostvars[host].ansible_fqdn != ansible_fqdn and not networking_ifupdown2"
+  loop: "{{ wireguard_mesh_neighbours }}"
   loop_control:
     loop_var: "host"
 

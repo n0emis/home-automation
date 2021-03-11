@@ -36,7 +36,7 @@ config zone
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	option network '{% for peer in groups['wireguard_member'] %}wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {% endfor %}'
+	option network '{% for peer in wireguard_mesh_neighbours %}wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {% endfor %}'
 
 config zone
 	option network 'voip'

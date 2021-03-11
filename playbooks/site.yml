@@ -358,7 +358,7 @@
     - n0emis.server-networking
   tags: network, networking
 
-- hosts: wireguard_member
+- hosts: wireguard_member,wireguard-mesh
   become: yes
   roles:
     - n0emis.bird

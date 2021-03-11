@@ -1,0 +1,8 @@
+[Interface]
+PrivateKey = {{ wireguard_server_private_key }}
+ListenPort = {{ hostvars[host].wireguard_peer_port }}
+
+[Peer]
+PublicKey = {{ hostvars[host].wireguard_server_public_key }}
+Endpoint = {{ host }}:{{ wireguard_peer_port }}
+AllowedIPs = ::/0, 0.0.0.0/0

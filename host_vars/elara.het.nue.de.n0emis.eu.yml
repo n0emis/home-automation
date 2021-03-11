@@ -52,3 +52,5 @@ dehydrated_domains:
       - ipa.noemis.me
   - domains:
       - turn.n0emis.eu
+
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu']}}"

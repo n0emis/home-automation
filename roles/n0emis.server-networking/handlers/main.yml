@@ -3,3 +3,8 @@
   systemd:
     name: "nftables"
     state: reloaded
+
+- name: ifreload
+  command: "ifreload -a"
+#  async: 1000
+#  poll: 0

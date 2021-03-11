@@ -1,0 +1,36 @@
+---
+- name: Ensure forwarding of ipv4-packets is allowed
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+
+- name: Ensure forwarding of ipv6-packets is allowed
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: '1'
+    state: present
+
+- name: Ensure reverse path filtering is disabled for v4
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: '0'
+    state: present
+
+- name: Ensure default reverse path filtering is disabled for v4
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: '0'
+    state: present
+
+- name: Ensure no redirects are sent for v4
+  sysctl:
+    name: net.ipv4.conf.all.send_redirects
+    value: '0'
+    state: present
+
+- name: Ensure no redirects are accepted for v4
+  sysctl:
+    name: net.ipv4.conf.all.accept_redirects
+    value: '0'
+    state: present

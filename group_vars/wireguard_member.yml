@@ -1,9 +1,0 @@
----
-wireguard_networks: {}
-
-wireguard_server_allowed_ips: "{{ wireguard_server_address }}"
-
-wireguard_server_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server') }}"
-wireguard_server_public_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/wg_server subkey=public') }}"
-
-wireguard_peer_port: "{{ 65535 - (((wireguard_server_address | ipaddr('address') | ipaddr('int')) - ('10.152.0.0' | ipaddr('int'))) / 4) | int }}"

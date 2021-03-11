@@ -1,0 +1,8 @@
+---
+wireguard_server_address: "10.152.24.1/32"
+
+wireguard_mesh_neighbours:
+  - elara.het.nue.de.n0emis.eu
+  - himalia.ion.rhr.de.n0emis.eu
+
+networking_ifupdown2: yes
