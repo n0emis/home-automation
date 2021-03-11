@@ -2,6 +2,7 @@
 dns_dkim:   '3600   IN  TXT "v=DKIM1;k=rsa;t=s;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwe4QWN7bOpSWpOcGo2jIjka7yixbe9D4Zft73vdX5n9OoO/Ozcs6dqzn0wrENPHw0R7u/L5sP/6HvNnfO/1ynGlRqqtUWRneE15CytZqFH0/X1PWHdC0bEAADyOYM3JzhVApum9wPBFuAjr4bOoESklC5um1nq8BlhtA+wKvHr8Fte9mC5Q1ax2seet/Et32q1aNrc20aU1X2viwPAK01kS8Oj/FpTp4HsDRO+NhmOapgBKWYvuJP8E9lQp+qDhPCs9orQ+l+wJuzkdjRyJn9/0R3a7mojWVIfSicfXEdSemc4bYojXCzyySIusFKnoXGtm2ZYnecc3FcHZnCHp7hwIDAQAB"'
 dns_dmarc:  '3600	IN  TXT "v=DMARC1; p=quarantine; rua=mailto:mailauth-reports@n0emis.eu; ruf=mailto:mailauth-reports@n0emis.eu; fo=1"'
 dns_mx:     '3600	IN  MX  1 ganymed.het.hel.fi.n0emis.eu.'
+dns_mx_backup: '3600	IN  MX  10 backupmx.labcode.de.'
 dns_spf:    '3600	IN	TXT "v=spf1 mx ~all"'
 dns_tlsa:   'ganymed.het.hel.fi.n0emis.eu. 3600 IN TLSA 3 1 1 C9C26F6BBC3DE806274AF05FDCE17EB019A6C2FB7281BF5559F5DEDC C07683CB'
 

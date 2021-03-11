@@ -1,6 +1,6 @@
 $ORIGIN n0emis.eu.
 @ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2021021901 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2021031001 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     1209600    ; expire (14 day)
@@ -52,9 +52,11 @@ pasiphae.int.goe.de		3600	IN	CNAME	pasiphae.int.goe.de.dyn.n0emis.eu.
 ;; MAIL
 ;;;; MX
 @				{{ dns_mx }}
+@				{{ dns_mx_backup }}
 ca				{{ dns_mx }}
 dev				{{ dns_mx }}
 services			{{ dns_mx }}
+services			{{ dns_mx_backup }}
 lists				{{ dns_mx }}
 
 ;;;; SRV
