@@ -5,6 +5,7 @@ networking_nftables: yes
 
 powerdns_secondary_names:
   - ns3.n0emis.eu
+  - ns1.n0emis.dn42
 
 wireguard_networks:
   - wg_client
