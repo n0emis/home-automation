@@ -1,0 +1,20 @@
+---
+dn42_wg_private_key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/default') }}"
+
+dn42_local_subnet_v4: "172.20.190.96/27"
+dn42_local_subnet_v6: "fdf4:2331:fa09::/48"
+dn42_local_subnet_v6_2: "fdf8:7e7f:d097::/48"
+dn42_local_as: "4242420197"
+
+dn42_enable_roa: yes
+
+dn42_pingfinder_enable: yes
+dn42_pingfinder_uuid: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/pingfinder') }}"
+
+dn42_configure_linux_network_table: yes
+
+dn42_bird2_directory: "/etc/bird/dn42/"
+dn42_bird2_template: "templates/dn42/bird.conf.j2"
+dn42_bird2_peer_template: "templates/dn42/peer.conf.j2"
+
+dn42_peers: []
