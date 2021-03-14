@@ -6,3 +6,16 @@ wireguard_mesh_neighbours:
   - himalia.ion.rhr.de.n0emis.eu
 
 networking_ifupdown2: yes
+networking_nftables: yes
+
+lxc_netmask: "26"
+lxc_gateway4: "10.152.24.1"
+lxc_gateway6: "fdf4:2331:fa09:1::1"
+
+lxc_containers:
+  - name: "ca-db"
+    v4: "10.152.24.2"
+    v6: "fdf4:2331:fa09:1::2"
+  - name: "ca-staging"
+    v4: "10.152.24.3"
+    v6: "fdf4:2331:fa09:1::3"

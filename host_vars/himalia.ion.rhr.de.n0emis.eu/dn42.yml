@@ -394,6 +394,17 @@ dn42_peers:
     latency: 3
     bandwidth: 24
     security: 34
+  - name: "c3d2hg"
+    as: 64699
+    v4: "172.22.99.253"
+    v6: "fe80::deca:fbad"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "24699"
+      endpoint: "upstream1.dyn.zentralwerk.org:24699"
+      pubkey: "1vPtK4jfw2HViW9ZRNaUaUa4Y8OMHu0XroYKmqh/j18="
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent

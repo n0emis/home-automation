@@ -1,0 +1,36 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - lxc
+      - python3-lxc
+    state: present
+
+- name: install lxc default config
+  copy:
+    dest: /etc/lxc/default.conf
+    content: |
+      lxc.apparmor.profile = generated
+      lxc.apparmor.allow_nesting = 1
+
+      lxc.net.0.type = veth
+      lxc.net.0.link = vmbr0
+      lxc.net.0.flags = up
+      lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
+
+- name: Create containers
+  lxc_container:
+    name: "{{ item.name }}"
+    container_log: true
+    template: debian
+    state: started
+    template_options: --release buster
+    container_config:
+      - "lxc.net.0.type = veth"
+      - "lxc.net.0.ipv4.address = {{ item.v4 }}/{{ lxc_netmask }}"
+      - "lxc.net.0.ipv4.gateway = {{ lxc_gateway4 }}"
+      - "lxc.net.0.ipv6.address = {{ item.v6 }}/64"
+      - "lxc.net.0.ipv6.gateway = {{ lxc_gateway6 }}"
+      - "lxc.start.auto = 1"
+    container_command: "apt update && apt install -y sudo python3"
+  loop: "{{ lxc_containers }}"

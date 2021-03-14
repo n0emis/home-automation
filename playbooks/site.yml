@@ -67,6 +67,12 @@
         dest: "/etc/motd"
   tags: base
 
+- hosts: lxc
+  become: yes
+  roles:
+    - n0emis.lxc
+  tags: lxc, container
+
 - hosts: all !not_monitored
   become: yes
   roles:

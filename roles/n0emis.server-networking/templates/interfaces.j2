@@ -13,6 +13,14 @@ iface lo inet loopback
 {#    post-up ip rule add table 42#}
 {#    post-up ip -6 rule add table 42#}
 
+{% if lxc_netmask is defined %}
+auto vmbr0
+iface vmbr0
+    bridge-ports none
+    address {{ lxc_gateway4 }}/{{ lxc_netmask }}
+    address {{ lxc_gateway6 }}/64
+{% endif %}
+
 {% for peer in wireguard_mesh_neighbours %}
 {% if hostvars[peer].inventory_hostname_short != inventory_hostname_short %}
 # link between `{{ hostvars[peer].inventory_hostname_short }}` and `{{ inventory_hostname_short }}`

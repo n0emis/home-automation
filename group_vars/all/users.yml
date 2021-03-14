@@ -36,4 +36,4 @@ users:
 oh_my_zsh_theme: "agnoster"
 
 oh_my_zsh_custom_config: |
-  source .profile
+  source ~/.profile
