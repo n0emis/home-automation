@@ -405,6 +405,13 @@ dn42_peers:
       port: "24699"
       endpoint: "upstream1.dyn.zentralwerk.org:24699"
       pubkey: "1vPtK4jfw2HViW9ZRNaUaUa4Y8OMHu0XroYKmqh/j18="
+  - name: "moho"
+    as: 4242423754
+    v4: "169.254.20.1"
+    wg:
+      port: "23754"
+      pubkey: "8aH6TOj3LNKWwqkNaYr2MEW3MvVaUF/526JO6YGNiio="
+      endpoint: "dn42.mholtz.de:2020"
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent
