@@ -83,3 +83,12 @@ bird_extra: |
 
   include "/etc/bird/dn42/bird.conf";
 
+dehydrated_deploy_cert_hook: |
+  cp /etc/ssl/letsencrypt/certs/vpn.n0emis.eu/fullchain.pem /etc/ipsec.d/certs/
+  cp /etc/ssl/letsencrypt/certs/vpn.n0emis.eu/privkey.pem /etc/ipsec.d/private/
+  systemctl restart strongswan
+
+dehydrated_domains:
+  - domains:
+    - vpn.n0emis.eu
+    - himalia.ion.rhr.de.n0emis.eu

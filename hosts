@@ -46,6 +46,7 @@ ganymed.het.hel.fi.n0emis.eu
 elara.het.nue.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 carpo.gwd.goe.de.n0emis.eu
+himalia.ion.rhr.de.n0emis.eu
 
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
@@ -61,6 +62,7 @@ nextcloud
 
 [dehydrated]
 elara.het.nue.de.n0emis.eu
+himalia.ion.rhr.de.n0emis.eu
 
 [postgresql:children]
 netbox
@@ -99,9 +101,6 @@ ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 elara.het.nue.de.n0emis.eu
 chaldene.gwd.goe.de.n0emis.eu
-
-[dnsmasq]
-himalia.ion.rhr.de.n0emis.eu
 
 [lg]
 himalia.ion.rhr.de.n0emis.eu
