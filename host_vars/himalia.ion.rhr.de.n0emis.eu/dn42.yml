@@ -405,6 +405,9 @@ dn42_peers:
       port: "24699"
       endpoint: "upstream1.dyn.zentralwerk.org:24699"
       pubkey: "1vPtK4jfw2HViW9ZRNaUaUa4Y8OMHu0XroYKmqh/j18="
+    latency: 4
+    bandwidth: 24
+    security: 34
   - name: "moho"
     as: 4242423754
     v4: "169.254.20.1"
@@ -412,6 +415,23 @@ dn42_peers:
       port: "23754"
       pubkey: "8aH6TOj3LNKWwqkNaYr2MEW3MvVaUF/526JO6YGNiio="
       endpoint: "dn42.mholtz.de:2020"
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "jerryxiao"
+    as: "4242423618"
+    v4: "172.20.51.120"
+    v6: "fe80::3618"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "23618"
+      pubkey: "VWxXm7bOTwyHXoVhkQhrGe0LLujl2Oom6XgN8yfGZEE="
+      endpoint: "nl.neo.jerryxiao.cc:50105"
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent
