@@ -1,0 +1,57 @@
+---
+ansible_fqdn: "amalthea.mkl.goe.de.n0emis.eu"
+ansible_hostname: "amalthea"
+
+wireguard_server_address: "10.152.14.1/32"
+
+bird_config_file: "/etc/bird.conf"
+
+router_wireguard_interfaces:
+  - name: "wg_s_himalia"
+    private_key: "{{ lookup('passwordstore', 'infra/amalthea.mkl.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
+      - name: "himalia"
+        endpoint_host: "himalia.ion.rhr.de.n0emis.eu"
+        endpoint_port: "{{ wireguard_peer_port }}"
+        public_key: "{{ lookup('passwordstore', 'infra/himalia.ion.rhr.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "::/0"
+          - "0.0.0.0/0"
+        persistent_keepalive: "25"
+        route_allowed_ips: "0"
+  - name: "wg_s_elara"
+    private_key: "{{ lookup('passwordstore', 'infra/amalthea.mkl.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['elara.het.nue.de.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
+      - name: "elara"
+        endpoint_host: "elara.het.nue.de.n0emis.eu"
+        endpoint_port: "{{ wireguard_peer_port }}"
+        public_key: "{{ lookup('passwordstore', 'infra/elara.het.nue.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "::/0"
+          - "0.0.0.0/0"
+        persistent_keepalive: "25"
+        route_allowed_ips: "0"
+
+router_firewall_forwarding:
+  - lan
+  - wgserver
+
+router_wan_if: "eth1"
+router_domain: "mkl.goe.de.n0emis.eu"
+wireguard_server_host: false
+
+router_lan:
+  if: "eth0"
+  ip: "10.152.14.1"
+  mask: "255.255.255.0"
+  ula: "fdf8:7e7f:d097:9948::1/64"

@@ -53,4 +53,4 @@ dehydrated_domains:
   - domains:
       - turn.n0emis.eu
 
-wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu']}}"
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu', 'amalthea.mkl.goe.de.n0emis.eu']}}"

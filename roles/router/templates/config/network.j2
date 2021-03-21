@@ -7,14 +7,22 @@ config interface 'loopback'
 
 config globals 'globals'
 
+{% if router_pppoe is defined %}
 config interface 'wan'
 	option proto 'pppoe'
-	option username '{{ lookup('passwordstore', 't-online.de subkey=ppp') }}'
-	option password '{{ lookup('passwordstore', 't-online.de') }}'
-	option ifname 'eth0.7'
-	option host_uniq 'E80D0000'
+	option username '{{ router_pppoe.user }}'
+	option password '{{ router_pppoe.password }}'
+	option ifname '{{ router_pppoe.if }}'
+	option host_uniq '{{ router_pppoe.hostuniq }}'
 	option ipv6 'auto'
+{% elif router_wan_if is defined %}
+config interface 'wan'
+	option proto 'dhcp'
+	option ifname '{{ router_wan_if }}'
+	option ipv6 'auto'
+{% endif %}
 
+{% if router_henet is defined %}
 config interface 'henet'
 	option proto '6in4'
 	option peeraddr '216.66.80.30'
@@ -23,18 +31,29 @@ config interface 'henet'
 	option tunnelid '{{ lookup('passwordstore', 'tunnelbroker.net/int.goe.de subkey=user') }}'
 	option password '{{ lookup('passwordstore', 'tunnelbroker.net/int.goe.de') }}'
 	list ip6prefix '2001:470:7694::/48'
+{% endif %}
 
+{% if router_lan is defined %}
 config interface 'lan'
 	option type 'bridge'
 	option proto 'static'
-	option ipaddr '10.152.0.1'
-	option netmask '255.255.252.0'
-	option ip6assign '60'
+	option ipaddr '{{ router_lan.ip }}'
+	option netmask '{{ router_lan.mask }}'
+	option ip6assign '64'
 	option ip6hint '10'
-	option ip6addr 'fdf8:7e7f:d097:9943::1/64'
-	option ifname 'eth0 eth1'
+	option ip6addr '{{ router_lan.ula }}'
+	option ifname '{{ router_lan.if }}'
 	list ip6class 'wan_6'
+{% endif %}
 
+{% if router_ffgoe is defined %}
+config interface 'ffgoe'
+	option ifname '{{ router_ffgoe.if }}'
+	option type 'bridge'
+	option proto 'none'
+{% endif %}
+
+{% if ansible_fqdn=='io.int.goe.de.n0emis.eu' %}
 config interface 'srvkallisto'
 	option type 'bridge'
 	option proto 'static'
@@ -42,14 +61,9 @@ config interface 'srvkallisto'
 	option netmask '255.255.255.0'
 	option ip6assign '64'
 	option ip6hint '0'
-	option ip6addr 'fdf8:7e7f:d097:9942::1/64'
+	option ip6addr 'fdf8:7e7f:d097:9945::1/64'
 	option ifname 'eth1.4 eth2'
 	list ip6class 'henet'
-
-config interface 'freifunk'
-	option ifname 'eth2.3 eth1.3'
-	option type 'bridge'
-	option proto 'none'
 
 config interface 'voip'
 	option proto 'static'
@@ -57,7 +71,59 @@ config interface 'voip'
 	option type 'bridge'
 	option netmask '255.255.255.0'
 	option ipaddr '10.152.6.1'
+	list ip6class 'wan_6'
 
+config interface 'test4only'
+	option proto 'static'
+	option ifname 'eth1.60 eth2.60'
+	option type 'bridge'
+	option netmask '255.255.255.224'
+	option ipaddr '10.152.6.129'
+
+config interface 'testdtag'
+	option proto 'static'
+	option ifname 'eth1.61 eth2.61'
+	option type 'bridge'
+	option netmask '255.255.255.224'
+	option ipaddr '10.152.6.161'
+	option ip6assign '64'
+	list ip6class 'wan_6'
+
+config interface 'testhenet'
+	option proto 'static'
+	option ifname 'eth1.62 eth2.62'
+	option type 'bridge'
+	option netmask '255.255.255.224'
+	option ipaddr '10.152.6.193'
+	option ip6assign '64'
+	list ip6class 'henet'
+{% elif ansible_fqdn=='amalthea.mkl.goe.de.n0emis.eu' %}
+config switch
+	option name 'switch0'
+	option reset '1'
+	option enable_vlan '1'
+	option blinkrate '2'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '1'
+	option ports '0 1 2 3 5'
+
+config switch_port
+	option device 'switch0'
+	option port '1'
+	option led '6'
+
+config switch_port
+	option device 'switch0'
+	option port '2'
+	option led '9'
+
+config switch_port
+	option device 'switch0'
+	option port '5'
+	option led '2'
+{% endif %}
 
 {% for wireguard_interface in router_wireguard_interfaces %}
 config interface '{{ wireguard_interface.name }}'

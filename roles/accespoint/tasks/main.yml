@@ -1,9 +1,12 @@
 ---
 - name: remove packages
   opkg:
-    name: wpad-basic #wpad-mini luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
+    name: "{{ item }}" #wpad-basic wpad-mini #luci luci-app-firewall luci-mod-admin-full luci-proto-ipv6 luci-proto-ppp luci-theme-bootstrap luci-base luci-lib-jsonc luci-lib-nixio luci-lib-ip
     state: absent
     update_cache: yes
+  loop:
+    - wpad-basic
+    - wpad-mini
 
 - name: install dependencies
   opkg:

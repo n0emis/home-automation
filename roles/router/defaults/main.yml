@@ -2,4 +2,7 @@
 oh_my_zsh_plugins:
   - git
 
-router_static_hosts: {}
+router_static_hosts: []
+router_firewall_forwarding: []
+router_port_allow_ipv6: []
+router_port_redirect: []

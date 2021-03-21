@@ -5,15 +5,15 @@ config defaults
 	option input 'ACCEPT'
 	option forward 'REJECT'
 
-
 config zone
 	option name 'lan'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
 	list device 'br-lan'
-	option network 'lan'
+	option network 'lan test4only testdtag testhenet'
 
+{% if ansible_fqdn=='io.int.goe.de.n0emis.eu' %}
 config zone
 	option name 'srvkallisto'
 	option input 'ACCEPT'
@@ -21,6 +21,7 @@ config zone
 	option forward 'ACCEPT'
 	list device 'br-srvkallisto'
 	option network 'srvkallisto'
+{% endif %}
 
 config zone
 	option name 'wan'
@@ -36,20 +37,22 @@ config zone
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	option network '{% for peer in wireguard_mesh_neighbours %}wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {% endfor %}'
+	option network '{% for peer in wireguard_mesh_neighbours %}wg_s_{{ peer.split('.')[0] }} {% endfor %}'
 
+{% if ansible_fqdn=='io.int.goe.de.n0emis.eu' %}
 config zone
 	option network 'voip'
 	option input 'ACCEPT'
 	option name 'voip'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-
+{% endif %}
 
 config forwarding
 	option src 'lan'
 	option dest 'wan'
 
+{% if ansible_fqdn=='io.int.goe.de.n0emis.eu' %}
 config forwarding
 	option src 'srvkallisto'
 	option dest 'wan'
@@ -57,6 +60,7 @@ config forwarding
 config forwarding
 	option src 'voip'
 	option dest 'wan'
+{% endif %}
 
 {% for src in router_firewall_forwarding %}
 {% for dest in router_firewall_forwarding %}
@@ -87,12 +91,12 @@ config rule
 
 config rule
 	option name 'Allow-Multicast'
-	option src      wan
-	option proto    udp
-	option dest     lan
-	option dest_ip  224.0.0.0/4
-	option target   ACCEPT
-	option family   ipv4
+	option src 'wan'
+	option proto 'udp'
+	option dest 'lan'
+	option dest_ip '224.0.0.0/4'
+	option target 'ACCEPT'
+	option family 'ipv4'
 
 config rule
 	option name 'Allow-IGMP'

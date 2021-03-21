@@ -1,6 +1,6 @@
 
 config system
-	option hostname 'io.int.goe.de.n0emis.eu'
+	option hostname '{{ ansible_fqdn }}'
 	option ttylogin '0'
 	option log_size '64'
 	option urandom_seed '0'

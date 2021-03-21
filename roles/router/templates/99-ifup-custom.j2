@@ -5,9 +5,9 @@
 }
 
 {% for peer in wireguard_mesh_neighbours %}
-{% if hostvars[peer].ansible_hostname != ansible_hostname %}
-{%- set if_name = "wg_s_" + hostvars[peer].ansible_hostname.split('.')[0] -%}
-[ "$ACTION" = "ifup" -a "$INTERFACE" = "wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }}" ] && {
+{% if peer != ansible_hostname %}
+{%- set if_name = "wg_s_" + peer.split('.')[0] -%}
+[ "$ACTION" = "ifup" -a "$INTERFACE" = "wg_s_{{ peer.split('.')[0] }}" ] && {
     logger "iface {{ if_name }} up detected..."
     /sbin/ip addr del dev {{ if_name }} {{ local_v4 }}/32 && {# ... -#}
     /sbin/ip addr add dev {{ if_name }} {{ local_v4 }}/32 peer {{ hostvars[peer].local_v4 }}/32

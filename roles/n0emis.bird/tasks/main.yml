@@ -35,7 +35,7 @@
   apt:
     name: "bird2"
     state: present
-  when: ansible_fqdn != "himalia.ion.rhr.de.n0emis.eu"
+  when: ansible_fqdn != "himalia.ion.rhr.de.n0emis.eu" and ansible_os_family == "Debian"
 
 - name: Copy bird config-file
   template:

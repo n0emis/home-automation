@@ -329,3 +329,22 @@ dyndns_priv_base: !vault |
     666536303336363165613462653964323631
 dyndns_privkey: "{{ dyndns_priv_base | b64decode }}"
 dyndns_host: "io.int.goe.de"
+
+router_henet: true
+router_pppoe:
+  hostuniq: "E80D0000"
+  user: "{{ lookup('passwordstore', 't-online.de subkey=ppp') }}"
+  password: "{{ lookup('passwordstore', 't-online.de') }}"
+  if: "eth0.7"
+
+router_lan:
+  if: "eth0 eth1"
+  ip: "10.152.0.1"
+  mask: "255.255.252.0"
+  ula: "fdf8:7e7f:d097:9944::1/64"
+
+router_ffgoe:
+  if: "eth1.3 eth1.30 eth2.3 eth2.30"
+
+router_domain: "int.goe.de.n0emis.eu"
+router_dhcp_start: "513"

@@ -6,9 +6,14 @@ cr
 ap-wrt-00.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-00 #ansible_host=192.168.1.1
 ap-wrt-01.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-01 #ansible_host=192.168.1.1
 ap-wrt-02.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-02 #ansible_host=192.168.1.1
+ap-wrt-03.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-03 #ansible_host=192.168.1.1
+ap-wrt-04.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-04 #ansible_host=192.168.1.1
+ap-wrt-05.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-05 #ansible_host=192.168.1.1
+ap-wrt-06.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-06 #ansible_host=192.168.1.1
 
 [cr]
 io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 #ansible_host=10.152.0.1
+amalthea.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=10.152.14.1
 
 [mail]
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
@@ -52,9 +57,11 @@ chaldene.gwd.goe.de.n0emis.eu
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
 sinope.int.goe.de.n0emis.eu
-io.int.goe.de.n0emis.eu
 metis.int.goe.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
+
+[dyndns:children]
+cr
 
 [php:children]
 nextcloud
@@ -102,6 +109,9 @@ ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
 elara.het.nue.de.n0emis.eu
 chaldene.gwd.goe.de.n0emis.eu
+
+[wireguard-mesh:children]
+cr
 
 [lg]
 himalia.ion.rhr.de.n0emis.eu

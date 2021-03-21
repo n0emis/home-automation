@@ -10,5 +10,7 @@ ListenPort = {{ hostvars[host].wireguard_peer_port }}
 
 [Peer]
 PublicKey = {{ hostvars[host].wireguard_server_public_key }}
+{% if hostvars[host].wireguard_server_host | default(true) %}
 Endpoint = {{ host }}:{{ wireguard_peer_port }}
+{% endif %}
 AllowedIPs = ::/0, 0.0.0.0/0

@@ -11,7 +11,8 @@
 #    dest: /etc/network/interfaces
 #  notify: reload networking
 
-- import_tasks: sysctl.yml
+- include_tasks: sysctl.yml
+  when: ansible_os_family == "Debian"
 
 - name: test
   debug:
@@ -22,7 +23,7 @@
   when: "networking_ifupdown2"
 
 - include_tasks: wireguard.yml
-  when: "hostvars[host].ansible_fqdn != ansible_fqdn and not networking_ifupdown2"
+  when: "hostvars[host].ansible_fqdn != ansible_fqdn and not networking_ifupdown2 and ansible_os_family == 'Debian'"
   loop: "{{ wireguard_mesh_neighbours }}"
   loop_control:
     loop_var: "host"
