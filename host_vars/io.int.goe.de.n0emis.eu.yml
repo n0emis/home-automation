@@ -92,7 +92,7 @@ router_port_redirect:
     reflection_nets:
       - lan
   - name: ffgoeremote fastd
-    port: 10000
+    port: 30000
     network: srvkallisto
     ip: 10.152.4.28
   - name: 3cx-web

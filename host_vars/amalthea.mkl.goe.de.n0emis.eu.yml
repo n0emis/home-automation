@@ -55,3 +55,6 @@ router_lan:
   ip: "10.152.14.1"
   mask: "255.255.255.0"
   ula: "fdf8:7e7f:d097:9948::1/64"
+
+router_ffgoe:
+  if: "eth0.3 ffgoeremote"

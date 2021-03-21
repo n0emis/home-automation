@@ -103,11 +103,17 @@ config switch
 	option reset '1'
 	option enable_vlan '1'
 	option blinkrate '2'
+	option enable_vlan4k '1'
 
 config switch_vlan
 	option device 'switch0'
 	option vlan '1'
 	option ports '0 1 2 3 5'
+
+config switch_vlan
+	option device 'switch0'
+	option ports '3t 5t'
+	option vlan '3'
 
 config switch_port
 	option device 'switch0'
