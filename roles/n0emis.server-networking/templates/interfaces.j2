@@ -8,6 +8,9 @@ source /etc/network/interfaces.d/*
 auto lo
 iface lo inet loopback
     address {{ local_v4 }}/32
+{% for addr in networking_lo_addr %}
+    address {{ addr }}
+{% endfor %}
 {#    up ip a add 172.20.190.96/32 dev lo#}
 {#    up ip a add fdf4:2331:fa09::1/128 dev lo#}
 {#    post-up ip rule add table 42#}

@@ -1,6 +1,6 @@
 $ORIGIN acme.dn42.
 @ 3600 IN SOA ns1.n0emis.dn42. noc.n0emis.eu. (
-    2021030901 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    2021031604 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -10,3 +10,12 @@ $ORIGIN acme.dn42.
 ;; NS
 @				3600	IN	NS	ns1.n0emis.dn42.
 @				3600	IN	NS	ns3.n0emis.eu.
+
+@					IN	ALIAS	chaldene.n0emis.dn42.
+ocsp					IN      CNAME   chaldene.n0emis.dn42.
+acme-v2		                        IN      CNAME   chaldene.n0emis.dn42.
+
+
+staging					IN	CNAME	chaldene.n0emis.dn42.
+ocsp.staging				IN	CNAME	chaldene.n0emis.dn42.
+acme-v2.staging				IN      CNAME   chaldene.n0emis.dn42.

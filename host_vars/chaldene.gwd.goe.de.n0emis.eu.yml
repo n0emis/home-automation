@@ -8,6 +8,10 @@ wireguard_mesh_neighbours:
 networking_ifupdown2: yes
 networking_nftables: yes
 
+networking_lo_addr:
+  - "172.20.190.125/32"
+  - "fdf4:2331:fa09:1::1/128"
+
 lxc_netmask: "26"
 lxc_gateway4: "10.152.24.1"
 lxc_gateway6: "fdf4:2331:fa09:1::1"
@@ -19,3 +23,6 @@ lxc_containers:
   - name: "ca-staging"
     v4: "10.152.24.3"
     v6: "fdf4:2331:fa09:1::3"
+  - name: "ca-prod"
+    v4: "10.152.24.4"
+    v6: "fdf4:2331:fa09:1::4"
