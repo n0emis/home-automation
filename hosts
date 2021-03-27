@@ -13,7 +13,7 @@ ap-wrt-06.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr
 
 [cr]
 io.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 #ansible_host=10.152.0.1
-amalthea.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_host=10.152.14.1
+amalthea.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 #ansible_host=192.168.1.1
 
 [mail]
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3

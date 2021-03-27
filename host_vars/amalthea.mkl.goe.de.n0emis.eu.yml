@@ -46,12 +46,12 @@ router_firewall_forwarding:
   - lan
   - wgserver
 
-router_wan_if: "eth1"
+router_wan_if: "eth0.2"
 router_domain: "mkl.goe.de.n0emis.eu"
 wireguard_server_host: false
 
 router_lan:
-  if: "eth0"
+  if: "eth0.1"
   ip: "10.152.14.1"
   mask: "255.255.255.0"
   ula: "fdf8:7e7f:d097:9948::1/64"
