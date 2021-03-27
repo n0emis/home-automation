@@ -1,0 +1,201 @@
+---
+local_v4: "10.152.24.5"
+
+wireguard_mesh_neighbours: []
+
+bird_kernel: false
+
+bird_lg_webservice_enabled: no
+bird_lg_proxy_enabled: yes
+
+dn42_local_v4: "172.20.190.98"
+dn42_local_v6: "fdf4:2331:fa09:1::5"
+dn42_region: "41"
+dn42_kernel: false
+
+dn42_peers:
+  - name: "p0tat05"
+    as: "4242421876"
+    v4: "172.22.66.49"
+    v6: "fe80::1876"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "21876"
+      endpoint: "194.50.19.211:20197"
+      pubkey: "EC8AtaclaYT5Egrrdp5vWAck0YnUud3TwzNHelvemSU="
+    latency: 3
+    bandwidth: 24
+    security: 34
+
+dn42_configure_linux_network_table: false
+
+bird_extra: |
+  protocol bgp igp_chaldene {
+      local as 4200024005;
+      neighbor fdf4:2331:fa09:1::1 as 4200024001;
+
+      ipv4 {
+          table igp4;
+          import all;
+          export filter {
+              krt_prefsrc=10.152.24.5;
+              accept;
+          };
+      };
+      ipv6 {
+          table igp6;
+          import filter {
+              if net ~ [ fdf4:2331:fa09:1::/64+ ] then {
+                  reject;
+              }
+          };
+          export all;
+      };
+  };
+
+  protocol static {
+      # dn42
+      route 172.16.0.0/12 unreachable;
+      # icvpn
+      route 10.0.0.0/8 unreachable;
+
+      ipv4 {
+          table igp4;
+      };
+  }
+
+  protocol static {
+      # dn42
+      route fd00::/8 unreachable;
+
+      ipv6 {
+          table igp6;
+      };
+  }
+
+  include "/etc/bird/dn42/bird.conf";
+
+  protocol direct {
+      ipv4 {
+          table dn42_v4;
+      };
+      ipv6 {
+          table dn42_v6;
+      };
+
+      interface "lo";
+  }
+
+  protocol ospf v3 ospf6 {
+      ipv6 {
+          table dn42_v6;
+          import all;
+          export where source = RTS_DEVICE || source = RTS_OSPF;
+      };
+
+      area 0 {
+          interface "dn42_i_himalia" {
+              type pointopoint;
+          };
+      };
+  }
+
+  protocol ospf v3 ospf4 {
+      ipv4 {
+          table dn42_v4;
+          import all;
+          export where source = RTS_DEVICE || source = RTS_OSPF;
+      };
+
+      area 0 {
+          interface "dn42_i_himalia" {
+              type pointopoint;
+          };
+      };
+  }
+
+  protocol bgp i_himalia from dnpeers {
+      neighbor fdf4:2331:fa09::1 as 4242420197;
+
+      ipv4 {
+          table dn42_v4;
+          import all;
+          export all;
+          next hop address 172.20.190.98;
+          next hop self;
+      };
+
+      ipv6 {
+          table dn42_v6;
+          import all;
+          export all;
+          next hop address fdf4:2331:fa09:1::5;
+          next hop self;
+      };
+  };
+
+  protocol pipe {
+      table master4;
+      peer table dn42_v4;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          krt_prefsrc = OWNIP;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master6;
+      peer table dn42_v6;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          krt_prefsrc = OWNIPv6;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master4;
+      peer table igp4;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master6;
+      peer table igp6;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          accept;
+      };
+      export none;
+  }
+
+  protocol kernel {
+      scan time 20;
+
+      ipv6 {
+          import none;
+          export all;
+      };
+  }
+
+  protocol kernel {
+      scan time 20;
+
+      ipv4 {
+          import none;
+          export all;
+      };
+  }

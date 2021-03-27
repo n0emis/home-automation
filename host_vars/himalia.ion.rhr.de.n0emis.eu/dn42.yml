@@ -10,6 +10,10 @@ dn42_local_v4: "172.20.190.96"
 dn42_local_v6: "fdf4:2331:fa09::1"
 dn42_region: "41"
 
+dn42_kernel: false
+dn42_collector: true
+dn42_configure_linux_network_table: false
+
 dn42_peers:
   - name: "v0tti"
     as: "4242423929"
@@ -429,6 +433,20 @@ dn42_peers:
       port: "23618"
       pubkey: "VWxXm7bOTwyHXoVhkQhrGe0LLujl2Oom6XgN8yfGZEE="
       endpoint: "nl.neo.jerryxiao.cc:50105"
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "szczot3k"
+    as: "4242423124"
+    v4: "172.20.149.66"
+    v6: "fe80::3124"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "23124"
+      pubkey: "7dBbLZa2s7oSsb2gh+umVhz+bs8vv5HPRvilVagl/xc="
+      endpoint: "de01.dn42.kszczot.ovh:20005"
     latency: 3
     bandwidth: 24
     security: 34

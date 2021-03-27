@@ -60,6 +60,7 @@ wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.d
 pdns_rec_forward_dn42: "172.20.0.53;fd42:d42:d42:54::1"
 pdns_rec_forward_cccgoe: "fdf8:7e7f:d097:9900::1"
 
+bird_kernel: false
 bird_extra: |
   protocol static {
       # dn42
@@ -82,6 +83,130 @@ bird_extra: |
   }
 
   include "/etc/bird/dn42/bird.conf";
+
+  protocol direct {
+      ipv4 {
+          table dn42_v4;
+      };
+      ipv6 {
+          table dn42_v6;
+      };
+
+      interface "lo";
+  }
+
+
+  protocol ospf v3 ospf6 {
+      ipv6 {
+          table dn42_v6;
+          import all;
+          export where source = RTS_DEVICE || source = RTS_OSPF;
+      };
+
+      area 0 {
+          interface "dn42_i_chaldene" {
+              type pointopoint;
+          };
+      };
+  }
+
+  protocol ospf v3 ospf4 {
+      ipv4 {
+          table dn42_v4;
+          import all;
+          export where source = RTS_DEVICE || source = RTS_OSPF;
+      };
+
+      area 0 {
+          interface "dn42_i_chaldene" {
+              type pointopoint;
+          };
+      };
+  }
+
+  protocol bgp i_chaldene from dnpeers {
+      neighbor fdf4:2331:fa09:1::5 as 4242420197;
+
+      ipv4 {
+          table dn42_v4;
+          import all;
+          export all;
+          next hop address 172.20.190.96;
+          next hop self;
+      };
+
+      ipv6 {
+          table dn42_v6;
+          import all;
+          export all;
+          next hop address fdf4:2331:fa09::1;
+          next hop self;
+      };
+  };
+
+  protocol pipe {
+      table master4;
+      peer table dn42_v4;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          krt_prefsrc = OWNIP;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master6;
+      peer table dn42_v6;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          krt_prefsrc = OWNIPv6;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master4;
+      peer table igp4;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          accept;
+      };
+      export none;
+  }
+
+  protocol pipe {
+      table master6;
+      peer table igp6;
+      import filter {
+          if source = RTS_STATIC then reject;
+          if source = RTS_DEVICE then reject;
+          accept;
+      };
+      export none;
+  }
+
+  protocol kernel {
+      scan time 20;
+
+      ipv6 {
+          import none;
+          export all;
+      };
+  }
+
+  protocol kernel {
+      scan time 20;
+
+      ipv4 {
+          import none;
+          export all;
+      };
+  }
 
 dehydrated_deploy_cert_hook: |
   cp /etc/ssl/letsencrypt/certs/vpn.n0emis.eu/fullchain.pem /etc/ipsec.d/certs/

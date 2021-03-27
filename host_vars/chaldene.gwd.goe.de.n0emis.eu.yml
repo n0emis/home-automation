@@ -26,3 +26,35 @@ lxc_containers:
   - name: "ca-prod"
     v4: "10.152.24.4"
     v6: "fdf4:2331:fa09:1::4"
+  - name: "dn42"
+    v4: "10.152.24.5"
+    v6: "fdf4:2331:fa09:1::5"
+
+bird_extra: |
+  protocol bgp igp_dn42 {
+      local as 4200024001;
+      neighbor fdf4:2331:fa09:1::5 as 4200024005;
+
+      ipv4 {
+          table igp4;
+          import filter {
+              bgp_local_pref=150;
+              accept;
+          };
+          export filter {
+              krt_prefsrc=10.152.24.1;
+              accept;
+          };
+      };
+      ipv6 {
+          table igp6;
+          import filter {
+              if net ~ [ fdf4:2331:fa09:1::/64+ ] then {
+                  reject;
+              }
+              bgp_local_pref=150;
+              accept;
+          };
+          export all;
+      };
+  };

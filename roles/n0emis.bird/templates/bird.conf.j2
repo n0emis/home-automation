@@ -1,7 +1,7 @@
 log syslog all;
 
 # ID of this router (32bit value) - usually it's the loopback Legacy-IP
-router id {{ wireguard_server_address | ipaddr('address') }};
+router id {{ local_v4 | ipaddr('address') }};
 
 ipv4 table igp4;
 ipv6 table igp6;
@@ -20,6 +20,7 @@ protocol device {
     scan time 10;   # Scan interfaces every 10 seconds
 };
 
+{% if bird_kernel %}
 protocol kernel {
     learn;
     scan time 20;
@@ -49,6 +50,7 @@ protocol kernel {
         };
     };
 };
+{% endif %}
 
 protocol direct {
     ipv4 {
@@ -61,17 +63,19 @@ protocol direct {
         import keep filtered;
         import where is_self_net();
     };
+
+    interface "-docker*", "-wg-s-*", "*";
 }
 
 {% for peer in wireguard_mesh_neighbours %}
-{% if hostvars[peer].ansible_hostname != ansible_hostname %}
-protocol bgp igp_{{ hostvars[peer].ansible_hostname.split('.')[0] }} {
+{% if peer != inventory_hostname %}
+protocol bgp igp_{{ peer.split('.')[0] }} {
     local as {{ local_asn }};
     neighbor {{ hostvars[peer].local_ll }} as {{ hostvars[peer].local_asn }};
 {% if ansible_distribution=="OpenWrt" %}
-    interface "wg_s_{{ hostvars[peer].ansible_hostname.split('.')[0] }}";
+    interface "wg_s_{{ peer.split('.')[0] }}";
 {% else %}
-    interface "wg-s-{{ hostvars[peer].ansible_hostname.split('.')[0] }}";
+    interface "wg-s-{{ peer.split('.')[0] }}";
 {% endif %}
 
     ipv4 {

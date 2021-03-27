@@ -66,6 +66,7 @@ function is_valid_dn42_network_v6() {
   ];
 }
 
+{% if dn42_kernel | default(true) %}
 protocol kernel {
     scan time 20;
 
@@ -78,7 +79,9 @@ protocol kernel {
             accept;
         };
     };
+{% if dn42_configure_linux_network_table %}
     kernel table 42;
+{% endif %}
 };
 
 protocol kernel {
@@ -93,10 +96,11 @@ protocol kernel {
             accept;
         };
     };
-    {% if dn42_configure_linux_network_table %}
+{% if dn42_configure_linux_network_table %}
     kernel table 42;
-    {% endif %}
+{% endif %}
 }
+{% endif %}
 
 protocol static {
     route OWNNET reject;
@@ -126,6 +130,7 @@ template bgp dnpeers {
     path metric 1;
 }
 
+{% if dn42_collector | default(false) %}
 protocol bgp dn42_collector {
     router id OWNIP;
 
@@ -167,6 +172,7 @@ protocol bgp dn42_collector {
         };
     };
 }
+{% endif %}
 
 function update_latency(int link_latency) {
     bgp_community.add((64511, link_latency));
@@ -253,7 +259,6 @@ function dn42_export_filter(int link_latency; int link_bandwidth; int link_crypt
         update_flags(link_latency, link_bandwidth, link_crypto);
         accept;
     }
-    print "rejecting export of", net, from, ifname, gw;
     reject;
 }
 
