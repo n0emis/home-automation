@@ -171,6 +171,7 @@ carpo.gwd.goe.de.n0emis.eu
 elara.het.nue.de.n0emis.eu
 ganymed.het.hel.fi.n0emis.eu
 himalia.ion.rhr.de.n0emis.eu
+chaldene.gwd.goe.de.n0emis.eu
 
 [bitwarden]
 sinope.int.goe.de.n0emis.eu
@@ -179,3 +180,6 @@ sinope.int.goe.de.n0emis.eu
 chaldene.gwd.goe.de.n0emis.eu
 
 [all]
+ca-prod.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-prod
+ca-staging.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-staging
+ca-db.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-db
