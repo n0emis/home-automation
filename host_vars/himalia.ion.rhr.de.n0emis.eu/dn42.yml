@@ -450,6 +450,21 @@ dn42_peers:
     latency: 3
     bandwidth: 24
     security: 34
+  - name: "mc36"
+    as: "4242421955"
+    v4: "172.23.215.195"
+    v6: "fd40:cc1e:c0de::1c1"
+    if:
+      v4: "172.23.215.194"
+      v6: "fd40:cc1e:c0de::1c2"
+    wg:
+      port: 21955
+      endpoint: "www.nop.hu:21955"
+      pubkey: "5dgl8wj7YvA9fK2m+0ounrnCXQEqhdeg+Trs/mXbFxg="
+      privkey: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/dn42/mc36') }}"
+    latency: 4
+    bandwidth: 24
+    security: 34
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent
