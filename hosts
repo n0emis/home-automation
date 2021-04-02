@@ -6,8 +6,8 @@ cr
 ap-wrt-00.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-00 #ansible_host=192.168.1.1
 ap-wrt-01.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-01 #ansible_host=192.168.1.1
 ap-wrt-02.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-02 #ansible_host=192.168.1.1
-ap-wrt-03.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-03 #ansible_host=192.168.1.1
-ap-wrt-04.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-04 #ansible_host=192.168.1.1
+ap-wrt-03.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-03 #ansible_host=192.168.1.1
+ap-wrt-04.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-04 #ansible_host=192.168.1.1
 ap-wrt-05.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-05 #ansible_host=192.168.1.1
 ap-wrt-06.int.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3 ansible_hostname=ap-wrt-06 #ansible_host=192.168.1.1
 

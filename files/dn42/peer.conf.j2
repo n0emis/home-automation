@@ -4,6 +4,7 @@ protocol bgp {{ peer.name }}_v4 from dnpeers {
 
     ipv4 {
         table dn42_v4;
+        import keep filtered;
         import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
         export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
     };
@@ -20,6 +21,7 @@ protocol bgp {{ peer.name }}{% if not peer.multiprotocol is defined %}_v6{% endi
 {% if peer.multiprotocol is defined %}
     ipv4 {
         table dn42_v4;
+        import keep filtered;
         import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
         export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
     };
@@ -27,6 +29,7 @@ protocol bgp {{ peer.name }}{% if not peer.multiprotocol is defined %}_v6{% endi
 
     ipv6 {
         table dn42_v6;
+        import keep filtered;
         import where dn42_import_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
         export where dn42_export_filter({{ peer.latency | default(0)}}, {{ peer.bandwidth | default(0) }}, {{ peer.security | default(0) }});
     };
