@@ -465,6 +465,34 @@ dn42_peers:
     latency: 4
     bandwidth: 24
     security: 34
+  - name: "kever"
+    as: "4242420406"
+    v4: "172.20.48.190"
+    v6: "fe80::406"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "20406"
+      endpoint: "de.kever.us.to:20197"
+      pubkey: "Fhs7ut0bFk00xS22oKC6hVfrka0V+ZNA0vUMd5PpeB8="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "periloso"
+    as: "4242423770"
+    v4: "172.22.118.129"
+    v6: "fe80::3770"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "23770"
+      endpoint: "rbx1.dn42.servermade.com:50197"
+      pubkey: "0ndXPAg17zmVx5CfxMblRfdcDjHRDB6OKBkYvvtq1g0="
+    latency: 3
+    bandwidth: 24
+    security: 34
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent

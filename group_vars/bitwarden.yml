@@ -1,6 +1,6 @@
 ---
-bitwardenrs_version: "1.19.0"
-bitwardenrs_webvault_version: "2.19.0"
+bitwardenrs_version: "1.20.0"
+bitwardenrs_webvault_version: "2.19.0b"
 
 bitwardenrs_config:
   DOMAIN: "https://bitwarden.n0emis.eu"

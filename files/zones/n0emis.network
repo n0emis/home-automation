@@ -1,0 +1,44 @@
+$ORIGIN n0emis.network.
+@ 3600 IN SOA ns1.n0emis.eu. noc.n0emis.eu. (
+    2021040201 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    1209600    ; expire (14 day)
+    300        ; minimum (5 min)
+)
+
+;; NS
+@				3600	IN	NS	ns1.n0emis.eu.
+@				3600	IN	NS	ns2.n0emis.eu.
+@				3600	IN	NS	ns3.n0emis.eu.
+@				3600	IN	NS	ns.labcode.de.
+
+;; MAIL
+;;;; MX
+@				{{ dns_mx }}
+
+;;;; SRV
+_autodiscover._tcp		3600	IN	SRV 	10 0 443 ganymed.het.hel.fi.n0emis.eu.
+
+;;;; DKIM
+dkim._domainkey			{{ dns_dkim }}
+
+;;;; DMARC
+_dmarc				{{ dns_dmarc }}
+
+;;;; SPF
+@				{{ dns_spf }}
+
+;;;; CNAME
+autoconfig			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+autodiscover			3600	IN	CNAME	ganymed.het.hel.fi.n0emis.eu.
+
+;; CAA
+@				3600	IN	CAA 	0 issue "letsencrypt.org"
+@				3600	IN	CAA 	0 issue "buypass.no"
+@				3600	IN	CAA 	0 iodef "mailto:noc@n0emis.eu"
+
+;; TXT
+
+;; Pages
+@				3600	IN	ALIAS	elara.het.nue.de.n0emis.eu.

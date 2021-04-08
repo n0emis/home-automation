@@ -12,6 +12,7 @@ networking_lo_addr:
   - "172.20.190.125/32"
   - "fdf4:2331:fa09:1::1/128"
 
+borgmatic_cron_hour: "*"
 borgmatic_before_backup_command:
   - echo "`date` - Starting backup."
   - "lxc-attach ca-db -- mysqldump --all-databases >> /root/databases.sql"
