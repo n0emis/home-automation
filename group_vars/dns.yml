@@ -37,8 +37,6 @@ powerdns_bind_dnssec_database_file: "{{ powerdns_config_directory }}/pdns-dnssec
 powerdns_primary_ips:
   - 78.46.251.132
   - 2a01:4f8:c0c:34bc::1
-  - 95.216.160.224
-  - 2a01:4f9:c010:1dcf::1
   - 10.152.18.1
 
 powerdns_tsig_key_name: "dnscluster"
