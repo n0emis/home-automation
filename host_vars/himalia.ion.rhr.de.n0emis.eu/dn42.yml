@@ -493,6 +493,61 @@ dn42_peers:
     latency: 3
     bandwidth: 24
     security: 34
+  - name: "nurex"
+    as: "4242423240"
+    v4: "172.20.32.146"
+    v6: "fe80::3240:2"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "23240"
+      endpoint: "rosella.nrx.me:20197"
+      pubkey: "6SR8Ss28Edo6hwwGL17ySay3EfK6kPFsm7EcfjUjkXA="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "tchekda"
+    as: "4242421722"
+    v4: "172.20.4.97"
+    v6: "fe80::1722:97"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "21722"
+      endpoint: "peer.dn42.tchekda.fr:20197"
+      pubkey: "9DX9FeiUcNPrO0ERaVtRslytSNkvOcppeTDo3rfquBQ="
+    latency: 3
+    bandwidth: 24
+    security: 34
+  - name: "nicholascw"
+    as: "4242421288"
+    v4: "172.20.233.136"
+    v6: "fe80::1288"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "21288"
+      endpoint: "fra1.sc00.org:20197"
+      pubkey: "8HApy1uKEe23OIwy2AfT3p2vvKR/bos4ZaAi1ovjBxM="
+    latency: 2
+    bandwidth: 24
+    security: 34
+  - name: "ff3l"
+    as: "65043"
+    v4: "10.119.0.5"
+    v6: "fe80::ff31:5"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "30101"
+      endpoint: "gw3.ff3l.net:42011"
+      pubkey: "+YBiA0JissgSDQe5h1/Auf3MDR/JLEmfR+pmT5dbSxE="
+    latency: 2
+    bandwidth: 24
+    security: 34
   - name: "hexanet" # gone from dn42
     as: "4242423078"
     state: absent

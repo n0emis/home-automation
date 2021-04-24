@@ -38,6 +38,7 @@ powerdns_primary_ips:
   - 78.46.251.132
   - 2a01:4f8:c0c:34bc::1
   - 10.152.18.1
+  - fdf4:2331:fa09:3::1
 
 powerdns_tsig_key_name: "dnscluster"
 powerdns_tsig_key: "{{ lookup('passwordstore', 'infra/dnscluster-tsig') }}"

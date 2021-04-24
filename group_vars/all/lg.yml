@@ -18,6 +18,12 @@ bird_lg_proxys:
     ips:
       - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].dn42_local_v4 }}"
       - "{{ hostvars['himalia.ion.rhr.de.n0emis.eu'].dn42_local_v6 }}"
+  - name: ganymed.het.hel.fi
+    address: "{{ hostvars['dn42.ganymed.het.hel.fi.n0emis.eu'].local_v4 }}:5000"
+    as: "{{ dn42_local_as }}"
+    ips:
+      - "{{ hostvars['dn42.ganymed.het.hel.fi.n0emis.eu'].dn42_local_v4 }}"
+      - "{{ hostvars['dn42.ganymed.het.hel.fi.n0emis.eu'].dn42_local_v6 }}"
   - name: chaldene.gwd.goe.de
     address: "{{ hostvars['dn42.chaldene.gwd.goe.de.n0emis.eu'].local_v4 }}:5000"
     as: "{{ dn42_local_as }}"

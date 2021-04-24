@@ -28,6 +28,33 @@ dn42_peers:
     latency: 3
     bandwidth: 24
     security: 34
+  - name: "tchekda"
+    as: "4242421722"
+    v4: "172.20.4.98"
+    v6: "fe80::1722:98"
+    if:
+      v6: "fe80::42:42:1"
+    multiprotocol: yes
+    wg:
+      port: "21722"
+      endpoint: "lyon.dn42.tchekda.fr:20197"
+      pubkey: "lgS3YFA+q+sI5YHsmQCGRFwsK57yJ3kR+JC3PL0exQY="
+    latency: 4
+    bandwidth: 24
+    security: 34
+  - name: "ff3l"
+    as: "65043"
+    v4: "10.119.0.4"
+    v6: "fe80::ff31:4"
+    if:
+      v6: "fe80::42:42:1"
+    wg:
+      port: "30101"
+      endpoint: "gw4.ff3l.net:42011"
+      pubkey: "4283B36tZKkYi2fkpYast32QsgX9mDS36PwKXjs2NU4="
+    latency: 2
+    bandwidth: 24
+    security: 34
 
 dn42_configure_linux_network_table: false
 
