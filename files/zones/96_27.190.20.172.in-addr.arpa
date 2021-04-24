@@ -1,0 +1,45 @@
+$ORIGIN 96/27.190.20.172.in-addr.arpa.
+@ 3600 IN SOA ns1.n0emis.dn42. noc.n0emis.eu. (
+    2021042201 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    300        ; minimum (5 min)
+)
+
+;; NS
+@                               3600    IN      NS      ns1.n0emis.dn42.
+
+96	IN	PTR	himalia.n0emis.dn42.
+98      IN      PTR     chaldene.n0emis.dn42.
+
+97	IN	PTR	172-20-190-97.dynamic.n0emis.dn42.
+99      IN      PTR     172-20-190-99.dynamic.n0emis.dn42.
+100     IN      PTR     172-20-190-100.dynamic.n0emis.dn42.
+101     IN      PTR     172-20-190-101.dynamic.n0emis.dn42.
+102     IN      PTR     172-20-190-102.dynamic.n0emis.dn42.
+103     IN      PTR     172-20-190-103.dynamic.n0emis.dn42.
+104     IN      PTR     172-20-190-104.dynamic.n0emis.dn42.
+105     IN      PTR     172-20-190-105.dynamic.n0emis.dn42.
+106     IN      PTR     172-20-190-106.dynamic.n0emis.dn42.
+107     IN      PTR     172-20-190-107.dynamic.n0emis.dn42.
+108     IN      PTR     172-20-190-108.dynamic.n0emis.dn42.
+109     IN      PTR     172-20-190-109.dynamic.n0emis.dn42.
+110     IN      PTR     172-20-190-110.dynamic.n0emis.dn42.
+111     IN      PTR     172-20-190-111.dynamic.n0emis.dn42.
+112     IN      PTR     172-20-190-112.dynamic.n0emis.dn42.
+113     IN      PTR     172-20-190-113.dynamic.n0emis.dn42.
+114     IN      PTR     172-20-190-114.dynamic.n0emis.dn42.
+115     IN      PTR     172-20-190-115.dynamic.n0emis.dn42.
+116     IN      PTR     172-20-190-116.dynamic.n0emis.dn42.
+117     IN      PTR     172-20-190-117.dynamic.n0emis.dn42.
+118     IN      PTR     172-20-190-118.dynamic.n0emis.dn42.
+119     IN      PTR     172-20-190-119.dynamic.n0emis.dn42.
+120     IN      PTR     172-20-190-120.dynamic.n0emis.dn42.
+121     IN      PTR     172-20-190-121.dynamic.n0emis.dn42.
+122     IN      PTR     172-20-190-122.dynamic.n0emis.dn42.
+123     IN      PTR     172-20-190-123.dynamic.n0emis.dn42.
+124     IN      PTR     172-20-190-124.dynamic.n0emis.dn42.
+125     IN      PTR     172-20-190-125.dynamic.n0emis.dn42.
+126     IN      PTR     172-20-190-126.dynamic.n0emis.dn42.
+127     IN      PTR     172-20-190-127.dynamic.n0emis.dn42.

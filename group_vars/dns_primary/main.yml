@@ -31,6 +31,7 @@ pdns_config:
   api: yes
   api-key: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/ns.n0emis.eu') }}"
   default-soa-content: "ns.n0emis.eu. noc.n0emis.eu. 0 1800 1800 1209600 300"
+  enable-lua-records: yes
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns

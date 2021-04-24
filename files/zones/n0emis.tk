@@ -1,6 +1,6 @@
 $ORIGIN n0emis.tk.
-@ 3600 IN SOA ns.n0emis.eu. noc.n0emis.eu. (
-    2021011901 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+@ 3600 IN SOA ns1.n0emis.eu. noc.n0emis.eu. (
+    2021042101 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
     1800       ; refresh (30 min)
     1800       ; retry (30 min)
     86400      ; expire (1 day)
@@ -10,7 +10,8 @@ $ORIGIN n0emis.tk.
 ;; NS
 @				3600	IN	NS	ns3.n0emis.eu.
 @				3600	IN	NS	ns2.n0emis.eu.
-@				3600	IN	NS	ns.n0emis.eu.
+@				3600	IN	NS	ns1.n0emis.eu.
+
 @		3600	IN 	ALIAS	elara.het.nue.de.n0emis.eu.
 
 ns		3600	IN	A	212.227.174.29

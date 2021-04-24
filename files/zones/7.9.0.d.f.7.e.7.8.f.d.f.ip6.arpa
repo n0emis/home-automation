@@ -1,0 +1,33 @@
+$ORIGIN 7.9.0.d.f.7.e.7.8.f.d.f.ip6.arpa.
+@ 3600 IN SOA ns1.n0emis.dn42. noc.n0emis.eu. (
+    2021042208 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    300        ; minimum (5 min)
+)
+
+;; NS
+@                               3600    IN      NS      ns1.n0emis.dn42.
+
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9	IN	PTR	io.n0emis.dn42.
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9 IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.4.4.9.9		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.4.4.9.9		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.4.4.9.9		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.4.4.9.9		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.4.4.9.9			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.4.4.9.9			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.4.4.9.9			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.4.4.9.9			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.4.4.9.9				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.4.4.9.9				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.4.4.9.9				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.4.4.9.9				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.4.9.9					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.9.9					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.9					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"

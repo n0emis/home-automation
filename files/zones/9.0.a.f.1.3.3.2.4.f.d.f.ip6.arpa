@@ -1,0 +1,74 @@
+$ORIGIN 9.0.a.f.1.3.3.2.4.f.d.f.ip6.arpa.
+@ 3600 IN SOA ns1.n0emis.dn42. noc.n0emis.eu. (
+    2021042210 ; serial ;;; UPDATE THIS AFTER EACH EDIT!
+    1800       ; refresh (30 min)
+    1800       ; retry (30 min)
+    86400      ; expire (1 day)
+    300        ; minimum (5 min)
+)
+
+;; NS
+@                               3600    IN      NS      ns1.n0emis.dn42.
+
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	PTR	himalia.n0emis.dn42.
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN	LUA	PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0	IN	PTR	chaldene.n0emis.dn42.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0 IN      PTR     ca-db.chaldene.n0emis.dn42.
+3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0 IN      PTR     ca-staging.chaldene.n0emis.dn42.
+4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0 IN      PTR     ca-prod.chaldene.n0emis.dn42.
+5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0 IN      PTR     dn42.chaldene.n0emis.dn42.
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0	IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.1.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.1.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.1.0.0.0		IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.1.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.1.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.1.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.1.0.0.0			IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.1.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.1.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.1.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.1.0.0.0				IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0	IN	PTR	elara.n0emis.dn42.
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0 IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0   IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0     IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0       IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.0.3.0.0.0         IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.0.3.0.0.0           IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.0.3.0.0.0             IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.0.3.0.0.0               IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.0.3.0.0.0                 IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.0.3.0.0.0                   IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.0.3.0.0.0                     IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.0.3.0.0.0                       IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.0.3.0.0.0                         IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0.3.0.0.0                           IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.3.0.0.0                             IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.3.0.0.0                               IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+
+*.0.0.0					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0.0					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*.0 					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"
+*					IN      LUA     PTR "createReverse6('%33%.dynamic.n0emis.dn42')"

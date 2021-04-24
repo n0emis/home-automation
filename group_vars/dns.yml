@@ -23,6 +23,7 @@ pdns_config:
   webserver-address: 0.0.0.0
   webserver-allow-from: 0.0.0.0/0,::/0
   webserver-port: 8082
+  enable-lua-records: yes
 
 pdns_service_overrides:
   ReadWritePaths: /etc/powerdns
