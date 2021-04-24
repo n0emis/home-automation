@@ -1,6 +1,6 @@
 ---
-synapse_pip_version: "1.31.0"
-element_version: "1.7.24"
+synapse_pip_version: "1.32.2"
+element_version: "1.7.25"
 
 synapse_database_host: "localhost"
 synapse_database_database: "synapse"
@@ -120,7 +120,7 @@ matrix_appservice_irc_config_path: "/etc/matrix-appservice-irc"
 matrix_appservice_irc_id: "a82860dfb161240da86e462378c6777b5aff89fbe881e189d892f87b4822b2c2"
 matrix_appservice_irc_as_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-appservice-irc subkey=as_token') }}"
 matrix_appservice_irc_hs_token: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/matrix-appservice-irc subkey=hs_token') }}"
-matrix_appservice_irc_version: "0.23.0"
+matrix_appservice_irc_version: "0.25.0"
 
 mautrix_signal_config_path: "/etc/mautrix-signal"
 mautrix_signal_homeserver_domain: "noemis.me"

@@ -9,7 +9,7 @@
 	url = https://github.com/mailcow/mailcow-ansiblerole
 [submodule "roles/em0lar.docker"]
 	path = roles/em0lar.docker
-	url = https://git.labcode.dev/ansible_roles/docker
+	url = https://git.em0lar.dev/ansible_roles/docker
 [submodule "roles/bigbluebutton"]
 	path = roles/n0emis.bigbluebutton
 	url = https://github.com/n0emis/ansible-role-bigbluebutton
@@ -54,13 +54,13 @@
 	url = https://github.com/n0emis/ansible-role-matrix-appservice-irc
 [submodule "roles/em0lar.keycloak"]
 	path = roles/em0lar.keycloak
-	url = https://git.labcode.dev/ansible_roles/keycloak-postgres
+	url = https://git.em0lar.dev/ansible_roles/keycloak-postgres
 [submodule "roles/geerlingguy.java"]
 	path = roles/geerlingguy.java
 	url = https://github.com/geerlingguy/ansible-role-java
 [submodule "roles/em0lar.hedgedoc"]
 	path = roles/em0lar.hedgedoc
-	url = https://git.labcode.dev/ansible_roles/hedgedoc
+	url = https://git.em0lar.dev/ansible_roles/hedgedoc
 [submodule "roles/Oefenweb.yarn"]
 	path = roles/Oefenweb.yarn
 	url = https://github.com/Oefenweb/ansible-yarn
@@ -108,7 +108,7 @@
 	url = https://github.com/chaos-jetzt/ansible-role-venueless
 [submodule "roles/em0lar.powerdns-dynamicdns"]
 	path = roles/em0lar.powerdns-dynamicdns
-	url = https://git.labcode.dev/ansible_roles/powerdns-dynamicdns
+	url = https://git.em0lar.dev/ansible_roles/powerdns-dynamicdns
 [submodule "roles/borgbase.borgbackup"]
 	path = roles/borgbase.borgbackup
 	url = https://github.com/borgbase/ansible-role-borgbackup
@@ -117,7 +117,7 @@
 	url = https://git.n0emis.eu/ansible_roles/pdns_secondary
 [submodule "roles/em0lar.caddy"]
 	path = roles/em0lar.caddy
-	url = https://git.labcode.dev/ansible_roles/caddy
+	url = https://git.em0lar.dev/ansible_roles/caddy
 [submodule "roles/rixx.dehydrated"]
 	path = roles/rixx.dehydrated
 	url = https://github.com/rixx/ansible-dehydrated

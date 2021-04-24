@@ -49,7 +49,7 @@
   template:
     dest: "/etc/wireguard/wg-s-{{ hostvars[host].inventory_hostname_short }}.conf"
     src: "wg-ifupdown2.conf.j2"
-  when: "hostvars[host].ansible_fqdn != ansible_fqdn"
+  when: "host != ansible_fqdn"
   loop: "{{ wireguard_mesh_neighbours }}"
   loop_control:
     loop_var: "host"

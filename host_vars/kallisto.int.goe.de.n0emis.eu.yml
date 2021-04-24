@@ -17,7 +17,6 @@ icinga2_zones:
   primary:
     endpoints:
       - neso.het.fks.de.fahrplandatengarten.de
-      - nereid.ovh.fra.de.fahrplandatengarten.de
   sinope.int.goe.de.n0emis.eu:
     endpoints:
       - sinope.int.goe.de.n0emis.eu
@@ -34,8 +33,6 @@ icinga2_zones:
 icinga2_endpoints:
   neso.het.fks.de.fahrplandatengarten.de:
     host: neso.het.fks.de.fahrplandatengarten.de
-  nereid.ovh.fra.de.fahrplandatengarten.de:
-    host: nereid.ovh.fra.de.fahrplandatengarten.de
   sinope.int.goe.de.n0emis.eu: {}
   metis.int.goe.de.n0emis.eu: {}
   pasiphae.int.goe.de.n0emis.eu: {}
