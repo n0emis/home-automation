@@ -1,5 +1,5 @@
 ---
-keycloak_version: "12.0.4"
+keycloak_version: "13.0.0"
 
 keycloak_postgresql_username: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/keycloak/db subkey=user') }}"
 keycloak_postgresql_password: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/keycloak/db') }}"

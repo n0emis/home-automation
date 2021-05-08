@@ -1,6 +1,13 @@
 ---
-synapse_pip_version: "1.32.2"
-element_version: "1.7.25"
+synapse_pip_version: "1.33.1"
+element_version: "1.7.26"
+
+synapse_pip_packages:
+  - "pip"
+  - "setuptools"
+  - "matrix-synapse[all]=={{ synapse_pip_version }}"
+  - "cryptography==3.3.2"
+  - "pyOpenSSL"
 
 synapse_database_host: "localhost"
 synapse_database_database: "synapse"
@@ -82,8 +89,8 @@ synapse_homeserver_config_extra_options: |
     config:
       bucket: matrix.noemis.me-media
       endpoint_url: https://minio.n0emis.eu
-      access_key_id: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio subkey=user') }}"
-      secret_access_key: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio') }}"
+      access_key_id: "{{ lookup('passwordstore', 'infra/sinope.int.goe.de.n0emis.eu/minio subkey=user') }}"
+      secret_access_key: "{{ lookup('passwordstore', 'infra/sinope.int.goe.de.n0emis.eu/minio') }}"
 
 synapse_turn_uris:
   - "turn:turn.n0emis.eu:3479?transport=udp"

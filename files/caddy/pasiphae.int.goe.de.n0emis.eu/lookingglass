@@ -1,0 +1,3 @@
+lg.n0emis.eu {
+	reverse_proxy http://sinope.int.goe.de.n0emis.eu:{{ bird_lg_webservice_port }}
+}

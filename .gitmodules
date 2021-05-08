@@ -124,3 +124,6 @@
 [submodule "roles/dmaes.bitwardenrs"]
 	path = roles/dmaes.bitwardenrs
 	url = https://github.com/dmaes/ansible-role-bitwardenrs
+[submodule "mitogen"]
+	path = mitogen
+	url = https://github.com/mitogen-hq/mitogen

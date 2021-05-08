@@ -1,3 +1,0 @@
-lg.n0emis.eu {
-	reverse_proxy http://localhost:{{ bird_lg_webservice_port }}
-}

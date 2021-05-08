@@ -49,3 +49,5 @@ louketo_instances:
         - uri: /login*
         - uri: /admin/login*
     state: present
+
+local_v4: "10.152.4.4"

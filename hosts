@@ -19,7 +19,7 @@ amalthea.mkl.goe.de.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/
 ganymed.het.hel.fi.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [bbb]
-bbb-test.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
+#bbb-test.n0emis.eu ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [yate]
 
@@ -57,7 +57,6 @@ chaldene.gwd.goe.de.n0emis.eu
 [dyndns]
 kallisto.int.goe.de.n0emis.eu
 sinope.int.goe.de.n0emis.eu
-metis.int.goe.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 
 [dyndns:children]
@@ -117,7 +116,7 @@ cr
 dn42
 
 [lg]
-elara.het.nue.de.n0emis.eu
+sinope.int.goe.de.n0emis.eu
 
 [lg:children]
 dn42
@@ -140,14 +139,14 @@ elara.het.nue.de.n0emis.eu
 
 [not_monitored:children]
 openwrt
+unmanaged
 
 [kallisto_childs]
 sinope.int.goe.de.n0emis.eu
-metis.int.goe.de.n0emis.eu
 pasiphae.int.goe.de.n0emis.eu
 
 [minio]
-metis.int.goe.de.n0emis.eu
+sinope.int.goe.de.n0emis.eu
 
 [vpn]
 himalia.ion.rhr.de.n0emis.eu
@@ -178,8 +177,15 @@ sinope.int.goe.de.n0emis.eu
 
 [lxc]
 chaldene.gwd.goe.de.n0emis.eu
+ganymed.het.hel.fi.n0emis.eu
+
+[librenms]
+nms.kalyke.yol.wob.de.n0emis.eu ansible_host=kalyke.yol.wob.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=nms
 
 [all]
 ca-prod.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-prod
 ca-staging.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-staging
 ca-db.chaldene.gwd.goe.de.n0emis.eu ansible_host=chaldene.gwd.goe.de.n0emis.eu ansible_connection=lxc_ssh ansible_ssh_extra_args=ca-db
+
+[unmanaged]
+kalyke.yol.wob.de.n0emis.eu ansible_python_interpreter=/run/current-system/sw/bin/python3

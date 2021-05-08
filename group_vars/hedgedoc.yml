@@ -1,6 +1,5 @@
 ---
-hedgedoc_version: "1.7.2"
-#hedgedoc_source: http://kallisto.int.goe.de.n0emis.eu:82/tmp/hedgedoc-{{ hedgedoc_version }}.tar.gz
+hedgedoc_version: "1.8.1"
 
 hedgedoc_db_database: "hackmd"
 hedgedoc_db_username: "{{ lookup('passwordstore', 'infra/' + ansible_fqdn + '/codimd/db subkey=user') }}"

@@ -1,4 +1,6 @@
 bitwarden.n0emis.eu {
+	import default
+
 	encode gzip
 
 	header / {

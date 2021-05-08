@@ -1,4 +1,6 @@
 wolke.n0emis.eu, wolke.noemis.me {
+  import default
+
   root * /var/www/nextcloud/current
   file_server
 
@@ -20,6 +22,11 @@ wolke.n0emis.eu, wolke.noemis.me {
 
   redir /.well-known/carddav /remote.php/dav 301
   redir /.well-known/caldav /remote.php/dav 301
+
+  reverse_proxy /metrics http://localhost:9205
+  basicauth /metrics {
+    metrics JDJiJDEyJFJGamJTd3BTTUt5c0RUN2FJd2JWYWVUTXI3Z2llYkgxeTJpdVZxR01DeExCUGdWNFdNT2VT
+  }
 
   @apps_php {
     path_regexp \/apps\/.*php

@@ -22,7 +22,7 @@
     - n0emis.pdns_primary
   tags: dns, powerdns, dns_primary
 
-- hosts: all !openwrt
+- hosts: all !openwrt !unmanaged
   become: yes
   roles:
     - base

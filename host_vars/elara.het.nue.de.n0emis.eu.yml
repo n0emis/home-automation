@@ -53,4 +53,18 @@ dehydrated_domains:
   - domains:
       - turn.n0emis.eu
 
-wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu', 'amalthea.mkl.goe.de.n0emis.eu']}}"
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu', 'amalthea.mkl.goe.de.n0emis.eu', 'kalyke.yol.wob.de.n0emis.eu']}}"
+
+networking_nftables: yes
+networking_ifupdown2: true
+networking_configure_eth0: true
+networking_external_v6:
+  addr: "2a01:4f8:c0c:34bc::1/127"
+  gw: "fe80::1"
+networking_lo_addr:
+  - "10.152.18.1/32"
+
+lxc_netmask: "26"
+lxc_gateway4: "10.152.18.1"
+lxc_gateway6: "fdf4:2331:fa09:3::1"
+lxc_extra_ip_config: "address 2a01:4f8:c0c:34bc:1::1/80"

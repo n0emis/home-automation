@@ -5,6 +5,10 @@
   email noc@n0emis.eu
 }
 
+(default) {
+  header Permissions-Policy interest-cohort=()
+}
+
 (default_404) {
   handle_errors {
       @404 {

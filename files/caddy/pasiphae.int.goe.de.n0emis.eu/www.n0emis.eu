@@ -1,4 +1,6 @@
 www.n0emis.eu, www2.n0emis.eu {
+	import default
+
 	file_server
 	root * /var/www/n0emis.eu/
 

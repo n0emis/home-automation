@@ -54,7 +54,7 @@ wireguard_wg_client_peers:
     public_key: "MghE8GgmfP3oRBUqM67lovJyKg1X0glocpvBkKQ0sAA="
     allowed_ips: "10.152.10.1"
 
-wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu', 'amalthea.mkl.goe.de.n0emis.eu'] }}"
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['chaldene.gwd.goe.de.n0emis.eu', 'amalthea.mkl.goe.de.n0emis.eu', 'kalyke.yol.wob.de.n0emis.eu'] }}"
 
 ### DNS
 pdns_rec_forward_dn42: "172.20.0.53;fd42:d42:d42:54::1"

@@ -6,10 +6,10 @@ dn42_local_as: "4242420197"
 bird_lg_proxy_enabled: no
 bird_lg_domain: "n0emis.dn42"
 bird_lg_asn_zone: "asn.dn42"
-bird_lg_webservice_port: 8000
+bird_lg_webservice_port: 10503
 
 bird_lg_access:
-  - "{{ hostvars['elara.het.nue.de.n0emis.eu'].local_v4 }}"
+  - "{{ hostvars['sinope.int.goe.de.n0emis.eu'].local_v4 }}"
 
 bird_lg_proxys:
   - name: himalia.ion.rhr.de

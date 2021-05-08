@@ -24,8 +24,8 @@ datastores:
     opts:
       tempPath: "/tmp/mediarepo_s3_upload"
       endpoint: minio.n0emis.eu
-      accessKeyId: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio subkey=user') }}"
-      accessSecret: "{{ lookup('passwordstore', 'infra/metis.int.goe.de.n0emis.eu/minio') }}"
+      accessKeyId: "{{ lookup('passwordstore', 'infra/sinope.int.goe.de.n0emis.eu/minio subkey=user') }}"
+      accessSecret: "{{ lookup('passwordstore', 'infra/sinope.int.goe.de.n0emis.eu/minio') }}"
       ssl: true
       bucketName: "matrix.noemis.me-media"
 

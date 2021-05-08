@@ -22,6 +22,9 @@ iface vmbr0
     bridge-ports none
     address {{ lxc_gateway4 }}/{{ lxc_netmask }}
     address {{ lxc_gateway6 }}/64
+{% if lxc_extra_ip_config is defined %}
+    {{ lxc_extra_ip_config }}
+{% endif %}
 {% endif %}
 
 {% for peer in wireguard_mesh_neighbours %}
