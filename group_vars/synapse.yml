@@ -1,6 +1,6 @@
 ---
 synapse_pip_version: "1.33.1"
-element_version: "1.7.26"
+element_version: "1.7.27"
 
 synapse_pip_packages:
   - "pip"
