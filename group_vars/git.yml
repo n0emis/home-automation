@@ -1,5 +1,5 @@
 ---
-gitea_version: "1.14.1"
+gitea_version: "1.14.2"
 
 gitea_user: "git"
 gitea_home: "/var/lib/gitea"

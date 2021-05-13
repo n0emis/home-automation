@@ -1,0 +1,9 @@
+nextwolke.net {
+  reverse_proxy https://10.152.16.3 {
+    header_up Host nextwolke.net
+
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
+}

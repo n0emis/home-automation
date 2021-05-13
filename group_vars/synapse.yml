@@ -1,13 +1,6 @@
 ---
-synapse_pip_version: "1.33.1"
+synapse_pip_version: "1.33.2"
 element_version: "1.7.27"
-
-synapse_pip_packages:
-  - "pip"
-  - "setuptools"
-  - "matrix-synapse[all]=={{ synapse_pip_version }}"
-  - "cryptography==3.3.2"
-  - "pyOpenSSL"
 
 synapse_database_host: "localhost"
 synapse_database_database: "synapse"

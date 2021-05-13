@@ -17,6 +17,13 @@ $ORIGIN n0emis.tk.
 ns		3600	IN	A	212.227.174.29
 ns		3600	IN	AAAA	2001:8d8:1800:30e::1
 
+@			IN	MX 1	testmail
+
+testmail		IN	A	95.217.235.169
+testmail		IN	AAAA	2a01:4f9:c011:1d14::1
+autodiscover		IN	CNAME	testmail
+autoconfig		IN	CNAME	testmail
+
 ;; Server
 himalia		3600	IN	A	212.227.174.29
 himalia		3600	IN	AAAA	2001:8d8:1800:30e::1
@@ -32,3 +39,24 @@ grafana			IN	CNAME	c102-100.cloud.gwdg.de.
 dashboard		IN	CNAME	c102-100.cloud.gwdg.de.
 
 fediventure		IN	CNAME	carpo.gwd.goe.de.n0emis.eu.
+observium		IN	CNAME	pasiphae.int.goe.de.n0emis.eu.
+
+carpo			IN	CNAME carpo.gwd.goe.de.n0emis.eu.
+*.carpo			IN	CNAME carpo.gwd.goe.de.n0emis.eu.
+
+turn-test-1		IN	A		141.5.102.100
+turn-test-1		IN	AAAA	2001:470:6c:287::2
+turn-1-test		IN	A		141.5.102.100
+turn-1-test		IN	AAAA	2001:470:6c:287::2
+turn-test-2		IN	A		141.5.102.104
+turn-2-test		IN	A		141.5.102.104
+
+turn-test-3		IN	A		116.203.25.110
+turn-test-3		IN	AAAA	2a01:4f8:c0c:a77f::1
+turn-test-4		IN	A		116.203.104.230
+
+ffgoe-map		IN	CNAME		pasiphae.int.goe.de.n0emis.eu.
+
+pki			IN	A	78.47.242.197
+
+*.pki			IN	CNAME	pki
