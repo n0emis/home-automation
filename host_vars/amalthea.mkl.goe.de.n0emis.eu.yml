@@ -41,12 +41,33 @@ router_wireguard_interfaces:
           - "0.0.0.0/0"
         persistent_keepalive: "25"
         route_allowed_ips: "0"
+  - name: "wg_s_io"
+    private_key: "{{ lookup('passwordstore', 'infra/amalthea.mkl.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['io.int.goe.de.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
+      - name: "elara"
+        endpoint_host: "io.int.goe.de.n0emis.eu"
+        endpoint_port: "{{ wireguard_peer_port }}"
+        public_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "::/0"
+          - "0.0.0.0/0"
+        persistent_keepalive: "25"
+        route_allowed_ips: "0"
 
 router_firewall_forwarding:
   - lan
   - wgserver
 
-router_wan_if: "eth0.2"
+router_pppoe:
+  user: "{{ lookup('passwordstore', 'infra/' + inventory_hostname + '/ppp subkey=user') }}"
+  password: "{{ lookup('passwordstore', 'infra/' + inventory_hostname + '/ppp') }}"
+  if: "eth0.2"
+
 router_domain: "mkl.goe.de.n0emis.eu"
 wireguard_server_host: false
 
@@ -58,3 +79,35 @@ router_lan:
 
 router_ffgoe:
   if: "eth0.3 ffgoeremote"
+
+wireguard_mesh_neighbours:
+  - "himalia.ion.rhr.de.n0emis.eu"
+  - "elara.het.nue.de.n0emis.eu"
+  - "io.int.goe.de.n0emis.eu"
+
+router_static_hosts:
+  - name: lysithea
+    v4: 10.152.14.2
+    mac: e4:5f:01:04:4a:2c
+
+  - name: ap-wrt-00
+    v4: 10.152.14.10
+    mac: 00:8e:f2:4b:f1:ae
+  - name: ap-wrt-01
+    v4: 10.152.14.11
+    mac: 4c:60:de:ea:bd:4d
+  - name: ap-wrt-02
+    v4: 10.152.14.12
+    mac: 00:8e:f2:4b:ee:a2
+  - name: ap-wrt-03
+    v4: 10.152.14.13
+    mac: 00:8e:f2:4b:ef:29
+  - name: ap-wrt-04
+    v4: 10.152.14.14
+    mac: 00:8e:f2:4b:f0:19
+  - name: ap-wrt-05
+    v4: 10.152.14.15
+    mac: 00:8e:f2:4b:f2:05
+  - name: ap-wrt-06
+    v4: 10.152.14.16
+    mac: 20:4e:7f:6f:78:31

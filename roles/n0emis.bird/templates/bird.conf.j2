@@ -3,12 +3,18 @@ log syslog all;
 # ID of this router (32bit value) - usually it's the loopback Legacy-IP
 router id {{ local_v4 | ipaddr('address') }};
 
+timeformat base         iso long;
+timeformat log          iso long;
+timeformat protocol     iso long;
+timeformat route        iso long;
+
+
 ipv4 table igp4;
 ipv6 table igp6;
 
 function is_self_net() {
     if net.type = NET_IP4 then {
-        return net ~ [10.152.0.0/16+, 172.20.190.96/27+];
+        return net ~ [10.152.0.0/16+, 172.20.190.96/27+, 10.254.1.0/24];
     } else if net.type = NET_IP6 then {
         return net ~ [fdf4:2331:fa09::/48+, fdf8:7e7f:d097::/48+];
     }

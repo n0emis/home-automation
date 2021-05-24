@@ -4,6 +4,8 @@ ansible_hostname: "io"
 
 wireguard_server_address: "10.152.0.1/32"
 
+wireguard_mesh_neighbours: "{{ groups['wireguard_member'] + ['amalthea.mkl.goe.de.n0emis.eu']}}"
+
 bird_config_file: "/etc/bird.conf"
 
 router_static_hosts:
@@ -26,6 +28,18 @@ router_static_hosts:
   - name: ap-wrt-02
     v4: 10.152.0.132
     mac: 00:8e:f2:4b:ee:a2
+  - name: ap-wrt-03
+    v4: 10.152.0.133
+    mac: 00:8e:f2:4b:ef:29
+  - name: ap-wrt-04
+    v4: 10.152.0.134
+    mac: 00:8e:f2:4b:f0:19
+  - name: ap-wrt-05
+    v4: 10.152.0.135
+    mac: 00:8e:f2:4b:f2:05
+  - name: ap-wrt-06
+    v4: 10.152.0.136
+    mac: 20:4e:7f:6f:78:31
 
   - name: grandstream
     v4: 10.152.1.1
@@ -187,7 +201,21 @@ router_wireguard_interfaces:
           - "0.0.0.0/0"
         persistent_keepalive: "25"
         route_allowed_ips: "0"
-
+  - name: "wg_s_amalthea"
+    private_key: "{{ lookup('passwordstore', 'infra/io.int.goe.de.n0emis.eu/wg_server') }}"
+    listen_port: "{{ hostvars['amalthea.mkl.goe.de.n0emis.eu'].wireguard_peer_port }}"
+    addresses:
+      - "{{ local_v4 }}/32"
+      - "{{ local_ll }}/64"
+    nohostroute: yes
+    peers:
+      - name: "ganymed"
+        public_key: "{{ lookup('passwordstore', 'infra/amalthea.mkl.goe.de.n0emis.eu/wg_server subkey=public') }}"
+        allowed_ips:
+          - "::/0"
+          - "0.0.0.0/0"
+        persistent_keepalive: "25"
+        route_allowed_ips: "0"
 
 dtag_user: "{{ lookup('passwordstore', 't-online.de subkey=email') }}"
 dtag_password: "{{ lookup('passwordstore', 't-online.de') }}"

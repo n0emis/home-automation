@@ -19,11 +19,20 @@ config dnsmasq
 	option enable_tftp '1'
 	list server '1.1.1.1'
 	list server '/tra.vel.xz.n0emis.eu/10.152.12.1'
-	list server '/dn42/172.20.0.53'
 	list server '/github.com/2a01:4f9:c010:3f02::1'
 	list server '/amazonaws.com/2a01:4f9:c010:3f02::1'
 	list server '/acme-dns.n0emis.eu/78.46.251.132#5303'
 	list server '/cccgoe/fdf8:7e7f:d097:9900::1'
+{% if inventory_hostname=="io.int.goe.de.n0emis.eu" %}
+	list server '/mkl.goe.de.n0emis.eu/10.152.14.1'
+{% endif %}
+	list server '/dn42/172.23.0.53'
+	list server '/20.172.in-addr.arpa/172.23.0.53'
+	list server '/21.172.in-addr.arpa/172.23.0.53'
+	list server '/22.172.in-addr.arpa/172.23.0.53'
+	list server '/23.172.in-addr.arpa/172.23.0.53'
+	list server '/d.f.ip6.arpa/172.23.0.53'
+	list server '/gen.lib.rus.ec/1.1.1.1'
 
 config dhcp 'lan'
 	option interface 'lan'

@@ -32,7 +32,9 @@
   template:
     dest: "/etc/config/dhcp"
     src:  "config/dhcp.j2"
-  notify: restart dnsmasq
+  notify:
+    - restart dnsmasq
+    - restart odhcpd
 
 - name: Copy Network Config File
   template:

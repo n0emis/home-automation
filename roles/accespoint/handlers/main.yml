@@ -9,7 +9,10 @@
   command: /etc/init.d/network reload
 
 - name: restart dnsmasq
-  command: /etc/init.d/dnsmasq dnsmasq restart
+  command: /etc/init.d/dnsmasq restart
+
+- name: restart odhcpd
+  command: /etc/init.d/odhcpd restart
 
 - name: reload wireless
   command: /sbin/wifi reload

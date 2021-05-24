@@ -150,6 +150,7 @@ bird_extra: |
       import filter {
           if source = RTS_STATIC then reject;
           if source = RTS_DEVICE then reject;
+          if dest = RTD_UNREACHABLE then reject;
           krt_prefsrc = OWNIP;
           accept;
       };
@@ -162,6 +163,7 @@ bird_extra: |
       import filter {
           if source = RTS_STATIC then reject;
           if source = RTS_DEVICE then reject;
+          if dest = RTD_UNREACHABLE then reject;
           krt_prefsrc = OWNIPv6;
           accept;
       };

@@ -13,7 +13,9 @@ config interface 'wan'
 	option username '{{ router_pppoe.user }}'
 	option password '{{ router_pppoe.password }}'
 	option ifname '{{ router_pppoe.if }}'
+{% if router_pppoe.hostuniq is defined %}
 	option host_uniq '{{ router_pppoe.hostuniq }}'
+{% endif %}
 	option ipv6 'auto'
 {% elif router_wan_if is defined %}
 config interface 'wan'
